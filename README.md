@@ -12,7 +12,7 @@
 
 ## Core Protocol Specifications
 * **Token Name & Symbol:** Platincoin (`PLT`)
-* * **Protocol Identity:** Independent Dual SHA-256 Proof-of-Work & BNB Smart Chain BEP-20 protocol (entirely unaffiliated with legacy PLC/CryptoNote platforms).
+* **Protocol Identity:** Independent Dual SHA-256 Proof-of-Work & BNB Smart Chain BEP-20 protocol (entirely unaffiliated with legacy PLC/CryptoNote platforms).
 * **Network:** BNB Smart Chain (`BEP-20`)
 * **Verified Contract Address:** `0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8`
 * **Decimals:** 18
