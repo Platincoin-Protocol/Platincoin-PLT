@@ -12,10 +12,11 @@
 
 ## Core Protocol Specifications
 * **Token Name & Symbol:** Platincoin (`PLT`)
+* * **Protocol Identity:** Independent Dual SHA-256 Proof-of-Work & BNB Smart Chain BEP-20 protocol (entirely unaffiliated with legacy PLC/CryptoNote platforms).
 * **Network:** BNB Smart Chain (`BEP-20`)
 * **Verified Contract Address:** `0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8`
 * **Decimals:** 18
-* **Maximum Hard Cap:** `11,000,000 PLT` (Fixed supply – No Mint function)
+* **Maximum Hard Cap:** `11,000,000 PLT` (Fixed 11,000,000 PLT supply - Zero Minting Policy)
 * **Issuance Model:** 100% Proof-of-Work Emission (`50 PLT` initial block reward with halving schedule)
 * **Transaction Taxes:** `0%` Buy Tax / `0%` Sell Tax
 * **Launch Structure:** 100% Fair Launch (No Presale, No Private Sale, No Team/VC pre-allocation)
