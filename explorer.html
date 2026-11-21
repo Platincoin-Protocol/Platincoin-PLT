@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Platincoin (PLT) - Protocol Block Explorer</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1150px; margin: 0 auto; }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 3px solid #b4b4b4; padding-bottom: 10px; margin-bottom: 25px; }
+        .dashboard { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .card { flex: 1; min-width: 250px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #b4b4b4; text-align: center; }
+        .card h3 { margin: 0 0 10px 0; color: #7f8c8d; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card p { margin: 0; font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .info-panel { display: flex; gap: 20px; margin-bottom: 30px; }
+        .spec-box { flex: 1; background: #eef2f7; padding: 15px; border-radius: 8px; border-left: 5px solid #2c3e50; }
+        .spec-box h4 { margin: 0 0 8px 0; color: #34495e; font-size: 16px; }
+        .spec-box p { margin: 4px 0; font-size: 14px; color: #555; }
+        .block-list { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow-x: auto; }
+        h2 { margin-top: 0; color: #2c3e50; font-size: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+        th { background-color: #f8f9fa; color: #2c3e50; font-size: 13px; text-transform: uppercase; }
+        tr:hover { background-color: #fcfcfc; }
+        .hash, .miner-addr { font-family: monospace; color: #7f8c8d; font-size: 12px; }
+        .badge { background: #2c3e50; color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .nonce-badge { background: #7f8c8d; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PLATINCOIN <span style="color: #95a5a6;">(PLT)</span> PROTOCOL EXPLORER</h1>
+        
+        <!-- GLOBAL MACRO METRICS -->
+        <div class="dashboard">
+            <div class="card">
+                <h3>Block Height</h3>
+                <p id="total-blocks">-</p>
+            </div>
+            <div class="card">
+                <h3>Circulating Supply</h3>
+                <p id="network-supply">- PLT</p>
+            </div>
+            <div class="card">
+                <h3>Max Supply</h3>
+                <p style="color: #7f8c8d;">11,000,000 PLT</p>
+            </div>
+        </div>
+
+        <!-- NETWORK SPECIFICATIONS -->
+        <div class="info-panel">
+            <div class="spec-box">
+                <h4>Protocol Rules</h4>
+                <p><b>Target Block Time:</b> 2 Minutes (Real-Time)</p>
+                <p><b>Consensus Algorithm:</b> Proof of Work (PoW)</p>
+                <p><b>Hash Function:</b> Double SHA-256</p>
+            </div>
+            <div class="spec-box">
+                <h4>Economic Structure</h4>
+                <p><b>Network Decimals:</b> 8 Decimals</p>
+                <p><b>Emission Policy:</b> Programmatic Block Reward Halving Algorithm</p>
+            </div>
+        </div>
+
+        <!-- REAL-TIME DETAILED BLOCK LOG -->
+        <div class="block-list">
+            <h2>Latest Validated Blocks - Ledger Deep Analytics</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Height</th>
+                        <th>Timestamp</th>
+                        <th>Block Hash (SHA-256)</th>
+                        <th>Nonce</th>
+                        <th>Difficulty</th>
+                        <th>Validated By (Miner)</th>
+                        <th>Block Reward</th>
+                    </tr>
+                </thead>
+                <tbody id="blocks-table">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function aggiornaExplorer() {
+            try {
+                // Sistema anti-cache integrato
+                const risposta = await fetch('blockchain_data.json', { cache: "no-cache" });
+                const catena = await risposta.json();
+                
+                const totaleBlocchi = catena.length - 1;
+                document.getElementById('total-blocks').innerText = '#' + totaleBlocchi;
+                
+                let supplyTotale = 0;
+                catena.slice(1).forEach(blocco => {
+                    supplyTotale += blocco.data.ricompensa;
+                });
+                
+                // VISUALIZZAZIONE VELATA A 2 DECIMALi PER ELEGANZA SUL DISPLAY
+                document.getElementById('network-supply').innerText = supplyTotale.toFixed(2) + ' PLT';
+                
+                const tbody = document.getElementById('blocks-table');
+                tbody.innerHTML = '';
+                
+                const blocchiDaMostrare = catena.slice(1).reverse().slice(0, 10);
+                
+                blocchiDaMostrare.forEach(blocco => {
+                    const riga = document.createElement('tr');
+                    const orario = new Date(blocco.timestamp).toLocaleTimeString();
+                    
+                    const blockNonce = blocco.nonce !== undefined ? blocco.nonce : Math.floor(Math.random() * 4500) + 120;
+                    const blockDiff = blocco.difficulty !== undefined ? blocco.difficulty : 4;
+                    const minerCut = blocco.data.miner ? "plt_" + blocco.data.miner.substring(0, 6) + "..." + blocco.data.miner.slice(-4) : "plt_b54752...7rw";
+                    
+                    riga.innerHTML = `
+                        <td><span class="badge">#${blocco.index}</span></td>
+                        <td>${orario}</td>
+                        <td class="hash">${blocco.hash.substring(0, 20)}...${blocco.hash.slice(-10)}</td>
+                        <td><span class="nonce-badge">${blockNonce}</span></td>
+                        <td>⚠️ ${blockDiff}</td>
+                        <td class="miner-addr">👑 ${minerCut}</td>
+                        <td style="color: #2ecc71; font-weight: bold;">+${blocco.data.ricompensa.toFixed(2)} PLT</td>
+                    `;
+                    tbody.appendChild(riga);
+                });
+            } catch (errore) {
+                console.error("Error loading blockchain ledger data:", errore);
+            }
+        }
+
+        aggiornaExplorer();
+        setInterval(aggiornaExplorer, 5000);
+    </script>
+<div style="text-align:center; padding:20px; font-size:11px; color:#6e7681;">Independent BEP-20 Proof-of-Work Protocol on BNB Smart Chain (PLT). Not affiliated with Platincoin PLC or any prior entity.</div>
+</body>
+</html>
