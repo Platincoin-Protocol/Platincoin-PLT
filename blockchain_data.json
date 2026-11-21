@@ -29190,5 +29190,137 @@
             "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
             "ricompensa": 50
         }
+    },
+    {
+        "index": 2433,
+        "timestamp": 1795267973896,
+        "previousHash": "000081e512884a5f7c72bcc6ac235fa25b21d117048da98a31502e4e4ee2291d",
+        "nonce": 107526,
+        "difficulty": 4,
+        "hash": "00006f56ab95cad3b843ae9fb1a1a09d7c3a773799e3c73645819ac6c2a7822a",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2434,
+        "timestamp": 1795268094729,
+        "previousHash": "00006f56ab95cad3b843ae9fb1a1a09d7c3a773799e3c73645819ac6c2a7822a",
+        "nonce": 40206,
+        "difficulty": 4,
+        "hash": "0000d91955460ab8507669a8fa4c86886147b0fa815d99f0ec98644a72b63015",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2435,
+        "timestamp": 1795268215137,
+        "previousHash": "0000d91955460ab8507669a8fa4c86886147b0fa815d99f0ec98644a72b63015",
+        "nonce": 46590,
+        "difficulty": 4,
+        "hash": "0000430adf47a2d2a6b17a1f7db08bfe27ce2097c4977ff87bad8ab7eac0e98b",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2436,
+        "timestamp": 1795268335609,
+        "previousHash": "0000430adf47a2d2a6b17a1f7db08bfe27ce2097c4977ff87bad8ab7eac0e98b",
+        "nonce": 35892,
+        "difficulty": 4,
+        "hash": "0000324de40853fa7f506b8ff70213159c582b576268b3deb3ae93f49bb67a34",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2437,
+        "timestamp": 1795268455980,
+        "previousHash": "0000324de40853fa7f506b8ff70213159c582b576268b3deb3ae93f49bb67a34",
+        "nonce": 6917,
+        "difficulty": 4,
+        "hash": "00002d17e9960ec3b9fad71a2764a16047c17bd87030235057bf54dd7eef7d65",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2438,
+        "timestamp": 1795268576091,
+        "previousHash": "00002d17e9960ec3b9fad71a2764a16047c17bd87030235057bf54dd7eef7d65",
+        "nonce": 58450,
+        "difficulty": 4,
+        "hash": "0000a41d8a20cd40ebf8956b844f748db7d75ba5ee5f0078bb0a65c57e048cf4",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2439,
+        "timestamp": 1795268696547,
+        "previousHash": "0000a41d8a20cd40ebf8956b844f748db7d75ba5ee5f0078bb0a65c57e048cf4",
+        "nonce": 59153,
+        "difficulty": 4,
+        "hash": "00004a47954bffa8f517c43f74b678fb8a184fcf93652ed9dd5b12e948f620f7",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2440,
+        "timestamp": 1795268817088,
+        "previousHash": "00004a47954bffa8f517c43f74b678fb8a184fcf93652ed9dd5b12e948f620f7",
+        "nonce": 40177,
+        "difficulty": 4,
+        "hash": "0000e1b2f4782e23f19014270d58dbaf89b5f738a696fd7acc3fa916393285b2",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2441,
+        "timestamp": 1795268937475,
+        "previousHash": "0000e1b2f4782e23f19014270d58dbaf89b5f738a696fd7acc3fa916393285b2",
+        "nonce": 177143,
+        "difficulty": 4,
+        "hash": "0000114dc92b93f34c5985fa99db466c1bab7efc75c3503e27512c52957c5709",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2442,
+        "timestamp": 1795269058954,
+        "previousHash": "0000114dc92b93f34c5985fa99db466c1bab7efc75c3503e27512c52957c5709",
+        "nonce": 37117,
+        "difficulty": 4,
+        "hash": "0000dae97f0c230761b7e2011cfb22a581ef1d3ceaaffa6300dfd7477abfd5b4",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
+    },
+    {
+        "index": 2443,
+        "timestamp": 1795269179361,
+        "previousHash": "0000dae97f0c230761b7e2011cfb22a581ef1d3ceaaffa6300dfd7477abfd5b4",
+        "nonce": 7096,
+        "difficulty": 4,
+        "hash": "0000a4c9300d9639ef796963ef9876256172cc851d126140b5a2b020b255c102",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
     }
 ]
