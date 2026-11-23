@@ -574,10 +574,8 @@ document.getElementById('connectBtn').addEventListener('click', async () => {
     if (!providerObj) {
         statusMsg.style.color = "red";
         statusMsg.innerText = isEnglish 
-            ? "Opening mobile wallet..." : "Apertura wallet mobile..."; if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) { var d="platincoin-protocol.github.io"+String.fromCharCode(47)+"Platincoin-PLT"; var c=prompt("Scegli il tuo wallet mobile (scrivi 1, 2 o 3):
-1 = MetaMask
-2 = Trust Wallet
-3 = Phantom","1"); if(c){ c=c.trim(); if(c==="2"){window.location.href="https:"+String.fromCharCode(47,47)+"://trustwallet.com"+String.fromCharCode(47)+"open_url?coin_id=20000714&url=https:"+String.fromCharCode(47,47)+d;}else if(c==="3"){var t=encodeURIComponent("https:"+String.fromCharCode(47,47)+d);window.location.href="https:"+String.fromCharCode(47,47)+"phantom.app"+String.fromCharCode(47)+"ul"+String.fromCharCode(47)+"browse"+String.fromCharCode(47)+t+"?ref="+t;}else{window.location.href="https:"+String.fromCharCode(47,47)+"metamask.app.link"+String.fromCharCode(47)+"dapp"+String.fromCharCode(47)+d;} } return; }
+            ? "No Web3 wallet detected. Please install MetaMask, Trust Wallet or Phantom." 
+            : "Nessun wallet Web3 rilevato. Installa MetaMask, Trust Wallet o Phantom.";
         return;
     }
 
@@ -697,10 +695,8 @@ async function addTokenToWallet() {
     if (!providerObj) {
         statusMsg.style.color = "red";
         statusMsg.innerText = isEnglish 
-            ? "Opening mobile wallet..." : "Apertura wallet mobile..."; if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) { var d="platincoin-protocol.github.io"+String.fromCharCode(47)+"Platincoin-PLT"; var c=prompt("Scegli il tuo wallet mobile (scrivi 1, 2 o 3):
-1 = MetaMask
-2 = Trust Wallet
-3 = Phantom","1"); if(c){ c=c.trim(); if(c==="2"){window.location.href="https:"+String.fromCharCode(47,47)+"://trustwallet.com"+String.fromCharCode(47)+"open_url?coin_id=20000714&url=https:"+String.fromCharCode(47,47)+d;}else if(c==="3"){var t=encodeURIComponent("https:"+String.fromCharCode(47,47)+d);window.location.href="https:"+String.fromCharCode(47,47)+"phantom.app"+String.fromCharCode(47)+"ul"+String.fromCharCode(47)+"browse"+String.fromCharCode(47)+t+"?ref="+t;}else{window.location.href="https:"+String.fromCharCode(47,47)+"metamask.app.link"+String.fromCharCode(47)+"dapp"+String.fromCharCode(47)+d;} } return; }
+            ? "No Web3 wallet detected. Please install MetaMask, Trust Wallet or Phantom." 
+            : "Nessun wallet Web3 rilevato. Installa MetaMask, Trust Wallet o Phantom.";
         return;
     }
 
