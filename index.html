@@ -578,12 +578,12 @@ document.getElementById('connectBtn').addEventListener('click', async () => {
   if (!c) return;
   c = c.trim();
   if (c === "2") {
-    window.location.href = "https://trustwallet.com" + d;
+    window.location.href = "https://link.trustwallet.com/open_url?coin_id=20000714&url=https://" + d;
   } else if (c === "3") {
     var t = encodeURIComponent("https://" + d);
-    window.location.href = "https://phantom.app" + t + "?ref=" + t;
+    window.location.href = "https://phantom.app/ul/browse/" + t + "?ref=" + t;
   } else {
-    window.location.href = "https://app.link" + d;
+    window.location.href = "https://metamask.app.link/dapp/" + d;
   }
 }
 
