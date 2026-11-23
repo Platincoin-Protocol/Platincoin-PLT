@@ -485,8 +485,10 @@ if (typeof userAddress !== 'undefined' && userAddress) {
         }
     }
 }
-document.getElementById('live-supply-web3').innerText = userMinerBalance.toFixed(2);
-document.getElementById('live-supply-web3-it').innerText = userMinerBalance.toFixed(2);
+window._cachedChainData = chain;
+const initialBal = (typeof userAddress !== 'undefined' && userAddress) ? computeAddressMinedBalance(chain, userAddress) : 0;
+document.getElementById('live-supply-web3').innerText = initialBal.toFixed(2);
+document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2);
 
               
             } catch (e) { console.error(e); }
@@ -571,7 +573,32 @@ document.getElementById('connectBtn').addEventListener('click', async () => {
     const statusMsg = document.getElementById('statusMessage');
     const isEnglish = window.getComputedStyle(document.querySelector('.lang-en')).display !== 'none';
 
-    function openMobileWalletFallback() {
+    window._cachedChainData = null;
+function computeAddressMinedBalance(chainData, addr) {
+  if (!Array.isArray(chainData) || !addr) return 0;
+  const target = addr.toLowerCase().replace(/^0x/, '');
+  let total = 0;
+  for (const b of chainData) {
+    const d = b && b.data;
+    if (d && typeof d === 'object') {
+      const m = String(d.miner || d.ricevente || '').toLowerCase().replace(/^0x/, '');
+      if (m && m === target) total += Number(d.ricompensa || 0);
+      if (d.mittente && String(d.mittente).toLowerCase().replace(/^0x/, '') === target) total -= Number(d.importo || 0);
+      if (d.destinatario && String(d.destinatario).toLowerCase().replace(/^0x/, '') === target) total += Number(d.importo || 0);
+    }
+  }
+  return Math.max(0, total);
+}
+function refreshConnectedWalletBalance(addr) {
+  const bal = computeAddressMinedBalance(window._cachedChainData, addr);
+  const elEn = document.getElementById('live-supply-web3');
+  const elIt = document.getElementById('live-supply-web3-it');
+  if (elEn) elEn.innerText = bal.toFixed(2);
+  if (elIt) elIt.innerText = bal.toFixed(2);
+  return bal;
+}
+
+function openMobileWalletFallback() {
   if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
   var d = "platincoin-protocol.github.io/Platincoin-PLT";
   var c = prompt("Scegli il tuo wallet mobile (1, 2 o 3):\n\n1 = MetaMask\n2 = Trust Wallet\n3 = Phantom", "1");
@@ -619,7 +646,8 @@ document.getElementById('connectBtn').addEventListener('click', async () => {
         statusMsg.innerText = "";
 
         // Abilita il pulsante viola di Claim
-        const claimBtn = document.getElementById('claimBtn');
+        if (typeof userAddress !== 'undefined' && userAddress) { refreshConnectedWalletBalance(userAddress); }
+            const claimBtn = document.getElementById('claimBtn');
         if (claimBtn) {
             claimBtn.disabled = false;
             claimBtn.style.cursor = "pointer";
@@ -655,13 +683,34 @@ document.getElementById('claimBtn').addEventListener('click', async () => {
     `;
 
     try {
-        // Questa sezione simulerà o eseguirà l'interazione sicura con lo Smart Contract
-        statusMsg.style.color = "green";
+        const verifiedBal = refreshConnectedWalletBalance(userAddress);
+        if (verifiedBal <= 0) {
+            statusMsg.style.color = "#ef4444";
+            statusMsg.innerHTML = `
+                <span class="lang-en">No mined PLT balance verified on-chain for this wallet (0.00 PLT).</span>
+                <span class="lang-it">Nessun saldo PLT minato verificato per questo wallet (0.00 PLT).</span>
+            `;
+            return;
+        }
+        const msgToSign = `Platincoin (PLT) Official Payout Request
+Wallet: ${userAddress}
+Verified Mined Balance: ${verifiedBal.toFixed(2)} PLT
+Timestamp: ${new Date().toISOString()}`;
+        const prov = window.ethereum || (window.phantom && window.phantom.ethereum);
+        if (!prov) throw new Error("No Web3 provider");
+        const signature = await prov.request({ method: 'personal_sign', params: [msgToSign, userAddress] });
+        const receipt = `🔐 PLATINCOIN (PLT) PAYOUT CLAIM
+Wallet: ${userAddress}
+Amount: ${verifiedBal.toFixed(2)} PLT
+Signature: ${signature}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            try { await navigator.clipboard.writeText(receipt); } catch (_) {}
+        }
+        statusMsg.style.color = "#10b981";
         statusMsg.innerHTML = `
-            <span class="lang-en">Request sent! Verify your Phantom Wallet to authorize.</span>
-            <span class="lang-it">Richiesta inviata! Verifica il tuo Phantom per autorizzare l'invio.</span>
+            <span class="lang-en">✅ Signed receipt (${verifiedBal.toFixed(2)} PLT) copied! Paste it in our <a href="https://discord.gg" target="_blank" style="color:#38bdf8;text-decoration:underline;">Discord</a> or <a href="mailto:plt_dev_central@proton.me?subject=PLT%20Payout%20Request&body=${encodeURIComponent(receipt)}" style="color:#38bdf8;text-decoration:underline;">Email</a> for manual processing.</span>
+            <span class="lang-it">✅ Ricevuta firmata (${verifiedBal.toFixed(2)} PLT) copiata! Incollala su <a href="https://discord.gg" target="_blank" style="color:#38bdf8;text-decoration:underline;">Discord</a> o inviala via <a href="mailto:plt_dev_central@proton.me?subject=Richiesta%20Payout%20PLT&body=${encodeURIComponent(receipt)}" style="color:#38bdf8;text-decoration:underline;">Email</a> per l'invio on-chain.</span>
         `;
-
     } catch (error) {
         console.error("Transazione fallita:", error);
         statusMsg.style.color = "red";
