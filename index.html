@@ -559,7 +559,7 @@
     <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
     <a href="https://pinksale.finance/pinklock/bsc/record/2113264" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">PinkLock LP Lock (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificato Lock PinkLock (#2113264) ↗</span></a>
     <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
-  <button type="button" onclick="addPltToWallet(this)" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Add $PLT to Wallet</span><span class="lang-it" style="display:none;">Aggiungi $PLT al Wallet</span></button>
+  <button type="button" id="plt-add-wallet-btn" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Add $PLT to Wallet</span><span class="lang-it" style="display:none;">Aggiungi $PLT al Wallet</span></button>
   </nav>
   <script>
     fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(document.getElementById("top-live-price"))document.getElementById("top-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
@@ -630,69 +630,64 @@
   </div>
 </section>
 <script>
-async function addPltToWallet(btn) {
-  const addr = "0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8";
-  const img = "https://platincoin-plt.org" + "/PLT_logo_320x320.png";
-  const isIt = document.documentElement.lang === "it" || document.querySelector(".lang-it[style*='inline']") !== null;
-  const origHTML = btn ? btn.innerHTML : "";
+(function() {
+  const btn = document.getElementById("plt-add-wallet-btn");
+  if (!btn) return;
+  btn.addEventListener("click", async function() {
+    const addr = "0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8";
+    const isIt = document.documentElement.lang === "it" || document.querySelector(".lang-it[style*='inline']") !== null;
+    const orig = btn.innerHTML;
+    try { await navigator.clipboard.writeText(addr); } catch (e) {}
 
-  try { await navigator.clipboard.writeText(addr); } catch(e) {}
-
-  if (!window.ethereum) {
-    if (btn) {
+    if (!window.ethereum) {
       btn.innerHTML = isIt ? "✅ Indirizzo Copiato!" : "✅ Address Copied!";
-      setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
-    }
-    alert(isIt
-      ? "Nessun wallet Web3 attivo rilevato.
+      setTimeout(() => { btn.innerHTML = orig; }, 3000);
+      alert(isIt
+        ? "Nessun wallet Web3 attivo rilevato.
 Indirizzo contratto PLT copiato negli appunti:
 " + addr
-      : "No active Web3 wallet detected.
+        : "No active Web3 wallet detected.
 PLT contract address copied to clipboard:
 " + addr);
-    return;
-  }
+      return;
+    }
 
-  if (btn) btn.innerHTML = isIt ? "🦊 Controlla MetaMask..." : "🦊 Check MetaMask...";
+    btn.innerHTML = isIt ? "🦊 Apertura Wallet..." : "🦊 Opening Wallet...";
 
-  const withTimeout = (p, ms) => Promise.race([
-    p,
-    new Promise((_, rej) => setTimeout(() => rej(new Error("TIMEOUT")), ms))
-  ]);
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x38" }]
+      });
+    } catch (swErr) {}
 
-  try {
-    await withTimeout(window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "0x38" }]
-    }), 3000);
-  } catch (e) {}
-
-  try {
-    const added = await withTimeout(window.ethereum.request({
-      method: "wallet_watchAsset",
-      params: {
-        type: "ERC20",
-        options: { address: addr, symbol: "PLT", decimals: 18, image: img }
-      }
-    }), 4000);
-    if (btn) {
-      btn.innerHTML = added
+    try {
+      const ok = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: addr,
+            symbol: "PLT",
+            decimals: 18
+          }
+        }
+      });
+      btn.innerHTML = ok
         ? (isIt ? "✅ $PLT Aggiunto!" : "✅ $PLT Added!")
         : (isIt ? "📋 Indirizzo Copiato" : "📋 Address Copied");
-      setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
-    }
-  } catch (err) {
-    if (btn) {
+      setTimeout(() => { btn.innerHTML = orig; }, 3000);
+    } catch (err) {
       btn.innerHTML = isIt ? "📋 Indirizzo Copiato!" : "📋 Address Copied!";
-      setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
-    }
-    alert(isIt
-      ? "Sblocca l'estensione MetaMask in alto a destra nel browser (o incolla l'indirizzo PLT già copiato):
+      setTimeout(() => { btn.innerHTML = orig; }, 3000);
+      alert(isIt
+        ? "Apri/sblocca il tuo Wallet (MetaMask/TrustWallet) per importare PLT, oppure incolla l'indirizzo già copiato:
 " + addr
-      : "Unlock your MetaMask extension at the top-right of your browser (or paste the copied PLT address):
+        : "Open/unlock your Wallet (MetaMask/TrustWallet) to import PLT, or paste the copied address:
 " + addr);
-  }
-}
+    }
+  });
+})();
 </script>
 
 <footer style="margin-top: 40px; padding-top: 25px; border-top: 1px solid #30363d; text-align: center; font-size: 13px; color: #8b949e;">
