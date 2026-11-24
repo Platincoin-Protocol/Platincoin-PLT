@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platincoin ($PLT) | Official Contact &amp; Support</title>
+  <link rel="icon" type="image/png" sizes="320x320" href="PLT_logo_320x320.png">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 14px 14px 48px;
+      background: #0b0f19;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .lang-btn {
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid rgba(52,211,153,0.35);
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .field {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #0b0f19;
+      color: #fff;
+      font-size: 14px;
+      margin-top: 6px;
+      margin-bottom: 14px;
+      font-family: inherit;
+    }
+    .field:focus {
+      outline: none;
+      border-color: #34d399;
+    }
+  </style>
+</head>
+<body>
+  <header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
+    <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
+    <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
+  </a>
+
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+
+  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">🏠 Home</span>
+      <span class="lang-it" style="display:none;">🏠 Home</span>
+    </a>
+    <a href="docs.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">📖 FAQ &amp; Docs</span>
+      <span class="lang-it" style="display:none;">📖 FAQ e Documenti</span>
+    </a>
+    <a href="contact.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">
+      <span class="lang-en">✉️ Contact Us</span>
+      <span class="lang-it" style="display:none;">✉️ Contatti</span>
+    </a>
+  </div>
+</header>
+<script>
+(function() {
+  const btn = document.getElementById("plt-menu-toggle");
+  const menu = document.getElementById("plt-dropdown-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+  document.addEventListener("click", function(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
+  });
+})();
+</script>
+
+  <div style="max-width:680px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
+    <button type="button" class="lang-btn" onclick="setContactLang('en')">ENG</button>
+    <button type="button" class="lang-btn" onclick="setContactLang('it')">ITA</button>
+  </div>
+
+  <main style="max-width:680px;margin:0 auto;padding:28px 24px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.96),rgba(12,15,25,0.98));border:1px solid rgba(52,211,153,0.32);box-shadow:0 16px 40px rgba(0,0,0,0.55);">
+    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,0.14);color:#34d399;font-size:11px;font-weight:800;letter-spacing:0.8px;">
+      <span class="lang-en">✉️ OFFICIAL PROTOCOL COMMUNICATION</span>
+      <span class="lang-it" style="display:none;">✉️ COMUNICAZIONE UFFICIALE DEL PROTOCOLLO</span>
+    </span>
+    <h1 class="lang-en" style="margin:10px 0 6px;font-size:24px;">Contact Platincoin ($PLT) Team</h1>
+    <h1 class="lang-it" style="display:none;margin:10px 0 6px;font-size:24px;">Contatta il Team Platincoin ($PLT)</h1>
+    <p class="lang-en" style="margin:0 0 20px;font-size:13.5px;color:#94a3b8;">For exchange listings, BscScan / CoinGecko verification, partnerships, or technical support, send a message directly below.</p>
+    <p class="lang-it" style="display:none;margin:0 0 20px;font-size:13.5px;color:#94a3b8;">Per listing su exchange, verifiche BscScan / CoinGecko, partnership o supporto tecnico, invia un messaggio direttamente qui sotto.</p>
+
+    <form action="https://formsubmit.coinfo@platincoin-plt.org" method="POST">
+      <input type="hidden" name="_subject" value="New Message from Platincoin ($PLT) Official Portal">
+      <input type="hidden" name="_captcha" value="false">
+
+      <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
+        <span class="lang-en">Your Name / Organization</span>
+        <span class="lang-it" style="display:none;">Il tuo Nome / Organizzazione</span>
+      </label>
+      <input type="text" name="name" required class="field" id="plt-cn" placeholder="e.g. Alex / Crypto Research">
+
+      <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
+        <span class="lang-en">Your Email Address</span>
+        <span class="lang-it" style="display:none;">Il tuo Indirizzo Email</span>
+      </label>
+      <input type="email" name="email" required class="field" placeholder="name@domain.com">
+
+      <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
+        <span class="lang-en">Subject</span>
+        <span class="lang-it" style="display:none;">Oggetto</span>
+      </label>
+      <select name="topic" id="plt-topic" class="field">
+        <option value="Exchange / Aggregator Listing" data-en="Exchange / Aggregator Listing (CoinGecko / CMC)" data-it="Listing su Exchange / Aggregatori (CoinGecko / CMC)">Exchange / Aggregator Listing (CoinGecko / CMC)</option>
+        <option value="Partnership / Liquidity" data-en="Partnership / Liquidity" data-it="Partnership / Liquidità">Partnership / Liquidity</option>
+        <option value="Technical / Wallet Support" data-en="Technical / Wallet Support" data-it="Supporto Tecnico / Wallet">Technical / Wallet Support</option>
+        <option value="General Inquiry" data-en="General Inquiry" data-it="Richiesta Generale">General Inquiry</option>
+      </select>
+
+      <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
+        <span class="lang-en">Message</span>
+        <span class="lang-it" style="display:none;">Messaggio</span>
+      </label>
+      <textarea name="message" rows="5" required class="field" id="plt-cm" placeholder="Write your message here..."></textarea>
+
+      <button type="submit" style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:800;font-size:14.5px;cursor:pointer;box-shadow:0 6px 20px rgba(16,185,129,0.35);">
+        <span class="lang-en">Send Email Directly ↗</span>
+        <span class="lang-it" style="display:none;">Invia Email Direttamente ↗</span>
+      </button>
+    </form>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#94a3b8;">
+      <span>Direct Email: <strong style="color:#34d399;">info@platincoin-plt.org</strong></span>
+      <a href="mailto:info@platincoin-plt.org" style="color:#c4b5fd;text-decoration:none;font-weight:700;">Open Mail App ↗</a>
+    </div>
+  </main>
+
+  <script>
+    function setContactLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+      document.querySelectorAll('.lang-it').forEach(el => el.style.display = lang === 'it' ? '' : 'none');document.querySelectorAll('#plt-topic option').forEach(o=>o.textContent=o.getAttribute('data-'+lang));document.getElementById('plt-cn').placeholder=lang==='it'?'es. Marco / Crypto Research':'e.g. Alex / Crypto Research';document.getElementById('plt-cm').placeholder=lang==='it'?'Scrivi qui il tuo messaggio...':'Write your message here...';
+    }
+  </script>
+</body>
+</html>

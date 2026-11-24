@@ -203,6 +203,47 @@
 </head>
 
 <body>
+<header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
+    <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
+    <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
+  </a>
+
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+
+  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">🏠 Home</span>
+      <span class="lang-it" style="display:none;">🏠 Home</span>
+    </a>
+    <a href="docs.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">📖 FAQ &amp; Docs</span>
+      <span class="lang-it" style="display:none;">📖 FAQ e Documenti</span>
+    </a>
+    <a href="contact.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">
+      <span class="lang-en">✉️ Contact Us</span>
+      <span class="lang-it" style="display:none;">✉️ Contatti</span>
+    </a>
+  </div>
+</header>
+<script>
+(function() {
+  const btn = document.getElementById("plt-menu-toggle");
+  const menu = document.getElementById("plt-dropdown-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+  document.addEventListener("click", function(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
+  });
+})();
+</script>
 <!-- BANNER CYBERPUNK BILINGUE IN ALTO -->
 <div style="background: #0d1117; border-bottom: 2px solid #00ffcc; padding: 10px; font-family: monospace; text-align: center; box-shadow: 0 4px 10px rgba(0, 255, 204, 0.2); width: 100%; margin-bottom: 30px;">
   <span style="color: #00ffcc; font-weight: bold; margin-right: 15px;"><span class="pulse-green"></span>⚡ NETWORK STATUS [SHA-256]: ACTIVE</span>
@@ -522,71 +563,7 @@
             </div>
         </div>
         
-        <section style="margin-bottom: 40px;">
-            <h2 class="lang-en">Protocol Documentation FAQ</h2><h2 class="lang-it">FAQ sulla Documentazione del Protocollo</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h4 class="lang-en">What is Platincoin (PLT)?</h4><h4 class="lang-it">Cos è Platincoin (PLT)?</h4>
-                    <p class="lang-en">Platincoin is a highly-scarce, decentralized digital commodity secured by Proof of Work mathematical validation. It features a strict algorithmically enforced public supply limit of 11,000,000 tokens.</p>
-                    <p class="lang-it">Platincoin è una risorsa digitale altamente scarsa e decentralizzata, protetta dalla validazione matematica Proof of Work. Presenta un limite rigido di fornitura pubblica di 11.000.000 di token applicato algoritmicamente.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 class="lang-en">How does the 1:1 public registry work?</h4><h4 class="lang-it">Come funziona il registro pubblico 1:1?</h4>
-                    <p class="lang-en">To ensure global financial compatibility, the market uses Wrapped Platincoin (PLT) contracts on decentralized exchanges, completely backed by the blocks validated by our protocol network.</p>
-                    <p class="lang-it">Per garantire la compatibilità finanziaria globale, il mercato utilizza contratti Platincoin su exchange decentralizzati, completamente supportati dai blocchi convalidati dalla nostra rete di protocollo.</p>
-                </div>
-            </div>
-        </section>
-    <!-- SEZIONE TOKENOMICS & COME ACQUISTARE -->
-    <section style="margin-top: 50px; text-align: left;">
-        <h2 class="lang-en" style="color: #00ffcc; font-family: monospace; text-align: center; margin-bottom: 25px;">📊 TOKENOMICS & PROTOCOL SECURITY</h2>
-        <h2 class="lang-it" style="color: #00ffcc; font-family: monospace; text-align: center; margin-bottom: 25px;">📊 TOKENOMICS E SICUREZZA DEL PROTOCOLLO</h2>
-
-        <div class="grid" style="margin-bottom: 40px;">
-            <div class="card">
-                <h3 class="lang-en">100% PoW Emission</h3><h3 class="lang-it">100% Emissione PoW</h3>
-                <p style="color: #00ffcc; font-size: 20px;"><span class="lang-en">No Presale / Fixed Supply</span><span class="lang-it">Nessuna Prevendita / Offerta Fissa</span></p>
-                <span class="lang-en" style="font-size: 12px; color: #8b949e;">Algorithmic SHA-256 Backing</span>
-                <span class="lang-it" style="font-size: 12px; color: #8b949e;">Garanzia Algoritmica SHA-256</span>
-            </div>
-            <div class="card">
-                <h3 class="lang-en">Liquidity Protection</h3><h3 class="lang-it">Protezione Liquidità</h3>
-                <p style="color: var(--color-green); font-size: 20px;"><span class="lang-en">1-Year Locked Liquidity</span><span class="lang-it">Liquidità Bloccata 1 Anno</span></p>
-                <span class="lang-en" style="font-size: 12px; color: #8b949e;">Time-Locked Smart Contract</span>
-                <span class="lang-it" style="font-size: 12px; color: #8b949e;">Smart Contract Bloccato a Tempo</span>
-            </div>
-            <div class="card">
-                <h3 class="lang-en">Trading Fees</h3><h3 class="lang-it">Tasse di Scambio</h3>
-                <p style="color: #e6edf3; font-size: 20px;"><span class="lang-en">0% Buy / Sell Tax</span><span class="lang-it">0% Tasse di Acquisto / Vendita</span></p>
-                <span class="lang-en" style="font-size: 12px; color: #8b949e;">Zero Hidden Contract Taxes</span>
-                <span class="lang-it" style="font-size: 12px; color: #8b949e;">Nessuna Tassa Nascosta</span>
-            </div>
-        </div>
-
-        <!-- GUIDA IN 3 PASSI -->
-        <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
-            <h3 class="lang-en" style="color: #ffffff; margin-top: 0; font-family: monospace;">🛒 HOW TO BUY PLT IN 3 STEPS</h3>
-            <h3 class="lang-it" style="color: #ffffff; margin-top: 0; font-family: monospace;">🛒 COME ACQUISTARE PLT IN 3 PASSI</h3>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
-                <div style="background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #21262d;">
-                    <strong style="color: #00ffcc;"><span class="lang-en">1. Setup a Web3 Wallet</span><span class="lang-it">1. Configura un Wallet Web3</span></strong>
-                    <p class="lang-en" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Install Phantom or MetaMask, switch to <strong>BNB Smart Chain (BEP-20)</strong>, and hold a small amount of BNB for gas.</p>
-                    <p class="lang-it" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Installa Phantom o MetaMask, seleziona la rete <strong>BNB Smart Chain (BEP-20)</strong> e deposita una piccola quantità di BNB.</p>
-                </div>
-                <div style="background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #21262d;">
-                    <strong style="color: #00ffcc;"><span class="lang-en">2. Swap on PancakeSwap</span><span class="lang-it">2. Scambia su PancakeSwap</span></strong>
-                    <p class="lang-en" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Click the official <strong>Buy PLT</strong> button above or paste our verified contract address on PancakeSwap to swap BNB for PLT.</p>
-                    <p class="lang-it" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Clicca il tasto ufficiale <strong>Buy PLT</strong> in alto oppure incolla l'indirizzo del contratto verificato su PancakeSwap per scambiare BNB.</p>
-                </div>
-                <div style="background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #21262d;">
-                    <strong style="color: #00ffcc;"><span class="lang-en">3. Import & View PLT</span><span class="lang-it">3. Importa e Visualizza PLT</span></strong>
-                    <p class="lang-en" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Click <strong>Import PLT to Web3 Wallet</strong> in our portal above to display your real-time PLT balance immediately.</p>
-                    <p class="lang-it" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Clicca su <strong>Importa PLT nel Wallet Web3</strong> nel portale in alto per visualizzare subito il saldo nel tuo wallet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        
 
     <!-- FOOTER UFFICIALE E AVVISO SICUREZZA -->
     <!-- LIVE MARKET & TOKENOMICS SECTION -->

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Platincoin ($PLT) | FAQ &amp; Docs</title>
+<link rel="icon" type="image/png" sizes="320x320" href="PLT_logo_320x320.png">
+<style>*{box-sizing:border-box}body{margin:0;padding:14px 14px 48px;background:#0b0f19;color:#f8fafc;font-family:system-ui,sans-serif}.lang-btn{padding:7px 13px;border-radius:8px;border:1px solid rgba(52,211,153,.35);background:rgba(52,211,153,.12);color:#34d399;font-weight:700;font-size:12px;cursor:pointer}</style>
+</head>
+<body>
+<header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
+    <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
+    <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
+  </a>
+
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+
+  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">🏠 Home</span>
+      <span class="lang-it" style="display:none;">🏠 Home</span>
+    </a>
+    <a href="docs.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">📖 FAQ &amp; Docs</span>
+      <span class="lang-it" style="display:none;">📖 FAQ e Documenti</span>
+    </a>
+    <a href="contact.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">
+      <span class="lang-en">✉️ Contact Us</span>
+      <span class="lang-it" style="display:none;">✉️ Contatti</span>
+    </a>
+  </div>
+</header>
+<script>
+(function() {
+  const btn = document.getElementById("plt-menu-toggle");
+  const menu = document.getElementById("plt-dropdown-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+  document.addEventListener("click", function(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
+  });
+})();
+</script>
+<div style="max-width:960px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
+  <button type="button" class="lang-btn" onclick="setDocsLang('en')">ENG</button>
+  <button type="button" class="lang-btn" onclick="setDocsLang('it')">ITA</button>
+</div>
+<div style="max-width:960px;margin:0 auto 20px;padding:22px;border-radius:18px;background:#111827;border:1px solid rgba(52,211,153,.32);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+  <img src="PLT_logo_320x320.png" alt="PLT" style="width:64px;height:64px;border-radius:50%;">
+  <div>
+    <h1 class="lang-en" style="margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Protocol Whitepaper &amp; FAQ</h1>
+    <h1 class="lang-it" style="display:none;margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Whitepaper del Protocollo e FAQ</h1>
+    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Technical specifications, smart contract verification proofs, and tokenomics governance.</p>
+    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.</p>
+  </div>
+  <a href="whitepaper.html" target="_blank" rel="noopener" style="margin-left:auto;padding:11px 18px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 15px rgba(124,92,255,0.35);">
+    <span class="lang-en">📄 Read Whitepaper ↗</span>
+    <span class="lang-it" style="display:none;">📄 Leggi il Whitepaper ↗</span>
+  </a>
+</div>
+<section id="plt-interactive-faq" style="max-width:960px;margin:28px auto;padding:26px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.45);text-align:left;">
+  <div style="margin-bottom:18px;">
+    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,0.14);color:#34d399;font-size:11px;font-weight:800;letter-spacing:0.8px;">
+      <span class="lang-en">🔍 TRANSPARENCY &amp; TECHNICAL AUDIT</span>
+      <span class="lang-it" style="display:none;">🔍 TRASPARENZA E VERIFICA TECNICA</span>
+    </span>
+    <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#ffffff;">Verified On-Chain Protocol FAQ</h2>
+    <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#ffffff;">Domande Frequenti e Audit On-Chain Verificati</h2>
+    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.</p>
+    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Clicca su una domanda per consultare i dettagli su sicurezza del contratto, blocco liquidità e parametri di mining.</p>
+  </div>
+
+  <div style="display:grid;gap:10px;">
+    <details open style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">🛡️ How is Platincoin ($PLT) secured and verified on-chain?</span>
+          <span class="lang-it" style="display:none;">🛡️ Come è protetto e verificato on-chain Platincoin ($PLT)?</span>
+        </span>
+        <span style="color:#34d399;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">The $PLT BEP-20 smart contract (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) is open-source and verified on BscScan. It enforces a strict <strong>11,000,000 PLT hard cap</strong>, <strong>0% buy/sell taxes</strong>, and no hidden blacklist or arbitrary minting functions.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Lo smart contract BEP-20 di $PLT (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) è open-source e verificato su BscScan. Impone un <strong>tetto massimo di 11.000.000 PLT</strong>, <strong>0% di tasse sugli scambi</strong> e nessuna funzione nascosta di blacklist o conio arbitrario.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">🔒 How can I independently verify the Liquidity Lock (#2113264)?</span>
+          <span class="lang-it" style="display:none;">🔒 Come posso verificare il blocco della liquidità (#2113264)?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">100% of the initial PancakeSwap V2 liquidity pool tokens are locked for 1 year via <strong>PinkLock (Certificate #2113264)</strong>. Anyone can inspect the time-locked smart contract directly from the PinkLock button in the Market &amp; Tokenomics section below.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Il 100% dei token LP della pool iniziale su PancakeSwap V2 è bloccato per 1 anno tramite <strong>PinkLock (Certificato #2113264)</strong>. Chiunque può ispezionare lo smart contract timelock dal pulsante PinkLock nella sezione Mercato e Tokenomics qui sotto.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">⛏️ What is the Mining Vault and how does the 89.85% allocation work?</span>
+          <span class="lang-it" style="display:none;">⛏️ Cos'è il Mining Vault e come funziona la quota dell'89,85%?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Exactly <strong>9,883,500 PLT (89.85% of total supply)</strong> is secured inside the on-chain Mining Vault smart contract to back Dual SHA-256 CPU Proof-of-Work rewards, ensuring fair algorithmic distribution with zero presale or private VC dump risk.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Esattamente <strong>9.883.500 PLT (l'89,85% della supply totale)</strong> sono custoditi nello smart contract Mining Vault a copertura delle ricompense CPU Proof-of-Work Dual SHA-256, garantendo una distribuzione algoritmica equa senza prevendite né fondi privati.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">💱 Where can I buy or trade $PLT with 0% tax?</span>
+          <span class="lang-it" style="display:none;">💱 Dove posso acquistare o scambiare $PLT con 0% di tasse?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">You can swap <strong>USDT or BNB for $PLT</strong> directly on PancakeSwap V2 using the <em>Buy $PLT</em> buttons on this portal. Because the contract applies <strong>0% swap tax</strong>, a standard low slippage tolerance (0.5% – 1%) is sufficient.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Puoi scambiare <strong>USDT o BNB per $PLT</strong> direttamente su PancakeSwap V2 tramite i pulsanti <em>Compra $PLT</em> di questo portale. Grazie allo <strong>0% di tasse</strong> del contratto, è sufficiente uno slippage minimo (0,5% – 1%).</p>
+    </details>
+  </div>
+</section>
+
+<script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
+</body></html>
