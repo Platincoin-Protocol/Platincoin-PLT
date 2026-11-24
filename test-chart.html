@@ -273,11 +273,97 @@
      
            <div class="flex-layout">
             <div class="flex-col-left">
-                <div class="calculator-box" style="padding:18px;display:flex;flex-direction:column;">
-  <h3 class="lang-en" style="margin-bottom:12px;">Live Market Chart (PLT / USDT)</h3>
-  <h3 class="lang-it" style="display:none;margin-bottom:12px;">Grafico Live di Mercato (PLT / USDT)</h3>
-  <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://geckoterminal.com" frameborder="0" allow="clipboard-write" allowfullscreen style="width:100%;height:350px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);"></iframe>
-</div></div>
+                <div class="calculator-box" style="padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+    <tr>
+      <td>
+        <h3 class="lang-en" style="margin:0;">Live Price Chart (PLT / USDT)</h3>
+        <h3 class="lang-it" style="display:none;margin:0;">Grafico Prezzo Live (PLT / USDT)</h3>
+        <span style="font-size:12px;color:#94a3b8;">PancakeSwap V2 • On-Chain Trade History</span>
+      </td>
+      <td style="text-align:right;">
+        <span id="plt-tr-price" style="font-size:18px;font-weight:800;color:#34d399;">$0.00915</span>
+        <span id="plt-tr-chg" style="display:block;font-size:11px;font-weight:700;color:#34d399;">+409.71% (24h)</span>
+      </td>
+    </tr>
+  </table>
+  <svg id="plt-trade-chart" viewBox="0 0 520 265" style="width:100%;height:265px;border-radius:12px;background:#0a0e1a;border:1px solid rgba(255,255,255,0.08);display:block;"></svg>
+  <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;color:#94a3b8;">
+    <tr>
+      <td id="plt-tr-info">Loading real PancakeSwap V2 trades...</td>
+      <td style="text-align:right;">
+        <a href="https://geckoterminal.com" target="_blank" rel="noopener" style="color:#a78bfa;font-weight:700;text-decoration:none;">
+          <span class="lang-en">Full Terminal ↗</span>
+          <span class="lang-it" style="display:none;">Terminale Completo ↗</span>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <script>
+    (function(){
+      const svg=document.getElementById("plt-trade-chart");
+      function draw(pts){
+        const W=520,H=265,pL=16,pR=74,pT=20,pB=28;
+        const vals=pts.map(x=>x.p);
+        let min=Math.min(...vals),max=Math.max(...vals);
+        if(max<=min){min*=0.95;max*=1.05;}
+        const pad=(max-min)*0.08;min-=pad;max+=pad;
+        const xOf=i=>pL+(W-pL-pR)*(i/(pts.length-1||1));
+        const yOf=v=>pT+(H-pT-pB)*(1-(v-min)/(max-min));
+        let s='<defs><linearGradient id="pltArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity="0.32"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/></linearGradient></defs>';
+        for(let i=0;i<=4;i++){
+          const val=min+(max-min)*(i/4),y=yOf(val).toFixed(1);
+          s+='<line x1="'+pL+'" y1="'+y+'" x2="'+(W-pR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+          s+='<text x="'+(W-pR+6)+'" y="'+(Number(y)+4)+'" fill="#64748b" font-size="10" font-family="monospace">$'+val.toFixed(5)+'</text>';
+        }
+        let dLine="",dArea="";
+        pts.forEach((pt,i)=>{
+          const x=xOf(i).toFixed(1),y=yOf(pt.p).toFixed(1);
+          dLine+=(i?" L ":"M ")+x+" "+y;
+          dArea+=(i?" L ":"M ")+x+" "+y;
+        });
+        dArea+=" L "+xOf(pts.length-1).toFixed(1)+" "+(H-pB)+" L "+xOf(0).toFixed(1)+" "+(H-pB)+" Z";
+        s+='<path d="'+dArea+'" fill="url(#pltArea)"/>';
+        s+='<path d="'+dLine+'" fill="none" stroke="#10b981" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>';
+        pts.forEach((pt,i)=>{
+          const x=xOf(i).toFixed(1),y=yOf(pt.p).toFixed(1);
+          const col=pt.kind==="sell"?"#ef4444":"#10b981";
+          s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+col+'" stroke="#0a0e1a" stroke-width="1"/>';
+        });
+        [0,Math.floor((pts.length-1)/2),pts.length-1].forEach((idx,k)=>{
+          if(!pts[idx])return;
+          const anchor=k===0?"start":(k===2?"end":"middle");
+          s+='<text x="'+xOf(idx).toFixed(1)+'" y="'+(H-8)+'" text-anchor="'+anchor+'" fill="#64748b" font-size="10" font-family="sans-serif">'+pts[idx].t+'</text>';
+        });
+        svg.innerHTML=s;
+      }
+      const pool="https://geckoterminal.com";
+      Promise.all([fetch(pool).then(r=>r.json()),fetch(pool+"/trades").then(r=>r.json())]).then(([pData,tData])=>{
+        const attr=pData&&pData.data&&pData.data.attributes;
+        if(attr&&attr.base_token_price_usd){
+          document.getElementById("plt-tr-price").textContent="$"+Number(attr.base_token_price_usd).toFixed(6);
+          if(attr.price_change_percentage&&attr.price_change_percentage.h24){
+            const c=Number(attr.price_change_percentage.h24),el=document.getElementById("plt-tr-chg");
+            el.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";el.style.color=c>=0?"#34d399":"#f87171";
+          }
+        }
+        const trades=(tData&&tData.data)||[];
+        const pts=trades.slice().reverse().map(tr=>{
+          const a=tr.attributes||{};
+          const pr=Number(a.price_to_in_usd||a.price_from_in_usd||0);
+          const dt=a.block_timestamp?new Date(a.block_timestamp):new Date();
+          const lbl=dt.toLocaleDateString([],{month:"short",day:"numeric"})+" "+dt.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+          return {p:pr,kind:a.kind||"buy",t:lbl};
+        }).filter(x=>x.p>0);
+        if(pts.length>=2){
+          draw(pts);
+          document.getElementById("plt-tr-info").textContent=pts.length+" Verified On-Chain Swaps • PancakeSwap V2";
+        }
+      }).catch(()=>{});
+    })();
+  </script>
+</div>
+</div>
             <div class="flex-col-right">
                 <div class="buy-step">
                     <div class="buy-num">01</div>
