@@ -638,18 +638,13 @@ async function addPltToWallet(btn) {
 
   try { await navigator.clipboard.writeText(addr); } catch(e) {}
 
-  if (typeof window.ethereum === "undefined") {
+  if (!window.ethereum) {
     if (btn) {
       btn.innerHTML = isIt ? "✅ Indirizzo Copiato!" : "✅ Address Copied!";
       setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
     }
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      window.location.href = "https://app.link" + "/dapp/platincoin-plt.org";
-      return;
-    }
     alert(isIt
-      ? "Nessun wallet Web3 attivo nel browser.
+      ? "Nessun wallet Web3 attivo rilevato.
 Indirizzo contratto PLT copiato negli appunti:
 " + addr
       : "No active Web3 wallet detected.
@@ -658,38 +653,28 @@ PLT contract address copied to clipboard:
     return;
   }
 
-  if (btn) btn.innerHTML = isIt ? "🦊 Apri il tuo Wallet..." : "🦊 Check Wallet Popup...";
+  if (btn) btn.innerHTML = isIt ? "🦊 Controlla MetaMask..." : "🦊 Check MetaMask...";
+
+  const withTimeout = (p, ms) => Promise.race([
+    p,
+    new Promise((_, rej) => setTimeout(() => rej(new Error("TIMEOUT")), ms))
+  ]);
 
   try {
-    await window.ethereum.request({
+    await withTimeout(window.ethereum.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: "0x38" }]
-    });
-  } catch (switchErr) {
-    if (switchErr && switchErr.code === 4902) {
-      try {
-        await window.ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [{
-            chainId: "0x38",
-            chainName: "BNB Smart Chain",
-            nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
-            rpcUrls: ["https://binance.org" + "/"],
-            blockExplorerUrls: ["https://bscscan.com" + "/"]
-          }]
-        });
-      } catch (addErr) {}
-    }
-  }
+    }), 3000);
+  } catch (e) {}
 
   try {
-    const added = await window.ethereum.request({
+    const added = await withTimeout(window.ethereum.request({
       method: "wallet_watchAsset",
       params: {
         type: "ERC20",
         options: { address: addr, symbol: "PLT", decimals: 18, image: img }
       }
-    });
+    }), 4000);
     if (btn) {
       btn.innerHTML = added
         ? (isIt ? "✅ $PLT Aggiunto!" : "✅ $PLT Added!")
@@ -702,9 +687,9 @@ PLT contract address copied to clipboard:
       setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
     }
     alert(isIt
-      ? "Sblocca il tuo Wallet (MetaMask/TrustWallet) per importare PLT, oppure incolla l'indirizzo già copiato:
+      ? "Sblocca l'estensione MetaMask in alto a destra nel browser (o incolla l'indirizzo PLT già copiato):
 " + addr
-      : "Unlock your Wallet (MetaMask/TrustWallet) to import PLT, or paste the copied address:
+      : "Unlock your MetaMask extension at the top-right of your browser (or paste the copied PLT address):
 " + addr);
   }
 }
