@@ -28,7 +28,7 @@
 * **Live PoW Ledger Explorer:** https://platincoin.netlify.app/explorer
 * **BscScan Token Tracker:** https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8#transactions
 * **BscScan Verified Source Code:** https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8#code
-* **Technical Contact:** `plt_dev_central@proton.me`
+* **Technical Contact:** `info@platincoin-plt.org`
 
 ---
 *Disclaimer: Platincoin Protocol (PLT) on BNB Smart Chain is an independent open-source Proof-of-Work project and is not affiliated with Platincoin PLC or any prior entity.*
