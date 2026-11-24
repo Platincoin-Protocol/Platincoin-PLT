@@ -573,11 +573,101 @@
     <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
     <a href="https://pinksale.finance/pinklock/bsc/record/2113264" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">PinkLock LP Lock (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificato Lock PinkLock (#2113264) ↗</span></a>
     <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
+  <button type="button" onclick="addPltToWallet()" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Add $PLT to Wallet</span><span class="lang-it" style="display:none;">Aggiungi $PLT al Wallet</span></button>
   </nav>
   <script>
     fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(document.getElementById("top-live-price"))document.getElementById("top-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
   </script>
 </section>
+
+<!-- ROADMAP & ON-CHAIN MILESTONES SECTION -->
+<section id="plt-roadmap-section" style="max-width:960px;margin:24px auto 32px;padding:26px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(52,211,153,0.3);box-shadow:0 12px 35px rgba(0,0,0,0.45);color:#f1f5f9;font-family:inherit;text-align:left;">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+    <div>
+      <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(124,92,255,0.18);color:#c4b5fd;font-size:12px;font-weight:700;letter-spacing:0.5px;">
+        <span class="lang-en">🗺️ PROTOCOL DEVELOPMENT &amp; AUDIT TRAIL</span>
+        <span class="lang-it" style="display:none;">🗺️ SVILUPPO DEL PROTOCOLLO E TRACCIABILITÀ</span>
+      </span>
+      <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#ffffff;">Platincoin ($PLT) — Roadmap &amp; On-Chain Milestones</h2>
+      <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#ffffff;">Platincoin ($PLT) — Roadmap e Traguardi On-Chain</h2>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;">
+    <!-- PHASE 1 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.3);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#34d399;margin-bottom:6px;">
+        <span class="lang-en">✅ PHASE 1 • COMPLETED</span>
+        <span class="lang-it" style="display:none;">✅ FASE 1 • COMPLETATA</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Genesis &amp; Smart Contracts</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Genesi e Smart Contract</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">BEP-20 deployment with fixed 11M cap, 0% swap tax, and 89.85% supply locked in the Mining Vault contract.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Deploy BEP-20 con cap fisso a 11M, 0% tasse sugli scambi e 89,85% della supply bloccata nel contratto Mining Vault.</p>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.3);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#34d399;margin-bottom:6px;">
+        <span class="lang-en">✅ PHASE 2 • COMPLETED</span>
+        <span class="lang-it" style="display:none;">✅ FASE 2 • COMPLETATA</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">DEX Launch &amp; LP Lock</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Lancio DEX e Lock Liquidità</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">PancakeSwap V2 PLT/USDT pool live with 100% LP tokens locked via PinkLock (#2113264) and live price feed.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Pool PancakeSwap V2 PLT/USDT attiva con token LP bloccati al 100% su PinkLock (#2113264) e feed prezzi live.</p>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(124,92,255,0.08);border:1px solid rgba(124,92,255,0.32);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#a78bfa;margin-bottom:6px;">
+        <span class="lang-en">🔄 PHASE 3 • IN PROGRESS</span>
+        <span class="lang-it" style="display:none;">🔄 FASE 3 • IN CORSO</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Explorer &amp; Aggregators</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Explorer e Aggregatori</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">BscScan official token profile verification, TrustWallet asset registry, CoinGecko and CoinMarketCap listings.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Verifica profilo ufficiale BscScan, registro asset TrustWallet e richieste di listing su CoinGecko e CoinMarketCap.</p>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.28);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#38bdf8;margin-bottom:6px;">
+        <span class="lang-en">🚀 PHASE 4 • EXPANSION</span>
+        <span class="lang-it" style="display:none;">🚀 FASE 4 • ESPANSIONE</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Dual SHA-256 Ecosystem</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Ecosistema Dual SHA-256</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">CPU Proof-of-Work node expansion, deepened DEX liquidity pools, and sovereign commodity utility integrations.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Espansione nodi CPU Proof-of-Work, rafforzamento pool di liquidità DEX e integrazioni per la commodity sovrana.</p>
+    </div>
+  </div>
+</section>
+<script>
+async function addPltToWallet() {
+  const addr = "0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8";
+  const img = "https://platincoin-plt.org";
+  if (typeof window.ethereum === "undefined") {
+    try { await navigator.clipboard.writeText(addr); } catch(e) {}
+    const isIt = document.documentElement.lang === "it" || document.querySelector(".lang-it[style*='inline']") !== null;
+    alert(isIt
+      ? "Nessun wallet Web3 rilevato nel browser. Indirizzo contratto copiato negli appunti:\n" + addr
+      : "No Web3 wallet extension detected. Contract address copied to clipboard:\n" + addr);
+    return;
+  }
+  try {
+    await window.ethereum.request({
+      method: "wallet_watchAsset",
+      params: {
+        type: "ERC20",
+        options: { address: addr, symbol: "PLT", decimals: 18, image: img }
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+</script>
 
 <footer style="margin-top: 40px; padding-top: 25px; border-top: 1px solid #30363d; text-align: center; font-size: 13px; color: #8b949e;">
         <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
