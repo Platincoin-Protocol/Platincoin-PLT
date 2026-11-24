@@ -100,7 +100,7 @@
     <p class="lang-en" style="margin:0 0 20px;font-size:13.5px;color:#94a3b8;">For exchange listings, BscScan / CoinGecko verification, partnerships, or technical support, send a message directly below.</p>
     <p class="lang-it" style="display:none;margin:0 0 20px;font-size:13.5px;color:#94a3b8;">Per listing su exchange, verifiche BscScan / CoinGecko, partnership o supporto tecnico, invia un messaggio direttamente qui sotto.</p>
 
-    <form id="plt-contact-form" method="POST">
+    <form id="plt-contact-form">
       <input type="hidden" name="_subject" value="New Message from Platincoin ($PLT) Official Portal">
       
 
@@ -138,11 +138,20 @@
         <span class="lang-it" style="display:none;">Invia Email Direttamente ↗</span>
       </button>
     </form>
+<div id="plt-form-status" style="display:none;margin-top:14px;padding:12px;border-radius:10px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);color:#34d399;font-size:13px;font-weight:700;"></div>
 <script>
-document.getElementById("plt-contact-form").addEventListener("submit", function() {
-  this.action = ["https:", "", "formsubmit.co", "info@platincoin-plt.org"].join("/");
-  const btn = this.querySelector("button[type='submit']");
-  if (btn) btn.textContent = "Redirecting...";
+document.getElementById("plt-contact-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const name = this.querySelector("[name='name']").value.trim();
+  const email = this.querySelector("[name='email']").value.trim();
+  const topic = this.querySelector("[name='topic']").value;
+  const msg = this.querySelector("[name='message']").value.trim();
+  const subject = encodeURIComponent("[Platincoin $PLT] " + topic + " - " + name);
+  const body = encodeURIComponent("Name: " + name + "\nReply-To: " + email + "\nTopic: " + topic + "\n\nMessage:\n" + msg);
+  const status = document.getElementById("plt-form-status");
+  status.style.display = "block";
+  status.textContent = "✓ Opening your email client addressed to info@platincoin-plt.org...";
+  window.location.href = "mailto:info@platincoin-plt.org?subject=" + subject + "&body=" + body;
 });
 </script>
 
