@@ -37830,5 +37830,17 @@
             "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
             "ricompensa": 50
         }
+    },
+    {
+        "index": 3153,
+        "timestamp": 1795526770048,
+        "previousHash": "0000327092d1d777e0878567d17c9d10d08d382eeb4e2aaa28a4e0a62ddaf089",
+        "nonce": 103427,
+        "difficulty": 4,
+        "hash": "0000db26fbdf7bc50f2fb1b057516869901ba35c17de0c8759939375c398e8a7",
+        "data": {
+            "miner": "0x57e9449F51c9841cc8112a46719231Dc82554E00",
+            "ricompensa": 50
+        }
     }
 ]
