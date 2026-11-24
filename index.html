@@ -697,83 +697,65 @@
     </div>
   </div>
 </section>
-<div id="plt-wallet-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,8,18,0.82);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
-  <div style="max-width:420px;width:100%;border-radius:18px;padding:24px;background:#111827;border:1px solid rgba(52,211,153,0.35);box-shadow:0 20px 50px rgba(0,0,0,0.7);color:#f8fafc;text-align:left;position:relative;">
+<div id="plt-wallet-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,8,18,0.84);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
+  <div style="max-width:440px;width:100%;border-radius:18px;padding:24px;background:#111827;border:1px solid rgba(52,211,153,0.35);box-shadow:0 20px 50px rgba(0,0,0,0.75);color:#f8fafc;text-align:left;position:relative;">
     <button type="button" id="plt-modal-close" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.08);border:none;color:#cbd5e1;width:30px;height:30px;border-radius:8px;cursor:pointer;font-weight:700;">✕</button>
-    <h3 class="lang-en" style="margin:0 0 6px;font-size:18px;color:#fff;">Add Platincoin ($PLT) to Wallet</h3>
-    <h3 class="lang-it" style="display:none;margin:0 0 6px;font-size:18px;color:#fff;">Aggiungi Platincoin ($PLT) al Wallet</h3>
-    <p class="lang-en" style="margin:0 0 14px;font-size:13px;color:#94a3b8;">BNB Smart Chain (BEP-20) • Contract Address copied to clipboard.</p>
-    <p class="lang-it" style="display:none;margin:0 0 14px;font-size:13px;color:#94a3b8;">BNB Smart Chain (BEP-20) • Indirizzo contratto copiato negli appunti.</p>
-    <div style="padding:10px 12px;border-radius:10px;background:#0b0f19;border:1px solid rgba(255,255,255,0.08);margin-bottom:14px;font-size:12px;">
-      <div style="color:#94a3b8;margin-bottom:4px;">Contract: <strong style="color:#34d399;word-break:break-all;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</strong></div>
-      <div style="color:#94a3b8;">Symbol: <strong style="color:#fff;">PLT</strong> &nbsp;•&nbsp; Decimals: <strong style="color:#fff;">18</strong> &nbsp;•&nbsp; Network: <strong style="color:#eab308;">BNB Smart Chain</strong></div>
+    <h3 class="lang-en" style="margin:0 0 6px;font-size:18px;color:#fff;">How to Add Platincoin ($PLT) to Your Wallet</h3>
+    <h3 class="lang-it" style="display:none;margin:0 0 6px;font-size:18px;color:#fff;">Come Aggiungere Platincoin ($PLT) al Wallet</h3>
+    <p class="lang-en" style="margin:0 0 14px;font-size:12.5px;color:#94a3b8;">Compatible with TrustWallet, MetaMask, Binance Wallet, SafePal &amp; Rabby.</p>
+    <p class="lang-it" style="display:none;margin:0 0 14px;font-size:12.5px;color:#94a3b8;">Compatibile con TrustWallet, MetaMask, Binance Wallet, SafePal e Rabby.</p>
+
+    <div style="padding:12px;border-radius:12px;background:#0b0f19;border:1px solid rgba(52,211,153,0.28);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;">
+        <span style="font-size:11px;color:#94a3b8;font-weight:700;">BEP-20 CONTRACT ADDRESS</span>
+        <button type="button" id="plt-modal-copy" style="padding:4px 10px;border-radius:6px;border:none;background:#7c5cff;color:#fff;font-size:11px;font-weight:700;cursor:pointer;">
+          <span class="lang-en">Copy</span><span class="lang-it" style="display:none;">Copia</span>
+        </button>
+      </div>
+      <code style="display:block;font-size:12px;color:#34d399;word-break:break-all;margin-bottom:8px;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>
+      <div style="font-size:12px;color:#cbd5e1;">
+        Network: <strong style="color:#eab308;">BNB Smart Chain (BEP-20)</strong> &nbsp;•&nbsp; Symbol: <strong style="color:#fff;">PLT</strong> &nbsp;•&nbsp; Decimals: <strong style="color:#fff;">18</strong>
+      </div>
     </div>
-    <div style="display:grid;gap:10px;">
-      <button type="button" id="plt-inject-web3" style="width:100%;padding:11px;border-radius:10px;border:none;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">🔌 Auto-Import in Browser Wallet (MetaMask / Rabby / Binance)</button>
-      <a id="plt-tw-link" target="_blank" rel="noopener" style="display:block;text-align:center;padding:11px;border-radius:10px;background:rgba(56,189,248,0.14);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;font-weight:700;font-size:13px;text-decoration:none;">🛡️ Open in TrustWallet App ↗</a>
-      <a id="plt-mm-link" target="_blank" rel="noopener" style="display:block;text-align:center;padding:11px;border-radius:10px;background:rgba(245,158,11,0.14);border:1px solid rgba(245,158,11,0.4);color:#fcd34d;font-weight:700;font-size:13px;text-decoration:none;">🦊 Open in MetaMask Mobile App ↗</a>
-    </div>
+
+    <ol class="lang-en" style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:#cbd5e1;">
+      <li style="margin-bottom:6px;">Open your wallet and tap <strong style="color:#fff;">Import Token</strong> or <strong style="color:#fff;">Add Custom Token</strong>.</li>
+      <li style="margin-bottom:6px;">Select <strong style="color:#eab308;">BNB Smart Chain (BEP-20)</strong> as the network (do not leave Ethereum selected).</li>
+      <li style="margin-bottom:6px;">Paste the contract address above — <strong style="color:#fff;">PLT</strong> and <strong style="color:#fff;">18</strong> decimals will auto-fill.</li>
+      <li>Confirm to display your <strong style="color:#34d399;">$PLT</strong> balance.</li>
+    </ol>
+    <ol class="lang-it" style="display:none;margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:#cbd5e1;">
+      <li style="margin-bottom:6px;">Apri il tuo wallet e tocca <strong style="color:#fff;">Importa Token</strong> o <strong style="color:#fff;">Aggiungi Crypto Personalizzata</strong>.</li>
+      <li style="margin-bottom:6px;">Imposta la rete su <strong style="color:#eab308;">BNB Smart Chain (BEP-20)</strong> (non lasciare Ethereum).</li>
+      <li style="margin-bottom:6px;">Incolla l'indirizzo contratto qui sopra: <strong style="color:#fff;">PLT</strong> e <strong style="color:#fff;">18</strong> decimali appariranno in automatico.</li>
+      <li>Conferma per visualizzare subito il tuo saldo <strong style="color:#34d399;">$PLT</strong>.</li>
+    </ol>
   </div>
 </div>
 <script>
 (function() {
   const addr = "0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8";
-  const providers = [];
-  window.addEventListener("eip6963:announceProvider", (e) => {
-    if (e && e.detail && e.detail.provider) providers.push(e.detail.provider);
-  });
-  window.dispatchEvent(new Event("eip6963:requestProvider"));
-
-  const tw = document.getElementById("plt-tw-link");
-  const mm = document.getElementById("plt-mm-link");
-  if (tw) {
-    tw.href = "#";
-    tw.addEventListener("click", async function(e) {
-      e.preventDefault();
-      try { await navigator.clipboard.writeText(addr); } catch (err) {}
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      if (isMobile) {
-        window.location.href = "trust://" + "open_url?coin_id=20000714&url=https://platincoin-plt.org";
-      } else {
-        alert("Su PC Desktop usa il pulsante viola 'Auto-Import in Browser Wallet' per l'estensione TrustWallet, oppure incolla l'indirizzo già copiato negli appunti:\n" + addr);
-      }
-    });
-  }
-  if (mm) mm.href = ["https:", "", "link.metamask.io", "dapp", "platincoin-plt.org"].join("/");
-
   const modal = document.getElementById("plt-wallet-modal");
-  const closeBtn = document.getElementById("plt-modal-close");
-  const injectBtn = document.getElementById("plt-inject-web3");
   const openBtn = document.getElementById("plt-add-wallet-btn");
+  const closeBtn = document.getElementById("plt-modal-close");
+  const copyBtn = document.getElementById("plt-modal-copy");
 
-  async function triggerInject() {
-    const p = providers || window.ethereum;
-    if (!p) {
-      alert("No browser wallet extension active. Use the TrustWallet / MetaMask app buttons below or paste the copied contract address.");
-      return;
-    }
-    try {
-      await p.request({ method: "wallet_switchEthereumChain", params: [{ chainId: "0x38" }] });
-    } catch (e) {}
-    try {
-      await p.request({
-        method: "wallet_watchAsset",
-        params: { type: "ERC20", options: { address: addr, symbol: "PLT", decimals: 18 } }
-      });
-    } catch (e) {
-      alert("Unlock your wallet extension in the browser toolbar or paste the copied address: " + addr);
+  async function copyAddr() {
+    try { await navigator.clipboard.writeText(addr); } catch (e) {}
+    if (copyBtn) {
+      const orig = copyBtn.innerHTML;
+      copyBtn.textContent = "✓";
+      setTimeout(() => { copyBtn.innerHTML = orig; }, 1500);
     }
   }
 
-  if (openBtn) {
-    openBtn.addEventListener("click", async function() {
-      try { await navigator.clipboard.writeText(addr); } catch (e) {}
-      if (modal) modal.style.display = "flex";
-      const p = providers || window.ethereum;
-      
+  if (openBtn && modal) {
+    openBtn.addEventListener("click", function() {
+      copyAddr();
+      modal.style.display = "flex";
     });
   }
-  if (injectBtn) injectBtn.addEventListener("click", triggerInject);
+  if (copyBtn) copyBtn.addEventListener("click", copyAddr);
   if (closeBtn && modal) closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
   if (modal) modal.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
 })();
