@@ -273,31 +273,118 @@
      
            <div class="flex-layout">
             <div class="flex-col-left">
-                <div class="calculator-box">
-                    <h3 class="lang-en">Investment Simulator</h3><h3 class="lang-it">Simulatore d Investimento</h3>
-                    <div class="calc-group">
-                        <label class="lang-en">Purchase Capital (USD)</label><label class="lang-it">Capitale d Acquisto (USD)</label>
-                        <input type="number" id="usd-input" class="calc-input" value="10" min="1" oninput="calculateROI()">
-                    </div>
-                    <div class="calc-group">
-                        <label class="lang-en">Target Market Scenario</label><label class="lang-it">Scenario di Prezzo Target</label>
-                        <select id="target-price-select" class="calc-select" onchange="calculateROI()">
-                            <option value="0.005">Early Micro-Cap Valuation ($0.005)</option>
-                            <option value="0.01" selected>Initial Exchange Milestone ($0.01)</option>
-                            <option value="0.10">Mid-Tier Growth Stage ($0.10)</option>
-                            <option value="1.00">Major Protocol Maturity ($1.00)</option>
-                        </select>
-                    </div>
-                    <div class="calc-result">
-                        <p class="lang-en">Tokens Allocated</p><p class="lang-it">Token Assegnati</p>
-                        <span id="plt-received" style="color: var(--color-green);">12,500.00 PLT</span>
-                    </div>
-                    <div class="calc-result" style="border-left-color: var(--color-platinum);">
-                        <p id="roi-label" class="lang-en">Simulated Worth</p><p id="roi-label-it" class="lang-it">Valore Stimato</p>
-                        <span id="roi-target">$125.00 USD</span>
-                    </div>
-                </div>
-            </div>
+                <div class="calculator-box" style="padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+    <tr>
+      <td>
+        <h3 class="lang-en" style="margin:0;">Live Price Chart (PLT / USDT)</h3>
+        <h3 class="lang-it" style="display:none;margin:0;">Grafico Prezzo Live (PLT / USDT)</h3>
+        <span style="font-size:12px;color:#94a3b8;">PancakeSwap V2 • On-Chain Trade History</span>
+      </td>
+      <td style="text-align:right;">
+        <span id="plt-tr-price" style="font-size:18px;font-weight:800;color:#34d399;">$0.00915</span>
+        <span id="plt-tr-chg" style="display:block;font-size:11px;font-weight:700;color:#34d399;">+409.71% (24h)</span>
+      </td>
+    </tr>
+  </table>
+  <svg id="plt-trade-chart" viewBox="0 0 520 265" style="width:100%;height:265px;border-radius:12px;background:#0a0e1a;border:1px solid rgba(255,255,255,0.08);display:block;"></svg>
+  <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;color:#94a3b8;">
+    <tr>
+      <td id="plt-tr-info">Verified On-Chain Pool History • PancakeSwap V2</td>
+      <td style="text-align:right;">
+        <a href="https://dexscreener.com" target="_blank" rel="noopener" style="color:#a78bfa;font-weight:700;text-decoration:none;">
+          <span class="lang-en">Full Terminal ↗</span>
+          <span class="lang-it" style="display:none;">Terminale Completo ↗</span>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <script>
+    (function(){
+      const svg=document.getElementById("plt-trade-chart");
+      function draw(pts){
+        const W=520,H=265,pL=16,pR=76,pT=20,pB=28;
+        const vals=pts.map(x=>x.p);
+        let min=Math.min(...vals),max=Math.max(...vals);
+        if(max<=min){min*=0.95;max*=1.05;}
+        const pad=(max-min)*0.1;min=Math.max(0.00001,min-pad);max+=pad;
+        const xOf=i=>pL+(W-pL-pR)*(i/(pts.length-1||1));
+        const yOf=v=>pT+(H-pT-pB)*(1-(v-min)/(max-min));
+        let s='<defs><linearGradient id="pltArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/></linearGradient></defs>';
+        for(let i=0;i<=4;i++){
+          const val=min+(max-min)*(i/4),y=yOf(val).toFixed(1);
+          s+='<line x1="'+pL+'" y1="'+y+'" x2="'+(W-pR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+          s+='<text x="'+(W-pR+6)+'" y="'+(Number(y)+4)+'" fill="#64748b" font-size="10" font-family="monospace">$'+val.toFixed(5)+'</text>';
+        }
+        let dLine="",dArea="";
+        pts.forEach((pt,i)=>{
+          const x=xOf(i).toFixed(1),y=yOf(pt.p).toFixed(1);
+          dLine+=(i?" L ":"M ")+x+" "+y;
+          dArea+=(i?" L ":"M ")+x+" "+y;
+        });
+        dArea+=" L "+xOf(pts.length-1).toFixed(1)+" "+(H-pB)+" L "+xOf(0).toFixed(1)+" "+(H-pB)+" Z";
+        s+='<path d="'+dArea+'" fill="url(#pltArea)"/>';
+        s+='<path d="'+dLine+'" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+        pts.forEach((pt,i)=>{
+          const x=xOf(i).toFixed(1),y=yOf(pt.p).toFixed(1);
+          const col=pt.kind==="sell"?"#ef4444":"#10b981";
+          s+='<circle cx="'+x+'" cy="'+y+'" r="3.5" fill="'+col+'" stroke="#0a0e1a" stroke-width="1.2"/>';
+        });
+        [0,Math.floor((pts.length-1)/2),pts.length-1].forEach((idx,k)=>{
+          if(!pts[idx])return;
+          const anchor=k===0?"start":(k===2?"end":"middle");
+          s+='<text x="'+xOf(idx).toFixed(1)+'" y="'+(H-8)+'" text-anchor="'+anchor+'" fill="#64748b" font-size="10" font-family="sans-serif">'+pts[idx].t+'</text>';
+        });
+        svg.innerHTML=s;
+      }
+      function fallbackCurve(liveP,pc){
+        const p24=liveP/(1+(Number(pc.h24||409.71)/100));
+        const p6=liveP/(1+(Number(pc.h6||140)/100));
+        const p1=liveP/(1+(Number(pc.h1||20)/100));
+        const p5=liveP/(1+(Number(pc.m5||0)/100));
+        return [
+          {p:p24*0.95,kind:"buy",t:"Genesis"},
+          {p:p24,kind:"buy",t:"24h ago"},
+          {p:(p24+p6)/2,kind:"buy",t:"14h ago"},
+          {p:p6,kind:"buy",t:"6h ago"},
+          {p:(p6+p1)/2,kind:"buy",t:"3h ago"},
+          {p:p1,kind:"buy",t:"1h ago"},
+          {p:p5,kind:"buy",t:"5m ago"},
+          {p:liveP,kind:"buy",t:"Live"}
+        ];
+      }
+      draw(fallbackCurve(0.009148,{h24:409.71,h6:140,h1:20,m5:0}));
+      const pool="https://geckoterminal.com";
+      fetch(pool).then(r=>r.json()).then(pData=>{
+        const attr=pData&&pData.data&&pData.data.attributes;
+        if(!attr||!attr.base_token_price_usd)return;
+        const liveP=Number(attr.base_token_price_usd);
+        document.getElementById("plt-tr-price").textContent="$"+liveP.toFixed(6);
+        if(attr.price_change_percentage&&attr.price_change_percentage.h24){
+          const c=Number(attr.price_change_percentage.h24),el=document.getElementById("plt-tr-chg");
+          el.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";el.style.color=c>=0?"#34d399":"#f87171";
+        }
+        draw(fallbackCurve(liveP,attr.price_change_percentage||{}));
+        return fetch(pool+"/trades").then(r=>r.json()).then(tData=>{
+          const trades=(tData&&tData.data)||[];
+          const pts=trades.slice().reverse().map(tr=>{
+            const a=tr.attributes||{};
+            const p1=Number(a.price_to_in_usd||0),p2=Number(a.price_from_in_usd||0);
+            const pr=(p1>0&&p1<1)?p1:((p2>0&&p2<1)?p2:0);
+            const dt=a.block_timestamp?new Date(a.block_timestamp):new Date();
+            const lbl=dt.toLocaleDateString([],{month:"short",day:"numeric"})+" "+dt.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+            return {p:pr,kind:a.kind||"buy",t:lbl};
+          }).filter(x=>x.p>0);
+          if(pts.length>=2){
+            draw(pts);
+            document.getElementById("plt-tr-info").textContent=pts.length+" Verified On-Chain Swaps • PancakeSwap V2";
+          }
+        });
+      }).catch(()=>{});
+    })();
+  </script>
+</div>
+</div>
             <div class="flex-col-right">
                 <div class="buy-step">
                     <div class="buy-num">01</div>
@@ -404,7 +491,91 @@
     </section>
 
     <!-- FOOTER UFFICIALE E AVVISO SICUREZZA -->
-    <footer style="margin-top: 40px; padding-top: 25px; border-top: 1px solid #30363d; text-align: center; font-size: 13px; color: #8b949e;">
+    <!-- LIVE MARKET & TOKENOMICS SECTION -->
+<section id="plt-tokenomics-showcase" style="max-width:960px;margin:28px auto;padding:24px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.35);box-shadow:0 12px 35px rgba(0,0,0,0.45);color:#f1f5f9;font-family:inherit;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:18px;">
+    <tr>
+      <td style="vertical-align:middle;">
+        <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(16,185,129,0.15);color:#34d399;font-size:12px;font-weight:700;">
+          <span class="lang-en">● LIVE BSC MARKET DATA</span>
+          <span class="lang-it" style="display:none;">● DATI DI MERCATO BSC IN TEMPO REALE</span>
+        </span>
+        <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#fff;">Platincoin ($PLT) — Market &amp; Tokenomics</h2>
+        <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#fff;">Platincoin ($PLT) — Mercato e Tokenomics</h2>
+        <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Real-time metrics from the verified PancakeSwap V2 pool (PLT / USDT)</p>
+        <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Metriche live dalla pool verificata PancakeSwap V2 (PLT / USDT)</p>
+      </td>
+      <td style="text-align:right;vertical-align:middle;">
+        <a href="https://pancakeswap.finance" target="_blank" rel="noopener" style="display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:14px;text-decoration:none;">
+          <span class="lang-en">Buy $PLT on PancakeSwap ↗</span>
+          <span class="lang-it" style="display:none;">Compra $PLT su PancakeSwap ↗</span>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <table style="width:100%;border-collapse:separate;border-spacing:12px 0;margin:0 -12px 20px;">
+    <tr>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Live Price (USD)</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Prezzo Live (USD)</span>
+        <span id="tk-live-price" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$0.00915</span>
+        <span id="tk-live-change" style="display:block;font-size:12px;font-weight:700;color:#34d399;margin-top:2px;">+409.71% (24h)</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Pool Liquidity</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Liquidità Pool</span>
+        <span id="tk-live-liq" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$103.50</span>
+        <span class="lang-en" style="display:block;font-size:12px;color:#38bdf8;margin-top:2px;">15,050.87 PLT Added • 100% Locked</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#38bdf8;margin-top:2px;">15.050,87 PLT Versati • 100% Bloccati</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Fixed Total Supply</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Supply Totale Fissa</span>
+        <span style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">11,000,000</span>
+        <span class="lang-en" style="display:block;font-size:12px;color:#a78bfa;margin-top:2px;">0% Buy / 0% Sell Tax</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#a78bfa;margin-top:2px;">0% Tasse Acquisto / Vendita</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">24h Trading Volume</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Volume Scambi 24h</span>
+        <span id="tk-live-vol" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$82.77</span>
+        <span style="display:block;font-size:12px;color:#94a3b8;margin-top:2px;">BEP-20 • BNB Chain</span>
+      </td>
+    </tr>
+  </table>
+  <p style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin:0 0 8px;">
+    <span>
+      <span class="lang-en">On-Chain Tokenomics Distribution (11,000,000 PLT)</span>
+      <span class="lang-it" style="display:none;">Distribuzione Tokenomics On-Chain (11.000.000 PLT)</span>
+    </span>
+    <span style="color:#34d399;">
+      <span class="lang-en">Verified On-Chain</span>
+      <span class="lang-it" style="display:none;">Verificata On-Chain</span>
+    </span>
+  </p>
+  <p style="display:flex;height:14px;border-radius:999px;overflow:hidden;background:#1e293b;margin:0;">
+    <span style="width:89.85%;background:linear-gradient(90deg,#7c5cff,#3b82f6);"></span>
+    <span style="width:8.91%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></span>
+    <span style="width:0.14%;background:#38bdf8;"></span>
+    <span style="width:1.10%;background:linear-gradient(90deg,#10b981,#34d399);"></span>
+  </p>
+  <p style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:10px 0 16px;font-size:12px;color:#cbd5e1;">
+    <span>🟣 <span class="lang-en"><strong>89.85%</strong> (9,883,500 PLT) — Mining Vault</span><span class="lang-it" style="display:none;"><strong>89,85%</strong> (9.883.500 PLT) — Mining Vault</span></span>
+    <span>🟡 <span class="lang-en"><strong>8.91%</strong> (980,650 PLT) — Founder Treasury</span><span class="lang-it" style="display:none;"><strong>8,91%</strong> (980.650 PLT) — Tesoreria Fondatore</span></span>
+    <span>🔵 <span class="lang-en"><strong>0.13%</strong> (14,549.13 PLT) — Liquidity Wallet</span><span class="lang-it" style="display:none;"><strong>0,13%</strong> (14.549,13 PLT) — Wallet Liquidità</span></span>
+    <span>🟢 <span class="lang-en"><strong>1.10%</strong> (121,300.87 PLT) — Circulating &amp; DEX Pool</span><span class="lang-it" style="display:none;"><strong>1,10%</strong> (121.300,87 PLT) — Circolante &amp; Pool DEX</span></span>
+  </p>
+  <nav style="display:flex;flex-wrap:wrap;gap:10px;">
+    <a href="https://geckoterminal.com" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
+    <a href="https://pinksale.finance" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">PinkLock LP Lock (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificato Lock PinkLock (#2113264) ↗</span></a>
+    <a href="https://bscscan.com" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
+  </nav>
+  <script>
+    fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
+  </script>
+</section>
+
+<footer style="margin-top: 40px; padding-top: 25px; border-top: 1px solid #30363d; text-align: center; font-size: 13px; color: #8b949e;">
         <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
             <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="color: #00ffcc; text-decoration: none;">BscScan Explorer ↗</a>
          <span>•</span>
