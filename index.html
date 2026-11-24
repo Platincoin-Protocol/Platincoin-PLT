@@ -126,7 +126,7 @@
       <span style="color:#ffffff;">PLATINCOIN</span> <span style="color:#eab308;">(PLT)</span>
     </div>
     <p class="subtitle lang-en" style="margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:1.2px;color:#34d399;text-transform:uppercase;">SOVEREIGN DUAL SHA-256 PROOF-OF-WORK &amp; BEP-20 COMMODITY</p>
-    <p class="subtitle lang-it" style="display:none;margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:1.2px;color:#34d399;text-transform:uppercase;">COMMODITY DIGITALE SOVRANA DUAL SHA-256 &amp; BEP-20</p>
+    <p class="subtitle lang-it" style="display:none;margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:1.2px;color:#34d399;text-transform:uppercase;">PROTOCOLLO SOVRANO DUAL SHA-256 POW &amp; COMMODITY BEP-20</p>
     <p class="subtitle lang-en" style="margin:0 0 8px;font-size:12px;color:#94a3b8;">11,000,000 PLT Fixed Cap &nbsp;•&nbsp; 0% Buy/Sell Tax &nbsp;•&nbsp; 1-Year Locked Liquidity</p>
     <p class="subtitle lang-it" style="display:none;margin:0 0 8px;font-size:12px;color:#94a3b8;">Cap Fisso 11.000.000 PLT &nbsp;•&nbsp; 0% Tasse Acquisto/Vendita &nbsp;•&nbsp; Liquidità Bloccata 1 Anno</p>
     <p class="subtitle lang-en" style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.6px;color:#cbd5e1;">The Sovereign Digital Platinum Network</p>
@@ -135,10 +135,10 @@
 </div>
     <div class="grid">
     <div class="card">
-        <h3 class="lang-en">Target Price</h3><h3 class="lang-it">Prezzo Target</h3>
-        <p style="color: var(--color-green);">$0.0008</p>
-        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Genesis Evaluation</span>
-        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Valutazione di Genesi</span>
+        <h3 class="lang-en">Live Market Price</h3><h3 class="lang-it">Prezzo Live di Mercato</h3>
+        <p id="top-live-price" style="color: var(--color-green);">$0.00915</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">PancakeSwap V2 • Live</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">PancakeSwap V2 • In Tempo Reale</span>
     </div>
     <div class="card">
         <h3 class="lang-en">Block Height</h3><h3 class="lang-it">Altezza Blocco</h3>
@@ -573,7 +573,7 @@
     <a href="https://bscscan.com" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
   </nav>
   <script>
-    fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
+    fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(document.getElementById("top-live-price"))document.getElementById("top-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
   </script>
 </section>
 
