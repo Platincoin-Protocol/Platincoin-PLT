@@ -658,8 +658,8 @@
 
   const tw = document.getElementById("plt-tw-link");
   const mm = document.getElementById("plt-mm-link");
-  if (tw) tw.href = "https://trustwallet.com" + "/add_asset?asset=c20000714_t" + addr;
-  if (mm) mm.href = "https://app.link" + "/dapp/platincoin-plt.org";
+  if (tw) tw.href = ["https:", "", "://trustwallet.com", "add_asset?asset=c20000714_t" + addr].join("/");
+  if (mm) mm.href = ["https:", "", "link.metamask.io", "dapp", "platincoin-plt.org"].join("/");
 
   const modal = document.getElementById("plt-wallet-modal");
   const closeBtn = document.getElementById("plt-modal-close");
@@ -690,7 +690,7 @@
       try { await navigator.clipboard.writeText(addr); } catch (e) {}
       if (modal) modal.style.display = "flex";
       const p = providers || window.ethereum;
-      if (p) triggerInject();
+      
     });
   }
   if (injectBtn) injectBtn.addEventListener("click", triggerInject);
