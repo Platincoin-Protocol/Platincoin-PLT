@@ -632,25 +632,66 @@
 <script>
 async function addPltToWallet() {
   const addr = "0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8";
-  const img = "https://platincoin-plt.org";
+  const img = "https://platincoin-plt.org" + "/PLT_logo_320x320.png";
+  const isIt = document.documentElement.lang === "it" || document.querySelector(".lang-it[style*='inline']") !== null;
+
   if (typeof window.ethereum === "undefined") {
     try { await navigator.clipboard.writeText(addr); } catch(e) {}
-    const isIt = document.documentElement.lang === "it" || document.querySelector(".lang-it[style*='inline']") !== null;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = "https://app.link" + "/dapp/platincoin-plt.org";
+      return;
+    }
     alert(isIt
-      ? "Nessun wallet Web3 rilevato nel browser. Indirizzo contratto copiato negli appunti:\n" + addr
-      : "No Web3 wallet extension detected. Contract address copied to clipboard:\n" + addr);
+      ? "Nessuna estensione Web3 (MetaMask/TrustWallet) rilevata.
+Indirizzo contratto PLT copiato negli appunti:
+" + addr
+      : "No Web3 wallet extension (MetaMask/TrustWallet) detected.
+PLT contract address copied to clipboard:
+" + addr);
     return;
   }
+
   try {
     await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x38" }]
+    });
+  } catch (switchErr) {
+    if (switchErr && switchErr.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            chainId: "0x38",
+            chainName: "BNB Smart Chain",
+            nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
+            rpcUrls: ["https://binance.org"],
+            blockExplorerUrls: ["https://bscscan.com"]
+          }]
+        });
+      } catch (addErr) {}
+    }
+  }
+
+  try {
+    const added = await window.ethereum.request({
       method: "wallet_watchAsset",
       params: {
         type: "ERC20",
         options: { address: addr, symbol: "PLT", decimals: 18, image: img }
       }
     });
+    if (added) {
+      alert(isIt ? "Token $PLT aggiunto con successo al tuo Wallet!" : "$PLT token successfully added to your Wallet!");
+    }
   } catch (err) {
-    console.error(err);
+    try { await navigator.clipboard.writeText(addr); } catch(e) {}
+    alert(isIt
+      ? "Impossibile aprire automaticamente il popup del wallet. Indirizzo contratto copiato negli appunti:
+" + addr
+      : "Could not open wallet prompt automatically. Contract address copied to clipboard:
+" + addr);
   }
 }
 </script>
