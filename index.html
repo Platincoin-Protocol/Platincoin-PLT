@@ -93,7 +93,75 @@
     </style>
 <link rel="icon" type="image/png" sizes="320x320" href="PLT_logo_320x320.png">
 <link rel="apple-touch-icon" href="PLT_logo_320x320.png">
+<style id="plt-mobile-responsive">
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  @media (max-width: 680px) {
+    body {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    .container, main, section {
+      max-width: 100% !important;
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+    }
+    .logo-container {
+      flex-direction: column !important;
+      text-align: center !important;
+      padding: 22px 16px !important;
+      gap: 14px !important;
+    }
+    .logo-container img.logo-img {
+      width: 84px !important;
+      height: 84px !important;
+      margin: 0 auto !important;
+    }
+    .logo-container div[style*="font-size:34px"] {
+      font-size: 24px !important;
+      letter-spacing: 0.8px !important;
+    }
+    .logo-container p.subtitle {
+      font-size: 11.5px !important;
+      line-height: 1.45 !important;
+    }
+    .card {
+      padding: 16px !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    .card a[href*="pancakeswap"] {
+      width: 100% !important;
+      text-align: center !important;
+      margin-top: 8px !important;
+    }
+    #plt-tokenomics-showcase, #plt-roadmap-section {
+      padding: 18px 14px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    #plt-tokenomics-showcase nav {
+      flex-direction: column !important;
+    }
+    #plt-tokenomics-showcase nav a,
+    #plt-tokenomics-showcase nav button {
+      width: 100% !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+    #plt-trade-chart {
+      height: 210px !important;
+    }
+    code, [style*="word-break"] {
+      word-break: break-all !important;
+      font-size: 11px !important;
+    }
+  }
+</style>
 </head>
+
 <body>
 <!-- BANNER CYBERPUNK BILINGUE IN ALTO -->
 <div style="background: #0d1117; border-bottom: 2px solid #00ffcc; padding: 10px; font-family: monospace; text-align: center; box-shadow: 0 4px 10px rgba(0, 255, 204, 0.2); width: 100%; margin-bottom: 30px;">
