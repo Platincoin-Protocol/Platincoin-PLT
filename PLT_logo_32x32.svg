@@ -1,0 +1,17 @@
+<svg xmlns="http://w3.org" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="pltBg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="45%" stop-color="#cbd5e1"/>
+      <stop offset="85%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </radialGradient>
+    <linearGradient id="pltRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <circle cx="16" cy="16" r="15" fill="url(#pltBg)" stroke="url(#pltRing)" stroke-width="1.5"/>
+  <circle cx="16" cy="16" r="12.2" fill="none" stroke="#0f172a" stroke-opacity="0.35" stroke-width="0.8"/>
+  <text x="16" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="9.5" fill="#0f172a" letter-spacing="0.4">PLT</text>
+</svg>
