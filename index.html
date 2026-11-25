@@ -337,9 +337,7 @@
     <p class="subtitle lang-en" style="margin:0 0 8px;font-size:12px;color:#94a3b8;">11,000,000 PLT Fixed Cap &nbsp;•&nbsp; 0% Buy/Sell Tax &nbsp;•&nbsp; 1-Year Locked Liquidity</p>
     <p class="subtitle lang-it" style="display:none;margin:0 0 8px;font-size:12px;color:#94a3b8;">Cap Fisso 11.000.000 PLT &nbsp;•&nbsp; 0% Tasse Acquisto/Vendita &nbsp;•&nbsp; Liquidità Bloccata 1 Anno</p>
     <p class="subtitle lang-en" style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.6px;color:#cbd5e1;">The Sovereign Digital Platinum Network</p>
-<div id="hero-freshcoins-badge" style="margin:12px 0 0 0;display:flex;justify-content:flex-start;align-items:center;transform:scale(0.85);transform-origin:left center;">
-  <script src="https://www.freshcoins.io/widget.js"></script>
-</div>
+<div id="hero-freshcoins-slot" style="margin-top:14px;display:flex;justify-content:flex-start;align-items:center;transform:scale(0.84);transform-origin:left center;"></div>
 <p class="subtitle lang-it" style="display:none;margin:0;font-size:13px;font-weight:600;letter-spacing:0.6px;color:#cbd5e1;">La Rete del Platino Digitale Sovrano</p>
   </div>
 </div>
@@ -1332,5 +1330,21 @@ async function addTokenToWallet() {
 </script>
 
 
+
+<script>
+(function(){
+  function moveFreshCoinsToHero(){
+    const slot = document.getElementById("hero-freshcoins-slot");
+    if (!slot || slot.children.length > 0) return;
+    const fc = document.querySelector('a[href*="freshcoins.io"], iframe[src*="freshcoins.io"], div[class*="freshcoins"], div[id*="freshcoins"]');
+    if (fc) {
+      const box = fc.closest('div') && fc.closest('div').parentElement && fc.closest('div').innerText.includes('FreshCoins') ? fc.closest('div') : fc;
+      slot.appendChild(box);
+    }
+  }
+  setInterval(moveFreshCoinsToHero, 300);
+  setTimeout(moveFreshCoinsToHero, 500);
+})();
+</script>
 </body>
 </html>
