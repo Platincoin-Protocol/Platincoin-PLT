@@ -1314,5 +1314,18 @@ async function addTokenToWallet() {
   setInterval(fetchOnChainOrApi, 10000);
 })();
 </script>
+
+<div id="ownership-transparency-note" style="max-width:960px;margin:24px auto;padding:18px 22px;border-radius:14px;background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.35);color:#e2e8f0;font-size:14px;line-height:1.6;">
+  <div style="font-weight:700;color:#34d399;margin-bottom:6px;">
+    <span class="lang-en">ON-CHAIN GOVERNANCE &amp; RENOUNCE ROADMAP</span>
+    <span class="lang-it" style="display:none;">GOVERNANCE ON-CHAIN E ROADMAP DI RINUNCIA OWNERSHIP</span>
+  </div>
+  <p class="lang-en" style="margin:0;color:#cbd5e1;">
+    Platincoin ($PLT) uses a verified standard OpenZeppelin BEP-20 contract with all <strong>11,000,000 PLT</strong> already pre-minted at genesis (89.85% secured in the Mining Vault). Contract ownership is retained temporarily solely to complete official explorer and aggregator verifications (BscScan, DEXView, CoinGecko), after which <code>renounceOwnership()</code> will be executed permanently to lock supply and disable all administrative functions on-chain.
+  </p>
+  <p class="lang-it" style="display:none;margin:0;color:#cbd5e1;">
+    Platincoin ($PLT) utilizza un contratto standard OpenZeppelin BEP-20 verificato con tutti gli <strong>11.000.000 PLT</strong> già emessi alla genesi (89,85% custoditi nel Mining Vault). La proprietà del contratto è mantenuta temporaneamente esclusivamente per completare le verifiche ufficiali sugli explorer e aggregatori (BscScan, DEXView, CoinGecko), dopodiché verrà eseguita in modo permanente la funzione <code>renounceOwnership()</code> per bloccare l'offerta e disattivare ogni funzione amministrativa on-chain.
+  </p>
+</div>
 </body>
 </html>
