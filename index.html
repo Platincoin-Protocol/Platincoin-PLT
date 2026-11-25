@@ -480,31 +480,7 @@
 
   <!-- PANNELLO DI DESTRA: CALCOLATORE ROI -->
   <div class="card" style="flex: 1; min-width: 300px; background: #0d1117; border: 1px solid var(--border); padding: 25px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
-    <div>
-      <h3 class="lang-en" style="margin-top: 0; color: #00ffcc; font-family: monospace;">📊 CPU Mining ROI Calculator</h3>
-      <h3 class="lang-it" style="margin-top: 0; color: #00ffcc; font-family: monospace;">📊 Calcolatore ROI di Mining della CPU</h3>
-      
-      <div style="margin-top: 20px;">
-        <label class="lang-en" style="color: #94a3b8; display: block; margin-bottom: 8px; font-size: 14px;">Select CPU Cores for Mining:</label>
-        <label class="lang-it" style="color: #94a3b8; display: block; margin-bottom: 8px; font-size: 14px;">Seleziona i Core della CPU per il Mining:</label>
-        <select id="roi-cores" onchange="calculateMiningROI()" style="width: 100%; background: #05070a; border: 1px solid var(--border); color: #ffffff; padding: 12px; border-radius: 6px; font-family: monospace; cursor: pointer;">
-          <option value="2">2 Cores (Basic PC / Laptop)</option>
-          <option value="4" selected>4 Cores (Standard Desktop / Laptop)</option>
-          <option value="8">8 Cores (High-End Gaming Rig)</option>
-          <option value="16">16 Cores (Dedicated Mining Server)</option>
-        </select>
-      </div>
-    </div>
-    
-    <div style="background: #05070a; padding: 20px; border-radius: 8px; border: 1px dashed #1e293b; margin-top: 25px;">
-      <h4 class="lang-en" style="margin-top: 0; color: #ffffff; border-bottom: 1px solid #1e293b; padding-bottom: 8px; font-size: 14px;">Estimated Earnings (Price: $0.0008)</h4>
-      <h4 class="lang-it" style="margin-top: 0; color: #ffffff; border-bottom: 1px solid #1e293b; padding-bottom: 8px; font-size: 14px;">Guadagni Stimati (Prezzo: $0.0008)</h4>
-      <p style="margin: 12px 0; font-family: monospace; color: #ffffff; font-size: 14px;">• <span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">600.00</strong> PLT</p>
-      <p style="margin: 12px 0; font-family: monospace; color: #ffffff; font-size: 14px;">• <span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">18,000.00</strong> PLT</p>
-    </div>
-  </div>
-
-</div>
+    <div style="background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:center;"><div style="font-size:11px;font-weight:700;color:#34d399;letter-spacing:0.8px;margin-bottom:10px;">📊 ON-CHAIN SUPPLY &amp; VAULT ALLOCATION</div><div style="font-size:13px;color:#cbd5e1;margin-bottom:14px;">Verifiable distribution of the strict <strong>11,000,000 PLT</strong> fixed supply on BNB Smart Chain:</div><div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;font-size:12.5px;margin-bottom:5px;"><span><strong>Mining Vault Reserve</strong></span><span style="color:#34d399;font-weight:700;">89.85% (9,883,500 PLT)</span></div><div style="height:8px;border-radius:6px;background:#090e1a;overflow:hidden;"><div style="width:89.85%;height:100%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div></div><div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;font-size:12.5px;margin-bottom:5px;"><span><strong>Circulating &amp; Locked LP Pool</strong></span><span style="color:#60a5fa;font-weight:700;">10.15% (1,116,500 PLT)</span></div><div style="height:8px;border-radius:6px;background:#090e1a;overflow:hidden;"><div style="width:10.15%;height:100%;background:#3b82f6;"></div></div></div><div style="padding:10px 12px;border-radius:10px;background:#090e1a;border:1px solid rgba(52,211,153,0.2);font-size:12px;color:#94a3b8;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;"><span>CPU Public Mining Status:</span><strong style="color:#fbbf24;">CLOSED TESTNET (OPENING SOON)</strong></div></div>
   
   <div id="statusMessageSecondary" style="margin-top: 15px; font-weight: bold;"></div>
 </div>
