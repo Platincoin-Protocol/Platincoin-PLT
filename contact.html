@@ -55,6 +55,24 @@
   <meta name="twitter:image" content="https://platincoin-plt.org/og-card-v2.png" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
+
+<style id="plt-universal-responsive">
+  html, body { max-width: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+  img, svg, canvas, iframe { max-width: 100%; height: auto; }
+  code, pre, .mono { word-break: break-all; overflow-wrap: anywhere; }
+  @media (max-width: 900px) {
+    .grid, .grid2, .grid3, .grid4, [style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px !important; }
+    h1 { font-size: 20px !important; }
+    .val { font-size: 21px !important; }
+    table { display: block; overflow-x: auto; white-space: nowrap; }
+    #plt-dropdown-menu, #m { width: calc(100vw - 24px) !important; right: 0 !important; }
+  }
+</style>
 </head>
 <body>
   <header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">

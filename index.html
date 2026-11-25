@@ -256,6 +256,24 @@
   ]
 }
 </script>
+
+<style id="plt-universal-responsive">
+  html, body { max-width: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+  img, svg, canvas, iframe { max-width: 100%; height: auto; }
+  code, pre, .mono { word-break: break-all; overflow-wrap: anywhere; }
+  @media (max-width: 900px) {
+    .grid, .grid2, .grid3, .grid4, [style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px !important; }
+    h1 { font-size: 20px !important; }
+    .val { font-size: 21px !important; }
+    table { display: block; overflow-x: auto; white-space: nowrap; }
+    #plt-dropdown-menu, #m { width: calc(100vw - 24px) !important; right: 0 !important; }
+  }
+</style>
 </head>
 
 <body>
