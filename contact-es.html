@@ -143,8 +143,8 @@
     </span>
     <h1 class="lang-en" style="margin:10px 0 6px;font-size:24px;">Póngase en contacto con el equipo de Platincoin ($PLT)</h1>
     <h1 class="lang-it" style="display:none;margin:10px 0 6px;font-size:24px;">Contacta con el equipo Platincoin ($PLT)</h1>
-    <p class="lang-en" style="margin:0 0 20px;font-size:13.5px;color:#94a3b8;">Para listados de intercambio, verificación de BscScan / CoinGecko, asociaciones o soporte técnico, envíe un mensaje directamente a continuación.</p>
-    <p class="lang-it" style="display:none;margin:0 0 20px;font-size:13.5px;color:#94a3b8;">Según el listado de su exchange, verifique BscScan / CoinGecko, asociación o soporte técnico, enviando un mensaje directamente aquí.</p>
+    <p class="lang-en" style="margin:0 0 20px;font-size:13.5px;color:#94a3b8;">Para listados de intercambio, verificación de BscScan / CoinGecko, asociaciones o soporte técnico, envíe un Mensaje directamente a continuación.</p>
+    <p class="lang-it" style="display:none;margin:0 0 20px;font-size:13.5px;color:#94a3b8;">Según el listado de su exchange, verifique BscScan / CoinGecko, asociación o soporte técnico, enviando un Mensaje directamente aquí.</p>
 
     <form id="plt-contact-form">
       <input type="hidden" name="_subject" value="New Message from Platincoin ($PLT) Official Portal">
@@ -158,13 +158,13 @@
 
       <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
         <span class="lang-en">Su dirección de correo electrónico</span>
-        <span class="lang-it" style="display:none;">Il tuo Indirizzo Correo electrónico</span>
+        <span class="lang-it" style="display:none;">Tu Dirección de Correo Electrónico</span>
       </label>
       <input type="email" name="email" required class="field" placeholder="nombre@dominio.com">
 
       <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
         <span class="lang-en">Sujeto</span>
-        <span class="lang-it" style="display:none;">oggetto</span>
+        <span class="lang-it" style="display:none;">Asunto</span>
       </label>
       <select name="topic" id="plt-topic" class="field">
         <option value="Exchange / Aggregator Listing" data-en="Exchange / Aggregator Listing (CoinGecko / CMC)" data-it="Listing su Exchange / Aggregatori (CoinGecko / CMC)">Listado de intercambio/agregador (CoinGecko/CMC)</option>
@@ -175,9 +175,9 @@
 
       <label style="font-size:12.5px;font-weight:700;color:#cbd5e1;">
         <span class="lang-en">Mensaje</span>
-        <span class="lang-it" style="display:none;">mensaje</span>
+        <span class="lang-it" style="display:none;">Mensaje</span>
       </label>
-      <textarea name="message" rows="5" required class="field" id="plt-cm" placeholder="Escribe tu mensaje aquí..."></textarea>
+      <textarea name="message" rows="5" required class="field" id="plt-cm" placeholder="Escribe tu Mensaje aquí..."></textarea>
 
       <button type="submit" style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:800;font-size:14.5px;cursor:pointer;box-shadow:0 6px 20px rgba(16,185,129,0.35);">
         <span class="lang-en">Enviar correo electrónico directamente ↗</span>
@@ -331,7 +331,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
   #plt-lang-dropdown, #lang-dd-menu { display: none !important; }
 </style>
 <script>
-window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
+localStorage.setItem('plt_lang', 'en'); try{if(typeof setDocsLang==='function')setDocsLang('en');}catch(e){} try{if(typeof setContactLang==='function')setContactLang('en');}catch(e){} try{if(typeof setL==='function')setL('en');}catch(e){} window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('div, button').forEach(el => {
     if(el.closest('#plt-right-controls') || el.closest('#wp-lang-wrap')) return;

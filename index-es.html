@@ -444,7 +444,7 @@
     <strong style="color:#ffffff;">Platino ($PLT)</strong> es un producto digital descentralizado diseñado en torno a un <strong style="color:#34d399;">Prueba de trabajo dual SHA-256 y cadena inteligente BNB (BEP-20)</strong> arquitectura. Diseñado para una escasez verificable y una transparencia a largo plazo, Platincoin aplica una estricta <strong style="color:#ffffff;">11.000.000 PLT límite rígido fijo</strong> con acuñación inflacionaria cero y <strong style="color:#34d399;">0% impuestos de swap de compra/venta</strong>.
   </p>
   <p class="lang-it" style="display:none;margin:0 0 12px;font-size:14px;line-height:1.65;color:#cbd5e1;">
-    <strong style="color:#ffffff;">Platino ($PLT)</strong> è una mercancía digital descentralizada basada en una arquitectura ibrida <strong style="color:#34d399;">Prueba de trabajo dual SHA-256 y cadena inteligente BNB (BEP-20)</strong>. Progettata per garantire scarsità verificabile e massima trasparenza, impone un <strong style="color:#ffffff;">Tetto Massimo Fisso di 11.000.000 PLT</strong> sin emisiones inflacionísticas y con <strong style="color:#34d399;">0% de tasa de cambio de azúcar</strong>.
+    <strong style="color:#ffffff;">Platino ($PLT)</strong> è una mercancía digital descentralizada basada en una arquitectura ibrida <strong style="color:#34d399;">Prueba de trabajo dual SHA-256 y cadena inteligente BNB (BEP-20)</strong>. Progettata per garantire scarsità verificabile e massima trasparenza, impone un <strong style="color:#ffffff;">Tetto Massimo Fisso di 11.000.000 PLT</strong> sin emisiones inflacionísticas y con <strong style="color:#34d399;">0% de impuestos de compra/venta</strong>.
   </p>
   <p class="lang-en" style="margin:0;font-size:13px;line-height:1.6;color:#94a3b8;">
     El 89,85% del suministro total (9.883.500 PLT) está bloqueado dentro del contrato inteligente Mining Vault en cadena para la distribución de prueba de trabajo de CPU, mientras que la liquidez DEX en PancakeSwap V2 está bloqueada al 100% a través de PinkLock (#2113264) para proteger a los titulares y garantizar la integridad del mercado abierto.
@@ -1521,7 +1521,7 @@ async function addTokenToWallet() {
   #plt-lang-dropdown, #lang-dd-menu { display: none !important; }
 </style>
 <script>
-window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
+localStorage.setItem('plt_lang', 'en'); try{if(typeof setDocsLang==='function')setDocsLang('en');}catch(e){} try{if(typeof setContactLang==='function')setContactLang('en');}catch(e){} try{if(typeof setL==='function')setL('en');}catch(e){} window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('div, button').forEach(el => {
     if(el.closest('#plt-right-controls') || el.closest('#wp-lang-wrap')) return;

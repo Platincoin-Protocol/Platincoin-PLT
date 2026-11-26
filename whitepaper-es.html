@@ -201,7 +201,7 @@
   #plt-lang-dropdown, #lang-dd-menu { display: none !important; }
 </style>
 <script>
-window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
+localStorage.setItem('plt_lang', 'en'); try{if(typeof setDocsLang==='function')setDocsLang('en');}catch(e){} try{if(typeof setContactLang==='function')setContactLang('en');}catch(e){} try{if(typeof setL==='function')setL('en');}catch(e){} window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('div, button').forEach(el => {
     if(el.closest('#plt-right-controls') || el.closest('#wp-lang-wrap')) return;
