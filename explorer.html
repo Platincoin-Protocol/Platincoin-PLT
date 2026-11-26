@@ -173,7 +173,7 @@ setL(curL);
       wpIt.style.display = (tl === 'it') ? 'block' : 'none';
     }
     document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
-    document.querySelectorAll('.lang-en').forEach(e => e.style.display = (tl === 'it') ? 'none' : '');
+    document.querySelectorAll('.lang-en').forEach(e => { const hasIt = e.parentElement && e.parentElement.querySelector('.lang-it'); e.style.display = (tl === 'it' && hasIt) ? 'none' : ''; });
     if(tl === 'en'){
       textNodes.forEach(x => x.node.nodeValue = x.orig);
       phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
