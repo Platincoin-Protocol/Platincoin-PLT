@@ -113,6 +113,34 @@
     });
   }
 
+  
+  function closeAllDropdowns(exceptId){
+    const allIds = ['plt-lang-drop', 'plt-nav-drop', 'plt-nav-list', 'plt-lang-list'];
+    allIds.forEach(id => {
+      if(id !== exceptId){
+        const el = document.getElementById(id);
+        if(el) el.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('[data-plt-dropdown]').forEach(el => {
+      if(el.id !== exceptId) el.style.display = 'none';
+    });
+  }
+
+  // Intercetta il click sul pulsante Hamburger (≡) per chiudere prima il menu Lingua
+  navBtn.addEventListener('click', () => {
+    closeAllDropdowns('plt-nav-drop');
+  }, true);
+
+  // Intercetta il click sul pulsante Lingua per chiudere prima il menu Hamburger (≡)
+  toggle.addEventListener('click', () => {
+    closeAllDropdowns('plt-lang-drop');
+  }, true);
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeAllDropdowns(null);
+  });
+
   document.addEventListener('click', (e) => {
     const drop = document.getElementById('plt-lang-drop');
     const navDrop = document.getElementById('plt-nav-drop');
