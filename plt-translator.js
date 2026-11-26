@@ -1,37 +1,52 @@
 (function(){
-  const c = localStorage.getItem('plt_lang_code') || 'en';
-  const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
-  if(c !== 'en'){
-    document.cookie = 'googtrans=' + '/en/' + c + '; path=/';
-    document.cookie = 'googtrans=' + '/en/' + c + '; path=/; domain=.' + location.hostname;
-  } else {
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
-  }
-  window.googleTranslateElementInit = function(){
-    new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,it,es,fr'},'google_translate_element');
-  };
-  window.pltApplyLang = function(lang, label){
-    localStorage.setItem('plt_lang_code', lang);
-    localStorage.setItem('plt_lang_lbl', label);
-    if(lang === 'en'){
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
-    } else {
-      document.cookie = 'googtrans=' + '/en/' + lang + '; path=/';
-      document.cookie = 'googtrans=' + '/en/' + lang + '; path=/; domain=.' + location.hostname;
+  let nodes = [];
+  function collect(){
+    if(nodes.length) return;
+    const w = document.createTreeWalker(document.body, 4, null, false);
+    let n;
+    while(n = w.nextNode()){
+      const p = n.parentElement;
+      if(!p || p.closest('.notranslate, script, style, code, pre')) continue;
+      if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
-    location.reload();
+  }
+  async function translateAll(target){
+    collect();
+    if(target === 'en'){
+      nodes.forEach(x => x.node.nodeValue = x.orig);
+      return;
+    }
+    const sep = " ||| ";
+    const chunk = 45;
+    for(let i = 0; i < nodes.length; i += chunk){
+      const slice = nodes.slice(i, i + chunk);
+      const q = encodeURIComponent(slice.map(x => x.orig.trim()).join(sep));
+      try{
+        const r = await fetch('https://://googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=' + target + '&q=' + q);
+        const data = await r.json();
+        const full = data[0].map(s => s[0]).join('');
+        const parts = full.split(/\s*\|\|\|\s*/);
+        slice.forEach((item, idx) => {
+          if(parts[idx]) item.node.nodeValue = item.orig.replace(item.orig.trim(), parts[idx].trim());
+        });
+      }catch(e){}
+    }
+  }
+  window.pltApplyLang = function(code, label){
+    localStorage.setItem('plt_lang_code', code);
+    localStorage.setItem('plt_lang_lbl', label);
+    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
+    const l = document.getElementById('plt-lang-list'); if(l) l.style.display = 'none';
+    translateAll(code);
   };
   document.addEventListener('click', ()=>{
     const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
-    if(l) l.style.display='none'; if(m) m.style.display='none';
+    if(l) l.style.display = 'none'; if(m) m.style.display = 'none';
   });
   window.addEventListener('DOMContentLoaded', ()=>{
-    const cur = document.getElementById('plt-cur-lang');
-    if(cur) cur.textContent = lbl;
-    const sc = document.createElement('script');
-    sc.src = 'https://://google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    document.body.appendChild(sc);
+    const c = localStorage.getItem('plt_lang_code') || 'en';
+    const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
+    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
+    if(c !== 'en') translateAll(c);
   });
 })();
