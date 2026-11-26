@@ -266,7 +266,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
     const c = localStorage.getItem(ck);
     if(c) return c;
     try{
-      const r = await fetch("https://translated.net" + encodeURIComponent(t.slice(0,450)) + "&langpair=en|" + tl);
+      const r = await fetch("https://api.mymemory.translated.net/get?q=" + encodeURIComponent(t.slice(0,450)) + "&langpair=en|" + tl);
       const d = await r.json();
       const out = d && d.responseData && d.responseData.translatedText;
       if(out && !out.includes("MYMEMORY")){ localStorage.setItem(ck, out); return out; }
