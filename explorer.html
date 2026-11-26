@@ -197,7 +197,7 @@ setL(curL);
 
       document.addEventListener('click', (e) => {
         if(!e.target.closest('#plt-lang-wrap')) langDrop.style.display = 'none';
-        if(mainDrop && !e.target.closest('#plt-menu-toggle') && !e.target.closest('#plt-dropdown-menu')) mainDrop.style.display = 'none';
+        const expMenu = document.getElementById('m'); if(expMenu && !e.target.closest('#plt-right-controls') && !e.target.closest('#m')) expMenu.style.display = 'none';
       });
 
       document.addEventListener('keydown', (e) => {
