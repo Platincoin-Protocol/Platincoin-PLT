@@ -102,51 +102,62 @@ setL(curL);
 </script>
 <style>
   .lang-btn { display: none !important; }
-  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; margin-right: 10px !important; z-index: 10002 !important; }
+  #plt-right-actions { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; margin: 0 !important; z-index: 10002 !important; }
   #plt-lang-drop { position: absolute !important; top: calc(100% + 8px) !important; right: 0 !important; min-width: 175px !important; background: #0f172a !important; border: 1px solid rgba(52,211,153,0.35) !important; border-radius: 10px !important; box-shadow: 0 12px 28px rgba(0,0,0,0.6) !important; z-index: 10005 !important; overflow: hidden !important; }
   #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.18) !important; color: #34d399 !important; border-left: 3px solid #34d399 !important; }
 </style>
 <script>
 (function(){
-  function mountLangNextToHamburger(){
-    const navBtn = document.querySelector('#plt-nav-btn, button[aria-label*="menu" i], .hamburger, header button:last-of-type');
-    let langWrap = document.getElementById('plt-lang-wrap');
-    if(!langWrap){
-      langWrap = document.createElement('div');
-      langWrap.id = 'plt-lang-wrap';
-      langWrap.innerHTML = '<button type="button" id="plt-lang-toggle" style="display:inline-flex;align-items:center;gap:6px;background:rgba(15,23,42,0.9);border:1px solid rgba(52,211,153,0.35);color:#f8fafc;padding:7px 12px;border-radius:8px;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
-        '<div id="plt-lang-drop" style="display:none;">' +
-        '<button type="button" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:none;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 ENGLISH (ENG)</button>' +
-        '<button type="button" data-lang="it" style="display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:none;border-top:1px solid rgba(255,255,255,0.08);color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇮🇹 ITALIANO (ITA)</button>' +
-        '</div>';
-    }
-    if(navBtn && navBtn.parentElement){
-      navBtn.parentElement.style.display = 'flex';
-      navBtn.parentElement.style.alignItems = 'center';
-      navBtn.parentElement.style.gap = '10px';
-      if(langWrap.parentElement !== navBtn.parentElement){
-        navBtn.parentElement.insertBefore(langWrap, navBtn);
+  function setupHeaderLang(){
+    const navBtn = document.querySelector('#plt-nav-btn, header button:last-of-type, nav button:last-of-type, .hamburger');
+    if(!navBtn || !navBtn.parentElement) return;
+    const headerBar = navBtn.parentElement;
+
+    // Rimuove eventuali vecchi selettori lingua duplicati nella barra o nella pagina
+    document.querySelectorAll('#plt-lang-wrap, #plt-lang-toggle, .plt-lang-box').forEach(el => el.remove());
+    headerBar.querySelectorAll('div, span').forEach(el => {
+      if(el !== navBtn && !el.contains(navBtn) && (el.textContent.trim() === 'ENG ▾' || el.textContent.trim() === 'ITA ▾' || el.textContent.includes('🌐'))){
+        if(!el.querySelector('img') && el.children.length <= 2) el.remove();
       }
+    });
+
+    // Crea un unico gruppo a destra con [Lingua] + [3 lineette] attaccati
+    let rightGroup = document.getElementById('plt-right-actions');
+    if(!rightGroup){
+      rightGroup = document.createElement('div');
+      rightGroup.id = 'plt-right-actions';
+      headerBar.insertBefore(rightGroup, navBtn);
     }
+
+    const langWrap = document.createElement('div');
+    langWrap.id = 'plt-lang-wrap';
+    langWrap.innerHTML = '<button type="button" id="plt-lang-toggle" style="display:inline-flex;align-items:center;gap:6px;background:rgba(15,23,42,0.9);border:1px solid rgba(52,211,153,0.35);color:#f8fafc;padding:7px 12px;border-radius:8px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
+      '<div id="plt-lang-drop" style="display:none;">' +
+      '<button type="button" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:none;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 ENGLISH (ENG)</button>' +
+      '<button type="button" data-lang="it" style="display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:none;border-top:1px solid rgba(255,255,255,0.08);color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇮🇹 ITALIANO (ITA)</button>' +
+      '</div>';
+
+    rightGroup.appendChild(langWrap);
+    rightGroup.appendChild(navBtn);
+
     const toggle = document.getElementById('plt-lang-toggle');
     const drop = document.getElementById('plt-lang-drop');
-    if(toggle && drop && !toggle.dataset.bound){
-      toggle.dataset.bound = '1';
-      toggle.addEventListener('click', (e) => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const navDrop = document.getElementById('plt-nav-drop');
+      if(navDrop) navDrop.style.display = 'none';
+      drop.style.display = (drop.style.display === 'block') ? 'none' : 'block';
+    });
+    drop.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const navDrop = document.getElementById('plt-nav-drop');
-        if(navDrop) navDrop.style.display = 'none';
-        drop.style.display = (drop.style.display === 'block') ? 'none' : 'block';
+        applyPltLang(btn.dataset.lang);
+        drop.style.display = 'none';
       });
-      drop.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          applyPltLang(btn.dataset.lang || (btn.textContent.includes('ITALIANO') ? 'it' : 'en'));
-          drop.style.display = 'none';
-        });
-      });
-    }
+    });
   }
+
   function applyPltLang(code){
     const isIt = (code === 'it');
     localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
@@ -158,20 +169,21 @@ setL(curL);
     const lbl = document.getElementById('plt-lang-label');
     if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
     document.querySelectorAll('#plt-lang-drop button').forEach(b => {
-      const targetIt = (b.dataset.lang === 'it') || b.textContent.includes('ITALIANO');
-      const active = (isIt && targetIt) || (!isIt && !targetIt);
+      const active = (isIt && b.dataset.lang === 'it') || (!isIt && b.dataset.lang === 'en');
       b.classList.toggle('plt-opt-active', active);
-      b.innerHTML = (targetIt ? '🇮🇹 ITALIANO (ITA)' : '🇬🇧 ENGLISH (ENG)') + (active ? ' <span style="float:right;">✓</span>' : '');
+      b.innerHTML = (b.dataset.lang === 'it' ? '🇮🇹 ITALIANO (ITA)' : '🇬🇧 ENGLISH (ENG)') + (active ? ' <span style="float:right;">✓</span>' : '');
     });
   }
+
   document.addEventListener('click', (e) => {
     const drop = document.getElementById('plt-lang-drop');
     const navDrop = document.getElementById('plt-nav-drop');
     if(drop && !e.target.closest('#plt-lang-wrap')) drop.style.display = 'none';
     if(navDrop && !e.target.closest('#plt-nav-btn') && !e.target.closest('#plt-nav-drop')) navDrop.style.display = 'none';
   });
+
   window.addEventListener('DOMContentLoaded', () => {
-    mountLangNextToHamburger();
+    setupHeaderLang();
     applyPltLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
   });
 })();
