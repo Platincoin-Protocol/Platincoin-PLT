@@ -76,7 +76,6 @@
     <a href="docs.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600;border-top:1px solid rgba(52,211,153,.15)">📘 FAQ &amp; Docs</a>
     <a href="contact.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600;border-top:1px solid rgba(52,211,153,.15)">✉️ Contact Us</a>
     <a href="explorer.html" style="display:block;padding:10px 14px;color:#34d399;text-decoration:none;font-weight:700;border-top:1px solid rgba(52,211,153,.15)">⛓️ PoW Node Explorer</a>
-    <a href="whitepaper.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 White Paper</a>
   </div>
 </header>
 <div class="wrap" style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px"></div>
@@ -192,29 +191,5 @@ setL(curL);
 })();
 </script>
 
-<style>.lang-btn{display:none!important;}</style>
-<script>
-(function(){
-  const l = document.getElementById('plt-lang-list');
-  if(l){
-    l.innerHTML = '<div onclick="pltSetBi(\'en\',\'ENG\')" style="padding:10px 14px;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English</div>' +
-                  '<div onclick="pltSetBi(\'it\',\'ITA\')" style="padding:10px 14px;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(255,255,255,0.08);">🇮🇹 Italiano</div>';
-  }
-  window.pltSetBi = function(c, lbl){
-    localStorage.setItem('plt_lang_code', c);
-    localStorage.setItem('plt_lang_lbl', lbl);
-    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(l) l.style.display = 'none';
-    if(typeof switchLang === 'function') switchLang(c);
-    if(typeof setDocsLang === 'function') setDocsLang(c);
-    if(typeof setContactLang === 'function') setContactLang(c);
-    if(typeof setL === 'function') setL(c);
-  };
-  window.addEventListener('DOMContentLoaded', ()=>{
-    const c = (localStorage.getItem('plt_lang_code') === 'it') ? 'it' : 'en';
-    pltSetBi(c, c === 'it' ? 'ITA' : 'ENG');
-  });
-})();
-</script>
 </body>
 </html>
