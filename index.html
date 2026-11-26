@@ -1379,6 +1379,7 @@ document.querySelectorAll("*").forEach(e=>{
 
 
 
+
 <script id='plt-inline-i18n'>
 (function(){
   let nodes = [];
@@ -1392,25 +1393,34 @@ document.querySelectorAll("*").forEach(e=>{
       if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
   }
-  async function trOne(t, tl){
-    const ck = "plt_mm2_" + tl + "_" + t;
+  async function trChunk(txt, tl){
+    const ck = "plt_v5_" + tl + "_" + txt;
     const c = localStorage.getItem(ck);
     if(c) return c;
     try{
-      const r = await fetch("https://api.mymemory.translated.net/get?q=" + encodeURIComponent(t.slice(0,450)) + "&langpair=en|" + tl);
+      const r = await fetch("https://api.mymemory.translated.net/get?q=" + encodeURIComponent(txt) + "&langpair=en|" + tl);
       const d = await r.json();
       const out = d && d.responseData && d.responseData.translatedText;
       if(out && !out.includes("MYMEMORY")){ localStorage.setItem(ck, out); return out; }
     }catch(e){}
-    return t;
+    return txt;
+  }
+  async function trFull(txt, tl){
+    if(txt.length <= 450) return await trChunk(txt, tl);
+    const parts = txt.match(/[^.!?]+[.!?]*\s*/g) || [txt];
+    let res = "";
+    for(const p of parts){ if(p.trim()) res += (await trChunk(p.trim(), tl)) + " "; }
+    return res.trim();
   }
   async function run(tl){
     collect();
     if(tl === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
-    for(const item of nodes){
-      const t = item.orig.trim();
-      const tr = await trOne(t, tl);
-      item.node.nodeValue = item.orig.replace(t, tr);
+    for(let i = 0; i < nodes.length; i += 6){
+      await Promise.all(nodes.slice(i, i + 6).map(async item => {
+        const t = item.orig.trim();
+        const tr = await trFull(t, tl);
+        item.node.nodeValue = item.orig.replace(t, tr);
+      }));
     }
   }
   window.pltApplyLang = function(code, label){
