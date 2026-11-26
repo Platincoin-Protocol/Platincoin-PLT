@@ -164,43 +164,6 @@
 <script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
 <footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support &amp; Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Contact Form ↗</a></div></footer>
 <div id="google_translate_element" style="display:none;"></div>
-<style>
-  .goog-te-banner-frame, .skiptranslate, #goog-gt-tt { display: none !important; }
-  body { top: 0 !important; }
-</style>
-<script>
-function googleTranslateElementInit(){
-  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,it,es,fr',autoDisplay:false},'google_translate_element');
-}
-function pltApplyLang(code, label){
-  document.getElementById('plt-lang-list').style.display='none';
-  document.getElementById('plt-nav-list').style.display='none';
-  localStorage.setItem('plt_lang_code', code);
-  localStorage.setItem('plt_lang_lbl', label);
-  document.getElementById('plt-cur-lang').textContent = label;
-  if(typeof switchLang === 'function') switchLang('en');
-  if(code === 'en'){
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
-    location.reload();
-    return;
-  }
-  const sel = document.querySelector('.goog-te-combo');
-  if(sel){ sel.value = code; sel.dispatchEvent(new Event('change')); }
-  else {
-    document.cookie = 'googtrans=/en/' + code + '; path=/';
-    location.reload();
-  }
-}
-document.addEventListener('click', function(){
-  const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-  const m = document.getElementById('plt-nav-list'); if(m) m.style.display='none';
-});
-window.addEventListener('DOMContentLoaded', function(){
-  const lbl = localStorage.getItem('plt_lang_lbl');
-  if(lbl && document.getElementById('plt-cur-lang')) document.getElementById('plt-cur-lang').textContent = lbl;
-});
-</script>
-<script src="https://google.com"></script>
-
+<style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
+<script src="plt-translator.js"></script>
 </body></html>

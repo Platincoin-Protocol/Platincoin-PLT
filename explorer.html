@@ -113,44 +113,7 @@ function inspect(){let n=parseInt(document.getElementById("q").value.replace("#"
 setL(curL);
 </script>
 <div id="google_translate_element" style="display:none;"></div>
-<style>
-  .goog-te-banner-frame, .skiptranslate, #goog-gt-tt { display: none !important; }
-  body { top: 0 !important; }
-</style>
-<script>
-function googleTranslateElementInit(){
-  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,it,es,fr',autoDisplay:false},'google_translate_element');
-}
-function pltApplyLang(code, label){
-  document.getElementById('plt-lang-list').style.display='none';
-  document.getElementById('plt-nav-list').style.display='none';
-  localStorage.setItem('plt_lang_code', code);
-  localStorage.setItem('plt_lang_lbl', label);
-  document.getElementById('plt-cur-lang').textContent = label;
-  if(typeof switchLang === 'function') switchLang('en');
-  if(code === 'en'){
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
-    location.reload();
-    return;
-  }
-  const sel = document.querySelector('.goog-te-combo');
-  if(sel){ sel.value = code; sel.dispatchEvent(new Event('change')); }
-  else {
-    document.cookie = 'googtrans=/en/' + code + '; path=/';
-    location.reload();
-  }
-}
-document.addEventListener('click', function(){
-  const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-  const m = document.getElementById('plt-nav-list'); if(m) m.style.display='none';
-});
-window.addEventListener('DOMContentLoaded', function(){
-  const lbl = localStorage.getItem('plt_lang_lbl');
-  if(lbl && document.getElementById('plt-cur-lang')) document.getElementById('plt-cur-lang').textContent = lbl;
-});
-</script>
-<script src="https://google.com"></script>
-
+<style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
+<script src="plt-translator.js"></script>
 </body>
 </html>
