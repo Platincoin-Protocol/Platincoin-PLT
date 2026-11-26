@@ -1414,6 +1414,26 @@ async function addTokenToWallet() {
         n.nodeValue = isIt ? n.nodeValue.replace(n.nodeValue.trim(), extraIt[n._origEn]) : n.nodeValue.replace(n.nodeValue.trim(), n._origEn);
       }
     }
+    
+    document.querySelectorAll('div, p, span, h3, h4').forEach(el => {
+      if(el.children.length > 2) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if(!el._origHtml && (
+        t === 'ON-CHAIN SUPPLY & VAULT ALLOCATION' ||
+        t.startsWith('Verifiable distribution of the strict 11,000,000 PLT') ||
+        t === 'Open-source verified BEP-20 contract on BNB Smart Chain' ||
+        t === 'PancakeSwap V2 PLT/USDT LP locked under ID #2113264' ||
+        t.startsWith('Live on GeckoTerminal & FreshCoins')
+      )){
+        el._origHtml = el.innerHTML;
+        if(t === 'ON-CHAIN SUPPLY & VAULT ALLOCATION') el._itHtml = '📊 ALLOCAZIONE FORNITURA ON-CHAIN E VAULT';
+        else if(t.startsWith('Verifiable distribution')) el._itHtml = 'Distribuzione verificabile della fornitura fissa di <strong style="color:#fff;">11.000.000 PLT</strong> su BNB Smart Chain:';
+        else if(t.startsWith('Open-source verified')) el._itHtml = 'Contratto BEP-20 open-source verificato su BNB Smart Chain';
+        else if(t.startsWith('PancakeSwap V2')) el._itHtml = 'LP PancakeSwap V2 PLT/USDT bloccata con ID #2113264';
+        else if(t.startsWith('Live on GeckoTerminal')) el._itHtml = 'Live su GeckoTerminal e FreshCoins · BscScan e DEXView in revisione';
+      }
+      if(el._origHtml) el.innerHTML = isIt ? el._itHtml : el._origHtml;
+    });
     const lbl = document.getElementById('plt-lang-label');
     if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
     document.querySelectorAll('#plt-lang-drop button').forEach(b => {

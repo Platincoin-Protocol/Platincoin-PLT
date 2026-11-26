@@ -143,7 +143,7 @@ setL(curL);
 
   window.addEventListener('DOMContentLoaded', () => {
     const menuBtnTmp = document.getElementById('plt-menu-toggle') || document.querySelector('header button, nav button'); const bar = document.getElementById('plt-hamburger-bar') || (menuBtnTmp && menuBtnTmp.parentElement);
-    const menuBtn = document.getElementById('plt-menu-toggle');
+    const menuBtn = document.getElementById('plt-menu-toggle') || document.querySelector('header button, nav button, [aria-label="Menu"]');
     const mainDrop = document.getElementById('plt-dropdown-menu');
 
     // Nasconde eventuale vecchio pulsante lingua fuori dalla barra superiore
