@@ -10,20 +10,27 @@
       if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
   }
+  async function trOne(text, tl){
+    const ck = "plt_tr_" + tl + "_" + text;
+    const cached = sessionStorage.getItem(ck);
+    if(cached) return cached;
+    try{
+      const u = ["https:","","://googleapis.com","translate_a","single?client=gtx&sl=en&dt=t&tl="].join("/") + tl + "&q=" + encodeURIComponent(text);
+      const r = await fetch(u);
+      const d = await r.json();
+      const res = d.map(x => x).join("");
+      if(res) sessionStorage.setItem(ck, res);
+      return res || text;
+    }catch(e){ return text; }
+  }
   async function translateAll(target){
     collect();
     if(target === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
-    for(let i = 0; i < nodes.length; i += 40){
-      const slice = nodes.slice(i, i + 40);
-      const q = encodeURIComponent(slice.map(x => x.orig.trim()).join(" ||| "));
-      try{
-        const u = ["https:","","://googleapis.com","translate_a","single?client=gtx&sl=en&dt=t&tl="].join("/") + target + "&q=" + q;
-        const r = await fetch(u);
-        const data = await r.json();
-        const parts = data.map(s => s).join("").split(/\s*\|\|\|\s*/);
-        slice.forEach((item, idx) => { if(parts[idx]) item.node.nodeValue = item.orig.replace(item.orig.trim(), parts[idx].trim()); });
-      }catch(e){}
-    }
+    await Promise.all(nodes.map(async item => {
+      const t = item.orig.trim();
+      const tr = await trOne(t, target);
+      item.node.nodeValue = item.orig.replace(t, tr);
+    }));
   }
   window.pltApplyLang = function(code, label){
     localStorage.setItem('plt_lang_code', code);
