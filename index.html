@@ -1385,25 +1385,25 @@ document.querySelectorAll("*").forEach(e=>{
 
 
 
-<script src="plt-dict.js?v=6"></script>
+<script src="plt-dict.js?v=7"></script>
 <script id="plt-inline-i18n">
 (function(){
-  let nodes = [], phs = [];
-  function collect(){
-    if(nodes.length || phs.length) return;
+  let textNodes = [], phs = [];
+  function scan(){
+    if(textNodes.length || phs.length) return;
     const w = document.createTreeWalker(document.body, 4, null, false);
     let n;
     while(n = w.nextNode()){
       const p = n.parentElement;
       if(!p || p.closest('.notranslate, script, style, code, pre')) continue;
-      if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
+      if(n.nodeValue.trim().length > 1) textNodes.push({node: n, orig: n.nodeValue});
     }
     document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
       phs.push({el: el, orig: el.getAttribute('placeholder')});
     });
   }
-  function applyLocal(tl){
-    collect();
+  function applyLang(tl){
+    scan();
     const wpEn = document.getElementById('wp-en'), wpIt = document.getElementById('wp-it');
     if(wpEn && wpIt){
       wpEn.style.display = (tl === 'it') ? 'none' : 'block';
@@ -1412,18 +1412,17 @@ document.querySelectorAll("*").forEach(e=>{
     document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
     document.querySelectorAll('.lang-en').forEach(e => e.style.display = (tl === 'it') ? 'none' : '');
     if(tl === 'en'){
-      nodes.forEach(x => x.node.nodeValue = x.orig);
+      textNodes.forEach(x => x.node.nodeValue = x.orig);
       phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
       return;
     }
-    const d = window.PLT_DICT || {};
-    const map = d[tl] || {};
-    nodes.forEach(item => {
-      const t = item.orig.replace(/\s+/g, ' ').trim();
-      if(map[t]) item.node.nodeValue = map[t];
+    const map = (window.PLT_DICT && window.PLT_DICT[tl]) || {};
+    textNodes.forEach(item => {
+      const k = item.orig.replace(/\s+/g, ' ').trim();
+      if(map[k] && map[k].trim()) item.node.nodeValue = item.orig.replace(item.orig.trim(), map[k]);
     });
     phs.forEach(item => {
-      if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
+      if(map[item.orig] && map[item.orig].trim()) item.el.setAttribute('placeholder', map[item.orig]);
     });
   }
   window.pltApplyLang = function(code, label){
@@ -1431,7 +1430,7 @@ document.querySelectorAll("*").forEach(e=>{
     localStorage.setItem('plt_lang_lbl', label);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
     const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-    applyLocal(code);
+    applyLang(code);
   };
   document.addEventListener('click', ()=>{
     const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
@@ -1441,7 +1440,7 @@ document.querySelectorAll("*").forEach(e=>{
     const c = localStorage.getItem('plt_lang_code') || 'en';
     const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(c !== 'en') applyLocal(c);
+    if(c !== 'en') applyLang(c);
   });
 })();
 </script>
