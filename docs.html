@@ -161,4 +161,47 @@
 
 <script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
 <footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support &amp; Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Contact Form ↗</a></div></footer>
+<style>
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.18) !important; color: #34d399 !important; border-left: 3px solid #34d399 !important; }
+</style>
+<script>
+(function(){
+  const bar = document.querySelector('header, nav, .top-bar, .navbar') || document.body;
+  const langWrap = document.getElementById('plt-lang-wrap');
+  const navBtn = document.getElementById('plt-nav-btn');
+  // Sposta il selettore lingua fuori dal dropdown menu mettendolo accanto al pulsante ≡
+  if(langWrap && navBtn && navBtn.parentElement && langWrap.parentElement !== navBtn.parentElement){
+    navBtn.parentElement.style.display = 'flex';
+    navBtn.parentElement.style.alignItems = 'center';
+    navBtn.parentElement.style.gap = '10px';
+    navBtn.parentElement.insertBefore(langWrap, navBtn);
+  }
+  function syncLangUI(){
+    const isIt = (localStorage.getItem('plt_lang') === 'it' || document.documentElement.lang === 'it');
+    const lbl = document.getElementById('plt-lang-label');
+    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
+    document.querySelectorAll('#plt-lang-drop button').forEach(b => {
+      const targetIt = b.textContent.includes('ITALIANO');
+      const active = (isIt && targetIt) || (!isIt && !targetIt);
+      b.classList.toggle('plt-opt-active', active);
+      b.innerHTML = (targetIt ? '🇮🇹 ITALIANO (ITA)' : '🇬🇧 ENGLISH (ENG)') + (active ? ' <span style="float:right;">✓</span>' : '');
+    });
+  }
+  document.addEventListener('click', (e) => {
+    const drop = document.getElementById('plt-lang-drop');
+    const navDrop = document.getElementById('plt-nav-drop');
+    if(drop && !e.target.closest('#plt-lang-wrap')) drop.style.display = 'none';
+    if(navDrop && !e.target.closest('#plt-nav-btn') && !e.target.closest('#plt-nav-drop')) navDrop.style.display = 'none';
+    setTimeout(syncLangUI, 30);
+  });
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('plt_lang');
+    if(saved === 'it' && typeof switchLang === 'function') switchLang('it');
+    if(saved === 'it' && typeof setDocsLang === 'function') setDocsLang('it');
+    if(saved === 'it' && typeof setContactLang === 'function') setContactLang('it');
+    if(saved === 'it' && typeof setL === 'function') setL('it');
+    syncLangUI();
+  });
+})();
+</script>
 </body></html>
