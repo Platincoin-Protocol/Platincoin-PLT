@@ -120,14 +120,7 @@ setL(curL);
       "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
       "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
       "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
-      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera",
-      "1. How does Dual SHA-256 + BEP-20 work?":"1. ¿Cómo funciona el modelo Dual SHA-256 + BEP-20?",
-      "2. How is the 11M PLT supply distributed?":"2. ¿Cómo se distribuye la oferta fija de 11M PLT?",
-      "3. Is liquidity locked and are there taxes?":"3. ¿Está bloqueada la liquidez y hay impuestos?",
-      "4. When will public CPU mining open?":"4. ¿Cuándo abrirá la minería pública CPU?",
-      "5. When will renounceOwnership() happen?":"5. ¿Cuándo ocurrirá la renuncia (renounceOwnership)?",
-      "6. How to buy $PLT on PancakeSwap V2?":"6. ¿Cómo comprar $PLT en PancakeSwap V2?",
-      "7. Is $PLT affiliated with legacy PLC?":"7. ¿Está $PLT afiliado al antiguo proyecto PLC?"
+      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
     },
     fr: {
       "Home":"Accueil","FAQ & Docs":"FAQ et Documentation","Contact Us":"Contactez-nous","PoW Node Explorer":"Explorateur de Nœuds PoW",
@@ -144,35 +137,40 @@ setL(curL);
       "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
       "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
       "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
-      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT au Portefeuille":"Ajouter $PLT au Portefeuille",
-      "1. How does Dual SHA-256 + BEP-20 work?":"1. Comment fonctionne le modèle Dual SHA-256 + BEP-20 ?",
-      "2. How is the 11M PLT supply distributed?":"2. Comment est distribuée l'offre fixe de 11M PLT ?",
-      "3. Is liquidity locked and are there taxes?":"3. La liquidité est-elle verrouillée et y a-t-il des taxes ?",
-      "4. When will public CPU mining open?":"4. Quand le minage public CPU ouvrira-t-il ?",
-      "5. When will renounceOwnership() happen?":"5. Quand aura lieu la renonciation (renounceOwnership) ?",
-      "6. How to buy $PLT on PancakeSwap V2?":"6. Comment acheter $PLT sur PancakeSwap V2 ?",
-      "7. Is $PLT affiliated with legacy PLC?":"7. $PLT est-il affilié à l'ancien projet PLC ?"
+      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
     }
   };
   const orig = window.switchLang || window.setL;
+  const savedNodes = [];
+  function cacheNodes(){
+    if(savedNodes.length) return;
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let n; while(n = w.nextNode()) savedNodes.push({node: n, orig: n.nodeValue});
+  }
   function setAllLang(l){
+    cacheNodes();
+    savedNodes.forEach(item => item.node.nodeValue = item.orig);
     if(orig) orig(l === "es" || l === "fr" ? "en" : l);
     localStorage.setItem("plt_lang", l);
     const cur = document.getElementById("lang-dd-cur");
     if(cur) cur.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
-    if(l !== "es" && l !== "fr") return;
-    const map = dict[l];
-    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let n;
-    while(n = w.nextNode()){
-      const s = n.nodeValue;
-      for(const k in map){ if(s.includes(k)) n.nodeValue = n.nodeValue.replace(k, map[k]); }
+    if(l === "es" || l === "fr"){
+      const map = dict[l];
+      savedNodes.forEach(item => {
+        let v = item.orig;
+        for(const k in map){ if(v.includes(k)) v = v.replace(k, map[k]); }
+        item.node.nodeValue = v;
+      });
     }
   }
   window.switchLang = setAllLang;
   window.setL = setAllLang;
+  document.addEventListener("click", function(e){
+    const m = document.getElementById("lang-dd-menu");
+    if(m && !e.target.closest(".lang-switch")) m.style.display = "none";
+  });
   const sv = localStorage.getItem("plt_lang");
-  if(sv && sv !== "en") setTimeout(()=>setAllLang(sv), 120);
+  if(sv && sv !== "en") setTimeout(()=>setAllLang(sv), 150);
 })();
 </script>
 
