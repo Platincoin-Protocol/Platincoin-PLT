@@ -106,11 +106,7 @@
     if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
   });
 
-  const obs = new MutationObserver(() => {
-    const c = localStorage.getItem('plt_lang_code') || 'en';
-    if(c !== 'en'){ nodes = []; applyLocal(c); }
-  });
-  window.addEventListener('load', () => obs.observe(document.body, {childList:true, subtree:true}));
+  );
 })();
 </script>
 <div style="max-width:960px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
