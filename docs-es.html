@@ -226,7 +226,7 @@
       langWrap.innerHTML =
         '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
         '<div id="plt-lang-drop" style="display:none;">' +
-          '<button type="button" data-lang="en"><span>🇪🇸 ENGLISH (ENG)</span><span class="plt-chk"></span></button>' +
+          '<button type="button" data-lang="en"><span>🇬🇧 ENGLISH (ENG)</span><span class="plt-chk"></span></button>' +
           '<button type="button" data-lang="it" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span><span class="plt-chk"></span></button>' +
         '</div>';
 
@@ -302,7 +302,7 @@ window.addEventListener('load', () => {
   const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
   if(d){
     const b = (location.pathname.split('/').pop() || 'index-es.html').replace('-es.html', '.html');
-    d.innerHTML = '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'en\');location.href=\''+b+'\'"><span>🇪🇸 ENGLISH (ENG)</span></button><button type="button" onclick="localStorage.setItem(\'plt_lang\',\'it\');location.href=\''+b+'\'" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span></button><button type="button" class="plt-opt-active wp-opt-active" style="margin-top:4px;"><span>🇪🇸 ESPAÑOL (ESP)</span><span>✓</span></button>';
+    d.innerHTML = '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'en\');location.href=\''+b+'\'"><span>🇬🇧 ENGLISH (ENG)</span></button><button type="button" onclick="localStorage.setItem(\'plt_lang\',\'it\');location.href=\''+b+'\'" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span></button><button type="button" class="plt-opt-active wp-opt-active" style="margin-top:4px;"><span>🇪🇸 ESPAÑOL (ESP)</span><span>✓</span></button>';
   }
 });
 </script>
