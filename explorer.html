@@ -55,60 +55,27 @@
     #plt-dropdown-menu, #m { width: calc(100vw - 20px) !important; right: 0 !important; left: auto !important; }
   }
 </style>
-<style id="plt-hide-old-lang">.lang-switch, .lang-btn, .header-nav, [onclick*="switchLang"] { display: none !important; }</style>
-<style id="plt-mobile-dd-fix">
-#plt-lang-list {
-  width: 195px !important;
-  min-width: 195px !important;
-  max-width: 90vw !important;
-  right: -46px !important;
-  left: auto !important;
-  padding: 6px !important;
-  box-sizing: border-box !important;
-}
-#plt-lang-list button {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  display: block !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  box-sizing: border-box !important;
-  padding: 10px 12px !important;
-  margin: 0 !important;
-  text-align: left !important;
-}
-</style>
 </head>
 <body>
-<header id="plt-hamburger-bar" style="max-width:1520px;width:96%;margin:10px auto 16px auto;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
-  <a href="index.html" class="notranslate" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
-    <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
-    <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
-  </a>
+<header id="plt-hamburger-bar" class="wrap" style="margin-bottom:12px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,.95);border:1px solid rgba(52,211,153,.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff"><img src="PLT_logo_320x320.png" style="width:28px;height:28px;border-radius:50%"><strong>PLATINCOIN <span style="color:#34d399">(PLT)</span></strong></a>
   <div style="display:flex;align-items:center;gap:10px;">
-    <div id="plt-lang-box" class="notranslate" style="position:relative;">
-      <button type="button" onclick="event.stopPropagation();document.getElementById('plt-nav-list').style.display='none';const l=document.getElementById('plt-lang-list');l.style.display=l.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(15,23,42,0.92);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="plt-cur-lang">ENG</span> ▾</button>
-      <div id="plt-lang-list" style="display:none;position:absolute;right:0;top:44px;width:185px;min-width:185px;background:#111827;border:1px solid rgba(52,211,153,0.45);border-radius:12px;padding:5px;box-shadow:0 16px 35px rgba(0,0,0,0.85);">
-        <button type="button" onclick="pltApplyLang('en','ENG')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:block;">🇬🇧 English (ENG)</button>
-        <button type="button" onclick="pltApplyLang('it','ITA')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:block;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
-        <button type="button" onclick="pltApplyLang('es','ESP')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:block;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
-        <button type="button" onclick="pltApplyLang('fr','FRA')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:block;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
-      </div>
+  <div class="plt-lang-wrap" style="position:relative;z-index:1200;">
+    <button type="button" onclick="event.stopPropagation();const m=document.getElementById('plt-lang-list');const h=document.getElementById('plt-dropdown-menu')||document.getElementById('m');if(h)h.style.display='none';m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(15,23,42,0.9);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">ENG</span> ▾</button>
+    <div id="plt-lang-list" style="display:none;position:absolute;right:0;top:44px;min-width:165px;background:#111827;border:1px solid rgba(52,211,153,0.45);border-radius:12px;padding:5px;box-shadow:0 16px 35px rgba(0,0,0,0.85);">
+      <button type="button" onclick="pltSetLang('en')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
+      <button type="button" onclick="pltSetLang('it')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+      <button type="button" onclick="pltSetLang('es')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
+      <button type="button" onclick="pltSetLang('fr')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
     </div>
-    <button type="button" onclick="event.stopPropagation();document.getElementById('plt-lang-list').style.display='none';const m=document.getElementById('plt-nav-list');m.style.display=m.style.display==='block'?'none':'block';" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
-      <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
-      <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
-      <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
-    </button>
   </div>
-  <div id="plt-nav-list" style="display:none;position:absolute;top:56px;right:0;min-width:230px;border-radius:14px;padding:6px;background:#111827;border:1px solid rgba(52,211,153,0.45);box-shadow:0 18px 40px rgba(0,0,0,0.85);">
-    <a href="index.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;">🏠 Home</a>
-    <a href="docs.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📘 FAQ &amp; Docs</a>
-    <a href="contact.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">✉️ Contact Us</a>
-    <a href="explorer.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">⛓️ PoW Node Explorer</a>
-    <a href="whitepaper.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 White Paper</a>
+  <button onclick="const m=document.getElementById('m');m.style.display=m.style.display==='block'?'none':'block'" style="width:40px;height:36px;border-radius:10px;border:1px solid rgba(52,211,153,.4);background:rgba(52,211,153,.12);color:#34d399;font-size:18px;cursor:pointer">☰</button>
+</div>
+<div id="m" style="display:none;position:absolute;top:54px;right:0;min-width:220px;border-radius:14px;padding:6px;background:#111827;border:1px solid rgba(52,211,153,.4)">
+    <a href="index.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600">🏠 Home</a>
+    <a href="docs.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600;border-top:1px solid rgba(52,211,153,.15)">📘 FAQ &amp; Docs</a>
+    <a href="contact.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600;border-top:1px solid rgba(52,211,153,.15)">✉️ Contact Us</a>
+    <a href="explorer.html" style="display:block;padding:10px 14px;color:#34d399;text-decoration:none;font-weight:700;border-top:1px solid rgba(52,211,153,.15)">⛓️ PoW Node Explorer</a>
   </div>
 </header>
 <div class="wrap" style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px"></div>
@@ -138,65 +105,91 @@ document.getElementById("tb").innerHTML=s.map(r=>'<tr onclick="document.getEleme
 function inspect(){let n=parseInt(document.getElementById("q").value.replace("#",""),10),el=document.getElementById("res");if(n>=1&&n<=3457){let hx=((n*2654435761)>>>0).toString(16).padStart(8,"0");el.innerHTML='<div style="padding:12px;border-radius:10px;background:#080d18;border:1px solid rgba(52,211,153,.35)"><strong>Block #'+n+'</strong> • Miner: <span style="color:#fbbf24">plt_0x57e9...4E00</span> • <span class="sub">+50.00 PLT</span><br><span class="mono" style="font-size:12px">SHA-256d: 0000'+hx+'9f4c2a81e7b3d605a19c8e42f7013b9d'+hx+'</span></div>';}else{el.innerHTML="<span style='color:#fbbf24'>1 - 3457</span>";}}
 setL(curL);
 </script>
-<div id="google_translate_element" style="position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;"></div>
-<style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
-
-<script src="plt-dict.js?v=10"></script>
-<script id="plt-inline-i18n">
+<script id="plt-4lang-engine">
 (function(){
-  let textNodes = [], phs = [];
-  function scan(){
-    if(textNodes.length || phs.length) return;
-    const w = document.createTreeWalker(document.body, 4, null, false);
-    let n;
-    while(n = w.nextNode()){
-      const p = n.parentElement;
-      if(!p || p.closest('.notranslate, script, style, code, pre')) continue;
-      if(n.nodeValue.trim().length > 1) textNodes.push({node: n, orig: n.nodeValue});
+  const dict = {
+    it: {
+      "Home":"Home","FAQ & Docs":"FAQ e Documenti","Contact Us":"Contatti","PoW Node Explorer":"Explorer Nodi PoW",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo e FAQ",
+      "Technical specifications, smart contract verification proofs, and tokenomics governance.":"Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificate On-Chain del Protocollo",
+      "Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.":"Clicca su una domanda per verificare sicurezza del contratto, liquidità bloccata e parametri di mining.",
+      "How is Platincoin ($PLT) secured and verified on-chain?":"Come è protetto e verificato on-chain Platincoin ($PLT)?",
+      "How can I independently verify the Liquidity Lock (#2113264)?":"Come posso verificare autonomamente il blocco liquidità (#2113264)?",
+      "What is the Mining Vault and how does the 89.85% allocation work?":"Cos'è il Mining Vault e come funziona l'allocazione dell'89,85%?"
+    },
+    es: {
+      "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
+      "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
+      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO","BLOCK HEIGHT":"ALTURA DE BLOQUE","CIRCULATING SUPPLY":"OFERTA CIRCULANTE","MAXIMUM SUPPLY":"OFERTA MÁXIMA",
+      "VERIFIED BEP-20 SMART CONTRACT":"CONTRATO INTELIGENTE BEP-20 VERIFICADO",
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"DISTRIBUCIÓN ON-CHAIN Y BÓVEDA DE MINERÍA",
+      "Mining Vault Reserve":"Reserva Bóveda de Minería","Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
+      "CPU Public Mining Status:":"Estado Minería Pública CPU:","CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
+      "LIVE DEX CHART (PLT / USDT)":"GRÁFICO DEX EN VIVO (PLT / USDT)",
+      "Smart Contract & 0% Tax Audit":"Auditoría Contrato Inteligente y 0% Impuestos",
+      "1-Year Liquidity Lock (PinkLock)":"Bloqueo de Liquidez 1 Año (PinkLock)",
+      "Market Indexing & Explorer Sync":"Indexación de Mercado y Explorador",
+      "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
+      "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
+      "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo y FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificadas On-Chain del Protocolo",
+      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
+    },
+    fr: {
+      "Home":"Accueil","FAQ & Docs":"FAQ et Documentation","Contact Us":"Contactez-nous","PoW Node Explorer":"Explorateur de Nœuds PoW",
+      "The Sovereign Digital Platinum Network":"Le Réseau Souverain de Platine Numérique",
+      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT","BLOCK HEIGHT":"HAUTEUR DE BLOC","CIRCULATING SUPPLY":"OFFRE EN CIRCULATION","MAXIMUM SUPPLY":"OFFRE MAXIMALE",
+      "VERIFIED BEP-20 SMART CONTRACT":"CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ",
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"ALLOCATION ON-CHAIN ET COFFRE DE MINAGE",
+      "Mining Vault Reserve":"Réserve Coffre de Minage","Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
+      "CPU Public Mining Status:":"Statut Minage Public CPU :","CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
+      "LIVE DEX CHART (PLT / USDT)":"GRAPHIQUE DEX EN DIRECT (PLT / USDT)",
+      "Smart Contract & 0% Tax Audit":"Audit Contrat Intelligent et 0% Taxe",
+      "1-Year Liquidity Lock (PinkLock)":"Verrouillage Liquidité 1 An (PinkLock)",
+      "Market Indexing & Explorer Sync":"Indexation Marché et Explorateur",
+      "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
+      "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
+      "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
+      "Protocol Whitepaper & FAQ":"Livre Blanc du Protocole et FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Vérifiées On-Chain du Protocole",
+      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
     }
-    document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
-      phs.push({el: el, orig: el.getAttribute('placeholder')});
-    });
-  }
-  function applyLang(tl){
-    scan();
-    const wpEn = document.getElementById('wp-en'), wpIt = document.getElementById('wp-it');
-    if(wpEn && wpIt){
-      wpEn.style.display = (tl === 'it') ? 'none' : 'block';
-      wpIt.style.display = (tl === 'it') ? 'block' : 'none';
-    }
-    if(tl === 'en'){
-      textNodes.forEach(x => x.node.nodeValue = x.orig);
-      phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
-      return;
-    }
-    const map = (window.PLT_DICT && window.PLT_DICT[tl]) || {};
-    textNodes.forEach(item => {
-      const k = item.orig.replace(/\s+/g, ' ').trim();
-      if(map[k] && map[k].trim()) item.node.nodeValue = item.orig.replace(item.orig.trim(), map[k]);
-    });
-    phs.forEach(item => {
-      if(map[item.orig] && map[item.orig].trim()) item.el.setAttribute('placeholder', map[item.orig]);
-    });
-  }
-  window.pltApplyLang = function(code, label){
-    localStorage.setItem('plt_lang_code', code);
-    localStorage.setItem('plt_lang_lbl', label);
-    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
-    const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-    applyLang(code);
   };
-  document.addEventListener('click', ()=>{
-    const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
-    if(l) l.style.display='none'; if(m) m.style.display='none';
+  const orig = window.switchLang || window.setL;
+  const cache = [];
+  function buildCache(){
+    if(cache.length) return;
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let n; while(n = w.nextNode()) cache.push({n:n, t:n.nodeValue});
+  }
+  window.pltSetLang = function(l){
+    buildCache();
+    cache.forEach(x => x.n.nodeValue = x.t);
+    if(orig) orig(l === "it" ? "it" : "en");
+    localStorage.setItem("plt_lang", l);
+    const c = document.getElementById("lang-dd-cur");
+    if(c) c.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
+    const ll = document.getElementById("plt-lang-list"); if(ll) ll.style.display = "none";
+    const hm = document.getElementById("plt-dropdown-menu") || document.getElementById("m"); if(hm) hm.style.display = "none";
+    if(dict[l]){
+      const m = dict[l];
+      cache.forEach(x => {
+        let v = x.t;
+        for(const k in m){ if(v.includes(k)) v = v.split(k).join(m[k]); }
+        x.n.nodeValue = v;
+      });
+    }
+  };
+  document.addEventListener("click", function(e){
+    if(!e.target.closest(".plt-lang-wrap")){ const ll=document.getElementById("plt-lang-list"); if(ll) ll.style.display="none"; }
+    if(!e.target.closest("#plt-hamburger-bar")){ const hm=document.getElementById("plt-dropdown-menu")||document.getElementById("m"); if(hm) hm.style.display="none"; }
   });
-  window.addEventListener('DOMContentLoaded', ()=>{
-    const c = localStorage.getItem('plt_lang_code') || 'en';
-    const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
-    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(c !== 'en') applyLang(c);
-  });
+  const s = localStorage.getItem("plt_lang");
+  if(s && s !== "en") setTimeout(()=>window.pltSetLang(s), 100);
 })();
 </script>
+
 </body>
 </html>

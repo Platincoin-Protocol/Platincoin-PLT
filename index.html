@@ -284,62 +284,48 @@
     }
   }
 </style>
-<style id="plt-hide-old-lang">.lang-switch, .lang-btn, .header-nav, [onclick*="switchLang"] { display: none !important; }</style>
-<style id="plt-mobile-dd-fix">
-#plt-lang-list {
-  width: 195px !important;
-  min-width: 195px !important;
-  max-width: 90vw !important;
-  right: -46px !important;
-  left: auto !important;
-  padding: 6px !important;
-  box-sizing: border-box !important;
-}
-#plt-lang-list button {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  display: block !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  box-sizing: border-box !important;
-  padding: 10px 12px !important;
-  margin: 0 !important;
-  text-align: left !important;
-}
-</style>
 </head>
 
 <body>
-<header id="plt-hamburger-bar" style="max-width:1520px;width:96%;margin:10px auto 16px auto;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
-  <a href="index.html" class="notranslate" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
+<header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
     <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
     <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
   </a>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <div id="plt-lang-box" class="notranslate" style="position:relative;">
-      <button type="button" onclick="event.stopPropagation();document.getElementById('plt-nav-list').style.display='none';const l=document.getElementById('plt-lang-list');l.style.display=l.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(15,23,42,0.92);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="plt-cur-lang">ENG</span> ▾</button>
-      <div id="plt-lang-list" style="display:none;position:absolute;right:0;top:44px;min-width:165px;background:#111827;border:1px solid rgba(52,211,153,0.45);border-radius:12px;padding:5px;box-shadow:0 16px 35px rgba(0,0,0,0.85);">
-        <button type="button" onclick="pltApplyLang('en','ENG')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
-        <button type="button" onclick="pltApplyLang('it','ITA')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
-        <button type="button" onclick="pltApplyLang('es','ESP')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
-        <button type="button" onclick="pltApplyLang('fr','FRA')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
-      </div>
     </div>
-    <button type="button" onclick="event.stopPropagation();document.getElementById('plt-lang-list').style.display='none';const m=document.getElementById('plt-nav-list');m.style.display=m.style.display==='block'?'none':'block';" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
-      <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
-      <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
-      <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
-    </button>
+
+  <div style="display:flex;align-items:center;gap:10px;">
+  <div class="plt-lang-wrap" style="position:relative;z-index:1200;">
+    <button type="button" onclick="event.stopPropagation();const m=document.getElementById('plt-lang-list');const h=document.getElementById('plt-dropdown-menu')||document.getElementById('m');if(h)h.style.display='none';m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(15,23,42,0.9);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">ENG</span> ▾</button>
+    <div id="plt-lang-list" style="display:none;position:absolute;right:0;top:44px;min-width:165px;background:#111827;border:1px solid rgba(52,211,153,0.45);border-radius:12px;padding:5px;box-shadow:0 16px 35px rgba(0,0,0,0.85);">
+      <button type="button" onclick="pltSetLang('en')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
+      <button type="button" onclick="pltSetLang('it')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+      <button type="button" onclick="pltSetLang('es')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
+      <button type="button" onclick="pltSetLang('fr')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
+    </div>
   </div>
-  <div id="plt-nav-list" style="display:none;position:absolute;top:56px;right:0;min-width:230px;border-radius:14px;padding:6px;background:#111827;border:1px solid rgba(52,211,153,0.45);box-shadow:0 18px 40px rgba(0,0,0,0.85);">
-    <a href="index.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;">🏠 Home</a>
-    <a href="docs.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📘 FAQ &amp; Docs</a>
-    <a href="contact.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">✉️ Contact Us</a>
-    <a href="explorer.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">⛓️ PoW Node Explorer</a>
-    <a href="whitepaper.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 White Paper</a>
-  </div>
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+</div>
+<div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">🏠 Home</span>
+      <span class="lang-it" style="display:none;">🏠 Home</span>
+    </a>
+    <a href="docs.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">📖 FAQ &amp; Docs</span>
+      <span class="lang-it" style="display:none;">📖 FAQ e Documenti</span>
+    </a>
+    <a href="contact.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">
+      <span class="lang-en">✉️ Contact Us</span>
+      <span class="lang-it" style="display:none;">✉️ Contatti</span>
+    </a>
+
+  <a href="explorer.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">⛓️ PoW Node Explorer</a>
+</div>
 </header>
 <script>
 (function() {
@@ -437,7 +423,7 @@
         <code id="contractAddrText" style="background: #161b22; padding: 8px 14px; border-radius: 6px; border: 1px solid #30363d; color: #e6edf3; font-size: 13px; word-break: break-all;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>
         <button onclick="navigator.clipboard.writeText('0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8'); this.innerText='Copied ✓'; setTimeout(()=>this.innerText='Copy', 2000);" style="background: #238636; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;">Copy</button>
         <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="background: #1f6feb; color: white; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">BscScan ↗</a>
-        <a href="https://api.geckoterminal.com/api/v2/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" style="background: #21262d; color: #00ffcc; border: 1px solid #30363d; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">Live Chart (GeckoTerminal) ↗</a>
+        <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" style="background: #21262d; color: #00ffcc; border: 1px solid #30363d; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">Live Chart (GeckoTerminal) ↗</a>
                 <a href="https://discord.gg/nzSD7asHbE" target="_blank" style="background:#5865F2;color:white;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">Join Discord</a>
                 <a href="https://x.com/PlatincoinPLT" target="_blank" style="background:#161b22;color:white;border:1px solid #30363d;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">X (@PlatincoinPLT)</a>
 
@@ -727,7 +713,7 @@
     <span>🟢 <span class="lang-en"><strong>1.10%</strong> (121,300.87 PLT) — Circulating &amp; DEX Pool</span><span class="lang-it" style="display:none;"><strong>1,10%</strong> (121.300,87 PLT) — Circolante &amp; Pool DEX</span></span>
   </p>
   <nav style="display:flex;flex-wrap:wrap;gap:10px;">
-    <a href="https://api.geckoterminal.com/api/v2/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
+    <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
     <a href="https://pinksale.finance/pinklock/bsc/record/2113264" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">PinkLock LP Lock (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificato Lock PinkLock (#2113264) ↗</span></a>
     <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
   <button type="button" id="plt-add-wallet-btn" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Add $PLT to Wallet</span><span class="lang-it" style="display:none;">Aggiungi $PLT al Wallet</span></button>
@@ -996,7 +982,14 @@ document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2)
             if (rli) { rli.innerText = 'Valore a $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
             document.getElementById('roi-target').innerText = '$' + (plt * targetPrice).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         }
-        function switchLang(lang){} else {
+        function switchLang(lang) {
+            var btnEn = document.getElementById('btn-en'); var btnIt = document.getElementById('btn-it');
+            var enElements = document.querySelectorAll('.lang-en'); var itElements = document.querySelectorAll('.lang-it');
+            if (lang === 'en') {
+                btnEn.className = 'lang-btn active'; btnIt.className = 'lang-btn';
+                enElements.forEach(el => el.style.display = 'inline-block'); itElements.forEach(el => el.style.display = 'none');
+                document.querySelectorAll('p.lang-en, h3.lang-en, h2.lang-en, h4.lang-en, .buy-text.lang-en').forEach(el => el.style.display = 'block');
+            } else {
                 btnEn.className = 'lang-btn'; btnIt.className = 'lang-btn active';
                 enElements.forEach(el => el.style.display = 'none'); itElements.forEach(el => el.style.display = 'inline-block');
                 document.querySelectorAll('p.lang-it, h3.lang-it, h2.lang-it, h4.lang-it, .buy-text.lang-it').forEach(el => el.style.display = 'block');
@@ -1295,12 +1288,12 @@ async function addTokenToWallet() {
 </script>
 
 
-<script>(function(){const T="0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8",P="0xa51e99928c39ae656b7cb38006b8a1d220479b2c",U="0x55d398326f99059fF775485246999027B3197955",SW="https://pancakeswap.finance/swap?inputCurrency="+U+"&outputCurrency="+T,CH="https://www.geckoterminal.com/api/v2/networks/bsc/pools/"+P,PL="https://pinksale.finance/pinklock/bsc/record/2113264";function isIta(){return document.body.innerText.includes("FORNITURA MASSIMA")||document.body.innerText.includes("Acquista PLT");}function renderBox(bx){const it=isIta();const title=it?"MERCATO LIVE ATTIVO - PLT / USDT SU PANCAKESWAP":"LIVE MARKET ACTIVE - PLT / USDT ON PANCAKESWAP";const desc=it?"Pool di liquidità attiva su BNB Smart Chain con 0% tasse e blocco PinkLock di 365 giorni.":"Liquidity pool is live on BNB Smart Chain with 0% tax and 365-day PinkLock protection.";const b1=it?"Scambia PLT / USDT ↗":"Trade PLT / USDT ↗";const b2=it?"Prova Blocco LP 1 Anno 🔒":"1-Year LP Lock Proof 🔒";bx.innerHTML='<div style="text-align:center;padding:8px 4px;"><div style="color:#10b981;font-weight:700;font-size:1rem;letter-spacing:0.5px;margin-bottom:6px;">'+title+'</div><div style="font-size:0.88rem;color:#94a3b8;margin-bottom:16px;">'+desc+'</div><div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;"><a href="'+SW+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#10b981;color:#020617;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #10b981;">'+b1+'</a><a href="'+PL+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#1e293b;color:#facc15;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid rgba(250,204,21,0.45);">'+b2+'</a></div></div>';}function initLiveUI(){document.querySelectorAll("a,button").forEach(b=>{const t=b.textContent.trim();if(t.includes("Buy PLT")||t.includes("Acquista PLT")){if(b.tagName==="A"){b.href=SW;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(SW,"_blank");};}}if(t.includes("Live Chart")||t.includes("Grafico")){if(b.tagName==="A"){b.href=CH;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(CH,"_blank");};}}});const inp=document.querySelector("input[type=email],input[placeholder*=email]");if(inp&&inp.parentElement&&inp.parentElement.parentElement){const bx=inp.parentElement.parentElement;bx.id="live-market-box";renderBox(bx);}else{const bx=document.getElementById("live-market-box");if(bx)renderBox(bx);}}async function sync(){try{const r=await fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/"+P,{headers:{"Accept":"application/json"}});const j=await r.json();const attr=j&&j.data&&j.data.attributes;if(!attr)return;const pr=parseFloat(attr.base_token_price_usd)||parseFloat(attr.quote_token_price_usd);const c24=attr.price_change_percentage&&attr.price_change_percentage.h24!==undefined?parseFloat(attr.price_change_percentage.h24):null;if(isNaN(pr))return;document.querySelectorAll("*").forEach(e=>{if(e.children.length===0&&e.textContent.trim().startsWith("$")&&!isNaN(parseFloat(e.textContent.trim().slice(1)))){e.textContent="$"+(pr<0.01?pr.toFixed(6):pr.toFixed(4));if(e.nextElementSibling)e.nextElementSibling.textContent=(isIta()?"Prezzo Live PancakeSwap":"PancakeSwap V2 • Live")+(c24!==null?" ("+(c24>=0?"+":"")+c24.toFixed(2)+"% 24h)":"");if(e.previousElementSibling)e.previousElementSibling.textContent=isIta()?"PREZZO LIVE DI MERCATO":"LIVE MARKET PRICE";}});}catch(e){}}initLiveUI();sync();setInterval(sync,15000);setInterval(initLiveUI,800);})();</script>
+<script>(function(){const T="0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8",P="0xa51e99928c39ae656b7cb38006b8a1d220479b2c",U="0x55d398326f99059fF775485246999027B3197955",SW="https://pancakeswap.finance/swap?inputCurrency="+U+"&outputCurrency="+T,CH="https://www.geckoterminal.com/api/v2/networks/bsc/pools/"+P,PL="https://pinksale.finance/pinklock/bsc/record/2113264";function isIta(){return document.body.innerText.includes("FORNITURA MASSIMA")||document.body.innerText.includes("Acquista PLT");}function renderBox(bx){const it=isIta();const title=it?"MERCATO LIVE ATTIVO - PLT / USDT SU PANCAKESWAP":"LIVE MARKET ACTIVE - PLT / USDT ON PANCAKESWAP";const desc=it?"Pool di liquidità attiva su BNB Smart Chain con 0% tasse e blocco PinkLock di 365 giorni.":"Liquidity pool is live on BNB Smart Chain with 0% tax and 365-day PinkLock protection.";const b1=it?"Scambia PLT / USDT ↗":"Trade PLT / USDT ↗";const b2=it?"Prova Blocco LP 1 Anno 🔒":"1-Year LP Lock Proof 🔒";bx.innerHTML='<div style="text-align:center;padding:8px 4px;"><div style="color:#10b981;font-weight:700;font-size:1rem;letter-spacing:0.5px;margin-bottom:6px;">'+title+'</div><div style="font-size:0.88rem;color:#94a3b8;margin-bottom:16px;">'+desc+'</div><div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;"><a href="'+SW+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#10b981;color:#020617;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #10b981;">'+b1+'</a><a href="'+PL+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#1e293b;color:#facc15;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid rgba(250,204,21,0.45);">'+b2+'</a></div></div>';}function initLiveUI(){document.querySelectorAll("a,button").forEach(b=>{const t=b.textContent.trim();if(t.includes("Buy PLT")||t.includes("Acquista PLT")){if(b.tagName==="A"){b.href=SW;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(SW,"_blank");};}}if(t.includes("Live Chart")||t.includes("Grafico")){if(b.tagName==="A"){b.href=CH;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(CH,"_blank");};}}});const inp=document.querySelector("input[type=email],input[placeholder*=email]");if(inp&&inp.parentElement&&inp.parentElement.parentElement){const bx=inp.parentElement.parentElement;bx.id="live-market-box";renderBox(bx);}else{const bx=document.getElementById("live-market-box");if(bx)renderBox(bx);}}async function sync(){try{const r=await fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/"+P,{headers:{"Accept":"application/json"}});const j=await r.json();const attr=j&&j.data&&j.data.attributes;if(!attr)return;const pr=parseFloat(attr.base_token_price_usd)||parseFloat(attr.quote_token_price_usd);const c24=attr.price_change_percentage&&attr.price_change_percentage.h24!==undefined?parseFloat(attr.price_change_percentage.h24):null;if(isNaN(pr))return;document.querySelectorAll("*").forEach(e=>{if(e.children.length===0&&e.textContent.trim().startsWith("$")&&!isNaN(parseFloat(e.textContent.trim().slice(1)))){e.textContent="$"+(pr<0.01?pr.toFixed(6):pr.toFixed(4));if(e.nextElementSibling)e.nextElementSibling.textContent=(isIta()?"Prezzo Live PancakeSwap":"<span class="lang-en">Live PancakeSwap Price</span><span class="lang-it" style="display:none;">Prezzo Live PancakeSwap</span>")+(c24!==null?" ("+(c24>=0?"+":"")+c24.toFixed(2)+"% 24h)":"");if(e.previousElementSibling)e.previousElementSibling.textContent=isIta()?"PREZZO LIVE DI MERCATO":"LIVE MARKET PRICE";}});}catch(e){}}initLiveUI();sync();setInterval(sync,15000);setInterval(initLiveUI,800);})();</script>
 
 
 <script>
 (function(){
-  const API_POOL = "https://api.geckoterminal.com/api/v2/networks/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c";
+  const API_POOL = "https://geckoterminal.com";
   async function refreshAllLivePrices(){
     try {
       const res = await fetch(API_POOL, { headers: { "Accept": "application/json" }, cache: "no-store" });
@@ -1341,7 +1334,7 @@ async function addTokenToWallet() {
   async function fetchOnChainOrApi(){
     try {
       // Lettura diretta delle riserve dalla pool PancakeSwap V2 su BNB Chain
-      const r1 = await fetch("https://bsc-dataseed.binance.org/", {
+      const r1 = await fetch("https://binance.org", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: PAIR, data: "0x0902f1ac" }, "latest"] })
@@ -1370,65 +1363,91 @@ async function addTokenToWallet() {
 </script>
 
 
-<div id="google_translate_element" style="position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;"></div>
-<style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
-
-<script src="plt-dict.js?v=10"></script>
-<script id="plt-inline-i18n">
+<script id="plt-4lang-engine">
 (function(){
-  let textNodes = [], phs = [];
-  function scan(){
-    if(textNodes.length || phs.length) return;
-    const w = document.createTreeWalker(document.body, 4, null, false);
-    let n;
-    while(n = w.nextNode()){
-      const p = n.parentElement;
-      if(!p || p.closest('.notranslate, script, style, code, pre')) continue;
-      if(n.nodeValue.trim().length > 1) textNodes.push({node: n, orig: n.nodeValue});
+  const dict = {
+    it: {
+      "Home":"Home","FAQ & Docs":"FAQ e Documenti","Contact Us":"Contatti","PoW Node Explorer":"Explorer Nodi PoW",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo e FAQ",
+      "Technical specifications, smart contract verification proofs, and tokenomics governance.":"Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificate On-Chain del Protocollo",
+      "Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.":"Clicca su una domanda per verificare sicurezza del contratto, liquidità bloccata e parametri di mining.",
+      "How is Platincoin ($PLT) secured and verified on-chain?":"Come è protetto e verificato on-chain Platincoin ($PLT)?",
+      "How can I independently verify the Liquidity Lock (#2113264)?":"Come posso verificare autonomamente il blocco liquidità (#2113264)?",
+      "What is the Mining Vault and how does the 89.85% allocation work?":"Cos'è il Mining Vault e come funziona l'allocazione dell'89,85%?"
+    },
+    es: {
+      "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
+      "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
+      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO","BLOCK HEIGHT":"ALTURA DE BLOQUE","CIRCULATING SUPPLY":"OFERTA CIRCULANTE","MAXIMUM SUPPLY":"OFERTA MÁXIMA",
+      "VERIFIED BEP-20 SMART CONTRACT":"CONTRATO INTELIGENTE BEP-20 VERIFICADO",
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"DISTRIBUCIÓN ON-CHAIN Y BÓVEDA DE MINERÍA",
+      "Mining Vault Reserve":"Reserva Bóveda de Minería","Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
+      "CPU Public Mining Status:":"Estado Minería Pública CPU:","CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
+      "LIVE DEX CHART (PLT / USDT)":"GRÁFICO DEX EN VIVO (PLT / USDT)",
+      "Smart Contract & 0% Tax Audit":"Auditoría Contrato Inteligente y 0% Impuestos",
+      "1-Year Liquidity Lock (PinkLock)":"Bloqueo de Liquidez 1 Año (PinkLock)",
+      "Market Indexing & Explorer Sync":"Indexación de Mercado y Explorador",
+      "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
+      "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
+      "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo y FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificadas On-Chain del Protocolo",
+      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
+    },
+    fr: {
+      "Home":"Accueil","FAQ & Docs":"FAQ et Documentation","Contact Us":"Contactez-nous","PoW Node Explorer":"Explorateur de Nœuds PoW",
+      "The Sovereign Digital Platinum Network":"Le Réseau Souverain de Platine Numérique",
+      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT","BLOCK HEIGHT":"HAUTEUR DE BLOC","CIRCULATING SUPPLY":"OFFRE EN CIRCULATION","MAXIMUM SUPPLY":"OFFRE MAXIMALE",
+      "VERIFIED BEP-20 SMART CONTRACT":"CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ",
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"ALLOCATION ON-CHAIN ET COFFRE DE MINAGE",
+      "Mining Vault Reserve":"Réserve Coffre de Minage","Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
+      "CPU Public Mining Status:":"Statut Minage Public CPU :","CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
+      "LIVE DEX CHART (PLT / USDT)":"GRAPHIQUE DEX EN DIRECT (PLT / USDT)",
+      "Smart Contract & 0% Tax Audit":"Audit Contrat Intelligent et 0% Taxe",
+      "1-Year Liquidity Lock (PinkLock)":"Verrouillage Liquidité 1 An (PinkLock)",
+      "Market Indexing & Explorer Sync":"Indexation Marché et Explorateur",
+      "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
+      "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
+      "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
+      "Protocol Whitepaper & FAQ":"Livre Blanc du Protocole et FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Vérifiées On-Chain du Protocole",
+      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
     }
-    document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
-      phs.push({el: el, orig: el.getAttribute('placeholder')});
-    });
-  }
-  function applyLang(tl){
-    scan();
-    const wpEn = document.getElementById('wp-en'), wpIt = document.getElementById('wp-it');
-    if(wpEn && wpIt){
-      wpEn.style.display = (tl === 'it') ? 'none' : 'block';
-      wpIt.style.display = (tl === 'it') ? 'block' : 'none';
-    }
-    if(tl === 'en'){
-      textNodes.forEach(x => x.node.nodeValue = x.orig);
-      phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
-      return;
-    }
-    const map = (window.PLT_DICT && window.PLT_DICT[tl]) || {};
-    textNodes.forEach(item => {
-      const k = item.orig.replace(/\s+/g, ' ').trim();
-      if(map[k] && map[k].trim()) item.node.nodeValue = item.orig.replace(item.orig.trim(), map[k]);
-    });
-    phs.forEach(item => {
-      if(map[item.orig] && map[item.orig].trim()) item.el.setAttribute('placeholder', map[item.orig]);
-    });
-  }
-  window.pltApplyLang = function(code, label){
-    localStorage.setItem('plt_lang_code', code);
-    localStorage.setItem('plt_lang_lbl', label);
-    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
-    const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-    applyLang(code);
   };
-  document.addEventListener('click', ()=>{
-    const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
-    if(l) l.style.display='none'; if(m) m.style.display='none';
+  const orig = window.switchLang || window.setL;
+  const cache = [];
+  function buildCache(){
+    if(cache.length) return;
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let n; while(n = w.nextNode()) cache.push({n:n, t:n.nodeValue});
+  }
+  window.pltSetLang = function(l){
+    buildCache();
+    cache.forEach(x => x.n.nodeValue = x.t);
+    if(orig) orig(l === "it" ? "it" : "en");
+    localStorage.setItem("plt_lang", l);
+    const c = document.getElementById("lang-dd-cur");
+    if(c) c.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
+    const ll = document.getElementById("plt-lang-list"); if(ll) ll.style.display = "none";
+    const hm = document.getElementById("plt-dropdown-menu") || document.getElementById("m"); if(hm) hm.style.display = "none";
+    if(dict[l]){
+      const m = dict[l];
+      cache.forEach(x => {
+        let v = x.t;
+        for(const k in m){ if(v.includes(k)) v = v.split(k).join(m[k]); }
+        x.n.nodeValue = v;
+      });
+    }
+  };
+  document.addEventListener("click", function(e){
+    if(!e.target.closest(".plt-lang-wrap")){ const ll=document.getElementById("plt-lang-list"); if(ll) ll.style.display="none"; }
+    if(!e.target.closest("#plt-hamburger-bar")){ const hm=document.getElementById("plt-dropdown-menu")||document.getElementById("m"); if(hm) hm.style.display="none"; }
   });
-  window.addEventListener('DOMContentLoaded', ()=>{
-    const c = localStorage.getItem('plt_lang_code') || 'en';
-    const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
-    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(c !== 'en') applyLang(c);
-  });
+  const s = localStorage.getItem("plt_lang");
+  if(s && s !== "en") setTimeout(()=>window.pltSetLang(s), 100);
 })();
 </script>
+
 </body>
 </html>
