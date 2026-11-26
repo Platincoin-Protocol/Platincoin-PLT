@@ -250,10 +250,11 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
 
 
 
-<script src="plt-dict.js"></script>
+
+<script src="plt-dict.js?v=2"></script>
 <script id="plt-inline-i18n">
 (function(){
-  let dict = null, nodes = [], phs = [];
+  let nodes = [], phs = [];
   function collect(){
     if(nodes.length || phs.length) return;
     const w = document.createTreeWalker(document.body, 4, null, false);
@@ -267,12 +268,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       phs.push({el: el, orig: el.getAttribute('placeholder')});
     });
   }
-  async function loadDict(){
-    if(dict) return dict;
-    try{ const r = await window.PLT_DICT || {}; }catch(e){ dict = {}; }
-    return dict;
-  }
-  async function applyLocal(tl){
+  function applyLocal(tl){
     collect();
     const wpEn = document.getElementById('wp-en'), wpIt = document.getElementById('wp-it');
     if(wpEn && wpIt){
@@ -284,7 +280,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
       return;
     }
-    const d = await loadDict();
+    const d = window.PLT_DICT || {};
     const map = d[tl] || {};
     nodes.forEach(item => {
       const t = item.orig.trim();
