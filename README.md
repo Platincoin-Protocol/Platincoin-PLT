@@ -2,9 +2,9 @@
 
 **Sovereign Dual SHA-256 Proof-of-Work Backed Digital Commodity on BNB Smart Chain (BEP-20)**
 
-* Official Website: https://platincoin.netlify.app/
-* Bilingual White Paper (ENG / ITA): https://platincoin.netlify.app/whitepaper
-* Live PoW Explorer: https://platincoin.netlify.app/explorer
+* Official Website: https://platincoin-plt.org/
+* Bilingual White Paper (ENG / ITA): https://platincoin-plt.org/whitepaper.html
+* Live PoW Explorer: https://platincoin-plt.org/explorer.html
 * BscScan Verified Contract: https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8#code
 
 ## Overview
