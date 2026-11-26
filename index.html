@@ -1428,8 +1428,10 @@ document.querySelectorAll("*").forEach(e=>{
     phs.forEach(item => {
       if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
     });
+    document.querySelectorAll('.lang-en').forEach(e => e.style.display = (tl === 'it') ? 'none' : '');
+    document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
     document.querySelectorAll('summary, p, h1, h2, h3, h4, a, button, li, td, th, label').forEach(el => {
-      if(el.closest('.notranslate') || el.querySelector('input,select,textarea')) return;
+      if(el.closest('.notranslate') || el.querySelector('input,select,textarea,.lang-en,.lang-it')) return;
       const t = el.textContent.replace(/\s+/g, ' ').trim();
       if(map[t]) el.textContent = map[t];
     });
