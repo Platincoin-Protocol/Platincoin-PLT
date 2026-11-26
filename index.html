@@ -1323,7 +1323,7 @@ async function addTokenToWallet() {
   async function fetchOnChainOrApi(){
     try {
       // Lettura diretta delle riserve dalla pool PancakeSwap V2 su BNB Chain
-      const r1 = await fetch("https://binance.org", {
+      const r1 = await fetch("https://bsc-dataseed.binance.org/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: PAIR, data: "0x0902f1ac" }, "latest"] })
