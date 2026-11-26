@@ -11,14 +11,14 @@
     }
   }
   async function trOne(text, tl){
-    const ck = "plt_tr_" + tl + "_" + text;
+    const ck = "plt_v2_" + tl + "_" + text;
     const cached = sessionStorage.getItem(ck);
     if(cached) return cached;
     try{
-      const u = ["https:","","://googleapis.com","translate_a","single?client=gtx&sl=en&dt=t&tl="].join("/") + tl + "&q=" + encodeURIComponent(text);
+      const u = "https://" + "trans://googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=" + tl + "&q=" + encodeURIComponent(text);
       const r = await fetch(u);
       const d = await r.json();
-      const res = d.map(x => x).join("");
+      const res = d[0].map(x => x[0]).join("");
       if(res) sessionStorage.setItem(ck, res);
       return res || text;
     }catch(e){ return text; }
