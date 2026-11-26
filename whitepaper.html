@@ -31,43 +31,106 @@
 <div id="wp-en" class="col" style="display:block;"><h2>English 🇬🇧</h2><h4>Abstract</h4><p>Platincoin (PLT) is an algorithmically constrained, decentralized digital commodity secured by a programmatic dual-layer cryptographic engine. Engineered to enforce absolute scarcity, the protocol implements a rigid maximum supply hard cap of 11,000,000 PLT. Utilizing a Proof-of-Work (PoW) consensus mechanism based on the SHA-256 algorithm, Platincoin integrates a deflationary reward-halving emission schedule to protect purchasing power over time. Furthermore, the architecture features a built-in cross-chain interoperability design that bridges secure sovereign mining with automated Web3 liquidity protocols on decentralized public ledgers.</p><h4>1. Introduction & Philosophy</h4><p>Modern decentralized finance requires asset classes that combine the structural immutability of historical commodities with the high-velocity interoperability of automated market makers. Platincoin is engineered to act as a sovereign digital equivalent of physical platinum—inherently scarce, immutable, and independent of centralized validation authorities. The protocol establishes a trustless financial network where consensus is maintained solely through raw computational energy. By tying token issuance to verifiable mathematical proof, Platincoin eliminates counterparty risk, systemic supply inflation, and arbitrary governance intervention.</p><h4>2. Consensus & PoW Architecture</h4><p>The security and transaction finality of the Platincoin network are guaranteed by a programmatic Proof-of-Work engine.</p><ul><li><b>Cryptographic Primitive:</b> The core ledger utilizes a secure iteration of the SHA-256 hashing function to establish immutable transaction chains.</li><li><b>Block Validation:</b> Mining nodes compete globally to resolve a difficulty puzzle by iterating a variable Nonce field until the resulting block hash meets strict leading-zero criteria.</li><li><b>Target Interval:</b> The protocol targets an average block generation window of 2.0 minutes, optimizing propagation speeds and throughput.</li><li><b>Longest Chain Rule:</b> The network strictly enforces the rule, requiring all participating nodes to recognize only the cryptographic ledger containing the highest cumulative proof of work.</li></ul><h4>3. Supply Tokenomics</h4><p>Platincoin implements a strictly governed, unalterable monetary policy hardcoded into the genesis parameters.</p><ul><li><b>Maximum Total Supply:</b> Under no circumstances can the total circulating supply exceed 11,000,000.00 PLT. This limit is absolute and immutable.</li><li><b>Precision Scale:</b> The native accounting system operates at a precision scale of 8 decimal places (10⁻⁸ units), allowing for granular micro-transactions.</li><li><b>Algorithmic Emission:</b> Token issuance is bound to block validation rewards. The initial emission baseline is established at 50.00 PLT per validated block.</li><li><b>Deflationary Halving Mechanics:</b> To guarantee the 11 million cap, the block reward undergoes systematic halvings based on historical milestones (from 50.00 PLT to 25.00 PLT), progressively decreasing toward zero.</li></ul><h4>4. Web3 Integration & AMM</h4><p>To ensure immediate financial compatibility with decentralized markets, the protocol introduces a secure cross-chain gateway architecture.</p><ul><li><b>Cross-Chain Parity:</b> Sovereign PLT assets mined can be locked 1:1 via a cryptographic bridge to deploy Wrapped PLT on public Web3 networks (such as the BNB Smart Chain BEP-20 standard).</li><li><b>Decentralized Liquidity:</b> Market-making operations are routed through automated decentralized exchanges (DEX) using locked Constant Product Liquidity Pools (e.g., PancakeSwap V2).</li><li><b>Genesis Parameters:</b> Trading pairs are seeded utilizing optimized token allocations (50,000 PLT) paired with a base stablecoin/BNB reserve to anchor the launch floor price at $0.0008 USD.</li></ul><h4>5. Network Security & Privacy</h4><p>Platincoin guarantees high-tier privacy and asset security through advanced cryptographic isolation.</p><ul><li><b>Asymmetric Cryptography:</b> Portfolios and block validations are signed using high-grade private/public key pairs, ensuring that transactional ownership cannot be falsified.</li><li><b>Anti-Inflation Guardrails:</b> The double-spend validation script automatically cross-references every inbound block ledger against historical state histories, rejecting any unmined records.</li><li><b>Founder Anonymity:</b> In alignment with cypherpunk frameworks, early network verification reserves are structurally segregated into autonomous, offline addresses to ensure absolute founder privacy.</li></ul><h4>Conclusion</h4><p>Platincoin represents a synthesis of classical monetary scarcity and contemporary decentralized execution. By enforcing a strict 11,000,000 supply cap, deploying a mathematical PoW security layout, and establishing direct integration with automated Web3 liquidity architectures, Platincoin provides an immutable, transparent, and sovereign standard for digital wealth preservation.</p><p style="font-size:11px; color:#6e7681; margin-top:25px; border-top:1px solid #1e293b; padding-top:12px;">Note: Independent BEP-20 Proof-of-Work Protocol on BNB Smart Chain (PLT). Not affiliated with Platincoin PLC or any prior entity.</p></div></div></div><script>function setWpLang(l){document.getElementById("wp-en").style.display=(l==="en")?"block":"none";document.getElementById("wp-it").style.display=(l==="it")?"block":"none";document.getElementById("btn-en").style.background=(l==="en")?"#00ffcc":"#21262d";document.getElementById("btn-en").style.color=(l==="en")?"#0d1117":"#8b949e";document.getElementById("btn-it").style.background=(l==="it")?"#00ffcc":"#21262d";document.getElementById("btn-it").style.color=(l==="it")?"#0d1117":"#8b949e";}</script><footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support &amp; Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Contact Form ↗</a></div></footer>
 <style>
   .lang-btn { display: none !important; }
-  #plt-right-actions { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; z-index: 10002 !important; }
-  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; margin: 0 !important; z-index: 10002 !important; }
-  #plt-lang-drop { position: absolute !important; top: calc(100% + 8px) !important; right: 0 !important; min-width: 175px !important; background: #0f172a !important; border: 1px solid rgba(52,211,153,0.35) !important; border-radius: 10px !important; box-shadow: 0 12px 28px rgba(0,0,0,0.6) !important; z-index: 10005 !important; overflow: hidden !important; }
-  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.18) !important; color: #34d399 !important; border-left: 3px solid #34d399 !important; }
+  #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
+  #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 185px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
+  #plt-lang-drop button { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 10px 12px !important; background: transparent !important; border: none !important; border-radius: 8px !important; color: #f8fafc !important; font-size: 13px !important; font-weight: 700 !important; cursor: pointer !important; text-align: left !important; }
+  #plt-lang-drop button:hover { background: rgba(52,211,153,0.12) !important; }
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.2) !important; color: #34d399 !important; }
 </style>
 <script>
 (function(){
-  window.addEventListener('DOMContentLoaded', () => {
-    const navBtn = document.getElementById('plt-nav-btn') || document.querySelector('header button:last-of-type, nav button:last-of-type');
-    const langWrap = document.getElementById('plt-lang-wrap');
-    if(navBtn && navBtn.parentElement && langWrap){
-      let rightGroup = document.getElementById('plt-right-actions');
-      if(!rightGroup){
-        rightGroup = document.createElement('div');
-        rightGroup.id = 'plt-right-actions';
-        navBtn.parentElement.insertBefore(rightGroup, navBtn);
-      }
-      rightGroup.appendChild(langWrap);
-      rightGroup.appendChild(navBtn);
-    }
-    const toggle = document.getElementById('plt-lang-toggle') || (langWrap && langWrap.querySelector('button'));
-    const drop = document.getElementById('plt-lang-drop');
-    const navDrop = document.getElementById('plt-nav-drop') || document.getElementById('plt-nav-list');
-    if(toggle && drop){
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if(navDrop) navDrop.style.display = 'none';
-        drop.style.display = (drop.style.display === 'block') ? 'none' : 'block';
-      }, true);
-    }
-    if(navBtn && drop){
-      navBtn.addEventListener('click', () => { drop.style.display = 'none'; }, true);
-    }
-    document.addEventListener('click', (e) => {
-      if(drop && !e.target.closest('#plt-lang-wrap')) drop.style.display = 'none';
-      if(navDrop && !e.target.closest('#plt-nav-btn') && !e.target.closest('#plt-nav-drop') && !e.target.closest('#plt-nav-list')) navDrop.style.display = 'none';
+  function applyPltLang(code){
+    const isIt = (code === 'it');
+    localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
+    document.documentElement.lang = isIt ? 'it' : 'en';
+    try { if(typeof switchLang === 'function') switchLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setDocsLang === 'function') setDocsLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setContactLang === 'function') setContactLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setL === 'function') setL(isIt ? 'it' : 'en'); } catch(e){}
+    document.querySelectorAll('.lang-it').forEach(el => { if(el.textContent.trim()) el.style.display = isIt ? '' : 'none'; });
+    document.querySelectorAll('.lang-en').forEach(el => {
+      const sib = el.parentElement && el.parentElement.querySelector('.lang-it');
+      if(sib && sib.textContent.trim()) el.style.display = isIt ? 'none' : '';
     });
+    const lbl = document.getElementById('plt-lang-label');
+    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
+    document.querySelectorAll('#plt-lang-drop button').forEach(b => {
+      const active = (b.dataset.lang === (isIt ? 'it' : 'en'));
+      b.classList.toggle('plt-opt-active', active);
+      const chk = b.querySelector('.plt-chk');
+      if(chk) chk.textContent = active ? '✓' : '';
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('plt-hamburger-bar');
+    const menuBtn = document.getElementById('plt-menu-toggle');
+    const mainDrop = document.getElementById('plt-dropdown-menu');
+
+    // Nasconde eventuale vecchio pulsante lingua fuori dalla barra superiore
+    document.querySelectorAll('#plt-lang-dropdown, #plt-lang-btn-wrap, .plt-floating-lang').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('div, button').forEach(el => {
+      if(bar && bar.contains(el)) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if((t === '🌐 ENG ▾' || t === '🌐 ITA ▾' || t === 'ENG ▾' || t === 'ITA ▾') && el.children.length <= 3){
+        el.style.display = 'none';
+      }
+    });
+
+    if(bar && menuBtn){
+      const controls = document.createElement('div');
+      controls.id = 'plt-right-controls';
+
+      const langWrap = document.createElement('div');
+      langWrap.id = 'plt-lang-wrap';
+      langWrap.innerHTML =
+        '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
+        '<div id="plt-lang-drop" style="display:none;">' +
+          '<button type="button" data-lang="en"><span>🇬🇧 ENGLISH (ENG)</span><span class="plt-chk"></span></button>' +
+          '<button type="button" data-lang="it" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span><span class="plt-chk"></span></button>' +
+        '</div>';
+
+      bar.insertBefore(controls, menuBtn);
+      controls.appendChild(langWrap);
+      controls.appendChild(menuBtn);
+
+      const langBtn = document.getElementById('plt-lang-toggle');
+      const langDrop = document.getElementById('plt-lang-drop');
+
+      // Mutua esclusione intelligente tra i due menu a tendina
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(mainDrop) mainDrop.style.display = 'none';
+        langDrop.style.display = (langDrop.style.display === 'block') ? 'none' : 'block';
+      });
+
+      menuBtn.addEventListener('click', () => {
+        langDrop.style.display = 'none';
+      }, true);
+
+      langDrop.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          applyPltLang(b.dataset.lang);
+          langDrop.style.display = 'none';
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!e.target.closest('#plt-lang-wrap')) langDrop.style.display = 'none';
+        if(mainDrop && !e.target.closest('#plt-menu-toggle') && !e.target.closest('#plt-dropdown-menu')) mainDrop.style.display = 'none';
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          langDrop.style.display = 'none';
+          if(mainDrop) mainDrop.style.display = 'none';
+        }
+      });
+    }
+
+    applyPltLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
   });
 })();
 </script>

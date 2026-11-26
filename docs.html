@@ -163,43 +163,106 @@
 <footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support &amp; Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Contact Form ↗</a></div></footer>
 <style>
   .lang-btn { display: none !important; }
-  #plt-right-actions { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; z-index: 10002 !important; }
-  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; margin: 0 !important; z-index: 10002 !important; }
-  #plt-lang-drop { position: absolute !important; top: calc(100% + 8px) !important; right: 0 !important; min-width: 175px !important; background: #0f172a !important; border: 1px solid rgba(52,211,153,0.35) !important; border-radius: 10px !important; box-shadow: 0 12px 28px rgba(0,0,0,0.6) !important; z-index: 10005 !important; overflow: hidden !important; }
-  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.18) !important; color: #34d399 !important; border-left: 3px solid #34d399 !important; }
+  #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
+  #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 185px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
+  #plt-lang-drop button { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 10px 12px !important; background: transparent !important; border: none !important; border-radius: 8px !important; color: #f8fafc !important; font-size: 13px !important; font-weight: 700 !important; cursor: pointer !important; text-align: left !important; }
+  #plt-lang-drop button:hover { background: rgba(52,211,153,0.12) !important; }
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.2) !important; color: #34d399 !important; }
 </style>
 <script>
 (function(){
-  window.addEventListener('DOMContentLoaded', () => {
-    const navBtn = document.getElementById('plt-nav-btn') || document.querySelector('header button:last-of-type, nav button:last-of-type');
-    const langWrap = document.getElementById('plt-lang-wrap');
-    if(navBtn && navBtn.parentElement && langWrap){
-      let rightGroup = document.getElementById('plt-right-actions');
-      if(!rightGroup){
-        rightGroup = document.createElement('div');
-        rightGroup.id = 'plt-right-actions';
-        navBtn.parentElement.insertBefore(rightGroup, navBtn);
-      }
-      rightGroup.appendChild(langWrap);
-      rightGroup.appendChild(navBtn);
-    }
-    const toggle = document.getElementById('plt-lang-toggle') || (langWrap && langWrap.querySelector('button'));
-    const drop = document.getElementById('plt-lang-drop');
-    const navDrop = document.getElementById('plt-nav-drop') || document.getElementById('plt-nav-list');
-    if(toggle && drop){
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if(navDrop) navDrop.style.display = 'none';
-        drop.style.display = (drop.style.display === 'block') ? 'none' : 'block';
-      }, true);
-    }
-    if(navBtn && drop){
-      navBtn.addEventListener('click', () => { drop.style.display = 'none'; }, true);
-    }
-    document.addEventListener('click', (e) => {
-      if(drop && !e.target.closest('#plt-lang-wrap')) drop.style.display = 'none';
-      if(navDrop && !e.target.closest('#plt-nav-btn') && !e.target.closest('#plt-nav-drop') && !e.target.closest('#plt-nav-list')) navDrop.style.display = 'none';
+  function applyPltLang(code){
+    const isIt = (code === 'it');
+    localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
+    document.documentElement.lang = isIt ? 'it' : 'en';
+    try { if(typeof switchLang === 'function') switchLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setDocsLang === 'function') setDocsLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setContactLang === 'function') setContactLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setL === 'function') setL(isIt ? 'it' : 'en'); } catch(e){}
+    document.querySelectorAll('.lang-it').forEach(el => { if(el.textContent.trim()) el.style.display = isIt ? '' : 'none'; });
+    document.querySelectorAll('.lang-en').forEach(el => {
+      const sib = el.parentElement && el.parentElement.querySelector('.lang-it');
+      if(sib && sib.textContent.trim()) el.style.display = isIt ? 'none' : '';
     });
+    const lbl = document.getElementById('plt-lang-label');
+    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
+    document.querySelectorAll('#plt-lang-drop button').forEach(b => {
+      const active = (b.dataset.lang === (isIt ? 'it' : 'en'));
+      b.classList.toggle('plt-opt-active', active);
+      const chk = b.querySelector('.plt-chk');
+      if(chk) chk.textContent = active ? '✓' : '';
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('plt-hamburger-bar');
+    const menuBtn = document.getElementById('plt-menu-toggle');
+    const mainDrop = document.getElementById('plt-dropdown-menu');
+
+    // Nasconde eventuale vecchio pulsante lingua fuori dalla barra superiore
+    document.querySelectorAll('#plt-lang-dropdown, #plt-lang-btn-wrap, .plt-floating-lang').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('div, button').forEach(el => {
+      if(bar && bar.contains(el)) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if((t === '🌐 ENG ▾' || t === '🌐 ITA ▾' || t === 'ENG ▾' || t === 'ITA ▾') && el.children.length <= 3){
+        el.style.display = 'none';
+      }
+    });
+
+    if(bar && menuBtn){
+      const controls = document.createElement('div');
+      controls.id = 'plt-right-controls';
+
+      const langWrap = document.createElement('div');
+      langWrap.id = 'plt-lang-wrap';
+      langWrap.innerHTML =
+        '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
+        '<div id="plt-lang-drop" style="display:none;">' +
+          '<button type="button" data-lang="en"><span>🇬🇧 ENGLISH (ENG)</span><span class="plt-chk"></span></button>' +
+          '<button type="button" data-lang="it" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span><span class="plt-chk"></span></button>' +
+        '</div>';
+
+      bar.insertBefore(controls, menuBtn);
+      controls.appendChild(langWrap);
+      controls.appendChild(menuBtn);
+
+      const langBtn = document.getElementById('plt-lang-toggle');
+      const langDrop = document.getElementById('plt-lang-drop');
+
+      // Mutua esclusione intelligente tra i due menu a tendina
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(mainDrop) mainDrop.style.display = 'none';
+        langDrop.style.display = (langDrop.style.display === 'block') ? 'none' : 'block';
+      });
+
+      menuBtn.addEventListener('click', () => {
+        langDrop.style.display = 'none';
+      }, true);
+
+      langDrop.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          applyPltLang(b.dataset.lang);
+          langDrop.style.display = 'none';
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!e.target.closest('#plt-lang-wrap')) langDrop.style.display = 'none';
+        if(mainDrop && !e.target.closest('#plt-menu-toggle') && !e.target.closest('#plt-dropdown-menu')) mainDrop.style.display = 'none';
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          langDrop.style.display = 'none';
+          if(mainDrop) mainDrop.style.display = 'none';
+        }
+      });
+    }
+
+    applyPltLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
   });
 })();
 </script>
