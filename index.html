@@ -357,6 +357,8 @@
   <div id="lang-dd-menu" style="display:none;position:absolute;right:0;top:38px;min-width:155px;background:#111827;border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:5px;box-shadow:0 14px 30px rgba(0,0,0,0.75);text-align:left;">
     <button type="button" id="btn-en" onclick="switchLang('en');document.getElementById('lang-dd-cur').textContent='ENG';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
     <button type="button" id="btn-it" onclick="switchLang('it');document.getElementById('lang-dd-cur').textContent='ITA';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+    <button type="button" onclick="switchLang('es');document.getElementById('lang-dd-cur').textContent='ESP';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
+    <button type="button" onclick="switchLang('fr');document.getElementById('lang-dd-cur').textContent='FRA';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
   </div>
 </div>
         </div>
@@ -1358,6 +1360,76 @@ async function addTokenToWallet() {
 })();
 </script>
 
+
+<script id="plt-4lang-engine">
+(function(){
+  const dict = {
+    es: {
+      "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
+      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO",
+      "BLOCK HEIGHT":"ALTURA DE BLOQUE",
+      "CIRCULATING SUPPLY":"OFERTA CIRCULANTE",
+      "MAXIMUM SUPPLY":"OFERTA MÁXIMA",
+      "VERIFIED BEP-20 SMART CONTRACT":"CONTRATO INTELIGENTE BEP-20 VERIFICADO",
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"DISTRIBUCIÓN ON-CHAIN Y BÓVEDA DE MINERÍA",
+      "Mining Vault Reserve":"Reserva Bóveda de Minería",
+      "Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
+      "CPU Public Mining Status:":"Estado Minería Pública CPU:",
+      "CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
+      "LIVE DEX CHART (PLT / USDT)":"GRÁFICO DEX EN VIVO (PLT / USDT)",
+      "Smart Contract & 0% Tax Audit":"Auditoría Contrato Inteligente y 0% Impuestos",
+      "1-Year Liquidity Lock (PinkLock)":"Bloqueo de Liquidez 1 Año (PinkLock)",
+      "Market Indexing & Explorer Sync":"Indexación de Mercado y Explorador",
+      "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
+      "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
+      "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
+      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap",
+      "Add $PLT to Wallet":"Añadir $PLT a la Billetera"
+    },
+    fr: {
+      "The Sovereign Digital Platinum Network":"Le Réseau Souverain de Platine Numérique",
+      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT",
+      "BLOCK HEIGHT":"HAUTEUR DE BLOC",
+      "CIRCULATING SUPPLY":"OFFRE EN CIRCULATION",
+      "MAXIMUM SUPPLY":"OFFRE MAXIMALE",
+      "VERIFIED BEP-20 SMART CONTRACT":"CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ",
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"ALLOCATION ON-CHAIN ET COFFRE DE MINAGE",
+      "Mining Vault Reserve":"Réserve Coffre de Minage",
+      "Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
+      "CPU Public Mining Status:":"Statut Minage Public CPU :",
+      "CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
+      "LIVE DEX CHART (PLT / USDT)":"GRAPHIQUE DEX EN DIRECT (PLT / USDT)",
+      "Smart Contract & 0% Tax Audit":"Audit Contrat Intelligent et 0% Taxe",
+      "1-Year Liquidity Lock (PinkLock)":"Verrouillage Liquidité 1 An (PinkLock)",
+      "Market Indexing & Explorer Sync":"Indexation Marché et Explorateur",
+      "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
+      "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
+      "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
+      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap",
+      "Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
+    }
+  };
+  const origSwitch = window.switchLang || window.setL;
+  function applyExtraLang(l){
+    if(origSwitch) origSwitch(l === "es" || l === "fr" ? "en" : l);
+    localStorage.setItem("plt_lang", l);
+    const cur = document.getElementById("lang-dd-cur");
+    if(cur) cur.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
+    if(l !== "es" && l !== "fr") return;
+    const map = dict[l];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while(node = walker.nextNode()){
+      const t = node.nodeValue.trim();
+      if(map[t]) node.nodeValue = node.nodeValue.replace(t, map[t]);
+    }
+  }
+  window.switchLang = applyExtraLang;
+  window.setL = applyExtraLang;
+  const saved = localStorage.getItem("plt_lang");
+  if(saved === "es" || saved === "fr") setTimeout(()=>applyExtraLang(saved), 120);
+})();
+</script>
 
 </body>
 </html>
