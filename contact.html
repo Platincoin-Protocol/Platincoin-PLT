@@ -84,7 +84,7 @@
     #plt-dropdown-menu, #m { width: calc(100vw - 20px) !important; right: 0 !important; left: auto !important; }
   }
 </style>
-<style id="plt-hide-old-lang">.lang-switch, .header-nav, [onclick*="switchLang"] { display: none !important; }</style>
+<style id="plt-hide-old-lang">.lang-switch, .lang-btn, .header-nav, [onclick*="switchLang"] { display: none !important; }</style>
 </head>
 <body>
   <header id="plt-hamburger-bar" style="max-width:1520px;width:96%;margin:10px auto 16px auto;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
@@ -216,7 +216,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       document.querySelectorAll('.lang-it').forEach(el => el.style.display = lang === 'it' ? '' : 'none');document.querySelectorAll('#plt-topic option').forEach(o=>o.textContent=o.getAttribute('data-'+lang));document.getElementById('plt-cn').placeholder=lang==='it'?'es. Marco / Crypto Research':'e.g. Alex / Crypto Research';document.getElementById('plt-cm').placeholder=lang==='it'?'Scrivi qui il tuo messaggio...':'Write your message here...';
     }
   </script>
-<div id="google_translate_element" style="display:none;"></div>
+<div id="google_translate_element" style="position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;"></div>
 <style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
 <script src="plt-translator.js"></script>
 </body>

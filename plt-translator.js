@@ -7,7 +7,7 @@
       let t = setInterval(function(){
         const sel = document.querySelector('.goog-te-combo');
         if(sel){ sel.value = c; sel.dispatchEvent(new Event('change')); clearInterval(t); }
-      }, 250);
+      }, 200);
     }
   };
   window.pltApplyLang = function(code, label){

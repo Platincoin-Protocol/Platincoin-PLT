@@ -55,7 +55,7 @@
     #plt-dropdown-menu, #m { width: calc(100vw - 20px) !important; right: 0 !important; left: auto !important; }
   }
 </style>
-<style id="plt-hide-old-lang">.lang-switch, .header-nav, [onclick*="switchLang"] { display: none !important; }</style>
+<style id="plt-hide-old-lang">.lang-switch, .lang-btn, .header-nav, [onclick*="switchLang"] { display: none !important; }</style>
 </head>
 <body>
 <header id="plt-hamburger-bar" style="max-width:1520px;width:96%;margin:10px auto 16px auto;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
@@ -113,7 +113,7 @@ document.getElementById("tb").innerHTML=s.map(r=>'<tr onclick="document.getEleme
 function inspect(){let n=parseInt(document.getElementById("q").value.replace("#",""),10),el=document.getElementById("res");if(n>=1&&n<=3457){let hx=((n*2654435761)>>>0).toString(16).padStart(8,"0");el.innerHTML='<div style="padding:12px;border-radius:10px;background:#080d18;border:1px solid rgba(52,211,153,.35)"><strong>Block #'+n+'</strong> • Miner: <span style="color:#fbbf24">plt_0x57e9...4E00</span> • <span class="sub">+50.00 PLT</span><br><span class="mono" style="font-size:12px">SHA-256d: 0000'+hx+'9f4c2a81e7b3d605a19c8e42f7013b9d'+hx+'</span></div>';}else{el.innerHTML="<span style='color:#fbbf24'>1 - 3457</span>";}}
 setL(curL);
 </script>
-<div id="google_translate_element" style="display:none;"></div>
+<div id="google_translate_element" style="position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;"></div>
 <style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
 <script src="plt-translator.js"></script>
 </body>
