@@ -70,6 +70,15 @@
     rightGroup.appendChild(langWrap);
     rightGroup.appendChild(navBtn);
 
+    document.querySelectorAll('div, button, span').forEach(el => {
+      if(el.closest('#plt-right-actions')) return;
+      const t = el.textContent.trim();
+      if((t === 'ENG ▾' || t === 'ITA ▾' || t.includes('ENGLISH (ENG)')) && el.children.length <= 3){
+        const box = el.closest('div[style*="position"]') || el;
+        if(!box.closest('#plt-right-actions') && !box.querySelector('nav, header, main')) box.remove();
+      }
+    });
+
     const toggle = document.getElementById('plt-lang-toggle');
     const drop = document.getElementById('plt-lang-drop');
     toggle.addEventListener('click', (e) => {
