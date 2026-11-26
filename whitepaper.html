@@ -119,7 +119,7 @@
     }
     document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
     document.querySelectorAll('.lang-en').forEach(e => {
-      const hasIt = e.parentElement && e.parentElement.querySelector('.lang-it');
+      const itEl = e.parentElement && e.parentElement.querySelector('.lang-it'); const hasIt = itEl && itEl.textContent.trim().length > 0;
       e.style.display = (tl === 'it' && hasIt) ? 'none' : '';
     });
     if(tl === 'en'){
