@@ -225,8 +225,8 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
   status.style.display = "block";
   status.textContent = "✓ Opening your email client addressed to info@platincoin-plt.org...";
   window.location.href = "mailto:info@platincoin-plt.org?subject=" + subject + "&body=" + body;
-
-});</script>
+});
+</script>
 
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#94a3b8;">
       <span>Direct Email: <strong style="color:#34d399;">info@platincoin-plt.org</strong></span>
@@ -237,20 +237,49 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
   <script>
     function setContactLang(lang) {
       document.documentElement.lang = lang;
-      document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
-    document.querySelectorAll('.lang-en').forEach(e => {
-      e.style.display = (tl === 'it') ? 'none' : '';
-      if(!e.dataset.pltEn) e.dataset.pltEn = e.textContent.replace(/\s+/g, ' ').trim();
-      const orig = e.dataset.pltEn;
-      if(tl === 'en'){ e.textContent = orig; return; }
-      if(tl !== 'it' && map[orig]) e.textContent = map[orig];
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+      document.querySelectorAll('.lang-it').forEach(el => el.style.display = lang === 'it' ? '' : 'none');document.querySelectorAll('#plt-topic option').forEach(o=>o.textContent=o.getAttribute('data-'+lang));document.getElementById('plt-cn').placeholder=lang==='it'?'es. Marco / Crypto Research':'e.g. Alex / Crypto Research';document.getElementById('plt-cm').placeholder=lang==='it'?'Scrivi qui il tuo messaggio...':'Write your message here...';
+    }
+  </script>
+<div id="google_translate_element" style="position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;"></div>
+<style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
+
+<script src="plt-dict.js?v=10"></script>
+<script id="plt-inline-i18n">
+(function(){
+  let textNodes = [], phs = [];
+  function scan(){
+    if(textNodes.length || phs.length) return;
+    const w = document.createTreeWalker(document.body, 4, null, false);
+    let n;
+    while(n = w.nextNode()){
+      const p = n.parentElement;
+      if(!p || p.closest('.notranslate, script, style, code, pre')) continue;
+      if(n.nodeValue.trim().length > 1) textNodes.push({node: n, orig: n.nodeValue});
+    }
+    document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+      phs.push({el: el, orig: el.getAttribute('placeholder')});
     });
-    document.querySelectorAll('summary, p, h1, h2, h3, h4, a, button, li, td, th, label').forEach(el => {
-      if(el.closest('.notranslate') || el.querySelector('input,select,textarea,.lang-en,.lang-it')) return;
-      if(!el.dataset.pltEn) el.dataset.pltEn = el.textContent.replace(/\s+/g, ' ').trim();
-      const orig = el.dataset.pltEn;
-      if(tl === 'en'){ el.textContent = orig; return; }
-      if(map[orig]) el.textContent = map[orig];
+  }
+  function applyLang(tl){
+    scan();
+    const wpEn = document.getElementById('wp-en'), wpIt = document.getElementById('wp-it');
+    if(wpEn && wpIt){
+      wpEn.style.display = (tl === 'it') ? 'none' : 'block';
+      wpIt.style.display = (tl === 'it') ? 'block' : 'none';
+    }
+    if(tl === 'en'){
+      textNodes.forEach(x => x.node.nodeValue = x.orig);
+      phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
+      return;
+    }
+    const map = (window.PLT_DICT && window.PLT_DICT[tl]) || {};
+    textNodes.forEach(item => {
+      const k = item.orig.replace(/\s+/g, ' ').trim();
+      if(map[k] && map[k].trim()) item.node.nodeValue = item.orig.replace(item.orig.trim(), map[k]);
+    });
+    phs.forEach(item => {
+      if(map[item.orig] && map[item.orig].trim()) item.el.setAttribute('placeholder', map[item.orig]);
     });
   }
   window.pltApplyLang = function(code, label){
@@ -269,6 +298,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
     const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
     if(c !== 'en') applyLang(c);
+  });
 })();
 </script>
 </body>

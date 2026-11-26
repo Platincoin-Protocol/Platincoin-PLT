@@ -733,7 +733,7 @@
   <button type="button" id="plt-add-wallet-btn" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Add $PLT to Wallet</span><span class="lang-it" style="display:none;">Aggiungi $PLT al Wallet</span></button>
   </nav>
   <script>
-    fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(document.getElementById("top-live-price"))document.getElementById("top-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
+    fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(document.getElementById("top-live-price"))document.getElementById("top-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
   </script>
 </section>
 
@@ -882,7 +882,6 @@
   if (copyBtn) copyBtn.addEventListener("click", copyAddr);
   if (closeBtn && modal) closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
   if (modal) modal.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
-
 })();
 </script>
 <div id="plt-faq-section" style="max-width:1520px;width:96%;margin:16px auto;"><div style="background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);border-radius:16px;padding:20px;"><div style="font-size:11px;font-weight:700;color:#34d399;letter-spacing:0.9px;margin-bottom:6px;"><span class="lang-en">❓ FREQUENTLY ASKED QUESTIONS</span><span class="lang-it">❓ DOMANDE FREQUENTI (FAQ)</span></div><h2 style="font-size:20px;color:#f8fafc;margin:0 0 14px 0;"><span class="lang-en">Protocol, Security &amp; Ecosystem FAQ</span><span class="lang-it">Domande Frequenti su Protocollo, Sicurezza ed Ecosistema</span></h2><div style="display:flex;flex-direction:column;gap:10px;">
@@ -997,7 +996,14 @@ document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2)
             if (rli) { rli.innerText = 'Valore a $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
             document.getElementById('roi-target').innerText = '$' + (plt * targetPrice).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         }
-        function switchLang(lang){}
+        function switchLang(lang){} else {
+                btnEn.className = 'lang-btn'; btnIt.className = 'lang-btn active';
+                enElements.forEach(el => el.style.display = 'none'); itElements.forEach(el => el.style.display = 'inline-block');
+                document.querySelectorAll('p.lang-it, h3.lang-it, h2.lang-it, h4.lang-it, .buy-text.lang-it').forEach(el => el.style.display = 'block');
+
+            }
+            calculateROI();
+        }
         updateLiveMetrics(); setInterval(updateLiveMetrics, 3000);
 
 function calculateMiningROI() {
@@ -1289,16 +1295,7 @@ async function addTokenToWallet() {
 </script>
 
 
-<script>(function(){const T="0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8",P="0xa51e99928c39ae656b7cb38006b8a1d220479b2c",U="0x55d398326f99059fF775485246999027B3197955",SW="https://pancakeswap.finance/swap?inputCurrency="+U+"&outputCurrency="+T,CH="https://www.geckoterminal.com/api/v2/networks/bsc/pools/"+P,PL="https://pinksale.finance/pinklock/bsc/record/2113264";function isIta(){return document.body.innerText.includes("FORNITURA MASSIMA")||document.body.innerText.includes("Acquista PLT");}function renderBox(bx){const it=isIta();const title=it?"MERCATO LIVE ATTIVO - PLT / USDT SU PANCAKESWAP":"LIVE MARKET ACTIVE - PLT / USDT ON PANCAKESWAP";const desc=it?"Pool di liquidità attiva su BNB Smart Chain con 0% tasse e blocco PinkLock di 365 giorni.":"Liquidity pool is live on BNB Smart Chain with 0% tax and 365-day PinkLock protection.";const b1=it?"Scambia PLT / USDT ↗":"Trade PLT / USDT ↗";const b2=it?"Prova Blocco LP 1 Anno 🔒":"1-Year LP Lock Proof 🔒";bx.innerHTML='<div style="text-align:center;padding:8px 4px;"><div style="color:#10b981;font-weight:700;font-size:1rem;letter-spacing:0.5px;margin-bottom:6px;">'+title+'</div><div style="font-size:0.88rem;color:#94a3b8;margin-bottom:16px;">'+desc+'</div><div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;"><a href="'+SW+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#10b981;color:#020617;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #10b981;">'+b1+'</a><a href="'+PL+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#1e293b;color:#facc15;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid rgba(250,204,21,0.45);">'+b2+'</a></div></div>';}function initLiveUI(){document.querySelectorAll("a,button").forEach(b=>{const t=b.textContent.trim();if(t.includes("Buy PLT")||t.includes("Acquista PLT")){if(b.tagName==="A"){b.href=SW;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(SW,"_blank");};}}if(t.includes("Live Chart")||t.includes("Grafico")){if(b.tagName==="A"){b.href=CH;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(CH,"_blank");};}}});const inp=document.querySelector("input[type=email],input[placeholder*=email]");if(inp&&inp.parentElement&&inp.parentElement.parentElement){const bx=inp.parentElement.parentElement;bx.id="live-market-box";renderBox(bx);}else{const bx=document.getElementById("live-market-box");if(bx)renderBox(bx);}}async function sync(){try{const r=await fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/"+P,{headers:{"Accept":"application/json"}});const j=await r.json();const attr=j&&j.data&&j.data.attributes;if(!attr)return;const pr=parseFloat(attr.base_token_price_usd)||parseFloat(attr.quote_token_price_usd);const c24=attr.price_change_percentage&&attr.price_change_percentage.h24!==undefined?parseFloat(attr.price_change_percentage.h24):null;if(isNaN(pr))return;const liq = attr.reserve_in_usd ? "$" + parseFloat(attr.reserve_in_usd).toLocaleString("en-US", {maximumFractionDigits:2}) : null;
-const vol = attr.volume_usd && attr.volume_usd.h24 !== undefined ? "$" + parseFloat(attr.volume_usd.h24).toLocaleString("en-US", {maximumFractionDigits:2}) : null;
-document.querySelectorAll("*").forEach(e=>{
-  if(e.children.length!==0 || !e.textContent.trim().startsWith("$") || isNaN(parseFloat(e.textContent.trim().slice(1).replace(/,/g,"")))) return;
-  const lbl = (e.previousElementSibling ? e.previousElementSibling.textContent : "").toLowerCase();
-  if(lbl.includes("liquid") || lbl.includes("piscina") || lbl.includes("pool")){ if(liq) e.textContent = liq; return; }
-  if(lbl.includes("volum")){ if(vol) e.textContent = vol; return; }
-  e.textContent = "$" + (pr < 0.01 ? pr.toFixed(6) : pr.toFixed(4));
-  if(e.nextElementSibling) e.nextElementSibling.textContent = "PancakeSwap V2 • Live" + (c24===null ? "" : " (" + (c24>=0?"+":"") + c24.toFixed(2) + "% 24h)");
-});}catch(e){}}initLiveUI();sync();setInterval(sync,30000);})();</script>
+<script>(function(){const T="0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8",P="0xa51e99928c39ae656b7cb38006b8a1d220479b2c",U="0x55d398326f99059fF775485246999027B3197955",SW="https://pancakeswap.finance/swap?inputCurrency="+U+"&outputCurrency="+T,CH="https://www.geckoterminal.com/api/v2/networks/bsc/pools/"+P,PL="https://pinksale.finance/pinklock/bsc/record/2113264";function isIta(){return document.body.innerText.includes("FORNITURA MASSIMA")||document.body.innerText.includes("Acquista PLT");}function renderBox(bx){const it=isIta();const title=it?"MERCATO LIVE ATTIVO - PLT / USDT SU PANCAKESWAP":"LIVE MARKET ACTIVE - PLT / USDT ON PANCAKESWAP";const desc=it?"Pool di liquidità attiva su BNB Smart Chain con 0% tasse e blocco PinkLock di 365 giorni.":"Liquidity pool is live on BNB Smart Chain with 0% tax and 365-day PinkLock protection.";const b1=it?"Scambia PLT / USDT ↗":"Trade PLT / USDT ↗";const b2=it?"Prova Blocco LP 1 Anno 🔒":"1-Year LP Lock Proof 🔒";bx.innerHTML='<div style="text-align:center;padding:8px 4px;"><div style="color:#10b981;font-weight:700;font-size:1rem;letter-spacing:0.5px;margin-bottom:6px;">'+title+'</div><div style="font-size:0.88rem;color:#94a3b8;margin-bottom:16px;">'+desc+'</div><div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;"><a href="'+SW+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#10b981;color:#020617;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #10b981;">'+b1+'</a><a href="'+PL+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#1e293b;color:#facc15;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid rgba(250,204,21,0.45);">'+b2+'</a></div></div>';}function initLiveUI(){document.querySelectorAll("a,button").forEach(b=>{const t=b.textContent.trim();if(t.includes("Buy PLT")||t.includes("Acquista PLT")){if(b.tagName==="A"){b.href=SW;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(SW,"_blank");};}}if(t.includes("Live Chart")||t.includes("Grafico")){if(b.tagName==="A"){b.href=CH;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(CH,"_blank");};}}});const inp=document.querySelector("input[type=email],input[placeholder*=email]");if(inp&&inp.parentElement&&inp.parentElement.parentElement){const bx=inp.parentElement.parentElement;bx.id="live-market-box";renderBox(bx);}else{const bx=document.getElementById("live-market-box");if(bx)renderBox(bx);}}async function sync(){try{const r=await fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/"+P,{headers:{"Accept":"application/json"}});const j=await r.json();const attr=j&&j.data&&j.data.attributes;if(!attr)return;const pr=parseFloat(attr.base_token_price_usd)||parseFloat(attr.quote_token_price_usd);const c24=attr.price_change_percentage&&attr.price_change_percentage.h24!==undefined?parseFloat(attr.price_change_percentage.h24):null;if(isNaN(pr))return;document.querySelectorAll("*").forEach(e=>{if(e.children.length===0&&e.textContent.trim().startsWith("$")&&!isNaN(parseFloat(e.textContent.trim().slice(1)))){e.textContent="$"+(pr<0.01?pr.toFixed(6):pr.toFixed(4));if(e.nextElementSibling)e.nextElementSibling.textContent=(isIta()?"Prezzo Live PancakeSwap":"PancakeSwap V2 • Live")+(c24!==null?" ("+(c24>=0?"+":"")+c24.toFixed(2)+"% 24h)":"");if(e.previousElementSibling)e.previousElementSibling.textContent=isIta()?"PREZZO LIVE DI MERCATO":"LIVE MARKET PRICE";}});}catch(e){}}initLiveUI();sync();setInterval(sync,15000);setInterval(initLiveUI,800);})();</script>
 
 
 <script>
@@ -1321,7 +1318,6 @@ document.querySelectorAll("*").forEach(e=>{
   }
   refreshAllLivePrices();
   setInterval(refreshAllLivePrices, 15000);
-
 })();
 </script>
 
@@ -1370,7 +1366,6 @@ document.querySelectorAll("*").forEach(e=>{
 
   fetchOnChainOrApi();
   setInterval(fetchOnChainOrApi, 10000);
-
 })();
 </script>
 
@@ -1378,14 +1373,7 @@ document.querySelectorAll("*").forEach(e=>{
 <div id="google_translate_element" style="position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;"></div>
 <style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
 
-
-
-
-
-
-
-
-<script src="plt-dict.js?v=7"></script>
+<script src="plt-dict.js?v=10"></script>
 <script id="plt-inline-i18n">
 (function(){
   let textNodes = [], phs = [];
@@ -1409,11 +1397,6 @@ document.querySelectorAll("*").forEach(e=>{
       wpEn.style.display = (tl === 'it') ? 'none' : 'block';
       wpIt.style.display = (tl === 'it') ? 'block' : 'none';
     }
-    document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it' && e.textContent.trim()) ? '' : 'none');
-    document.querySelectorAll('.lang-en').forEach(e => {
-      const itEl = e.parentElement && e.parentElement.querySelector('.lang-it'); const hasIt = itEl && itEl.textContent.trim().length > 0;
-      e.style.display = (tl === 'it' && hasIt) ? 'none' : '';
-    });
     if(tl === 'en'){
       textNodes.forEach(x => x.node.nodeValue = x.orig);
       phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
