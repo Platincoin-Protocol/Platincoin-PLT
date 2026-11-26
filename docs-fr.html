@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Platincoin ($PLT) | FAQ et documents</title>
+<link rel="icon" type="image/png" sizes="320x320" href="PLT_logo_320x320.png">
+<style>*{box-sizing:border-box}body{margin:0;padding:14px 14px 48px;background:#0b0f19;color:#f8fafc;font-family:system-ui,sans-serif}.lang-btn{padding:7px 13px;border-radius:8px;border:1px solid rgba(52,211,153,.35);background:rgba(52,211,153,.12);color:#34d399;font-weight:700;font-size:12px;cursor:pointer}</style>
+
+
+<style id="plt-universal-responsive">
+  *, *::before, *::after { box-sizing: border-box !important; }
+  html, body { width: 100% !important; max-width: 100vw !important; overflow-x: hidden !important; -webkit-text-size-adjust: 100%; }
+  img, svg, canvas, iframe, video { max-width: 100% !important; height: auto; }
+  div, section, header, footer, main, article, aside, p, a, span, code, pre {
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  code, pre, .mono { word-break: break-all !important; }
+  @media (max-width: 900px) {
+    .grid, .grid2, .grid3, .grid4, [style*="grid-template-columns"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    [style*="min-width"] { min-width: 0 !important; }
+  }
+  @media (max-width: 540px) {
+    body { padding: 8px !important; }
+    section, .card, header, footer { padding-left: 12px !important; padding-right: 12px !important; }
+    h1 { font-size: 19px !important; line-height: 1.25 !important; }
+    h2 { font-size: 17px !important; }
+    .val { font-size: 20px !important; }
+    table { display: block !important; width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+    #fcn-widget { transform: scale(0.78) !important; transform-origin: left center !important; }
+    #plt-dropdown-menu, #m { width: calc(100vw - 20px) !important; right: 0 !important; left: auto !important; }
+  }
+</style>
+</head>
+<body>
+<header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index-fr.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
+    <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
+    <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
+  </a>
+
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+
+  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index-fr.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">🏠 Home</span>
+      <span class="lang-it" style="display:none;">🏠 Home</span>
+    </a>
+    <a href="docs-fr.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">📖 FAQ & Docs</span>
+      <span class="lang-it" style="display:none;">📖 FAQ e Documenti</span>
+    </a>
+    <a href="contact-fr.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">
+      <span class="lang-en">✉️ Contact Us</span>
+      <span class="lang-it" style="display:none;">✉️ Contatti</span>
+    </a>
+  
+      <a href="explorer-fr.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">⛓️ PoW Node Explorer</a>
+    <a href="whitepaper-fr.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 White Paper</a>
+</div>
+</header>
+<script>
+(function() {
+  const btn = document.getElementById("plt-menu-toggle");
+  const menu = document.getElementById("plt-dropdown-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+  document.addEventListener("click", function(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
+  });
+})();
+</script>
+<div style="max-width:960px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
+  <button type="button" class="lang-btn" onclick="setDocsLang('en')">FR</button>
+  <button type="button" class="lang-btn" onclick="setDocsLang('it')">ITA</button>
+</div>
+<div style="max-width:960px;margin:0 auto 20px;padding:22px;border-radius:18px;background:#111827;border:1px solid rgba(52,211,153,.32);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+  <img src="PLT_logo_320x320.png" alt="PLT" style="width:64px;height:64px;border-radius:50%;">
+  <div>
+    <h1 class="lang-en" style="margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Livre blanc sur le protocole et FAQ</h1>
+    <h1 class="lang-it" style="display:none;margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Livre blanc sur le protocole et la FAQ</h1>
+    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Spécifications techniques, preuves de vérification de contrats intelligents et gouvernance symbolique.</p>
+    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Techniques spécifiques, prouver la vérification du contrat intelligent et de la gouvernance de la tokenomics.</p>
+  </div>
+  <a href="whitepaper-fr.html" target="_blank" rel="noopener" style="margin-left:auto;padding:11px 18px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 15px rgba(124,92,255,0.35);">
+    <span class="lang-en">📄 Lire le Whitepaper ↗</span>
+    <span class="lang-it" style="display:none;">📄 Leggi il Whitepaper ↗</span>
+  </a>
+</div>
+<section id="plt-interactive-faq" style="max-width:960px;margin:28px auto;padding:26px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.45);text-align:left;">
+  <div style="margin-bottom:18px;">
+    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,0.14);color:#34d399;font-size:11px;font-weight:800;letter-spacing:0.8px;">
+      <span class="lang-en">🔍 TRANSPARENCE ET AUDIT TECHNIQUE</span>
+      <span class="lang-it" style="display:none;">🔍 TRASPARENZA E VERIFICA TECNICA</span>
+    </span>
+    <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#ffffff;">FAQ sur le protocole en chaîne vérifié</h2>
+    <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#ffffff;">Domaines fréquents et audits de vérification en chaîne</h2>
+    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Cliquez sur n'importe quelle question ci-dessous pour inspecter la sécurité des contrats intelligents, les preuves de verrouillage de liquidité et les paramètres d'exploitation minière.</p>
+    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Cliquez sur votre domaine pour consulter et détailler la sécurité du contrat, le bloc de liquidité et les paramètres miniers.</p>
+  </div>
+
+  <div style="display:grid;gap:10px;">
+    <details open style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">🛡️ Comment Platincoin ($PLT) est-il sécurisé et vérifié sur la chaîne ?</span>
+          <span class="lang-it" style="display:none;">🛡️ Come è protetto e verificato on-chain Platincoin ($PLT)?</span>
+        </span>
+        <span style="color:#34d399;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Le contrat intelligent $PLT BEP-20 (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) est open-source et vérifié sur BscScan. Il applique un strict <strong>Capuchon rigide de 11 000 000 PLT</strong>, <strong>0 % de taxes d'achat/vente</strong>, et aucune liste noire cachée ni fonction de frappe arbitraire.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Le contrat intelligent BEP-20 de $PLT (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) è open-source e verificato su BscScan. Impone un <strong>total massif de 11.000.000 PLT</strong>, <strong>0% de tasse sugli scambi</strong> Il existe également une fonction de liste noire ou de décision arbitraire.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">🔒 Comment puis-je vérifier indépendamment le Verrouillage de Liquidité (#2113264) ?</span>
+          <span class="lang-it" style="display:none;">🔒 Come posso verificare il blocco della liquidità (#2113264)?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">100 % des jetons du pool de liquidité PancakeSwap V2 initiaux sont verrouillés pendant 1 an via <strong>PinkLock (Certificat #2113264)</strong>. Tout le monde peut inspecter le contrat intelligent verrouillé dans le temps directement à partir du bouton PinkLock dans la section Market & Tokenomics ci-dessous.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Le 100% du token LP du pool initial sur PancakeSwap V2 est bloqué pour 1 an <strong>PinkLock (Certificat n° 2113264)</strong>. Vous pouvez désormais choisir le timelock de contrat intelligent de PinkLock dans la section Mercato et Tokenomics ici.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">⛏️ Qu'est-ce que le Coffre de Minage et comment fonctionne l'allocation de 89,85 % ?</span>
+          <span class="lang-it" style="display:none;">⛏️ Cos'è il Mining Vault e come funziona la quota dell'89,85%?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Exactement <strong>9 883 500 PLT (89,85 % de l'offre totale)</strong> est sécurisé dans le contrat intelligent en chaîne Mining Vault pour soutenir les récompenses de preuve de travail du processeur Dual SHA-256, garantissant une distribution algorithmique équitable sans risque de prévente ou de vidage de VC privé.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">En fait <strong>9.883.500 PLT (l'89,85% de l'offre totale)</strong> Il est responsable du contrat intelligent Mining Vault avec la couverture de la récompense CPU Proof-of-Work Dual SHA-256, garantissant une algorithme de distribution sans aucun risque dans les fonds privés.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">💱 Où puis-je acheter ou échanger $PLT avec 0 % de taxe ?</span>
+          <span class="lang-it" style="display:none;">💱 Dove posso acquistare o scambiare $PLT con 0% di tasse?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Vous pouvez échanger <strong>USDT ou BNB pour $PLT</strong> directement sur PancakeSwap V2 en utilisant le <em>Acheter $PLT</em> boutons sur ce portail. Parce que le contrat s'applique <strong>0 % de taxe sur les swaps</strong>, une faible tolérance standard au glissement (0,5 % – 1 %) est suffisante.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Puoi scambiare <strong>USDT ou BNB par $PLT</strong> directement sur PancakeSwap V2 en passant par le bouton <em>Achetez $PLT</em> sur ce portail. Grazie allo <strong>0% de tasse</strong> du contrat, il suffit d'un minimum de glissement (0,5% – 1%).</p>
+    </details>
+  </div>
+</section>
+
+<script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
+<footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Assistance et demandes officielles : <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact-fr.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Formulaire de contact ↗</a></div></footer>
+<style>
+  .lang-btn { display: none !important; }
+  .lang-it { display: none !important; }
+  #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
+  #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 190px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
+  #plt-lang-drop button { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 10px 12px !important; background: transparent !important; border: none !important; border-radius: 8px !important; color: #f8fafc !important; font-size: 13px !important; font-weight: 700 !important; cursor: pointer !important; text-align: left !important; }
+  #plt-lang-drop button:hover { background: rgba(52,211,153,0.12) !important; }
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.2) !important; color: #34d399 !important; }
+  div:not(#plt-right-controls):not(#wp-lang-wrap) > #plt-lang-wrap, #plt-lang-dropdown, #lang-dd-menu { display: none !important; }
+</style>
+<script>
+localStorage.setItem('plt_lang', 'en');
+try{if(typeof setDocsLang==='function')setDocsLang('en');}catch(e){}
+try{if(typeof setContactLang==='function')setContactLang('en');}catch(e){}
+try{if(typeof setL==='function')setL('en');}catch(e){}
+window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
+window.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('plt-menu-toggle') || document.querySelector('#plt-hamburger-bar > button');
+  const bar = document.getElementById('plt-hamburger-bar') || (menuBtn && menuBtn.parentElement);
+  const mainDrop = document.getElementById('plt-dropdown-menu') || document.getElementById('m');
+  
+  document.querySelectorAll('button, div').forEach(el => {
+    if(el.closest('#plt-right-controls')) return;
+    const t = el.textContent.replace(/\s+/g, ' ').trim();
+    if((t === '🌐 FR ▾' || t === 'FR ▾') && el.children.length <= 2) el.style.display = 'none';
+  });
+  if(bar && menuBtn && !document.getElementById('plt-right-controls')){
+    const controls = document.createElement('div');
+    controls.id = 'plt-right-controls';
+    const cur = location.pathname.split('/').pop() || 'index-fr.html';
+    const base = cur.replace('-fr.html', '.html');
+    const es = cur.replace('-fr.html', '-es.html');
+    const langWrap = document.createElement('div');
+    langWrap.id = 'plt-lang-wrap';
+    langWrap.innerHTML =
+      '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">FRA ▾</span></button>' +
+      '<div id="plt-lang-drop" style="display:none;">' +
+        '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'en\');location.href=\''+base+'\'"><span>🇬🇧 ENGLISH (ENG)</span></button>' +
+        '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'it\');location.href=\''+base+'\'" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span></button>' +
+        '<button type="button" onclick="location.href=\''+es+'\'" style="margin-top:4px;"><span>🇪🇸 ESPAÑOL (ESP)</span></button>' +
+        '<button type="button" class="plt-opt-active" style="margin-top:4px;"><span>🇫🇷 FRANÇAIS (FRA)</span><span>✓</span></button>' +
+      '</div>';
+    bar.insertBefore(controls, menuBtn);
+    controls.appendChild(langWrap);
+    controls.appendChild(menuBtn);
+    const lb = document.getElementById('plt-lang-toggle');
+    const ld = document.getElementById('plt-lang-drop');
+    lb.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(mainDrop) mainDrop.style.display = 'none';
+      ld.style.display = (ld.style.display === 'block') ? 'none' : 'block';
+    });
+    menuBtn.addEventListener('click', () => { ld.style.display = 'none'; }, true);
+    document.addEventListener('click', (e) => {
+      if(!e.target.closest('#plt-lang-wrap')) ld.style.display = 'none';
+      if(mainDrop && !e.target.closest('#plt-right-controls') && !e.target.closest('#plt-dropdown-menu') && !e.target.closest('#m')) mainDrop.style.display = 'none';
+    });
+  }
+});
+</script>
+</body></html>

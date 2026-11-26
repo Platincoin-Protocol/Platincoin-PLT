@@ -358,5 +358,19 @@ window.addEventListener('load', () => {
   }
 });
 </script>
+<script>
+window.addEventListener('load', () => {
+  const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
+  if(d && !d.querySelector('[data-fr-link]')){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('data-fr-link', '1');
+    b.style.marginTop = '4px';
+    b.innerHTML = '<span>🇫🇷 FRANÇAIS (FRA)</span><span></span>';
+    b.onclick = () => { location.href = 'contact-fr.html'; };
+    d.appendChild(b);
+  }
+});
+</script>
 </body>
 </html>

