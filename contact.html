@@ -246,6 +246,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
 
 
 
+
 <script id='plt-inline-i18n'>
 (function(){
   let nodes = [];
@@ -259,32 +260,25 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
   }
-  async function trBatch(texts, tl){
-    const joined = texts.join("\n---PLT---\n");
-    const ck = "plt_b3_" + tl + "_" + joined.length + "_" + joined.slice(0,24);
+  async function trText(txt, tl){
+    const ck = "plt_mm_" + tl + "_" + txt;
     const cached = localStorage.getItem(ck);
-    if(cached) return JSON.parse(cached);
+    if(cached) return cached;
     try{
-      const r = await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=" + tl + "&q=" + encodeURIComponent(joined));
-      if(!r.ok) throw new Error("HTTP " + r.status);
+      const r = await fetch("https://translated.net" + encodeURIComponent(txt.slice(0,480)) + "&langpair=en|" + tl);
       const d = await r.json();
-      const full = d[0].map(x => x[0]).join("");
-      const out = full.split(/\s*---PLT---\s*/);
-      if(out.length === texts.length) localStorage.setItem(ck, JSON.stringify(out));
-      return out;
-    }catch(e){ return texts; }
+      const res = d && d.responseData && d.responseData.translatedText;
+      if(res && !res.includes("MYMEMORY WARNING")){ localStorage.setItem(ck, res); return res; }
+    }catch(e){}
+    return txt;
   }
   async function translateAll(target){
     collect();
     if(target === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
-    for(let i = 0; i < nodes.length; i += 12){
-      const slice = nodes.slice(i, i + 12);
-      const origs = slice.map(x => x.orig.trim());
-      const trs = await trBatch(origs, target);
-      slice.forEach((item, idx) => {
-        if(trs[idx]) item.node.nodeValue = item.orig.replace(origs[idx], trs[idx].trim());
-      });
-      await new Promise(r => setTimeout(r, 180));
+    for(const item of nodes){
+      const t = item.orig.trim();
+      const tr = await trText(t, target);
+      item.node.nodeValue = item.orig.replace(t, tr);
     }
   }
   window.pltApplyLang = function(code, label){
