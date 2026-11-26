@@ -15,7 +15,7 @@
     const cached = sessionStorage.getItem(ck);
     if(cached) return cached;
     try{
-      const u = "https://" + "trans://googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=" + tl + "&q=" + encodeURIComponent(text);
+      const u = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=" + tl + "&q=" + encodeURIComponent(text);
       const r = await fetch(u);
       const d = await r.json();
       const res = d[0].map(x => x[0]).join("");
