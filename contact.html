@@ -249,11 +249,12 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
 
 
 
+
 <script id='plt-inline-i18n'>
 (function(){
-  let nodes = [];
+  let dict = null, nodes = [], phs = [];
   function collect(){
-    if(nodes.length) return;
+    if(nodes.length || phs.length) return;
     const w = document.createTreeWalker(document.body, 4, null, false);
     let n;
     while(n = w.nextNode()){
@@ -261,43 +262,43 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       if(!p || p.closest('.notranslate, script, style, code, pre')) continue;
       if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
+    document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+      phs.push({el: el, orig: el.getAttribute('placeholder')});
+    });
   }
-  async function trChunk(txt, tl){
-    const ck = "plt_v5_" + tl + "_" + txt;
-    const c = localStorage.getItem(ck);
-    if(c) return c;
-    try{
-      const r = await fetch("https://api.mymemory.translated.net/get?q=" + encodeURIComponent(txt) + "&langpair=en|" + tl);
-      const d = await r.json();
-      const out = d && d.responseData && d.responseData.translatedText;
-      if(out && !out.includes("MYMEMORY")){ localStorage.setItem(ck, out); return out; }
-    }catch(e){}
-    return txt;
+  async function loadDict(){
+    if(dict) return dict;
+    try{ const r = await fetch('plt-translations.json?v=1'); dict = await r.json(); }catch(e){ dict = {}; }
+    return dict;
   }
-  async function trFull(txt, tl){
-    if(txt.length <= 450) return await trChunk(txt, tl);
-    const parts = txt.match(/[^.!?]+[.!?]*\s*/g) || [txt];
-    let res = "";
-    for(const p of parts){ if(p.trim()) res += (await trChunk(p.trim(), tl)) + " "; }
-    return res.trim();
-  }
-  async function run(tl){
+  async function applyLocal(tl){
     collect();
-    if(tl === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
-    for(let i = 0; i < nodes.length; i += 6){
-      await Promise.all(nodes.slice(i, i + 6).map(async item => {
-        const t = item.orig.trim();
-        const tr = await trFull(t, tl);
-        item.node.nodeValue = item.orig.replace(t, tr);
-      }));
+    const wpEn = document.getElementById('wp-en'), wpIt = document.getElementById('wp-it');
+    if(wpEn && wpIt){
+      wpEn.style.display = (tl === 'it') ? 'none' : 'block';
+      wpIt.style.display = (tl === 'it') ? 'block' : 'none';
     }
+    if(tl === 'en'){
+      nodes.forEach(x => x.node.nodeValue = x.orig);
+      phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
+      return;
+    }
+    const d = await loadDict();
+    const map = d[tl] || {};
+    nodes.forEach(item => {
+      const t = item.orig.trim();
+      if(map[t]) item.node.nodeValue = item.orig.replace(t, map[t]);
+    });
+    phs.forEach(item => {
+      if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
+    });
   }
   window.pltApplyLang = function(code, label){
     localStorage.setItem('plt_lang_code', code);
     localStorage.setItem('plt_lang_lbl', label);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
     const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-    run(code);
+    applyLocal(code);
   };
   document.addEventListener('click', ()=>{
     const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
@@ -307,7 +308,7 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
     const c = localStorage.getItem('plt_lang_code') || 'en';
     const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(c !== 'en') run(c);
+    if(c !== 'en') applyLocal(c);
   });
 })();
 </script>
