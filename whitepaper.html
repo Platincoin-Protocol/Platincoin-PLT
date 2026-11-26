@@ -93,7 +93,7 @@
 
 
 
-<script src="plt-dict.js?v=3"></script>
+<script src="plt-dict.js?v=4"></script>
 <script id="plt-inline-i18n">
 (function(){
   let nodes = [], phs = [];
@@ -149,6 +149,12 @@
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
     if(c !== 'en') applyLocal(c);
   });
+
+  const obs = new MutationObserver(() => {
+    const c = localStorage.getItem('plt_lang_code') || 'en';
+    if(c !== 'en'){ nodes = []; applyLocal(c); }
+  });
+  window.addEventListener('load', () => obs.observe(document.body, {childList:true, subtree:true}));
 })();
 </script>
 </body></html>

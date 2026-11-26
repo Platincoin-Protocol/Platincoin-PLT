@@ -105,6 +105,12 @@
   document.addEventListener("click", function(e) {
     if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
   });
+
+  const obs = new MutationObserver(() => {
+    const c = localStorage.getItem('plt_lang_code') || 'en';
+    if(c !== 'en'){ nodes = []; applyLocal(c); }
+  });
+  window.addEventListener('load', () => obs.observe(document.body, {childList:true, subtree:true}));
 })();
 </script>
 <div style="max-width:960px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
@@ -199,7 +205,7 @@
 
 
 
-<script src="plt-dict.js?v=3"></script>
+<script src="plt-dict.js?v=4"></script>
 <script id="plt-inline-i18n">
 (function(){
   let nodes = [], phs = [];
@@ -255,6 +261,12 @@
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
     if(c !== 'en') applyLocal(c);
   });
+
+  const obs = new MutationObserver(() => {
+    const c = localStorage.getItem('plt_lang_code') || 'en';
+    if(c !== 'en'){ nodes = []; applyLocal(c); }
+  });
+  window.addEventListener('load', () => obs.observe(document.body, {childList:true, subtree:true}));
 })();
 </script>
 </body></html>
