@@ -49,7 +49,7 @@
   function applyPltLang(code){
     const isIt = (code === 'it');
     localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
-    document.documentElement.lang = isIt ? 'it' : 'en';
+    document.documentElement.lang = isIt ? 'it' : 'en'; document.body.setAttribute('data-lang', isIt ? 'it' : 'en');
     try { if(typeof switchLang === 'function') switchLang(isIt ? 'it' : 'en'); } catch(e){}
     try { if(typeof setDocsLang === 'function') setDocsLang(isIt ? 'it' : 'en'); } catch(e){}
     try { if(typeof setContactLang === 'function') setContactLang(isIt ? 'it' : 'en'); } catch(e){}
