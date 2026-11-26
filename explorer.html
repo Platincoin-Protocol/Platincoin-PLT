@@ -65,6 +65,7 @@
     <a href="docs.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600;border-top:1px solid rgba(52,211,153,.15)">📘 FAQ &amp; Docs</a>
     <a href="contact.html" style="display:block;padding:10px 14px;color:#e2e8f0;text-decoration:none;font-weight:600;border-top:1px solid rgba(52,211,153,.15)">✉️ Contact Us</a>
     <a href="explorer.html" style="display:block;padding:10px 14px;color:#34d399;text-decoration:none;font-weight:700;border-top:1px solid rgba(52,211,153,.15)">⛓️ PoW Node Explorer</a>
+    <a href="whitepaper.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 White Paper</a>
   </div>
 </header>
 <div class="wrap" style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px"><div style="position:relative;display:inline-block;z-index:1100;">
@@ -109,126 +110,37 @@ setL(curL);
 </style>
 <script>
 (function(){
-  function closeAllDropdowns(exceptId){
-    ['plt-lang-drop', 'plt-nav-drop', 'plt-nav-list', 'plt-lang-list'].forEach(id => {
-      if(id !== exceptId){
-        const el = document.getElementById(id);
-        if(el) el.style.display = 'none';
+  window.addEventListener('DOMContentLoaded', () => {
+    const navBtn = document.getElementById('plt-nav-btn') || document.querySelector('header button:last-of-type, nav button:last-of-type');
+    const langWrap = document.getElementById('plt-lang-wrap');
+    if(navBtn && navBtn.parentElement && langWrap){
+      let rightGroup = document.getElementById('plt-right-actions');
+      if(!rightGroup){
+        rightGroup = document.createElement('div');
+        rightGroup.id = 'plt-right-actions';
+        navBtn.parentElement.insertBefore(rightGroup, navBtn);
       }
-    });
-  }
-
-  function applyPltLang(code){
-    const isIt = (code === 'it');
-    localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
-    localStorage.setItem('plt_lang_code', isIt ? 'it' : 'en');
-    document.documentElement.lang = isIt ? 'it' : 'en';
-    document.body.setAttribute('data-lang', isIt ? 'it' : 'en');
-
-    // Esegue le funzioni specifiche di ciascuna pagina
-    try { if(typeof switchLang === 'function') switchLang(isIt ? 'it' : 'en'); } catch(e){}
-    try { if(typeof setDocsLang === 'function') setDocsLang(isIt ? 'it' : 'en'); } catch(e){}
-    try { if(typeof setContactLang === 'function') setContactLang(isIt ? 'it' : 'en'); } catch(e){}
-    try { if(typeof setL === 'function') setL(isIt ? 'it' : 'en'); } catch(e){}
-
-    // Sincronizza direttamente anche tutti gli elementi con classe .lang-en / .lang-it o attributo data-en / data-it
-    document.querySelectorAll('.lang-it').forEach(el => { if(el.textContent.trim()) el.style.display = isIt ? '' : 'none'; });
-    document.querySelectorAll('.lang-en').forEach(el => {
-      const sibIt = el.parentElement && el.parentElement.querySelector('.lang-it');
-      if(sibIt && sibIt.textContent.trim()) el.style.display = isIt ? 'none' : '';
-    });
-    document.querySelectorAll('[data-en][data-it]').forEach(el => {
-      el.textContent = isIt ? el.getAttribute('data-it') : el.getAttribute('data-en');
-    });
-
-    const lbl = document.getElementById('plt-lang-label');
-    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
-    document.querySelectorAll('#plt-lang-drop button').forEach(b => {
-      const active = (isIt && b.dataset.lang === 'it') || (!isIt && b.dataset.lang === 'en');
-      b.classList.toggle('plt-opt-active', active);
-      b.innerHTML = (b.dataset.lang === 'it' ? '🇮🇹 ITALIANO (ITA)' : '🇬🇧 ENGLISH (ENG)') + (active ? ' <span style="float:right;">✓</span>' : '');
-    });
-  }
-
-  function initHeader(){
-    // Rimuove eventuali vecchi selettori lingua duplicati
-    document.querySelectorAll('[id*="lang" i], [class*="lang" i]').forEach(el => {
-      if(el.matches('.lang-en, .lang-it')) return;
-      if(el.tagName === 'BUTTON' || el.id.toLowerCase().includes('lang')){
-        const wrap = el.closest('div[style*="position"]') || el;
-        if(!wrap.querySelector('nav, header, main, #plt-nav-btn, #plt-nav-list')) wrap.remove();
-      }
-    });
-
-    // Trova il pulsante hamburger (≡) su qualsiasi pagina
-    let navBtn = document.getElementById('plt-nav-btn') ||
-                 document.querySelector('header button, nav button, .hamburger, [onclick*="plt-nav"]');
-    if(!navBtn){
-      const navList = document.getElementById('plt-nav-list') || document.getElementById('plt-nav-drop');
-      if(navList && navList.parentElement){
-        navBtn = navList.parentElement.querySelector('button, div[onclick]');
-      }
+      rightGroup.appendChild(langWrap);
+      rightGroup.appendChild(navBtn);
     }
-
-    const headerBar = (navBtn && navBtn.parentElement) || document.querySelector('header, nav, div[style*="sticky"], div[style*="fixed"]');
-    if(!headerBar) return;
-
-    let rightGroup = document.getElementById('plt-right-actions');
-    if(!rightGroup){
-      rightGroup = document.createElement('div');
-      rightGroup.id = 'plt-right-actions';
-      if(navBtn) headerBar.insertBefore(rightGroup, navBtn);
-      else headerBar.appendChild(rightGroup);
-    }
-
-    const langWrap = document.createElement('div');
-    langWrap.id = 'plt-lang-wrap';
-    langWrap.innerHTML = '<button type="button" id="plt-lang-toggle" style="display:inline-flex;align-items:center;gap:6px;background:rgba(15,23,42,0.9);border:1px solid rgba(52,211,153,0.35);color:#f8fafc;padding:7px 12px;border-radius:8px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
-      '<div id="plt-lang-drop" style="display:none;">' +
-      '<button type="button" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:none;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 ENGLISH (ENG)</button>' +
-      '<button type="button" data-lang="it" style="display:block;width:100%;text-align:left;padding:10px 14px;background:transparent;border:none;border-top:1px solid rgba(255,255,255,0.08);color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇮🇹 ITALIANO (ITA)</button>' +
-      '</div>';
-
-    rightGroup.appendChild(langWrap);
-    if(navBtn) rightGroup.appendChild(navBtn);
-
-    const toggle = document.getElementById('plt-lang-toggle');
+    const toggle = document.getElementById('plt-lang-toggle') || (langWrap && langWrap.querySelector('button'));
     const drop = document.getElementById('plt-lang-drop');
-
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const willOpen = (drop.style.display !== 'block');
-      closeAllDropdowns(null);
-      if(willOpen) drop.style.display = 'block';
-    });
-
-    if(navBtn){
-      navBtn.addEventListener('click', () => {
-        closeAllDropdowns('plt-nav-drop');
+    const navDrop = document.getElementById('plt-nav-drop') || document.getElementById('plt-nav-list');
+    if(toggle && drop){
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(navDrop) navDrop.style.display = 'none';
+        drop.style.display = (drop.style.display === 'block') ? 'none' : 'block';
       }, true);
     }
-
-    drop.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        applyPltLang(btn.dataset.lang);
-        drop.style.display = 'none';
-      });
-    });
-
+    if(navBtn && drop){
+      navBtn.addEventListener('click', () => { drop.style.display = 'none'; }, true);
+    }
     document.addEventListener('click', (e) => {
-      if(!e.target.closest('#plt-lang-wrap')) drop.style.display = 'none';
-      if(!e.target.closest('#plt-right-actions') && !e.target.closest('#plt-nav-drop') && !e.target.closest('#plt-nav-list')) closeAllDropdowns(null);
+      if(drop && !e.target.closest('#plt-lang-wrap')) drop.style.display = 'none';
+      if(navDrop && !e.target.closest('#plt-nav-btn') && !e.target.closest('#plt-nav-drop') && !e.target.closest('#plt-nav-list')) navDrop.style.display = 'none';
     });
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeAllDropdowns(null);
-    });
-
-    applyPltLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
-  }
-
-  window.addEventListener('DOMContentLoaded', initHeader);
+  });
 })();
 </script>
 </body>
