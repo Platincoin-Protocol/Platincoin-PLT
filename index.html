@@ -1515,5 +1515,19 @@ async function addTokenToWallet() {
   });
 })();
 </script>
+<script>
+window.addEventListener('load', () => {
+  const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
+  if(d && !d.querySelector('[data-es-link]')){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('data-es-link', '1');
+    b.style.marginTop = '4px';
+    b.innerHTML = '<span>🇪🇸 ESPAÑOL (ESP)</span><span></span>';
+    b.onclick = () => { location.href = 'index-es.html'; };
+    d.appendChild(b);
+  }
+});
+</script>
 </body>
 </html>
