@@ -89,6 +89,7 @@
 
 
 
+
 <script id='plt-inline-i18n'>
 (function(){
   let nodes = [];
@@ -102,24 +103,24 @@
       if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
   }
-  async function trText(txt, tl){
-    const ck = "plt_mm_" + tl + "_" + txt;
-    const cached = localStorage.getItem(ck);
-    if(cached) return cached;
+  async function trOne(t, tl){
+    const ck = "plt_mm2_" + tl + "_" + t;
+    const c = localStorage.getItem(ck);
+    if(c) return c;
     try{
-      const r = await fetch("https://translated.net" + encodeURIComponent(txt.slice(0,480)) + "&langpair=en|" + tl);
+      const r = await fetch("https://translated.net" + encodeURIComponent(t.slice(0,450)) + "&langpair=en|" + tl);
       const d = await r.json();
-      const res = d && d.responseData && d.responseData.translatedText;
-      if(res && !res.includes("MYMEMORY WARNING")){ localStorage.setItem(ck, res); return res; }
+      const out = d && d.responseData && d.responseData.translatedText;
+      if(out && !out.includes("MYMEMORY")){ localStorage.setItem(ck, out); return out; }
     }catch(e){}
-    return txt;
+    return t;
   }
-  async function translateAll(target){
+  async function run(tl){
     collect();
-    if(target === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
+    if(tl === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
     for(const item of nodes){
       const t = item.orig.trim();
-      const tr = await trText(t, target);
+      const tr = await trOne(t, tl);
       item.node.nodeValue = item.orig.replace(t, tr);
     }
   }
@@ -128,7 +129,7 @@
     localStorage.setItem('plt_lang_lbl', label);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
     const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-    translateAll(code);
+    run(code);
   };
   document.addEventListener('click', ()=>{
     const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
@@ -138,7 +139,7 @@
     const c = localStorage.getItem('plt_lang_code') || 'en';
     const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(c !== 'en') translateAll(c);
+    if(c !== 'en') run(c);
   });
 })();
 </script>
