@@ -183,16 +183,13 @@ setL(curL);
       const t = item.orig.replace(/\s+/g, ' ').trim();
       if(map[t]) item.node.nodeValue = map[t];
     });
-    
-    document.querySelectorAll('summary, p, h1, h2, h3, h4, a, button, li, td, th, label, span').forEach(el => {
-      if(el.closest('.notranslate')) return;
-      if(!el.dataset.pltOrigTxt) el.dataset.pltOrigTxt = el.textContent.replace(/\s+/g, ' ').trim();
-      const origH = el.dataset.pltOrigTxt;
-      if(tl === 'en'){ el.textContent = origH; return; }
-      if(map[origH]) el.textContent = map[origH];
-    });
     phs.forEach(item => {
       if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
+    });
+    document.querySelectorAll('summary, p, h1, h2, h3, h4, a, button, li, td, th, label').forEach(el => {
+      if(el.closest('.notranslate') || el.querySelector('input,select,textarea')) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if(map[t]) el.textContent = map[t];
     });
   }
   window.pltApplyLang = function(code, label){
@@ -212,12 +209,6 @@ setL(curL);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
     if(c !== 'en') applyLocal(c);
   });
-
-  const obs = new MutationObserver(() => {
-    const c = localStorage.getItem('plt_lang_code') || 'en';
-    if(c !== 'en'){ nodes = []; applyLocal(c); }
-  });
-  window.addEventListener('load', () => obs.observe(document.body, {childList:true, subtree:true}));
 })();
 </script>
 </body>
