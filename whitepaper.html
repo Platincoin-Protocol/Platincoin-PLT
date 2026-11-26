@@ -140,4 +140,59 @@
   });
 })();
 </script>
+<script>
+(function(){
+  function setWpDropdownLang(c){
+    const isIt = (c === 'it');
+    localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
+    document.documentElement.lang = isIt ? 'it' : 'en';
+    const enSec = document.getElementById('sec-en') || document.getElementById('wp-en');
+    const itSec = document.getElementById('sec-it') || document.getElementById('wp-it');
+    if(enSec && itSec){
+      enSec.style.display = isIt ? 'none' : 'block';
+      itSec.style.display = isIt ? 'block' : 'none';
+    }
+    try { if(typeof setL === 'function') setL(isIt ? 'it' : 'en'); } catch(e){}
+    const lbl = document.getElementById('wp-lang-label');
+    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
+    document.querySelectorAll('#wp-lang-drop button').forEach(b => {
+      const act = (b.dataset.lang === (isIt ? 'it' : 'en'));
+      b.classList.toggle('wp-opt-active', act);
+      b.querySelector('.wp-chk').textContent = act ? '✓' : '';
+    });
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const oldBtns = document.querySelectorAll('#btn-en, #btn-it');
+    if(oldBtns.length){
+      const box = oldBtns[0].parentElement;
+      box.innerHTML = '';
+      const tmp = document.createElement('div');
+      tmp.innerHTML = '<style>\n  #wp-lang-wrap { position: relative; display: inline-block; z-index: 1000; }\n  #wp-lang-drop { position: absolute; top: 44px; right: 0; min-width: 185px; background: #111827; border: 1px solid rgba(52,211,153,0.4); border-radius: 12px; padding: 6px; box-shadow: 0 18px 40px rgba(0,0,0,0.8); z-index: 1010; display: none; }\n  #wp-lang-drop button { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 10px 12px; background: transparent; border: none; border-radius: 8px; color: #f8fafc; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; }\n  #wp-lang-drop button:hover { background: rgba(52,211,153,0.12); }\n  #wp-lang-drop button.wp-opt-active { background: rgba(52,211,153,0.2); color: #34d399; }\n</style>\n<div id="wp-lang-wrap">\n  <button type="button" id="wp-lang-toggle" style="height:38px;padding:0 14px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">🌐 <span id="wp-lang-label">ENG ▾</span></button>\n  <div id="wp-lang-drop">\n    <button type="button" data-lang="en"><span>🇬🇧 ENGLISH (ENG)</span><span class="wp-chk">✓</span></button>\n    <button type="button" data-lang="it" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span><span class="wp-chk"></span></button>\n  </div>\n</div>';
+      while(tmp.firstChild) box.appendChild(tmp.firstChild);
+    }
+    const tog = document.getElementById('wp-lang-toggle');
+    const drp = document.getElementById('wp-lang-drop');
+    if(tog && drp){
+      tog.addEventListener('click', (e) => {
+        e.stopPropagation();
+        drp.style.display = (drp.style.display === 'block') ? 'none' : 'block';
+      });
+      drp.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setWpDropdownLang(b.dataset.lang);
+          drp.style.display = 'none';
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if(!e.target.closest('#wp-lang-wrap')) drp.style.display = 'none';
+      });
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') drp.style.display = 'none';
+      });
+    }
+    setWpDropdownLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
+  });
+})();
+</script>
 </body></html>
