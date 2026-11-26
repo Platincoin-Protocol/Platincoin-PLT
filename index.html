@@ -352,10 +352,13 @@
 
     <div class="container">
         <div class="header-nav">
-            <div class="lang-switch">
-                <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">ENG</button>
-                <button id="btn-it" class="lang-btn" onclick="switchLang('it')">ITA</button>
-            </div>
+            <div class="lang-switch" style="position:relative;display:inline-block;z-index:1100;">
+  <button type="button" id="lang-dd-btn" onclick="const m=document.getElementById('lang-dd-menu');m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:10px;background:rgba(15,23,42,0.92);border:1px solid rgba(52,211,153,0.4);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">ENG</span> ▾</button>
+  <div id="lang-dd-menu" style="display:none;position:absolute;right:0;top:38px;min-width:155px;background:#111827;border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:5px;box-shadow:0 14px 30px rgba(0,0,0,0.75);text-align:left;">
+    <button type="button" id="btn-en" onclick="switchLang('en');document.getElementById('lang-dd-cur').textContent='ENG';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
+    <button type="button" id="btn-it" onclick="switchLang('it');document.getElementById('lang-dd-cur').textContent='ITA';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+  </div>
+</div>
         </div>
         <div class="logo-container" style="max-width:920px;margin:16px auto 24px;padding:28px 36px;display:flex;align-items:center;justify-content:flex-start;gap:28px;background:radial-gradient(circle at 80% 35%,rgba(234,179,8,0.08),transparent 45%),radial-gradient(circle at 20% 50%,rgba(52,211,153,0.10),transparent 45%),linear-gradient(135deg,#0f172a 0%,#111827 55%,#0b1120 100%);border-radius:20px;border:1px solid rgba(52,211,153,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.5);">
   <img src="logo_3d_platino.png" alt="Platincoin Token" class="logo-img floating-logo" style="width:110px;height:110px;flex-shrink:0;">
