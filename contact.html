@@ -115,6 +115,17 @@
       <a href="explorer.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">⛓️ PoW Node Explorer</a>
     </div>
 </header>
+<div style="max-width:1520px;width:96%;margin:8px auto 12px auto;display:flex;justify-content:flex-end;position:relative;z-index:1100;">
+  <div class="lang-switch" style="position:relative;display:inline-block;">
+    <button type="button" onclick="const m=document.getElementById('lang-dd-menu');m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:10px;background:rgba(15,23,42,0.92);border:1px solid rgba(52,211,153,0.4);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">ENG</span> ▾</button>
+    <div id="lang-dd-menu" style="display:none;position:absolute;right:0;top:38px;min-width:160px;background:#111827;border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:5px;box-shadow:0 14px 30px rgba(0,0,0,0.75);text-align:left;">
+      <button type="button" onclick="switchLang('en');document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
+      <button type="button" onclick="switchLang('it');document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+      <button type="button" onclick="switchLang('es');document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
+      <button type="button" onclick="switchLang('fr');document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
+    </div>
+  </div>
+</div>
 <script>
 (function() {
   const btn = document.getElementById("plt-menu-toggle");
@@ -217,17 +228,13 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
 (function(){
   const dict = {
     es: {
+      "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
       "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
-      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO",
-      "BLOCK HEIGHT":"ALTURA DE BLOQUE",
-      "CIRCULATING SUPPLY":"OFERTA CIRCULANTE",
-      "MAXIMUM SUPPLY":"OFERTA MÁXIMA",
+      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO","BLOCK HEIGHT":"ALTURA DE BLOQUE","CIRCULATING SUPPLY":"OFERTA CIRCULANTE","MAXIMUM SUPPLY":"OFERTA MÁXIMA",
       "VERIFIED BEP-20 SMART CONTRACT":"CONTRATO INTELIGENTE BEP-20 VERIFICADO",
       "ON-CHAIN SUPPLY & VAULT ALLOCATION":"DISTRIBUCIÓN ON-CHAIN Y BÓVEDA DE MINERÍA",
-      "Mining Vault Reserve":"Reserva Bóveda de Minería",
-      "Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
-      "CPU Public Mining Status:":"Estado Minería Pública CPU:",
-      "CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
+      "Mining Vault Reserve":"Reserva Bóveda de Minería","Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
+      "CPU Public Mining Status:":"Estado Minería Pública CPU:","CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
       "LIVE DEX CHART (PLT / USDT)":"GRÁFICO DEX EN VIVO (PLT / USDT)",
       "Smart Contract & 0% Tax Audit":"Auditoría Contrato Inteligente y 0% Impuestos",
       "1-Year Liquidity Lock (PinkLock)":"Bloqueo de Liquidez 1 Año (PinkLock)",
@@ -235,21 +242,23 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
       "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
       "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
-      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap",
-      "Add $PLT to Wallet":"Añadir $PLT a la Billetera"
+      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera",
+      "1. How does Dual SHA-256 + BEP-20 work?":"1. ¿Cómo funciona el modelo Dual SHA-256 + BEP-20?",
+      "2. How is the 11M PLT supply distributed?":"2. ¿Cómo se distribuye la oferta fija de 11M PLT?",
+      "3. Is liquidity locked and are there taxes?":"3. ¿Está bloqueada la liquidez y hay impuestos?",
+      "4. When will public CPU mining open?":"4. ¿Cuándo abrirá la minería pública CPU?",
+      "5. When will renounceOwnership() happen?":"5. ¿Cuándo ocurrirá la renuncia (renounceOwnership)?",
+      "6. How to buy $PLT on PancakeSwap V2?":"6. ¿Cómo comprar $PLT en PancakeSwap V2?",
+      "7. Is $PLT affiliated with legacy PLC?":"7. ¿Está $PLT afiliado al antiguo proyecto PLC?"
     },
     fr: {
+      "Home":"Accueil","FAQ & Docs":"FAQ et Documentation","Contact Us":"Contactez-nous","PoW Node Explorer":"Explorateur de Nœuds PoW",
       "The Sovereign Digital Platinum Network":"Le Réseau Souverain de Platine Numérique",
-      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT",
-      "BLOCK HEIGHT":"HAUTEUR DE BLOC",
-      "CIRCULATING SUPPLY":"OFFRE EN CIRCULATION",
-      "MAXIMUM SUPPLY":"OFFRE MAXIMALE",
+      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT","BLOCK HEIGHT":"HAUTEUR DE BLOC","CIRCULATING SUPPLY":"OFFRE EN CIRCULATION","MAXIMUM SUPPLY":"OFFRE MAXIMALE",
       "VERIFIED BEP-20 SMART CONTRACT":"CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ",
       "ON-CHAIN SUPPLY & VAULT ALLOCATION":"ALLOCATION ON-CHAIN ET COFFRE DE MINAGE",
-      "Mining Vault Reserve":"Réserve Coffre de Minage",
-      "Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
-      "CPU Public Mining Status:":"Statut Minage Public CPU :",
-      "CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
+      "Mining Vault Reserve":"Réserve Coffre de Minage","Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
+      "CPU Public Mining Status:":"Statut Minage Public CPU :","CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
       "LIVE DEX CHART (PLT / USDT)":"GRAPHIQUE DEX EN DIRECT (PLT / USDT)",
       "Smart Contract & 0% Tax Audit":"Audit Contrat Intelligent et 0% Taxe",
       "1-Year Liquidity Lock (PinkLock)":"Verrouillage Liquidité 1 An (PinkLock)",
@@ -257,29 +266,35 @@ document.getElementById("plt-contact-form").addEventListener("submit", function(
       "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
       "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
       "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
-      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap",
-      "Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
+      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT au Portefeuille":"Ajouter $PLT au Portefeuille",
+      "1. How does Dual SHA-256 + BEP-20 work?":"1. Comment fonctionne le modèle Dual SHA-256 + BEP-20 ?",
+      "2. How is the 11M PLT supply distributed?":"2. Comment est distribuée l'offre fixe de 11M PLT ?",
+      "3. Is liquidity locked and are there taxes?":"3. La liquidité est-elle verrouillée et y a-t-il des taxes ?",
+      "4. When will public CPU mining open?":"4. Quand le minage public CPU ouvrira-t-il ?",
+      "5. When will renounceOwnership() happen?":"5. Quand aura lieu la renonciation (renounceOwnership) ?",
+      "6. How to buy $PLT on PancakeSwap V2?":"6. Comment acheter $PLT sur PancakeSwap V2 ?",
+      "7. Is $PLT affiliated with legacy PLC?":"7. $PLT est-il affilié à l'ancien projet PLC ?"
     }
   };
-  const origSwitch = window.switchLang || window.setL;
-  function applyExtraLang(l){
-    if(origSwitch) origSwitch(l === "es" || l === "fr" ? "en" : l);
+  const orig = window.switchLang || window.setL;
+  function setAllLang(l){
+    if(orig) orig(l === "es" || l === "fr" ? "en" : l);
     localStorage.setItem("plt_lang", l);
     const cur = document.getElementById("lang-dd-cur");
     if(cur) cur.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
     if(l !== "es" && l !== "fr") return;
     const map = dict[l];
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let node;
-    while(node = walker.nextNode()){
-      const t = node.nodeValue.trim();
-      if(map[t]) node.nodeValue = node.nodeValue.replace(t, map[t]);
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let n;
+    while(n = w.nextNode()){
+      const s = n.nodeValue;
+      for(const k in map){ if(s.includes(k)) n.nodeValue = n.nodeValue.replace(k, map[k]); }
     }
   }
-  window.switchLang = applyExtraLang;
-  window.setL = applyExtraLang;
-  const saved = localStorage.getItem("plt_lang");
-  if(saved === "es" || saved === "fr") setTimeout(()=>applyExtraLang(saved), 120);
+  window.switchLang = setAllLang;
+  window.setL = setAllLang;
+  const sv = localStorage.getItem("plt_lang");
+  if(sv && sv !== "en") setTimeout(()=>setAllLang(sv), 120);
 })();
 </script>
 
