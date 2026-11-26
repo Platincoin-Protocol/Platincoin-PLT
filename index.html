@@ -436,7 +436,7 @@
         <code id="contractAddrText" style="background: #161b22; padding: 8px 14px; border-radius: 6px; border: 1px solid #30363d; color: #e6edf3; font-size: 13px; word-break: break-all;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>
         <button onclick="navigator.clipboard.writeText('0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8'); this.innerText='Copied ✓'; setTimeout(()=>this.innerText='Copy', 2000);" style="background: #238636; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;">Copy</button>
         <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" style="background: #1f6feb; color: white; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">BscScan ↗</a>
-        <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" style="background: #21262d; color: #00ffcc; border: 1px solid #30363d; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">Live Chart (GeckoTerminal) ↗</a>
+        <a href="https://api.geckoterminal.com/api/v2/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" style="background: #21262d; color: #00ffcc; border: 1px solid #30363d; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px;">Live Chart (GeckoTerminal) ↗</a>
                 <a href="https://discord.gg/nzSD7asHbE" target="_blank" style="background:#5865F2;color:white;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">Join Discord</a>
                 <a href="https://x.com/PlatincoinPLT" target="_blank" style="background:#161b22;color:white;border:1px solid #30363d;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:bold;font-size:12px;">X (@PlatincoinPLT)</a>
 
@@ -726,7 +726,7 @@
     <span>🟢 <span class="lang-en"><strong>1.10%</strong> (121,300.87 PLT) — Circulating &amp; DEX Pool</span><span class="lang-it" style="display:none;"><strong>1,10%</strong> (121.300,87 PLT) — Circolante &amp; Pool DEX</span></span>
   </p>
   <nav style="display:flex;flex-wrap:wrap;gap:10px;">
-    <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
+    <a href="https://api.geckoterminal.com/api/v2/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">GeckoTerminal Live Chart ↗</span><span class="lang-it" style="display:none;">Grafico Live GeckoTerminal ↗</span></a>
     <a href="https://pinksale.finance/pinklock/bsc/record/2113264" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">PinkLock LP Lock (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificato Lock PinkLock (#2113264) ↗</span></a>
     <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">BscScan Verified Contract ↗</span><span class="lang-it" style="display:none;">Contratto Verificato BscScan ↗</span></a>
   <button type="button" id="plt-add-wallet-btn" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Add $PLT to Wallet</span><span class="lang-it" style="display:none;">Aggiungi $PLT al Wallet</span></button>
@@ -995,14 +995,7 @@ document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2)
             if (rli) { rli.innerText = 'Valore a $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
             document.getElementById('roi-target').innerText = '$' + (plt * targetPrice).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         }
-        function switchLang(lang) {
-            var btnEn = document.getElementById('btn-en'); var btnIt = document.getElementById('btn-it');
-            var enElements = document.querySelectorAll('.lang-en'); var itElements = document.querySelectorAll('.lang-it');
-            if (lang === 'en') {
-                btnEn.className = 'lang-btn active'; btnIt.className = 'lang-btn';
-                enElements.forEach(el => el.style.display = 'inline-block'); itElements.forEach(el => el.style.display = 'none');
-                document.querySelectorAll('p.lang-en, h3.lang-en, h2.lang-en, h4.lang-en, .buy-text.lang-en').forEach(el => el.style.display = 'block');
-            } else {
+        function switchLang(lang){} else {
                 btnEn.className = 'lang-btn'; btnIt.className = 'lang-btn active';
                 enElements.forEach(el => el.style.display = 'none'); itElements.forEach(el => el.style.display = 'inline-block');
                 document.querySelectorAll('p.lang-it, h3.lang-it, h2.lang-it, h4.lang-it, .buy-text.lang-it').forEach(el => el.style.display = 'block');
