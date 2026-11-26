@@ -1362,6 +1362,12 @@ async function addTokenToWallet() {
 
 <style>
   .lang-btn { display: none !important; }
+
+  body[data-lang="en"] .lang-en { display: inline !important; }
+  body[data-lang="en"] .lang-it { display: none !important; }
+  body[data-lang="it"] .lang-it { display: inline !important; }
+  body[data-lang="it"] .lang-en { display: none !important; }
+
   #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
   #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
   #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 185px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
