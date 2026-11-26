@@ -87,6 +87,7 @@
 <style>.goog-te-banner-frame,.skiptranslate,#goog-gt-tt{display:none!important;}body{top:0!important;}</style>
 
 
+
 <script id='plt-inline-i18n'>
 (function(){
   let nodes = [];
@@ -100,27 +101,33 @@
       if(n.nodeValue.trim().length > 1) nodes.push({node: n, orig: n.nodeValue});
     }
   }
-  async function trOne(text, tl){
-    const ck = "plt_v2_" + tl + "_" + text;
-    const cached = sessionStorage.getItem(ck);
-    if(cached) return cached;
+  async function trBatch(texts, tl){
+    const joined = texts.join("\n---PLT---\n");
+    const ck = "plt_b3_" + tl + "_" + joined.length + "_" + joined.slice(0,24);
+    const cached = localStorage.getItem(ck);
+    if(cached) return JSON.parse(cached);
     try{
-      const u = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=" + tl + "&q=" + encodeURIComponent(text);
-      const r = await fetch(u);
+      const r = await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=" + tl + "&q=" + encodeURIComponent(joined));
+      if(!r.ok) throw new Error("HTTP " + r.status);
       const d = await r.json();
-      const res = d[0].map(x => x[0]).join("");
-      if(res) sessionStorage.setItem(ck, res);
-      return res || text;
-    }catch(e){ return text; }
+      const full = d[0].map(x => x[0]).join("");
+      const out = full.split(/\s*---PLT---\s*/);
+      if(out.length === texts.length) localStorage.setItem(ck, JSON.stringify(out));
+      return out;
+    }catch(e){ return texts; }
   }
   async function translateAll(target){
     collect();
     if(target === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
-    await Promise.all(nodes.map(async item => {
-      const t = item.orig.trim();
-      const tr = await trOne(t, target);
-      item.node.nodeValue = item.orig.replace(t, tr);
-    }));
+    for(let i = 0; i < nodes.length; i += 12){
+      const slice = nodes.slice(i, i + 12);
+      const origs = slice.map(x => x.orig.trim());
+      const trs = await trBatch(origs, target);
+      slice.forEach((item, idx) => {
+        if(trs[idx]) item.node.nodeValue = item.orig.replace(origs[idx], trs[idx].trim());
+      });
+      await new Promise(r => setTimeout(r, 180));
+    }
   }
   window.pltApplyLang = function(code, label){
     localStorage.setItem('plt_lang_code', code);
