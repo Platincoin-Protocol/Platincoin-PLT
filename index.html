@@ -1390,6 +1390,30 @@ async function addTokenToWallet() {
       const sib = el.parentElement && el.parentElement.querySelector('.lang-it');
       if(sib && sib.textContent.trim()) el.style.display = isIt ? 'none' : '';
     });
+    
+    const extraIt = {
+      "ON-CHAIN SUPPLY & VAULT ALLOCATION": "ALLOCAZIONE FORNITURA ON-CHAIN E VAULT",
+      "Verifiable distribution of the strict 11,000,000 PLT fixed supply on BNB Smart Chain:": "Distribuzione verificabile della fornitura fissa di 11.000.000 PLT su BNB Smart Chain:",
+      "Mining Vault Reserve": "Riserva Mining Vault",
+      "Circulating & Locked LP Pool": "Pool LP Circolante e Bloccata",
+      "CPU Public Mining Status:": "Stato Mining Pubblico CPU:",
+      "CLOSED TESTNET (OPENING SOON)": "TESTNET CHIUSA (APERTURA A BREVE)",
+      "Smart Contract & 0% Tax Audit": "Smart Contract e Audit 0% Tasse",
+      "Open-source verified BEP-20 contract on BNB Smart Chain": "Contratto BEP-20 open-source verificato su BNB Smart Chain",
+      "1-Year Liquidity Lock (PinkLock)": "Blocco Liquidità 1 Anno (PinkLock)",
+      "PancakeSwap V2 PLT/USDT LP locked under ID #2113264": "LP PancakeSwap V2 PLT/USDT bloccata con ID #2113264",
+      "Market Indexing & Explorer Sync": "Indicizzazione Mercato e Sincronizzazione Explorer",
+      "Live on GeckoTerminal & FreshCoins · BscScan & DEXView in review": "Live su GeckoTerminal e FreshCoins · BscScan e DEXView in revisione"
+    };
+    const w = document.createTreeWalker(document.body, 4, null, false);
+    let n;
+    while(n = w.nextNode()){
+      const raw = n.nodeValue.replace(/\s+/g, ' ').trim();
+      if(!n._origEn && extraIt[raw]) n._origEn = raw;
+      if(n._origEn){
+        n.nodeValue = isIt ? n.nodeValue.replace(n.nodeValue.trim(), extraIt[n._origEn]) : n.nodeValue.replace(n.nodeValue.trim(), n._origEn);
+      }
+    }
     const lbl = document.getElementById('plt-lang-label');
     if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
     document.querySelectorAll('#plt-lang-drop button').forEach(b => {
@@ -1401,7 +1425,7 @@ async function addTokenToWallet() {
   }
 
   window.addEventListener('DOMContentLoaded', () => {
-    const bar = document.getElementById('plt-hamburger-bar');
+    const menuBtnTmp = document.getElementById('plt-menu-toggle') || document.querySelector('header button, nav button'); const bar = document.getElementById('plt-hamburger-bar') || (menuBtnTmp && menuBtnTmp.parentElement);
     const menuBtn = document.getElementById('plt-menu-toggle');
     const mainDrop = document.getElementById('plt-dropdown-menu');
 

@@ -142,7 +142,7 @@ setL(curL);
   }
 
   window.addEventListener('DOMContentLoaded', () => {
-    const bar = document.getElementById('plt-hamburger-bar');
+    const menuBtnTmp = document.getElementById('plt-menu-toggle') || document.querySelector('header button, nav button'); const bar = document.getElementById('plt-hamburger-bar') || (menuBtnTmp && menuBtnTmp.parentElement);
     const menuBtn = document.getElementById('plt-menu-toggle');
     const mainDrop = document.getElementById('plt-dropdown-menu');
 
