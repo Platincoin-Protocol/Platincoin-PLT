@@ -1463,7 +1463,7 @@ async function addTokenToWallet() {
     localStorage.setItem('plt_lang_lbl', lbl);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
     if(l) l.style.display = 'none';
-    if(typeof switchLang === 'function') switchLang(c);
+    document.documentElement.lang = c; document.querySelectorAll('.lang-en').forEach(e=>e.style.display=(c==='it'?'none':'')); document.querySelectorAll('.lang-it').forEach(e=>e.style.display=(c==='it'?'':'none')); try{if(typeof switchLang === 'function') switchLang(c);}catch(e){}
     if(typeof setDocsLang === 'function') setDocsLang(c);
     if(typeof setContactLang === 'function') setContactLang(c);
     if(typeof setL === 'function') setL(c);
