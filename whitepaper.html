@@ -32,6 +32,16 @@
 <script id="plt-4lang-engine">
 (function(){
   const dict = {
+    it: {
+      "Home":"Home","FAQ & Docs":"FAQ e Documenti","Contact Us":"Contatti","PoW Node Explorer":"Explorer Nodi PoW",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo e FAQ",
+      "Technical specifications, smart contract verification proofs, and tokenomics governance.":"Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificate On-Chain del Protocollo",
+      "Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.":"Clicca su una domanda per verificare sicurezza del contratto, liquidità bloccata e parametri di mining.",
+      "How is Platincoin ($PLT) secured and verified on-chain?":"Come è protetto e verificato on-chain Platincoin ($PLT)?",
+      "How can I independently verify the Liquidity Lock (#2113264)?":"Come posso verificare autonomamente il blocco liquidità (#2113264)?",
+      "What is the Mining Vault and how does the 89.85% allocation work?":"Cos'è il Mining Vault e come funziona l'allocazione dell'89,85%?"
+    },
     es: {
       "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
       "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
@@ -47,6 +57,8 @@
       "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
       "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
       "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo y FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificadas On-Chain del Protocolo",
       "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
     },
     fr: {
@@ -64,40 +76,42 @@
       "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
       "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
       "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
+      "Protocol Whitepaper & FAQ":"Livre Blanc du Protocole et FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Vérifiées On-Chain du Protocole",
       "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
     }
   };
   const orig = window.switchLang || window.setL;
-  const savedNodes = [];
-  function cacheNodes(){
-    if(savedNodes.length) return;
+  const cache = [];
+  function buildCache(){
+    if(cache.length) return;
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let n; while(n = w.nextNode()) savedNodes.push({node: n, orig: n.nodeValue});
+    let n; while(n = w.nextNode()) cache.push({n:n, t:n.nodeValue});
   }
-  function setAllLang(l){
-    cacheNodes();
-    savedNodes.forEach(item => item.node.nodeValue = item.orig);
-    if(orig) orig(l === "es" || l === "fr" ? "en" : l);
+  window.pltSetLang = function(l){
+    buildCache();
+    cache.forEach(x => x.n.nodeValue = x.t);
+    if(orig) orig(l === "it" ? "it" : "en");
     localStorage.setItem("plt_lang", l);
-    const cur = document.getElementById("lang-dd-cur");
-    if(cur) cur.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
-    if(l === "es" || l === "fr"){
-      const map = dict[l];
-      savedNodes.forEach(item => {
-        let v = item.orig;
-        for(const k in map){ if(v.includes(k)) v = v.replace(k, map[k]); }
-        item.node.nodeValue = v;
+    const c = document.getElementById("lang-dd-cur");
+    if(c) c.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
+    const ll = document.getElementById("plt-lang-list"); if(ll) ll.style.display = "none";
+    const hm = document.getElementById("plt-dropdown-menu") || document.getElementById("m"); if(hm) hm.style.display = "none";
+    if(dict[l]){
+      const m = dict[l];
+      cache.forEach(x => {
+        let v = x.t;
+        for(const k in m){ if(v.includes(k)) v = v.split(k).join(m[k]); }
+        x.n.nodeValue = v;
       });
     }
-  }
-  window.switchLang = setAllLang;
-  window.setL = setAllLang;
+  };
   document.addEventListener("click", function(e){
-    const m = document.getElementById("lang-dd-menu");
-    if(m && !e.target.closest(".lang-switch")) m.style.display = "none";
+    if(!e.target.closest(".plt-lang-wrap")){ const ll=document.getElementById("plt-lang-list"); if(ll) ll.style.display="none"; }
+    if(!e.target.closest("#plt-hamburger-bar")){ const hm=document.getElementById("plt-dropdown-menu")||document.getElementById("m"); if(hm) hm.style.display="none"; }
   });
-  const sv = localStorage.getItem("plt_lang");
-  if(sv && sv !== "en") setTimeout(()=>setAllLang(sv), 150);
+  const s = localStorage.getItem("plt_lang");
+  if(s && s !== "en") setTimeout(()=>window.pltSetLang(s), 100);
 })();
 </script>
 

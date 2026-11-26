@@ -294,13 +294,23 @@
   </a>
     </div>
 
+  <div style="display:flex;align-items:center;gap:10px;">
+  <div class="plt-lang-wrap" style="position:relative;z-index:1200;">
+    <button type="button" onclick="event.stopPropagation();const m=document.getElementById('plt-lang-list');const h=document.getElementById('plt-dropdown-menu')||document.getElementById('m');if(h)h.style.display='none';m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(15,23,42,0.9);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">ENG</span> ▾</button>
+    <div id="plt-lang-list" style="display:none;position:absolute;right:0;top:44px;min-width:165px;background:#111827;border:1px solid rgba(52,211,153,0.45);border-radius:12px;padding:5px;box-shadow:0 16px 35px rgba(0,0,0,0.85);">
+      <button type="button" onclick="pltSetLang('en')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
+      <button type="button" onclick="pltSetLang('it')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
+      <button type="button" onclick="pltSetLang('es')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
+      <button type="button" onclick="pltSetLang('fr')" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
+    </div>
+  </div>
   <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
     <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
     <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
     <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
   </button>
-
-  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+</div>
+<div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
     <a href="index.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">
       <span class="lang-en">🏠 Home</span>
       <span class="lang-it" style="display:none;">🏠 Home</span>
@@ -352,15 +362,7 @@
 
     <div class="container">
         <div class="header-nav">
-            <div class="lang-switch" style="position:relative;display:inline-block;z-index:1100;">
-  <button type="button" id="lang-dd-btn" onclick="const m=document.getElementById('lang-dd-menu');m.style.display=m.style.display==='block'?'none':'block';" style="display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:10px;background:rgba(15,23,42,0.92);border:1px solid rgba(52,211,153,0.4);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;">🌐 <span id="lang-dd-cur">ENG</span> ▾</button>
-  <div id="lang-dd-menu" style="display:none;position:absolute;right:0;top:38px;min-width:155px;background:#111827;border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:5px;box-shadow:0 14px 30px rgba(0,0,0,0.75);text-align:left;">
-    <button type="button" id="btn-en" onclick="switchLang('en');document.getElementById('lang-dd-cur').textContent='ENG';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;">🇬🇧 English (ENG)</button>
-    <button type="button" id="btn-it" onclick="switchLang('it');document.getElementById('lang-dd-cur').textContent='ITA';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇮🇹 Italiano (ITA)</button>
-    <button type="button" onclick="switchLang('es');document.getElementById('lang-dd-cur').textContent='ESP';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇪🇸 Español (ESP)</button>
-    <button type="button" onclick="switchLang('fr');document.getElementById('lang-dd-cur').textContent='FRA';document.getElementById('lang-dd-menu').style.display='none';" style="width:100%;text-align:left;background:transparent;border:none;color:#e2e8f0;padding:8px 10px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;border-top:1px solid rgba(52,211,153,0.15);">🇫🇷 Français (FRA)</button>
-  </div>
-</div>
+            
         </div>
         <div class="logo-container" style="max-width:920px;margin:16px auto 24px;padding:28px 36px;display:flex;align-items:center;justify-content:flex-start;gap:28px;background:radial-gradient(circle at 80% 35%,rgba(234,179,8,0.08),transparent 45%),radial-gradient(circle at 20% 50%,rgba(52,211,153,0.10),transparent 45%),linear-gradient(135deg,#0f172a 0%,#111827 55%,#0b1120 100%);border-radius:20px;border:1px solid rgba(52,211,153,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.5);">
   <img src="logo_3d_platino.png" alt="Platincoin Token" class="logo-img floating-logo" style="width:110px;height:110px;flex-shrink:0;">
@@ -1364,6 +1366,16 @@ async function addTokenToWallet() {
 <script id="plt-4lang-engine">
 (function(){
   const dict = {
+    it: {
+      "Home":"Home","FAQ & Docs":"FAQ e Documenti","Contact Us":"Contatti","PoW Node Explorer":"Explorer Nodi PoW",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo e FAQ",
+      "Technical specifications, smart contract verification proofs, and tokenomics governance.":"Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificate On-Chain del Protocollo",
+      "Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.":"Clicca su una domanda per verificare sicurezza del contratto, liquidità bloccata e parametri di mining.",
+      "How is Platincoin ($PLT) secured and verified on-chain?":"Come è protetto e verificato on-chain Platincoin ($PLT)?",
+      "How can I independently verify the Liquidity Lock (#2113264)?":"Come posso verificare autonomamente il blocco liquidità (#2113264)?",
+      "What is the Mining Vault and how does the 89.85% allocation work?":"Cos'è il Mining Vault e come funziona l'allocazione dell'89,85%?"
+    },
     es: {
       "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
       "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
@@ -1379,6 +1391,8 @@ async function addTokenToWallet() {
       "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
       "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
       "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
+      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo y FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Verificadas On-Chain del Protocolo",
       "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
     },
     fr: {
@@ -1396,40 +1410,42 @@ async function addTokenToWallet() {
       "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
       "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
       "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
+      "Protocol Whitepaper & FAQ":"Livre Blanc du Protocole et FAQ",
+      "Verified On-Chain Protocol FAQ":"FAQ Vérifiées On-Chain du Protocole",
       "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
     }
   };
   const orig = window.switchLang || window.setL;
-  const savedNodes = [];
-  function cacheNodes(){
-    if(savedNodes.length) return;
+  const cache = [];
+  function buildCache(){
+    if(cache.length) return;
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let n; while(n = w.nextNode()) savedNodes.push({node: n, orig: n.nodeValue});
+    let n; while(n = w.nextNode()) cache.push({n:n, t:n.nodeValue});
   }
-  function setAllLang(l){
-    cacheNodes();
-    savedNodes.forEach(item => item.node.nodeValue = item.orig);
-    if(orig) orig(l === "es" || l === "fr" ? "en" : l);
+  window.pltSetLang = function(l){
+    buildCache();
+    cache.forEach(x => x.n.nodeValue = x.t);
+    if(orig) orig(l === "it" ? "it" : "en");
     localStorage.setItem("plt_lang", l);
-    const cur = document.getElementById("lang-dd-cur");
-    if(cur) cur.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
-    if(l === "es" || l === "fr"){
-      const map = dict[l];
-      savedNodes.forEach(item => {
-        let v = item.orig;
-        for(const k in map){ if(v.includes(k)) v = v.replace(k, map[k]); }
-        item.node.nodeValue = v;
+    const c = document.getElementById("lang-dd-cur");
+    if(c) c.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
+    const ll = document.getElementById("plt-lang-list"); if(ll) ll.style.display = "none";
+    const hm = document.getElementById("plt-dropdown-menu") || document.getElementById("m"); if(hm) hm.style.display = "none";
+    if(dict[l]){
+      const m = dict[l];
+      cache.forEach(x => {
+        let v = x.t;
+        for(const k in m){ if(v.includes(k)) v = v.split(k).join(m[k]); }
+        x.n.nodeValue = v;
       });
     }
-  }
-  window.switchLang = setAllLang;
-  window.setL = setAllLang;
+  };
   document.addEventListener("click", function(e){
-    const m = document.getElementById("lang-dd-menu");
-    if(m && !e.target.closest(".lang-switch")) m.style.display = "none";
+    if(!e.target.closest(".plt-lang-wrap")){ const ll=document.getElementById("plt-lang-list"); if(ll) ll.style.display="none"; }
+    if(!e.target.closest("#plt-hamburger-bar")){ const hm=document.getElementById("plt-dropdown-menu")||document.getElementById("m"); if(hm) hm.style.display="none"; }
   });
-  const sv = localStorage.getItem("plt_lang");
-  if(sv && sv !== "en") setTimeout(()=>setAllLang(sv), 150);
+  const s = localStorage.getItem("plt_lang");
+  if(s && s !== "en") setTimeout(()=>window.pltSetLang(s), 100);
 })();
 </script>
 
