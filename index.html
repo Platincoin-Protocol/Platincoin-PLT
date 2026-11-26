@@ -1434,6 +1434,10 @@ async function addTokenToWallet() {
       }
       if(el._origHtml) el.innerHTML = isIt ? el._itHtml : el._origHtml;
     });
+    
+    document.querySelectorAll('#plt-dropdown-menu a, #m a').forEach(a => {
+      if(a.getAttribute('href') === 'explorer.html') a.textContent = isIt ? '🔍 Explorer Nodi PoW' : '🔍 PoW Node Explorer';
+    });
     const lbl = document.getElementById('plt-lang-label');
     if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
     document.querySelectorAll('#plt-lang-drop button').forEach(b => {

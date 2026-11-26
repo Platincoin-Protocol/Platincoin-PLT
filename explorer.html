@@ -131,6 +131,10 @@ setL(curL);
       const sib = el.parentElement && el.parentElement.querySelector('.lang-it');
       if(sib && sib.textContent.trim()) el.style.display = isIt ? 'none' : '';
     });
+    
+    document.querySelectorAll('#plt-dropdown-menu a, #m a').forEach(a => {
+      if(a.getAttribute('href') === 'explorer.html') a.textContent = isIt ? '🔍 Explorer Nodi PoW' : '🔍 PoW Node Explorer';
+    });
     const lbl = document.getElementById('plt-lang-label');
     if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
     document.querySelectorAll('#plt-lang-drop button').forEach(b => {
