@@ -93,7 +93,7 @@
 
 
 
-<script src="plt-dict.js?v=5"></script>
+<script src="plt-dict.js?v=6"></script>
 <script id="plt-inline-i18n">
 (function(){
   let nodes = [], phs = [];
@@ -131,10 +131,10 @@
     
     document.querySelectorAll('summary, p, h1, h2, h3, h4, a, button, li, td, th, label, span').forEach(el => {
       if(el.closest('.notranslate')) return;
-      if(!el.dataset.pltOrigHtml) el.dataset.pltOrigHtml = el.innerHTML.replace(/\s+/g, ' ').trim();
-      const origH = el.dataset.pltOrigHtml;
-      if(tl === 'en'){ el.innerHTML = origH; return; }
-      if(map[origH]) el.innerHTML = map[origH];
+      if(!el.dataset.pltOrigTxt) el.dataset.pltOrigTxt = el.textContent.replace(/\s+/g, ' ').trim();
+      const origH = el.dataset.pltOrigTxt;
+      if(tl === 'en'){ el.textContent = origH; return; }
+      if(map[origH]) el.textContent = map[origH];
     });
     phs.forEach(item => {
       if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
