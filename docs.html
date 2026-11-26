@@ -208,7 +208,7 @@
     localStorage.setItem('plt_lang_lbl', label);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
     const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
-    applyLocal(code);
+    applyLang(code);
   };
   document.addEventListener('click', ()=>{
     const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
@@ -218,7 +218,7 @@
     const c = localStorage.getItem('plt_lang_code') || 'en';
     const lbl = localStorage.getItem('plt_lang_lbl') || 'ENG';
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = lbl;
-    if(c !== 'en') applyLocal(c);
+    if(c !== 'en') applyLang(c);
 })();
 </script>
 </body></html>
