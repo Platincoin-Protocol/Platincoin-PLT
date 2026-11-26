@@ -148,7 +148,7 @@ setL(curL);
 
 
 
-<script src="plt-dict.js?v=2"></script>
+<script src="plt-dict.js?v=3"></script>
 <script id="plt-inline-i18n">
 (function(){
   let nodes = [], phs = [];
@@ -180,8 +180,8 @@ setL(curL);
     const d = window.PLT_DICT || {};
     const map = d[tl] || {};
     nodes.forEach(item => {
-      const t = item.orig.trim();
-      if(map[t]) item.node.nodeValue = item.orig.replace(t, map[t]);
+      const t = item.orig.replace(/\s+/g, ' ').trim();
+      if(map[t]) item.node.nodeValue = map[t];
     });
     phs.forEach(item => {
       if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
