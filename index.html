@@ -352,8 +352,6 @@
   });
   document.addEventListener("click", function(e) {
     if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
-  });
-
 })();
 </script>
 <!-- BANNER CYBERPUNK BILINGUE IN ALTO -->
@@ -1410,6 +1408,8 @@ document.querySelectorAll("*").forEach(e=>{
       wpEn.style.display = (tl === 'it') ? 'none' : 'block';
       wpIt.style.display = (tl === 'it') ? 'block' : 'none';
     }
+    document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
+    document.querySelectorAll('.lang-en').forEach(e => e.style.display = (tl === 'it') ? 'none' : '');
     if(tl === 'en'){
       nodes.forEach(x => x.node.nodeValue = x.orig);
       phs.forEach(x => x.el.setAttribute('placeholder', x.orig));
@@ -1423,21 +1423,6 @@ document.querySelectorAll("*").forEach(e=>{
     });
     phs.forEach(item => {
       if(map[item.orig]) item.el.setAttribute('placeholder', map[item.orig]);
-    });
-    document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
-    document.querySelectorAll('.lang-en').forEach(e => {
-      e.style.display = (tl === 'it') ? 'none' : '';
-      if(!e.dataset.pltEn) e.dataset.pltEn = e.textContent.replace(/\s+/g, ' ').trim();
-      const orig = e.dataset.pltEn;
-      if(tl === 'en'){ e.textContent = orig; return; }
-      if(tl !== 'it' && map[orig]) e.textContent = map[orig];
-    });
-    document.querySelectorAll('summary, p, h1, h2, h3, h4, a, button, li, td, th, label').forEach(el => {
-      if(el.closest('.notranslate') || el.querySelector('input,select,textarea,.lang-en,.lang-it')) return;
-      if(!el.dataset.pltEn) el.dataset.pltEn = el.textContent.replace(/\s+/g, ' ').trim();
-      const orig = el.dataset.pltEn;
-      if(tl === 'en'){ el.textContent = orig; return; }
-      if(map[orig]) el.textContent = map[orig];
     });
   }
   window.pltApplyLang = function(code, label){
