@@ -78,185 +78,33 @@
 <div style="max-width:1520px;width:96%;margin:8px auto 12px auto;display:flex;justify-content:flex-end;position:relative;z-index:1100;">
   
 </div>
+<style>.lang-btn{display:none!important;}</style>
 <script>
-(function() {
-  const btn = document.getElementById("plt-menu-toggle");
-  const menu = document.getElementById("plt-dropdown-menu");
-  if (!btn || !menu) return;
-  btn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  });
-  document.addEventListener("click", function(e) {
-    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
-  });
-})();
-</script>
-<div style="max-width:960px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
-  <button type="button" class="lang-btn" onclick="setDocsLang('en')">ENG</button>
-  <button type="button" class="lang-btn" onclick="setDocsLang('it')">ITA</button>
-</div>
-<div style="max-width:960px;margin:0 auto 20px;padding:22px;border-radius:18px;background:#111827;border:1px solid rgba(52,211,153,.32);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-  <img src="PLT_logo_320x320.png" alt="PLT" style="width:64px;height:64px;border-radius:50%;">
-  <div>
-    <h1 class="lang-en" style="margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Protocol Whitepaper &amp; FAQ</h1>
-    <h1 class="lang-it" style="display:none;margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Whitepaper del Protocollo e FAQ</h1>
-    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Technical specifications, smart contract verification proofs, and tokenomics governance.</p>
-    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.</p>
-  </div>
-  <a href="whitepaper.html" target="_blank" rel="noopener" style="margin-left:auto;padding:11px 18px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 15px rgba(124,92,255,0.35);">
-    <span class="lang-en">📄 Read Whitepaper ↗</span>
-    <span class="lang-it" style="display:none;">📄 Leggi il Whitepaper ↗</span>
-  </a>
-</div>
-<section id="plt-interactive-faq" style="max-width:960px;margin:28px auto;padding:26px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.45);text-align:left;">
-  <div style="margin-bottom:18px;">
-    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,0.14);color:#34d399;font-size:11px;font-weight:800;letter-spacing:0.8px;">
-      <span class="lang-en">🔍 TRANSPARENCY &amp; TECHNICAL AUDIT</span>
-      <span class="lang-it" style="display:none;">🔍 TRASPARENZA E VERIFICA TECNICA</span>
-    </span>
-    <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#ffffff;">Verified On-Chain Protocol FAQ</h2>
-    <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#ffffff;">Domande Frequenti e Audit On-Chain Verificati</h2>
-    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.</p>
-    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Clicca su una domanda per consultare i dettagli su sicurezza del contratto, blocco liquidità e parametri di mining.</p>
-  </div>
-
-  <div style="display:grid;gap:10px;">
-    <details open style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
-      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
-        <span>
-          <span class="lang-en">🛡️ How is Platincoin ($PLT) secured and verified on-chain?</span>
-          <span class="lang-it" style="display:none;">🛡️ Come è protetto e verificato on-chain Platincoin ($PLT)?</span>
-        </span>
-        <span style="color:#34d399;font-size:16px;">▾</span>
-      </summary>
-      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">The $PLT BEP-20 smart contract (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) is open-source and verified on BscScan. It enforces a strict <strong>11,000,000 PLT hard cap</strong>, <strong>0% buy/sell taxes</strong>, and no hidden blacklist or arbitrary minting functions.</p>
-      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Lo smart contract BEP-20 di $PLT (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) è open-source e verificato su BscScan. Impone un <strong>tetto massimo di 11.000.000 PLT</strong>, <strong>0% di tasse sugli scambi</strong> e nessuna funzione nascosta di blacklist o conio arbitrario.</p>
-    </details>
-
-    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
-      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
-        <span>
-          <span class="lang-en">🔒 How can I independently verify the Liquidity Lock (#2113264)?</span>
-          <span class="lang-it" style="display:none;">🔒 Come posso verificare il blocco della liquidità (#2113264)?</span>
-        </span>
-        <span style="color:#a78bfa;font-size:16px;">▾</span>
-      </summary>
-      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">100% of the initial PancakeSwap V2 liquidity pool tokens are locked for 1 year via <strong>PinkLock (Certificate #2113264)</strong>. Anyone can inspect the time-locked smart contract directly from the PinkLock button in the Market &amp; Tokenomics section below.</p>
-      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Il 100% dei token LP della pool iniziale su PancakeSwap V2 è bloccato per 1 anno tramite <strong>PinkLock (Certificato #2113264)</strong>. Chiunque può ispezionare lo smart contract timelock dal pulsante PinkLock nella sezione Mercato e Tokenomics qui sotto.</p>
-    </details>
-
-    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
-      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
-        <span>
-          <span class="lang-en">⛏️ What is the Mining Vault and how does the 89.85% allocation work?</span>
-          <span class="lang-it" style="display:none;">⛏️ Cos'è il Mining Vault e come funziona la quota dell'89,85%?</span>
-        </span>
-        <span style="color:#a78bfa;font-size:16px;">▾</span>
-      </summary>
-      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Exactly <strong>9,883,500 PLT (89.85% of total supply)</strong> is secured inside the on-chain Mining Vault smart contract to back Dual SHA-256 CPU Proof-of-Work rewards, ensuring fair algorithmic distribution with zero presale or private VC dump risk.</p>
-      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Esattamente <strong>9.883.500 PLT (l'89,85% della supply totale)</strong> sono custoditi nello smart contract Mining Vault a copertura delle ricompense CPU Proof-of-Work Dual SHA-256, garantendo una distribuzione algoritmica equa senza prevendite né fondi privati.</p>
-    </details>
-
-    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
-      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
-        <span>
-          <span class="lang-en">💱 Where can I buy or trade $PLT with 0% tax?</span>
-          <span class="lang-it" style="display:none;">💱 Dove posso acquistare o scambiare $PLT con 0% di tasse?</span>
-        </span>
-        <span style="color:#a78bfa;font-size:16px;">▾</span>
-      </summary>
-      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">You can swap <strong>USDT or BNB for $PLT</strong> directly on PancakeSwap V2 using the <em>Buy $PLT</em> buttons on this portal. Because the contract applies <strong>0% swap tax</strong>, a standard low slippage tolerance (0.5% – 1%) is sufficient.</p>
-      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Puoi scambiare <strong>USDT o BNB per $PLT</strong> direttamente su PancakeSwap V2 tramite i pulsanti <em>Compra $PLT</em> di questo portale. Grazie allo <strong>0% di tasse</strong> del contratto, è sufficiente uno slippage minimo (0,5% – 1%).</p>
-    </details>
-  </div>
-</section>
-
-<script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
-<footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support &amp; Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Contact Form ↗</a></div></footer>
-<script id="plt-4lang-engine">
 (function(){
-  const dict = {
-    it: {
-      "Home":"Home","FAQ & Docs":"FAQ e Documenti","Contact Us":"Contatti","PoW Node Explorer":"Explorer Nodi PoW",
-      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo e FAQ",
-      "Technical specifications, smart contract verification proofs, and tokenomics governance.":"Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.",
-      "Verified On-Chain Protocol FAQ":"FAQ Verificate On-Chain del Protocollo",
-      "Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.":"Clicca su una domanda per verificare sicurezza del contratto, liquidità bloccata e parametri di mining.",
-      "How is Platincoin ($PLT) secured and verified on-chain?":"Come è protetto e verificato on-chain Platincoin ($PLT)?",
-      "How can I independently verify the Liquidity Lock (#2113264)?":"Come posso verificare autonomamente il blocco liquidità (#2113264)?",
-      "What is the Mining Vault and how does the 89.85% allocation work?":"Cos'è il Mining Vault e come funziona l'allocazione dell'89,85%?"
-    },
-    es: {
-      "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
-      "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
-      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO","BLOCK HEIGHT":"ALTURA DE BLOQUE","CIRCULATING SUPPLY":"OFERTA CIRCULANTE","MAXIMUM SUPPLY":"OFERTA MÁXIMA",
-      "VERIFIED BEP-20 SMART CONTRACT":"CONTRATO INTELIGENTE BEP-20 VERIFICADO",
-      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"DISTRIBUCIÓN ON-CHAIN Y BÓVEDA DE MINERÍA",
-      "Mining Vault Reserve":"Reserva Bóveda de Minería","Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
-      "CPU Public Mining Status:":"Estado Minería Pública CPU:","CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
-      "LIVE DEX CHART (PLT / USDT)":"GRÁFICO DEX EN VIVO (PLT / USDT)",
-      "Smart Contract & 0% Tax Audit":"Auditoría Contrato Inteligente y 0% Impuestos",
-      "1-Year Liquidity Lock (PinkLock)":"Bloqueo de Liquidez 1 Año (PinkLock)",
-      "Market Indexing & Explorer Sync":"Indexación de Mercado y Explorador",
-      "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
-      "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
-      "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
-      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo y FAQ",
-      "Verified On-Chain Protocol FAQ":"FAQ Verificadas On-Chain del Protocolo",
-      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
-    },
-    fr: {
-      "Home":"Accueil","FAQ & Docs":"FAQ et Documentation","Contact Us":"Contactez-nous","PoW Node Explorer":"Explorateur de Nœuds PoW",
-      "The Sovereign Digital Platinum Network":"Le Réseau Souverain de Platine Numérique",
-      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT","BLOCK HEIGHT":"HAUTEUR DE BLOC","CIRCULATING SUPPLY":"OFFRE EN CIRCULATION","MAXIMUM SUPPLY":"OFFRE MAXIMALE",
-      "VERIFIED BEP-20 SMART CONTRACT":"CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ",
-      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"ALLOCATION ON-CHAIN ET COFFRE DE MINAGE",
-      "Mining Vault Reserve":"Réserve Coffre de Minage","Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
-      "CPU Public Mining Status:":"Statut Minage Public CPU :","CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
-      "LIVE DEX CHART (PLT / USDT)":"GRAPHIQUE DEX EN DIRECT (PLT / USDT)",
-      "Smart Contract & 0% Tax Audit":"Audit Contrat Intelligent et 0% Taxe",
-      "1-Year Liquidity Lock (PinkLock)":"Verrouillage Liquidité 1 An (PinkLock)",
-      "Market Indexing & Explorer Sync":"Indexation Marché et Explorateur",
-      "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
-      "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
-      "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
-      "Protocol Whitepaper & FAQ":"Livre Blanc du Protocole et FAQ",
-      "Verified On-Chain Protocol FAQ":"FAQ Vérifiées On-Chain du Protocole",
-      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
-    }
-  };
-  const orig = window.switchLang || window.setL;
-  const cache = [];
-  function buildCache(){
-    if(cache.length) return;
-    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let n; while(n = w.nextNode()) cache.push({n:n, t:n.nodeValue});
+  const list = document.getElementById('plt-lang-list');
+  if(list){
+    list.innerHTML = '<div onclick="pltApplyLang(\'en\',\'ENG\')" style="padding:10px 14px;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English</div>' +
+                     '<div onclick="pltApplyLang(\'it\',\'ITA\')" style="padding:10px 14px;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(255,255,255,0.08);">🇮🇹 Italiano</div>';
   }
-  window.pltSetLang = function(l){
-    buildCache();
-    cache.forEach(x => x.n.nodeValue = x.t);
-    if(orig) orig(l === "it" ? "it" : "en");
-    localStorage.setItem("plt_lang", l);
-    const c = document.getElementById("lang-dd-cur");
-    if(c) c.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
-    const ll = document.getElementById("plt-lang-list"); if(ll) ll.style.display = "none";
-    const hm = document.getElementById("plt-dropdown-menu") || document.getElementById("m"); if(hm) hm.style.display = "none";
-    if(dict[l]){
-      const m = dict[l];
-      cache.forEach(x => {
-        let v = x.t;
-        for(const k in m){ if(v.includes(k)) v = v.split(k).join(m[k]); }
-        x.n.nodeValue = v;
-      });
-    }
+  window.pltApplyLang = function(code, label){
+    localStorage.setItem('plt_lang_code', code);
+    localStorage.setItem('plt_lang_lbl', label);
+    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
+    if(list) list.style.display = 'none';
+    if(typeof switchLang === 'function') switchLang(code);
+    if(typeof setDocsLang === 'function') setDocsLang(code);
+    if(typeof setContactLang === 'function') setContactLang(code);
+    if(typeof setL === 'function') setL(code);
   };
-  document.addEventListener("click", function(e){
-    if(!e.target.closest(".plt-lang-wrap")){ const ll=document.getElementById("plt-lang-list"); if(ll) ll.style.display="none"; }
-    if(!e.target.closest("#plt-hamburger-bar")){ const hm=document.getElementById("plt-dropdown-menu")||document.getElementById("m"); if(hm) hm.style.display="none"; }
+  document.addEventListener('click', ()=>{
+    const m = document.getElementById('plt-nav-list');
+    if(list) list.style.display='none'; if(m) m.style.display='none';
   });
-  const s = localStorage.getItem("plt_lang");
-  if(s && s !== "en") setTimeout(()=>window.pltSetLang(s), 100);
+  window.addEventListener('DOMContentLoaded', ()=>{
+    const c = (localStorage.getItem('plt_lang_code') === 'it') ? 'it' : 'en';
+    const lbl = (c === 'it') ? 'ITA' : 'ENG';
+    pltApplyLang(c, lbl);
+  });
 })();
 </script>
 
