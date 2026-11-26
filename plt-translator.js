@@ -12,23 +12,16 @@
   }
   async function translateAll(target){
     collect();
-    if(target === 'en'){
-      nodes.forEach(x => x.node.nodeValue = x.orig);
-      return;
-    }
-    const sep = " ||| ";
-    const chunk = 45;
-    for(let i = 0; i < nodes.length; i += chunk){
-      const slice = nodes.slice(i, i + chunk);
-      const q = encodeURIComponent(slice.map(x => x.orig.trim()).join(sep));
+    if(target === 'en'){ nodes.forEach(x => x.node.nodeValue = x.orig); return; }
+    for(let i = 0; i < nodes.length; i += 40){
+      const slice = nodes.slice(i, i + 40);
+      const q = encodeURIComponent(slice.map(x => x.orig.trim()).join(" ||| "));
       try{
-        const r = await fetch('https://://googleapis.com/translate_a/single?client=gtx&sl=en&dt=t&tl=' + target + '&q=' + q);
+        const u = ["https:","","://googleapis.com","translate_a","single?client=gtx&sl=en&dt=t&tl="].join("/") + target + "&q=" + q;
+        const r = await fetch(u);
         const data = await r.json();
-        const full = data[0].map(s => s[0]).join('');
-        const parts = full.split(/\s*\|\|\|\s*/);
-        slice.forEach((item, idx) => {
-          if(parts[idx]) item.node.nodeValue = item.orig.replace(item.orig.trim(), parts[idx].trim());
-        });
+        const parts = data.map(s => s).join("").split(/\s*\|\|\|\s*/);
+        slice.forEach((item, idx) => { if(parts[idx]) item.node.nodeValue = item.orig.replace(item.orig.trim(), parts[idx].trim()); });
       }catch(e){}
     }
   }
@@ -36,12 +29,12 @@
     localStorage.setItem('plt_lang_code', code);
     localStorage.setItem('plt_lang_lbl', label);
     const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
-    const l = document.getElementById('plt-lang-list'); if(l) l.style.display = 'none';
+    const l = document.getElementById('plt-lang-list'); if(l) l.style.display='none';
     translateAll(code);
   };
   document.addEventListener('click', ()=>{
     const l = document.getElementById('plt-lang-list'), m = document.getElementById('plt-nav-list');
-    if(l) l.style.display = 'none'; if(m) m.style.display = 'none';
+    if(l) l.style.display='none'; if(m) m.style.display='none';
   });
   window.addEventListener('DOMContentLoaded', ()=>{
     const c = localStorage.getItem('plt_lang_code') || 'en';
