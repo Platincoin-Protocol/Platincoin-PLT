@@ -172,92 +172,33 @@
   </div>
 </section>
 
-<script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
-<footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support &amp; Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">Contact Form ↗</a></div></footer>
-<script id="plt-4lang-engine">
+<style>.lang-btn{display:none!important;}</style>
+<script>
 (function(){
-  const dict = {
-    it: {
-      "Home":"Home","FAQ & Docs":"FAQ e Documenti","Contact Us":"Contatti","PoW Node Explorer":"Explorer Nodi PoW",
-      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo e FAQ",
-      "Technical specifications, smart contract verification proofs, and tokenomics governance.":"Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.",
-      "Verified On-Chain Protocol FAQ":"FAQ Verificate On-Chain del Protocollo",
-      "Click any question below to inspect smart contract security, liquidity lock proofs, and mining parameters.":"Clicca su una domanda per verificare sicurezza del contratto, liquidità bloccata e parametri di mining.",
-      "How is Platincoin ($PLT) secured and verified on-chain?":"Come è protetto e verificato on-chain Platincoin ($PLT)?",
-      "How can I independently verify the Liquidity Lock (#2113264)?":"Come posso verificare autonomamente il blocco liquidità (#2113264)?",
-      "What is the Mining Vault and how does the 89.85% allocation work?":"Cos'è il Mining Vault e come funziona l'allocazione dell'89,85%?"
-    },
-    es: {
-      "Home":"Inicio","FAQ & Docs":"FAQ y Documentación","Contact Us":"Contáctanos","PoW Node Explorer":"Explorador de Nodos PoW",
-      "The Sovereign Digital Platinum Network":"La Red Soberana de Platino Digital",
-      "LIVE MARKET PRICE":"PRECIO DE MERCADO EN VIVO","BLOCK HEIGHT":"ALTURA DE BLOQUE","CIRCULATING SUPPLY":"OFERTA CIRCULANTE","MAXIMUM SUPPLY":"OFERTA MÁXIMA",
-      "VERIFIED BEP-20 SMART CONTRACT":"CONTRATO INTELIGENTE BEP-20 VERIFICADO",
-      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"DISTRIBUCIÓN ON-CHAIN Y BÓVEDA DE MINERÍA",
-      "Mining Vault Reserve":"Reserva Bóveda de Minería","Circulating & Locked LP Pool":"Pool Circulante y Liquidez Bloqueada",
-      "CPU Public Mining Status:":"Estado Minería Pública CPU:","CLOSED TESTNET (OPENING SOON)":"TESTNET CERRADA (PRÓXIMA APERTURA)",
-      "LIVE DEX CHART (PLT / USDT)":"GRÁFICO DEX EN VIVO (PLT / USDT)",
-      "Smart Contract & 0% Tax Audit":"Auditoría Contrato Inteligente y 0% Impuestos",
-      "1-Year Liquidity Lock (PinkLock)":"Bloqueo de Liquidez 1 Año (PinkLock)",
-      "Market Indexing & Explorer Sync":"Indexación de Mercado y Explorador",
-      "On-Chain Verification & Public Audits":"Verificación On-Chain y Auditorías Públicas",
-      "Protocol Development & Audit Trail":"Desarrollo del Protocolo y Hoja de Ruta",
-      "Protocol, Security & Ecosystem FAQ":"Preguntas Frecuentes de Protocolo y Seguridad",
-      "Protocol Whitepaper & FAQ":"Whitepaper del Protocollo y FAQ",
-      "Verified On-Chain Protocol FAQ":"FAQ Verificadas On-Chain del Protocolo",
-      "Buy $PLT on PancakeSwap":"Comprar $PLT en PancakeSwap","Add $PLT to Wallet":"Añadir $PLT a la Billetera"
-    },
-    fr: {
-      "Home":"Accueil","FAQ & Docs":"FAQ et Documentation","Contact Us":"Contactez-nous","PoW Node Explorer":"Explorateur de Nœuds PoW",
-      "The Sovereign Digital Platinum Network":"Le Réseau Souverain de Platine Numérique",
-      "LIVE MARKET PRICE":"PRIX DU MARCHÉ EN DIRECT","BLOCK HEIGHT":"HAUTEUR DE BLOC","CIRCULATING SUPPLY":"OFFRE EN CIRCULATION","MAXIMUM SUPPLY":"OFFRE MAXIMALE",
-      "VERIFIED BEP-20 SMART CONTRACT":"CONTRAT INTELLIGENT BEP-20 VÉRIFIÉ",
-      "ON-CHAIN SUPPLY & VAULT ALLOCATION":"ALLOCATION ON-CHAIN ET COFFRE DE MINAGE",
-      "Mining Vault Reserve":"Réserve Coffre de Minage","Circulating & Locked LP Pool":"Pool Circulant et Liquidité Verrouillée",
-      "CPU Public Mining Status:":"Statut Minage Public CPU :","CLOSED TESTNET (OPENING SOON)":"TESTNET FERMÉ (OUVERTURE PROCHAINE)",
-      "LIVE DEX CHART (PLT / USDT)":"GRAPHIQUE DEX EN DIRECT (PLT / USDT)",
-      "Smart Contract & 0% Tax Audit":"Audit Contrat Intelligent et 0% Taxe",
-      "1-Year Liquidity Lock (PinkLock)":"Verrouillage Liquidité 1 An (PinkLock)",
-      "Market Indexing & Explorer Sync":"Indexation Marché et Explorateur",
-      "On-Chain Verification & Public Audits":"Vérification On-Chain et Audits Publics",
-      "Protocol Development & Audit Trail":"Développement du Protocole et Feuille de Route",
-      "Protocol, Security & Ecosystem FAQ":"FAQ Protocole, Sécurité et Écosystème",
-      "Protocol Whitepaper & FAQ":"Livre Blanc du Protocole et FAQ",
-      "Verified On-Chain Protocol FAQ":"FAQ Vérifiées On-Chain du Protocole",
-      "Buy $PLT on PancakeSwap":"Acheter $PLT sur PancakeSwap","Add $PLT to Wallet":"Ajouter $PLT au Portefeuille"
-    }
-  };
-  const orig = window.switchLang || window.setL;
-  const cache = [];
-  function buildCache(){
-    if(cache.length) return;
-    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let n; while(n = w.nextNode()) cache.push({n:n, t:n.nodeValue});
+  const list = document.getElementById('plt-lang-list');
+  if(list){
+    list.innerHTML = '<div onclick="pltApplyLang(\'en\',\'ENG\')" style="padding:10px 14px;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;">🇬🇧 English</div>' +
+                     '<div onclick="pltApplyLang(\'it\',\'ITA\')" style="padding:10px 14px;color:#f8fafc;font-size:13px;font-weight:600;cursor:pointer;border-top:1px solid rgba(255,255,255,0.08);">🇮🇹 Italiano</div>';
   }
-  window.pltSetLang = function(l){
-    buildCache();
-    cache.forEach(x => x.n.nodeValue = x.t);
-    if(orig) orig(l === "it" ? "it" : "en");
-    localStorage.setItem("plt_lang", l);
-    const c = document.getElementById("lang-dd-cur");
-    if(c) c.textContent = l === "en" ? "ENG" : l === "it" ? "ITA" : l === "es" ? "ESP" : "FRA";
-    const ll = document.getElementById("plt-lang-list"); if(ll) ll.style.display = "none";
-    const hm = document.getElementById("plt-dropdown-menu") || document.getElementById("m"); if(hm) hm.style.display = "none";
-    if(dict[l]){
-      const m = dict[l];
-      cache.forEach(x => {
-        let v = x.t;
-        for(const k in m){ if(v.includes(k)) v = v.split(k).join(m[k]); }
-        x.n.nodeValue = v;
-      });
-    }
+  window.pltApplyLang = function(code, label){
+    localStorage.setItem('plt_lang_code', code);
+    localStorage.setItem('plt_lang_lbl', label);
+    const cur = document.getElementById('plt-cur-lang'); if(cur) cur.textContent = label;
+    if(list) list.style.display = 'none';
+    if(typeof switchLang === 'function') switchLang(code);
+    if(typeof setDocsLang === 'function') setDocsLang(code);
+    if(typeof setContactLang === 'function') setContactLang(code);
+    if(typeof setL === 'function') setL(code);
   };
-  document.addEventListener("click", function(e){
-    if(!e.target.closest(".plt-lang-wrap")){ const ll=document.getElementById("plt-lang-list"); if(ll) ll.style.display="none"; }
-    if(!e.target.closest("#plt-hamburger-bar")){ const hm=document.getElementById("plt-dropdown-menu")||document.getElementById("m"); if(hm) hm.style.display="none"; }
+  document.addEventListener('click', ()=>{
+    const m = document.getElementById('plt-nav-list');
+    if(list) list.style.display='none'; if(m) m.style.display='none';
   });
-  const s = localStorage.getItem("plt_lang");
-  if(s && s !== "en") setTimeout(()=>window.pltSetLang(s), 100);
+  window.addEventListener('DOMContentLoaded', ()=>{
+    const c = (localStorage.getItem('plt_lang_code') === 'it') ? 'it' : 'en';
+    pltApplyLang(c, c === 'it' ? 'ITA' : 'ENG');
+  });
 })();
 </script>
-
-</body></html>
+</body>
+</html>
