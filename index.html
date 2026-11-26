@@ -995,14 +995,7 @@ document.getElementById('live-supply-web3-it').innerText = initialBal.toFixed(2)
             if (rli) { rli.innerText = 'Valore a $' + targetPrice.toFixed(2) + ' (' + multiplier.toFixed(0) + 'x)'; }
             document.getElementById('roi-target').innerText = '$' + (plt * targetPrice).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
         }
-        function switchLang(lang){} else {
-                btnEn.className = 'lang-btn'; btnIt.className = 'lang-btn active';
-                enElements.forEach(el => el.style.display = 'none'); itElements.forEach(el => el.style.display = 'inline-block');
-                document.querySelectorAll('p.lang-it, h3.lang-it, h2.lang-it, h4.lang-it, .buy-text.lang-it').forEach(el => el.style.display = 'block');
-
-            }
-            calculateROI();
-        }
+        function switchLang(lang){}
         updateLiveMetrics(); setInterval(updateLiveMetrics, 3000);
 
 function calculateMiningROI() {
