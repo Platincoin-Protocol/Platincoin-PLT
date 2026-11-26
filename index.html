@@ -1409,7 +1409,7 @@ document.querySelectorAll("*").forEach(e=>{
       wpEn.style.display = (tl === 'it') ? 'none' : 'block';
       wpIt.style.display = (tl === 'it') ? 'block' : 'none';
     }
-    document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it') ? '' : 'none');
+    document.querySelectorAll('.lang-it').forEach(e => e.style.display = (tl === 'it' && e.textContent.trim()) ? '' : 'none');
     document.querySelectorAll('.lang-en').forEach(e => {
       const itEl = e.parentElement && e.parentElement.querySelector('.lang-it'); const hasIt = itEl && itEl.textContent.trim().length > 0;
       e.style.display = (tl === 'it' && hasIt) ? 'none' : '';
