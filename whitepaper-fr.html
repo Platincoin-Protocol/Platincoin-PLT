@@ -91,4 +91,5 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script>document.getElementById('wp-lang-toggle').onclick=(e)=>{e.stopPropagation();const d=document.getElementById('wp-lang-drop');d.style.display=d.style.display==='block'?'none':'block';};document.addEventListener('click',()=>{const d=document.getElementById('wp-lang-drop');if(d)d.style.display='none';});</script>
+<script>window.addEventListener('load',()=>{const d=document.getElementById('plt-lang-drop')||document.getElementById('wp-lang-drop');if(d&&!d.querySelector('[data-de-link]')){const b=document.createElement('button');b.type='button';b.setAttribute('data-de-link','1');b.style.marginTop='4px';b.innerHTML='<span>🇩🇪 DEUTSCH (DEU)</span><span></span>';b.onclick=()=>{location.href='whitepaper-de.html';};d.appendChild(b);}});</script>
 </body></html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Platincoin ($PLT) | FAQ & Docs</title>
+<link rel="icon" type="image/png" sizes="320x320" href="PLT_logo_320x320.png">
+<style>*{box-sizing:border-box}body{margin:0;padding:14px 14px 48px;background:#0b0f19;color:#f8fafc;font-family:system-ui,sans-serif}.lang-btn{padding:7px 13px;border-radius:8px;border:1px solid rgba(52,211,153,.35);background:rgba(52,211,153,.12);color:#34d399;font-weight:700;font-size:12px;cursor:pointer}</style>
+
+
+<style id="plt-universal-responsive">
+  *, *::before, *::after { box-sizing: border-box !important; }
+  html, body { width: 100% !important; max-width: 100vw !important; overflow-x: hidden !important; -webkit-text-size-adjust: 100%; }
+  img, svg, canvas, iframe, video { max-width: 100% !important; height: auto; }
+  div, section, header, footer, main, article, aside, p, a, span, code, pre {
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  code, pre, .mono { word-break: break-all !important; }
+  @media (max-width: 900px) {
+    .grid, .grid2, .grid3, .grid4, [style*="grid-template-columns"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    [style*="min-width"] { min-width: 0 !important; }
+  }
+  @media (max-width: 540px) {
+    body { padding: 8px !important; }
+    section, .card, header, footer { padding-left: 12px !important; padding-right: 12px !important; }
+    h1 { font-size: 19px !important; line-height: 1.25 !important; }
+    h2 { font-size: 17px !important; }
+    .val { font-size: 20px !important; }
+    table { display: block !important; width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+    #fcn-widget { transform: scale(0.78) !important; transform-origin: left center !important; }
+    #plt-dropdown-menu, #m { width: calc(100vw - 20px) !important; right: 0 !important; left: auto !important; }
+  }
+</style>
+</head>
+<body>
+<header id="plt-hamburger-bar" style="max-width:960px;margin:12px auto 10px;padding:10px 16px;border-radius:14px;background:rgba(15,23,42,0.94);backdrop-filter:blur(10px);border:1px solid rgba(52,211,153,0.28);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1000;">
+  <a href="index-de.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;"><img src="PLT_logo_320x320.png" alt="PLT" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:8px;">PLATINCOIN (PLT)</a>
+
+  <button type="button" id="plt-menu-toggle" aria-label="Menu" style="width:42px;height:38px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+    <span style="display:block;width:20px;height:2px;background:#34d399;border-radius:2px;"></span>
+  </button>
+
+  <div id="plt-dropdown-menu" style="display:none;position:absolute;top:56px;right:0;min-width:240px;border-radius:14px;padding:8px;background:#111827;border:1px solid rgba(52,211,153,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.8);text-align:left;">
+    <a href="index-de.html" style="display:block;padding:12px 14px;border-radius:10px;color:#f8fafc;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">🏠 Startseite</a>
+    <a href="docs-de.html" style="display:block;padding:12px 14px;border-radius:10px;color:#c4b5fd;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);">📖 FAQ & Dokumentation</a>
+    <a href="contact-de.html" style="display:block;padding:12px 14px;border-radius:10px;color:#34d399;text-decoration:none;font-size:14px;font-weight:700;">✉️ Kontakt</a>
+  
+      <a href="explorer-de.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">🔍 PoW-Node-Explorer</a>
+    <a href="whitepaper-de.html" style="display:flex;align-items:center;gap:10px;padding:11px 14px;color:#e2e8f0;font-size:13.5px;font-weight:600;text-decoration:none;border-top:1px solid rgba(52,211,153,0.15);">📄 Whitepaper</a>
+</div>
+</header>
+<script>
+(function() {
+  const btn = document.getElementById("plt-menu-toggle");
+  const menu = document.getElementById("plt-dropdown-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+  document.addEventListener("click", function(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = "none";
+  });
+})();
+</script>
+<div style="max-width:960px;margin:0 auto 14px;display:flex;justify-content:flex-end;gap:8px;">
+  <button type="button" class="lang-btn" onclick="setDocsLang('en')">ENG</button>
+  <button type="button" class="lang-btn" onclick="setDocsLang('it')">ITA</button>
+</div>
+<div style="max-width:960px;margin:0 auto 20px;padding:22px;border-radius:18px;background:#111827;border:1px solid rgba(52,211,153,.32);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+  <img src="PLT_logo_320x320.png" alt="PLT" style="width:64px;height:64px;border-radius:50%;">
+  <div>
+    <h1 class="lang-en" style="margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Protokoll-Whitepaper & FAQ</h1>
+    <h1 class="lang-it" style="display:none;margin:0 0 6px;font-size:21px;">Platincoin ($PLT) — Whitepaper del Protocollo e FAQ</h1>
+    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Technische Spezifikationen, Smart-Contract-Verifizierungsnachweise und Tokenomics-Governance.</p>
+    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Specifiche tecniche, prove di verifica dello smart contract e governance della tokenomics.</p>
+  </div>
+  <a href="whitepaper-de.html" target="_blank" rel="noopener" style="margin-left:auto;padding:11px 18px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#4f46e5);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 15px rgba(124,92,255,0.35);">📄 Whitepaper</a>
+</div>
+<section id="plt-interactive-faq" style="max-width:960px;margin:28px auto;padding:26px;border-radius:18px;background:linear-gradient(145deg,rgba(20,24,38,0.95),rgba(12,15,25,0.98));border:1px solid rgba(124,92,255,0.32);box-shadow:0 12px 35px rgba(0,0,0,0.45);text-align:left;">
+  <div style="margin-bottom:18px;">
+    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,0.14);color:#34d399;font-size:11px;font-weight:800;letter-spacing:0.8px;">
+      <span class="lang-en">🔍 TRANSPARENZ & TECHNISCHES AUDIT</span>
+      <span class="lang-it" style="display:none;">🔍 TRASPARENZA E VERIFICA TECNICA</span>
+    </span>
+    <h2 class="lang-en" style="margin:8px 0 4px;font-size:22px;color:#ffffff;">On-Chain Verifiziert Protocol FAQ</h2>
+    <h2 class="lang-it" style="display:none;margin:8px 0 4px;font-size:22px;color:#ffffff;">Domande Frequenti e Audit On-Chain Verificati</h2>
+    <p class="lang-en" style="margin:0;font-size:13px;color:#94a3b8;">Klicken Sie auf eine Frage unten, um Smart-Contract-Sicherheit, Liquiditätssperre und Mining-Parameter zu prüfen.</p>
+    <p class="lang-it" style="display:none;margin:0;font-size:13px;color:#94a3b8;">Clicca su una domanda per consultare i dettagli su sicurezza del contratto, blocco liquidità e parametri di mining.</p>
+  </div>
+
+  <div style="display:grid;gap:10px;">
+    <details open style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">🛡️ Wie ist Platincoin ($PLT) on-chain gesichert und verifiziert?</span>
+          <span class="lang-it" style="display:none;">🛡️ Come è protetto e verificato on-chain Platincoin ($PLT)?</span>
+        </span>
+        <span style="color:#34d399;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">The $PLT BEP-20 smart contract (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) is open-source and verified on BscScan. It enforces a strict <strong>11,000,000 PLT hard cap</strong>, <strong>0% buy/sell taxes</strong>, and no hidden blacklist or arbitrary minting functions.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Lo smart contract BEP-20 di $PLT (<code style="color:#34d399;">0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8</code>) è open-source e verificato su BscScan. Impone un <strong>tetto massimo di 11.000.000 PLT</strong>, <strong>0% di tasse sugli scambi</strong> e nessuna funzione nascosta di blacklist o conio arbitrario.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">🔒 Wie kann ich die Liquiditätssperre (#2113264) unabhängig überprüfen?</span>
+          <span class="lang-it" style="display:none;">🔒 Come posso verificare il blocco della liquidità (#2113264)?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">100% of the initial PancakeSwap V2 liquidity pool tokens are locked for 1 year via <strong>PinkLock (Certificate #2113264)</strong>. Anyone can inspect the time-locked smart contract directly from the PinkLock button in the Market & Tokenomics section below.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Il 100% dei token LP della pool iniziale su PancakeSwap V2 è bloccato per 1 anno tramite <strong>PinkLock (Certificato #2113264)</strong>. Chiunque può ispezionare lo smart contract timelock dal pulsante PinkLock nella sezione Mercato e Tokenomics qui sotto.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">⛏️ Was ist der Mining Vault und wie funktioniert die 89,85 %-Zuteilung?</span>
+          <span class="lang-it" style="display:none;">⛏️ Cos'è il Mining Vault e come funziona la quota dell'89,85%?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Exactly <strong>9,883,500 PLT (89.85% of total supply)</strong> is secured inside the on-chain Mining Vault smart contract to back Dual SHA-256 CPU Proof-of-Work rewards, ensuring fair algorithmic distribution with zero presale or private VC dump risk.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Esattamente <strong>9.883.500 PLT (l'89,85% della supply totale)</strong> sono custoditi nello smart contract Mining Vault a copertura delle ricompense CPU Proof-of-Work Dual SHA-256, garantendo una distribuzione algoritmica equa senza prevendite né fondi privati.</p>
+    </details>
+
+    <details style="border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);padding:14px 16px;">
+      <summary style="cursor:pointer;font-weight:700;font-size:14px;color:#f8fafc;list-style:none;display:flex;align-items:center;justify-content:space-between;">
+        <span>
+          <span class="lang-en">💱 Wo kann ich $PLT mit 0 % Steuer kaufen oder handeln?</span>
+          <span class="lang-it" style="display:none;">💱 Dove posso acquistare o scambiare $PLT con 0% di tasse?</span>
+        </span>
+        <span style="color:#a78bfa;font-size:16px;">▾</span>
+      </summary>
+      <p class="lang-en" style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">You can swap <strong>USDT or BNB for $PLT</strong> directly on PancakeSwap V2 using the <em>Buy $PLT</em> buttons on this portal. Because the contract applies <strong>0% swap tax</strong>, a standard low slippage tolerance (0.5% – 1%) is sufficient.</p>
+      <p class="lang-it" style="display:none;margin:10px 0 0;font-size:13px;line-height:1.6;color:#cbd5e1;">Puoi scambiare <strong>USDT o BNB per $PLT</strong> direttamente su PancakeSwap V2 tramite i pulsanti <em>Compra $PLT</em> di questo portale. Grazie allo <strong>0% di tasse</strong> del contratto, è sufficiente uno slippage minimo (0,5% – 1%).</p>
+    </details>
+  </div>
+</section>
+
+<script>function setDocsLang(l){document.querySelectorAll('.lang-en').forEach(e=>e.style.display=l==='en'?'':'none');document.querySelectorAll('.lang-it').forEach(e=>e.style.display=l==='it'?'':'none');}</script>
+<footer style="max-width:960px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;"><div style="margin-top:12px;font-size:12.5px;color:#94a3b8;">Official Support & Inquiries: <a href="mailto:info@platincoin-plt.org" style="color:#34d399;font-weight:700;text-decoration:none;">info@platincoin-plt.org</a> &nbsp;|&nbsp; <a href="contact-de.html" style="color:#c4b5fd;font-weight:700;text-decoration:none;">✉️ Kontakt</a></div></footer>
+<style>
+  .lang-btn { display: none !important; }
+
+  body[data-lang="en"] .lang-en { display: inline !important; }
+  body[data-lang="en"] .lang-it { display: none !important; }
+  body[data-lang="it"] .lang-it { display: inline !important; }
+  body[data-lang="it"] .lang-en { display: none !important; }
+
+  #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
+  #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 185px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
+  #plt-lang-drop button { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 10px 12px !important; background: transparent !important; border: none !important; border-radius: 8px !important; color: #f8fafc !important; font-size: 13px !important; font-weight: 700 !important; cursor: pointer !important; text-align: left !important; }
+  #plt-lang-drop button:hover { background: rgba(52,211,153,0.12) !important; }
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.2) !important; color: #34d399 !important; }
+</style>
+<script>
+(function(){
+  function applyPltLang(code){
+    const isIt = (code === 'it');
+    localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
+    document.documentElement.lang = isIt ? 'it' : 'en'; document.body.setAttribute('data-lang', isIt ? 'it' : 'en');
+    try { if(typeof switchLang === 'function') switchLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setDocsLang === 'function') setDocsLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setContactLang === 'function') setContactLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setL === 'function') setL(isIt ? 'it' : 'en'); } catch(e){}
+    document.querySelectorAll('.lang-it').forEach(el => { if(el.textContent.trim()) el.style.display = isIt ? '' : 'none'; });
+    document.querySelectorAll('.lang-en').forEach(el => {
+      const sib = el.parentElement && el.parentElement.querySelector('.lang-it');
+      if(sib && sib.textContent.trim()) el.style.display = isIt ? 'none' : '';
+    });
+    
+    document.querySelectorAll('#plt-dropdown-menu a, #m a').forEach(a => {
+      if(a.getAttribute('href') === 'explorer.html') a.textContent = isIt ? '🔍 Explorer Nodi PoW' : '🔍 PoW Node Explorer';
+    });
+    const lbl = document.getElementById('plt-lang-label');
+    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
+    document.querySelectorAll('#plt-lang-drop button').forEach(b => {
+      const active = (b.dataset.lang === (isIt ? 'it' : 'en'));
+      b.classList.toggle('plt-opt-active', active);
+      const chk = b.querySelector('.plt-chk');
+      if(chk) chk.textContent = active ? '✓' : '';
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const menuBtnTmp = document.getElementById('plt-menu-toggle') || document.querySelector('header button, nav button'); const bar = document.getElementById('plt-hamburger-bar') || (menuBtnTmp && menuBtnTmp.parentElement);
+    const menuBtn = document.getElementById('plt-menu-toggle');
+    const mainDrop = document.getElementById('plt-dropdown-menu');
+
+    // Nasconde eventuale vecchio pulsante lingua fuori dalla barra superiore
+    document.querySelectorAll('#plt-lang-dropdown, #plt-lang-btn-wrap, .plt-floating-lang').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('div, button').forEach(el => {
+      if(bar && bar.contains(el)) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if((t === '🌐 ENG ▾' || t === '🌐 ITA ▾' || t === 'ENG ▾' || t === 'ITA ▾') && el.children.length <= 3){
+        el.style.display = 'none';
+      }
+    });
+
+    if(bar && menuBtn){
+      const controls = document.createElement('div');
+      controls.id = 'plt-right-controls';
+
+      const langWrap = document.createElement('div');
+      langWrap.id = 'plt-lang-wrap';
+      langWrap.innerHTML =
+        '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
+        '<div id="plt-lang-drop" style="display:none;">' +
+          '<button type="button" data-lang="en"><span>🇬🇧 ENGLISH (ENG)</span><span class="plt-chk"></span></button>' +
+          '<button type="button" data-lang="it" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span><span class="plt-chk"></span></button>' +
+        '</div>';
+
+      bar.insertBefore(controls, menuBtn);
+      controls.appendChild(langWrap);
+      controls.appendChild(menuBtn);
+
+      const langBtn = document.getElementById('plt-lang-toggle');
+      const langDrop = document.getElementById('plt-lang-drop');
+
+      // Mutua esclusione intelligente tra i due menu a tendina
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(mainDrop) mainDrop.style.display = 'none';
+        langDrop.style.display = (langDrop.style.display === 'block') ? 'none' : 'block';
+      });
+
+      menuBtn.addEventListener('click', () => {
+        langDrop.style.display = 'none';
+      }, true);
+
+      langDrop.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          applyPltLang(b.dataset.lang);
+          langDrop.style.display = 'none';
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!e.target.closest('#plt-lang-wrap')) langDrop.style.display = 'none';
+        if(mainDrop && !e.target.closest('#plt-menu-toggle') && !e.target.closest('#plt-dropdown-menu')) mainDrop.style.display = 'none';
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          langDrop.style.display = 'none';
+          if(mainDrop) mainDrop.style.display = 'none';
+        }
+      });
+    }
+
+    applyPltLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
+  });
+})();
+</script>
+<script>
+window.addEventListener('load', () => {
+  const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
+  if(d && !d.querySelector('[data-es-link]')){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('data-es-link', '1');
+    b.style.marginTop = '4px';
+    b.innerHTML = '<span>🇪🇸 ESPAÑOL (ESP)</span><span></span>';
+    b.onclick = () => { location.href = 'docs-es.html'; };
+    d.appendChild(b);
+  }
+});
+</script>
+<script>
+window.addEventListener('load', () => {
+  const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
+  if(d && !d.querySelector('[data-fr-link]')){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('data-fr-link', '1');
+    b.style.marginTop = '4px';
+    b.innerHTML = '<span>🇫🇷 FRANÇAIS (FRA)</span><span></span>';
+    b.onclick = () => { location.href = 'docs-fr.html'; };
+    d.appendChild(b);
+  }
+});
+</script>
+<style>
+  .lang-btn { display: none !important; }
+
+  body[data-lang="en"] .lang-en { display: inline !important; }
+  body[data-lang="en"] .lang-it { display: none !important; }
+  body[data-lang="it"] .lang-it { display: inline !important; }
+  body[data-lang="it"] .lang-en { display: none !important; }
+
+  #plt-right-controls { display: inline-flex !important; align-items: center !important; gap: 10px !important; margin-left: auto !important; }
+  #plt-lang-wrap { position: relative !important; display: inline-flex !important; align-items: center !important; z-index: 1005 !important; }
+  #plt-lang-drop { position: absolute !important; top: 48px !important; right: 0 !important; min-width: 185px !important; background: #111827 !important; border: 1px solid rgba(52,211,153,0.4) !important; border-radius: 12px !important; padding: 6px !important; box-shadow: 0 18px 40px rgba(0,0,0,0.8) !important; z-index: 1010 !important; }
+  #plt-lang-drop button { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 10px 12px !important; background: transparent !important; border: none !important; border-radius: 8px !important; color: #f8fafc !important; font-size: 13px !important; font-weight: 700 !important; cursor: pointer !important; text-align: left !important; }
+  #plt-lang-drop button:hover { background: rgba(52,211,153,0.12) !important; }
+  #plt-lang-drop button.plt-opt-active { background: rgba(52,211,153,0.2) !important; color: #34d399 !important; }
+</style>
+<script>
+(function(){
+  function applyPltLang(code){
+    const isIt = (code === 'it');
+    localStorage.setItem('plt_lang', isIt ? 'it' : 'en');
+    document.documentElement.lang = isIt ? 'it' : 'en'; document.body.setAttribute('data-lang', isIt ? 'it' : 'en');
+    try { if(typeof switchLang === 'function') switchLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setDocsLang === 'function') setDocsLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setContactLang === 'function') setContactLang(isIt ? 'it' : 'en'); } catch(e){}
+    try { if(typeof setL === 'function') setL(isIt ? 'it' : 'en'); } catch(e){}
+    document.querySelectorAll('.lang-it').forEach(el => { if(el.textContent.trim()) el.style.display = isIt ? '' : 'none'; });
+    document.querySelectorAll('.lang-en').forEach(el => {
+      const sib = el.parentElement && el.parentElement.querySelector('.lang-it');
+      if(sib && sib.textContent.trim()) el.style.display = isIt ? 'none' : '';
+    });
+    
+    const extraIt = {
+      "ASIGNACIÓN DE SUMINISTRO ON-CHAIN Y BÓVEDA": "ALLOCAZIONE FORNITURA ON-CHAIN E VAULT",
+      "Verifiable distribution of the strict 11,000,000 PLT fixed supply on BNB Smart Chain:": "Distribuzione verificabile della fornitura fissa di 11.000.000 PLT su BNB Smart Chain:",
+      "Mining Vault Reserve": "Riserva Mining Vault",
+      "Circulating & Locked LP Pool": "Pool LP Circolante e Bloccata",
+      "CPU Public Mining Status:": "Stato Mining Pubblico CPU:",
+      "CLOSED TESTNET (OPENING SOON)": "TESTNET CHIUSA (APERTURA A BREVE)",
+      "Smart Contract & 0 % Steuer-Audit": "Smart Contract e Audit 0% Tasse",
+      "Open-Source-verifizierter BEP-20-Vertrag auf der BNB Smart Chain": "Contratto BEP-20 open-source verificato su BNB Smart Chain",
+      "1-Jahres-Liquiditätssperre (PinkLock)": "Blocco Liquidità 1 Anno (PinkLock)",
+      "PancakeSwap V2 PLT/USDT LP gesperrt unter ID #2113264": "LP PancakeSwap V2 PLT/USDT bloccata con ID #2113264",
+      "Marktindexierung & Explorer-Synchronisation": "Indicizzazione Mercato e Sincronizzazione Explorer",
+      "Live on GeckoTerminal & FreshCoins · BscScan & DEXView in review": "Live su GeckoTerminal e FreshCoins · BscScan e DEXView in revisione"
+    };
+    const w = document.createTreeWalker(document.body, 4, null, false);
+    let n;
+    while(n = w.nextNode()){
+      const raw = n.nodeValue.replace(/\s+/g, ' ').trim();
+      if(!n._origEn && extraIt[raw]) n._origEn = raw;
+      if(n._origEn){
+        n.nodeValue = isIt ? n.nodeValue.replace(n.nodeValue.trim(), extraIt[n._origEn]) : n.nodeValue.replace(n.nodeValue.trim(), n._origEn);
+      }
+    }
+    
+    document.querySelectorAll('div, p, span, h3, h4').forEach(el => {
+      if(el.children.length > 2) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if(!el._origHtml && (
+        t === 'ASIGNACIÓN DE SUMINISTRO ON-CHAIN Y BÓVEDA' ||
+        t.startsWith('Verifiable distribution of the strict 11,000,000 PLT') ||
+        t === 'Open-Source-verifizierter BEP-20-Vertrag auf der BNB Smart Chain' ||
+        t === 'PancakeSwap V2 PLT/USDT LP gesperrt unter ID #2113264' ||
+        t.startsWith('Live on GeckoTerminal & FreshCoins')
+      )){
+        el._origHtml = el.innerHTML;
+        if(t === 'ASIGNACIÓN DE SUMINISTRO ON-CHAIN Y BÓVEDA') el._itHtml = '📊 ALLOCAZIONE FORNITURA ON-CHAIN E VAULT';
+        else if(t.startsWith('Verifiable distribution')) el._itHtml = 'Distribuzione verificabile della fornitura fissa di <strong style="color:#fff;">11.000.000 PLT</strong> su BNB Smart Chain:';
+        else if(t.startsWith('Open-source verified')) el._itHtml = 'Contratto BEP-20 open-source verificato su BNB Smart Chain';
+        else if(t.startsWith('PancakeSwap V2')) el._itHtml = 'LP PancakeSwap V2 PLT/USDT bloccata con ID #2113264';
+        else if(t.startsWith('Live on GeckoTerminal')) el._itHtml = 'Live su GeckoTerminal e FreshCoins · BscScan e DEXView in revisione';
+      }
+      if(el._origHtml) el.innerHTML = isIt ? el._itHtml : el._origHtml;
+    });
+    const lbl = document.getElementById('plt-lang-label');
+    if(lbl) lbl.textContent = isIt ? 'ITA ▾' : 'ENG ▾';
+    document.querySelectorAll('#plt-lang-drop button').forEach(b => {
+      const active = (b.dataset.lang === (isIt ? 'it' : 'en'));
+      b.classList.toggle('plt-opt-active', active);
+      const chk = b.querySelector('.plt-chk');
+      if(chk) chk.textContent = active ? '✓' : '';
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const menuBtnTmp = document.getElementById('plt-menu-toggle') || document.querySelector('header button, nav button'); const bar = document.getElementById('plt-hamburger-bar') || (menuBtnTmp && menuBtnTmp.parentElement);
+    const menuBtn = document.getElementById('plt-menu-toggle');
+    const mainDrop = document.getElementById('plt-dropdown-menu');
+
+    // Nasconde eventuale vecchio pulsante lingua fuori dalla barra superiore
+    document.querySelectorAll('#plt-lang-dropdown, #plt-lang-btn-wrap, .plt-floating-lang').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('div, button').forEach(el => {
+      if(bar && bar.contains(el)) return;
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if((t === '🌐 ENG ▾' || t === '🌐 ITA ▾' || t === 'ENG ▾' || t === 'ITA ▾') && el.children.length <= 3){
+        el.style.display = 'none';
+      }
+    });
+
+    if(bar && menuBtn){
+      const controls = document.createElement('div');
+      controls.id = 'plt-right-controls';
+
+      const langWrap = document.createElement('div');
+      langWrap.id = 'plt-lang-wrap';
+      langWrap.innerHTML =
+        '<button type="button" id="plt-lang-toggle" style="height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(52,211,153,0.38);background:rgba(52,211,153,0.12);color:#f8fafc;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">🌐 <span id="plt-lang-label">ENG ▾</span></button>' +
+        '<div id="plt-lang-drop" style="display:none;">' +
+          '<button type="button" data-lang="en"><span>🇬🇧 ENGLISH (ENG)</span><span class="plt-chk"></span></button>' +
+          '<button type="button" data-lang="it" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span><span class="plt-chk"></span></button>' +
+        '</div>';
+
+      bar.insertBefore(controls, menuBtn);
+      controls.appendChild(langWrap);
+      controls.appendChild(menuBtn);
+
+      const langBtn = document.getElementById('plt-lang-toggle');
+      const langDrop = document.getElementById('plt-lang-drop');
+
+      // Mutua esclusione intelligente tra i due menu a tendina
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(mainDrop) mainDrop.style.display = 'none';
+        langDrop.style.display = (langDrop.style.display === 'block') ? 'none' : 'block';
+      });
+
+      menuBtn.addEventListener('click', () => {
+        langDrop.style.display = 'none';
+      }, true);
+
+      langDrop.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          applyPltLang(b.dataset.lang);
+          langDrop.style.display = 'none';
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!e.target.closest('#plt-lang-wrap')) langDrop.style.display = 'none';
+        if(mainDrop && !e.target.closest('#plt-menu-toggle') && !e.target.closest('#plt-dropdown-menu')) mainDrop.style.display = 'none';
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          langDrop.style.display = 'none';
+          if(mainDrop) mainDrop.style.display = 'none';
+        }
+      });
+    }
+
+    applyPltLang(localStorage.getItem('plt_lang') === 'it' ? 'it' : 'en');
+  });
+})();
+</script>
+<style>
+  .lang-it { display: none !important; }
+  div:not(#plt-right-controls):not(#wp-lang-wrap) > #plt-lang-wrap,
+  #plt-lang-dropdown, #lang-dd-menu { display: none !important; }
+</style>
+<script>
+localStorage.setItem('plt_lang', 'en'); try{if(typeof setDocsLang==='function')setDocsLang('en');}catch(e){} try{if(typeof setContactLang==='function')setContactLang('en');}catch(e){} try{if(typeof setL==='function')setL('en');}catch(e){} window.switchLang = window.setDocsLang = window.setContactLang = window.setL = function(){};
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('div, button').forEach(el => {
+    if(el.closest('#plt-right-controls') || el.closest('#wp-lang-wrap')) return;
+    const t = el.textContent.replace(/\s+/g, ' ').trim();
+    if((t === '🌐 DEU ▾' || t === '🌐 ENG ▾' || t === '🌐 ITA ▾' || t === 'DEU ▾' || t === 'ENG ▾') && el.children.length <= 3){
+      el.remove();
+    }
+  });
+});
+window.addEventListener('load', () => {
+  document.querySelectorAll('div, button').forEach(el => {
+    if(el.closest('#plt-right-controls') || el.closest('#wp-lang-wrap')) return;
+    const t = el.textContent.replace(/\s+/g, ' ').trim();
+    if((t === '🌐 DEU ▾' || t === '🌐 ENG ▾' || t === '🌐 ITA ▾' || t === 'DEU ▾' || t === 'ENG ▾') && el.children.length <= 3){
+      el.remove();
+    }
+  });
+  const l = document.getElementById('plt-lang-label') || document.getElementById('wp-lang-label');
+  if(l) l.textContent = 'DEU ▾';
+  const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
+  if(d){
+    const b = (location.pathname.split('/').pop() || 'index-de.html').replace('-de.html', '.html');
+    d.innerHTML = '<button type="button" onclick="localStorage.setItem(\'plt_lang\',\'en\');location.href=\''+b+'\'"><span>🇬🇧 ENGLISH (ENG)</span></button><button type="button" onclick="localStorage.setItem(\'plt_lang\',\'it\');location.href=\''+b+'\'" style="margin-top:4px;"><span>🇮🇹 ITALIANO (ITA)</span></button><button type="button" class="plt-opt-active wp-opt-active" style="margin-top:4px;"><span>🇪🇸 ESPAÑOL (ESP)</span><span>✓</span></button>';
+  }
+});
+</script>
+<script>
+window.addEventListener('load', () => {
+  const d = document.getElementById('plt-lang-drop') || document.getElementById('wp-lang-drop');
+  if(d && !d.querySelector('[data-fr-link]')){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('data-fr-link', '1');
+    b.style.marginTop = '4px';
+    b.innerHTML = '<span>🇫🇷 FRANÇAIS (FRA)</span><span></span>';
+    b.onclick = () => { location.href = 'index-fr.html'; };
+    d.appendChild(b);
+  }
+});
+</script>
+
+</body></html>
