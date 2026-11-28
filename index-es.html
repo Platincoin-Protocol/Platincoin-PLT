@@ -631,7 +631,7 @@
     <span style="padding:4px 10px;border-radius:8px;background:rgba(52,211,153,0.15);color:#34d399;font-size:11px;font-weight:700;white-space:nowrap;">🔒 BLOQUEADO</span>
   </div>
   <div style="padding:14px 16px;border-radius:14px;background:rgba(15,23,42,0.88);border:1px solid rgba(52,211,153,0.28);display:flex;justify-content:space-between;align-items:center;gap:10px;">
-    <div><strong style="font-size:13.5px;color:#f8fafc;">Indexación de Mercado y Sincronización del Explorador</strong><div style="font-size:12px;color:#94a3b8;margin-top:2px;">En vivo en GeckoTerminal y FreshCoins • BscScan y DEXView en revisión</div></div>
+    <div><strong style="font-size:13.5px;color:#f8fafc;">Indexación de Mercado y Sincronización del Explorador</strong><div style="font-size:12px;color:#94a3b8;margin-top:2px;">En vivo en GeckoTerminal y FreshCoins • DEXView Live • BscScan in review</div></div>
     <a href="explorer-es.html" style="padding:5px 10px;border-radius:8px;background:rgba(52,211,153,0.15);color:#34d399;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;">🔍 Explorador de Nodos PoW</a>
   </div>
 </div>
@@ -718,6 +718,7 @@
   <nav style="display:flex;flex-wrap:wrap;gap:10px;">
     <a href="https://geckoterminal.com/bsc/pools/0xa51e99928c39ae656b7cb38006b8a1d220479b2c" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📈 <span class="lang-en">Gráfico en vivo de GeckoTerminal ↗</span><span class="lang-it" style="display:none;">Gráfico Live GeckoTerminal ↗</span></a>
     <a href="https://pinksale.finance/pinklock/bsc/record/2113264" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔒 <span class="lang-en">Cerradura PinkLock LP (#2113264) ↗</span><span class="lang-it" style="display:none;">Certificado de bloqueo PinkLock (#2113264) ↗</span></a>
+        <a href="https://://dexview.com/bsc/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" class="lang-en" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">📊 Gráfico en Vivo DEXView ↗</a>
     <a href="https://bscscan.com/token/0xF34c49593E7a67Ec34CADADb5c34e0b24d1d3ac8" target="_blank" rel="noopener" style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.06);color:#e2e8f0;font-size:12px;font-weight:600;text-decoration:none;">🔍 <span class="lang-en">Contrato verificado por BscScan ↗</span><span class="lang-it" style="display:none;">Contrato verificado BscScan ↗</span></a>
   <button type="button" id="plt-add-wallet-btn" style="padding:8px 14px;border-radius:10px;border:1px solid rgba(234,179,8,0.45);background:rgba(234,179,8,0.12);color:#fde047;font-size:12px;font-weight:700;cursor:pointer;">🦊 <span class="lang-en">Agregar $PLT a la billetera</span><span class="lang-it" style="display:none;">Agregar $PLT al Wallet</span></button>
   </nav>
@@ -780,7 +781,7 @@
       </span>
       <h3 class="lang-en" style="margin:0 0 8px;font-size:15px;color:#fff;">Explorador y agregadores</h3>
       <h3 class="lang-it" style="display:none;margin:0 0 8px;font-size:15px;color:#fff;">Explorador y agregadores</h3>
-      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Verificación del perfil del token oficial de BscScan, registro de activos de TrustWallet, listados de CoinGecko y CoinMarketCap.</p>
+      <p class="lang-en" style="margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">En vivo en GeckoTerminal, FreshCoins y DEXView; perfil oficial de BscScan, TrustWallet, CoinGecko y CoinMarketCap.</p>
       <p class="lang-it" style="display:none;margin:0;font-size:12px;line-height:1.55;color:#cbd5e1;">Verifique el perfil oficial de BscScan, registre el activo TrustWallet y acceda a su listado en CoinGecko y CoinMarketCap.</p>
     </div>
 
@@ -1409,7 +1410,7 @@ async function addTokenToWallet() {
       "1-Year Liquidity Lock (PinkLock)": "Blocco Liquidità 1 Anno (PinkLock)",
       "PancakeSwap V2 PLT/USDT LP locked under ID #2113264": "LP PancakeSwap V2 PLT/USDT bloccata con ID #2113264",
       "Market Indexing & Explorer Sync": "Indicizzazione Mercato e Sincronizzazione Explorer",
-      "Live on GeckoTerminal & FreshCoins · BscScan & DEXView in review": "Live su GeckoTerminal e FreshCoins · BscScan e DEXView in revisione"
+      "Live on GeckoTerminal & FreshCoins · DEXView Live • BscScan in review": "Live su GeckoTerminal e FreshCoins · DEXView Live • BscScan in review"
     };
     const w = document.createTreeWalker(document.body, 4, null, false);
     let n;
@@ -1436,7 +1437,7 @@ async function addTokenToWallet() {
         else if(t.startsWith('Verifiable distribution')) el._itHtml = 'Distribuzione verificabile della fornitura fissa di <strong style="color:#fff;">11.000.000 PLT</strong> su BNB Smart Chain:';
         else if(t.startsWith('Open-source verified')) el._itHtml = 'Contratto BEP-20 open-source verificato su BNB Smart Chain';
         else if(t.startsWith('PancakeSwap V2')) el._itHtml = 'LP PancakeSwap V2 PLT/USDT bloccata con ID #2113264';
-        else if(t.startsWith('Live on GeckoTerminal')) el._itHtml = 'Live su GeckoTerminal e FreshCoins · BscScan e DEXView in revisione';
+        else if(t.startsWith('Live on GeckoTerminal')) el._itHtml = 'Live su GeckoTerminal e FreshCoins · DEXView Live • BscScan in review';
       }
       if(el._origHtml) el.innerHTML = isIt ? el._itHtml : el._origHtml;
     });
